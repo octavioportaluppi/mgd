@@ -1,0 +1,134 @@
+@charset "UTF-8";
+@font-face {
+  font-family: 'mi-gran-dia_icons';
+  src: url("fonts/mi-gran-dia_icons.eot?7usfgy");
+  src: url("fonts/mi-gran-dia_icons.eot?7usfgy#iefix") format("embedded-opentype"), url("fonts/mi-gran-dia_icons.ttf?7usfgy") format("truetype"), url("fonts/mi-gran-dia_icons.woff?7usfgy") format("woff"), url("fonts/mi-gran-dia_icons.svg?7usfgy#mi-gran-dia_icons") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'mi-gran-dia_icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-agenda:before {
+  content: ""; }
+
+.icon-invitados:before {
+  content: ""; }
+
+.icon-presupuesto:before {
+  content: ""; }
+
+.icon-proveedores:before {
+  content: ""; }
+
+.icon-bautizo:before {
+  content: ""; }
+
+.icon-bodas:before {
+  content: ""; }
+
+.icon-conferencias:before {
+  content: ""; }
+
+.icon-cumpleanos:before {
+  content: ""; }
+
+.icon-graduaciones:before {
+  content: ""; }
+
+.icon-icon_otros:before {
+  content: ""; }
+
+.icon-quinceaneras:before {
+  content: ""; }
+
+.icon-showers:before {
+  content: ""; }
+
+.icon-catering:before {
+  content: ""; }
+
+.icon-decoracion:before {
+  content: ""; }
+
+.icon-dulcerias:before {
+  content: ""; }
+
+.icon-entretenimiento:before {
+  content: ""; }
+
+.icon-florerias:before {
+  content: ""; }
+
+.icon-fotografia:before {
+  content: ""; }
+
+.icon-invitaciones:before {
+  content: ""; }
+
+.icon-joyeria:before {
+  content: ""; }
+
+.icon-lugares:before {
+  content: ""; }
+
+.icon-mobiliario:before {
+  content: ""; }
+
+.icon-musica:before {
+  content: ""; }
+
+.icon-organizadores:before {
+  content: ""; }
+
+.icon-otros:before {
+  content: ""; }
+
+.icon-pastelerias:before {
+  content: ""; }
+
+.icon-pinatas:before {
+  content: ""; }
+
+.icon-presentadores:before {
+  content: ""; }
+
+.icon-recuerdos:before {
+  content: ""; }
+
+.icon-regalos:before {
+  content: ""; }
+
+.icon-salon:before {
+  content: ""; }
+
+.icon-trajes:before {
+  content: ""; }
+
+.icon-trajes_bebe:before {
+  content: ""; }
+
+.icon-transporte:before {
+  content: ""; }
+
+.icon-vestidos:before {
+  content: ""; }
+
+.icon-viajes:before {
+  content: ""; }
+
+.icon-video:before {
+  content: ""; }
+
+.icon-zapatos:before {
+  content: ""; }

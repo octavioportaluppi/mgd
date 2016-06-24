@@ -1,0 +1,318 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+body {
+    padding: 146px 0 0;
+    margin: 0;
+}
+
+.logo {
+    height: 94px;
+}
+
+.navbar {
+    margin: 0;
+    background: #fff;
+}
+
+.navbar-fixed-top {
+    border: 0;
+}
+
+nav.navbar {
+    padding: 0 15px;
+    color: #818181;
+}
+
+.nav>li {
+    display: inline-block;
+}
+
+.nav li a {
+    font-family: 'Gotham Rounded', sans-serif;
+    font-size: 1.618em;
+    font-weight: 500;
+    letter-spacing: 0.236em;
+    text-transform: uppercase;
+    line-height: 4.236em;
+    padding: 15px 22px;
+    color: #818181;
+}
+
+.nav li a:hover {
+    background: #fff;
+    color: #ee3470;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.item {
+    height: 540px;
+    width: 100%;
+}
+
+.item img {
+    /*display: block;*/
+    width: 100%;
+}
+
+.carousel-caption {
+    font-family: 'hurme_geometric_sans_4black', sans-serif;
+    font-size: 6.854em;
+    text-transform: uppercase;
+    top: 40%;
+    padding-bottom: 0;
+    line-height: 95%;
+}
+
+.jumbotron {
+    padding: 0;
+    
+}
+
+.col-md-6 {
+    padding: 0;
+}
+
+.btn {
+    font-family: 'Gotham Rounded', sans-serif;
+    font-weight: 500;
+    font-size: 2.618em;
+    letter-spacing: 0.236em;
+    text-shadow: none;
+    text-transform: uppercase;
+    color: #fff;
+    background: none;
+    background-image: none;
+}
+
+.btn-default {
+    background: none;
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+}
+
+.btn-lg {
+	width: 33.333333333%;
+	background: #cecece;
+	height: 110px;
+	margin: 0;
+    padding: 0;
+    float: left;
+    color: #666;
+}
+
+.drawer-icon {
+    width: 30%;
+}
+
+.drawer-menu {
+    background: #4d4d4d;
+}
+
+.drawer-menu h5 {
+    
+    color: #fff!important;
+}
+
+.no-transition {
+  -webkit-transition: height 0.001s;
+  -moz-transition: height 0.001s;
+  -ms-transition: height 0.001s;
+  -o-transition: height 0.001s;
+  transition: height 0.001s;
+}
+
+.drawer-menu .btn-lg {
+    background: transparent;
+    width: 16.666666666%;
+}
+
+.drawer-menu .btn-lg:nth-child(odd) {
+    background: transparent;
+}
+
+.btn-lg:nth-child(odd) {
+    background: #dadada;
+}
+
+.btn-lg:hover {
+    color: #fff;
+    background: #afd045;
+}
+
+.cat-menu {
+    display: block;
+    bottom: 110px;
+    margin-top: -110px;
+}
+
+.btn-group,
+.btn-group-vertical {
+    width: 100%;
+    line-height: 2.618em;
+}
+
+.btn-group .btn+.btn {
+	margin-left: 0;
+}
+
+.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    background: rgba(0, 0, 0, .2);
+    width: 15%;
+    border: 0;
+    border-radius: 0;
+}
+
+.btn-group>.btn:last-child:not(:first-child),
+.btn-group>.dropdown-toggle:not(:first-child) {
+    text-align: left;
+    width: 85%;
+    border: 0;
+    border-radius: 0;
+    height: 100%;
+    line-height: 64px;
+}
+
+.menu-icon {
+    width: 100%;
+}
+
+.cat-icon {
+    width: 25%;
+}
+
+.first-row {
+    background: #8c3e96;
+}
+
+.second-row {
+    background: #ee3470;
+}
+
+.third-row {
+    background: #faa41a;
+}
+
+.fourth-row {
+    background: #aed136;
+}
+
+footer {
+    font-family: 'Gotham Rounded', sans-serif;
+    font-weight: 500;
+    font-size: 2.618em;
+    letter-spacing: 0.236em;
+    text-transform: uppercase;
+    color: #818181;
+    background: #cecece;
+    padding: 15px;
+    margin: 20px 0 0;
+}
+
+footer ul {
+    padding: 0;
+}
+
+footer li {
+    list-style: none;
+}
+
+footer li a {
+    color: #818181;
+}
+
+.st0 {
+    fill: #fff;
+}
+
+/******** Organizador *********/
+.organizador.jumbotron {
+    
+    background-image: url("../img/mi_gran_dia_cumpleanos.jpg");
+    background-size: cover;
+    background-position: center;
+    
+    text-align: center;
+}
+
+.organizador-login.jumbotron {
+    
+    background-image: url("../img/mi_gran_dia_login.jpg");
+    background-size: cover;
+    background-position: center;
+    
+    text-align: center;
+}
+
+.organizador h1 {
+    text-align: center;
+}
+
+
+.jumbotron-container {
+    position: relative;
+    min-height: 540px;
+}
+
+
+.jumbotron-caption {
+    position: absolute;
+  top: 80%;
+  left:50%;
+  transform: translate(-50%,-50%);
+    font-family: 'hurme_geometric_sans_4black', sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    margin: auto 0;
+    min-height: 600px;
+    vertical-align: middle;
+}
+
+.container-fluid .jumbotron {
+    border-radius: 0;
+}
+
+.login-caption {
+    font-family: 'hurme_geometric_sans_4black', sans-serif;
+    text-transform: uppercase;
+    color: #666;
+    margin: auto 0;
+    text-align: center;
+    margin: 10% 0;
+}
+
+.login {
+    background: #dadada;
+    max-height: 540px;
+}
+
+.row.login {
+    margin: 0;
+}
+
+.btn-submit {
+    background: #aed136;
+    color: #fff;
+}
+
+.form-group {
+    font-family: 'hurme_geometric_sans_4bold', sans-serif;
+    font-weight: 400;
+    
+
+}
+
+.btn-file {
+    background: #aed136;
+    font-size: 16px;
+}
+
+.fileinput-remove, .fileinput-upload {
+    font-size: 16px;
+    background: #aed136;
+}

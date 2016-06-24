@@ -1,0 +1,31 @@
+{
+  "name": "mi-gran-dia",
+  "version": "1.0.0",
+  "description": "Awesome event organizing tool.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server -a 0.0.0.0 -p 8000 -c-1",
+    "pug-watch": "pug -w views -o app/views",
+    "index-watch": "pug -w views/index.pug -o .",
+    "sass-watch": "node-sass -w scss/ -o css/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular-chart.js": "^1.0.0-alpha8",
+    "angular-ui-bootstrap": "^1.3.3",
+    "bootstrap": "^3.3.6",
+    "chart.js": "^2.1.6",
+    "express": "^4.13.4",
+    "jquery": "^2.2.3",
+    "modularscale-sass": "^2.1.1",
+    "node-sass": "^3.8.0",
+    "pug": "^2.0.0-alpha4",
+    "swiper": "^3.3.1"
+  },
+  "devDependencies": {
+    "node-sass": "^3.4.2",
+    "nodemon": "^1.9.1"
+  }
+}

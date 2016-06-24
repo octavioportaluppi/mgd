@@ -1,0 +1,32 @@
+@font-face {
+	font-family: 'Hurme Geometric Sans 4';
+	src: url('HurmeGeometricSans4-Bold.eot');
+	src: url('HurmeGeometricSans4-Bold.eot?#iefix') format('embedded-opentype'),
+		url('HurmeGeometricSans4-Bold.woff') format('woff'),
+		url('HurmeGeometricSans4-Bold.ttf') format('truetype'),
+		url('HurmeGeometricSans4-Bold.svg#HurmeGeometricSans4-Bold') format('svg');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Hurme Geometric Sans 4';
+	src: url('HurmeGeometricSans4-Black.eot');
+	src: url('HurmeGeometricSans4-Black.eot?#iefix') format('embedded-opentype'),
+		url('HurmeGeometricSans4-Black.woff') format('woff'),
+		url('HurmeGeometricSans4-Black.ttf') format('truetype'),
+		url('HurmeGeometricSans4-Black.svg#HurmeGeometricSans4-Black') format('svg');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Hurme Geometric Sans 4';
+	src: url('HurmeGeometricSans4-Regular.eot');
+	src: url('HurmeGeometricSans4-Regular.eot?#iefix') format('embedded-opentype'),
+		url('HurmeGeometricSans4-Regular.woff') format('woff'),
+		url('HurmeGeometricSans4-Regular.ttf') format('truetype'),
+		url('HurmeGeometricSans4-Regular.svg#HurmeGeometricSans4-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
