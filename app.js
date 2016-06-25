@@ -102,6 +102,7 @@ app.filter('tel', function () {
 });
 
 var serviceBase = 'http://randallcanezr-001-site2.ftempurl.com/';
+
 app.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase,
     clientId: 'ngAuthApp'

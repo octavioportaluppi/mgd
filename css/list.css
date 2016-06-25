@@ -1,0 +1,33 @@
+.list-header {
+	margin: 40px 0; 
+	padding: 20px; 
+	background: #cecece; 
+	border-radius: 5px;
+}
+
+.list-header h3 {
+	padding: 5px 0 0 0; 
+	font-weight: 600; 
+	color: #818181;
+	text-transform: uppercase;
+}
+
+.list-item {
+	background: #ffffff; 
+	border-radius: 5px; 
+	border: 1px #cecece solid; 
+	padding: 20px; 
+	margin: 20px 0;
+}
+
+.list-nav {
+	height: 50px;
+	padding: 20px; 
+}
+
+.list-nav a {
+	padding: 15px 0;
+	background: #ffffff;
+	border: 1px #cecece solid; 
+	border-radius: 1px; 
+}

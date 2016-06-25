@@ -4,14 +4,39 @@ app.controller(
     [
         '$scope', 
         '$routeParams', 
-        'suppliersService', 
-        function ($scope, $routeParams, suppliersService) {
+        'supplierService', 
+        function ($scope, $routeParams , supplierService) {
 
-            suppliersService
+            /*
+            supplierService
                 .getSuppliersByEvent($routeParams.eventId)
                 .success(function (response){
                     $scope.suppliers = response;
                 })
+            */
+
+            $scope.suppliers = [
+                {
+                   id: 1,
+                   name: 'someName',
+                   description: 'someDescription' 
+                },
+                {
+                   id: 1,
+                   name: 'someName',
+                   description: 'someDescription' 
+                },
+                {
+                   id: 1,
+                   name: 'someName',
+                   description: 'someDescription' 
+                },
+                {
+                   id: 1,
+                   name: 'someName',
+                   description: 'someDescription' 
+                }
+            ]
 
             $scope.eventId = $routeParams.eventId;
 
