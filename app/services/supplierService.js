@@ -103,6 +103,14 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
 
     };
 
+    //britez
+    var getSuppliersByEnvent = function (eventId) {
+
+        return $http
+            .get(serviceBase + 'api/eventtype/' + eventId + '/suppliers')
+
+    }
+
 
 
     supplierServiceFactory.getDashboard = _getDashboard;

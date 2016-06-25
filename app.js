@@ -42,7 +42,7 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/planner.html"
     });    
 
-    $routeProvider.when("/events/:id", {
+    $routeProvider.when("/events/:eventId", {
         controller: "eventsController",
         templateUrl: "/app/views/events.html"
     });    
