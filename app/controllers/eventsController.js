@@ -5,65 +5,42 @@ app.controller('eventsController', ['$scope', function ($scope) {
         {
             id: 1,
             name:"Bodas",
-        }, {
+            icon:"bodas"
+        }, 
+        {
             id: 2,
             name:"Cumpleaños",
-        }, {
+            icon:"cumpleanos"
+        }, 
+        {
             id: 3,
             name:"Quinceañeras",
-        }, {
+            icon:"quinceaneras"
+        }, 
+        {
             id: 4,
             name:"Graduaciones",
-        }, {
+            icon:"graduaciones"
+        }, 
+        {
             id: 7,
             name:"Bautizos",
-        }, {
+            icon:"bautizo"
+        }, 
+        {
             id: 8,
             name:"Conferencias",
-        }, {
+            icon:"conferencias"
+        }, 
+        {
             id: 9,
             name:"Showers",
-        }, {
+            icon:"showers"
+        }, 
+        {
             id: 10,
             name:"Otros",
+            icon:"icon_otros"
         }
     ];
-
-    var eventIcons= [
-        {
-            id: 1,
-            icon:"bodas",
-        }, {
-            id: 2,
-            icon:"cumpleanos",
-        }, {
-            id: 3,
-            icon:"quinceaneras",
-        }, {
-            id: 4,
-            icon:"graduaciones",
-        }, {
-            id: 7,
-            icon:"bautizo",
-        }, {
-            id: 8,
-            icon:"conferencias",
-        }, {
-            id: 9,
-            icon:"showers",
-        }, {
-            id: 10,
-            icon:"icon_otros",
-        }
-    ];
-
-    $scope.icon = function(eventId) {
-        function findIcon(id){
-            for (var i = 0; i < eventIcons.length; i++){
-                if (eventIcons[i].id === id)
-                    return eventIcons[i].icon;
-            }
-        }
-        return "icon-"+findIcon(eventId);
-    }    
 }]);

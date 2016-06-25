@@ -3,7 +3,9 @@ app.controller('homeController', ['$scope', function ($scope) {
 	$scope.isSupplier = false;
 	$scope.myInterval = 3000;
 	$scope.noWrapSlides = false;
+
 	$scope.active = 0;
+	
 	$scope.slides = [{
 		id: 0,
 		img: 'img/mi_gran_dia_conferencia.jpg',
