@@ -483,7 +483,7 @@ option {
   margin-top: 15px; }
 
 .signup-field {
-  padding: 2px 10px; }
+  padding: 2px 7px; }
 
 /************ Register Evento ***************/
 h1.promt {
@@ -807,12 +807,31 @@ h1.promt {
 .event-head {
   padding: 0 10px;
   text-transform: uppercase;
-  color: #8c3e96; }
+  color: #818181;
+  letter-spacing: 3px; }
+
+.event-date {
+  padding: 2px 10px;
+  text-transform: uppercase;
+  color: #ee3470;
+  letter-spacing: 3px; }
+
+.event-edit {
+  padding: 0 10px;
+  font-size: 0.61805em;
+  text-transform: uppercase;
+  color: #aed136;
+  letter-spacing: 3px; }
 
 .planner-nav {
   color: #818181; }
   .planner-nav input[type="checkbox"], .planner-nav input[type="radio"] {
     opacity: 1; }
+
+.panel-default > .panel-heading {
+  background-image: none;
+  border: 1px solid #d4d4d4;
+  box-shadow: none; }
 
 .navbar-toggle {
   position: relative;
