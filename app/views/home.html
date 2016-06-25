@@ -17,10 +17,8 @@
 	</div>
 	<div class="row events" ng-controller="eventsController">
 		<div class="col-xs-6 col-sm-3" ng-repeat="event in eventItems track by event.id">
-			<div class="event-icon">
-				<span class="icon-{{event.icon}}"></span>
-			</div>
-			<h2 class="event-name">{{event.name}}</h2>
+			<a href="#/events/{{event.id}}" class="event-icon"><span class="icon-{{event.icon}}"></span></a>
+			<a href="#/events/{{event.id}}"><h2 class="event-name">{{event.name}}</h2></a>
 		</div>
 	</div>
 </div>
