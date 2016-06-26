@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('homeController', ['$scope', function ($scope) {
+app.controller('homeController', ['$scope', 'supplierService', function ($scope, supplierService) {
 	$scope.isSupplier = false;
 	$scope.myInterval = 3000;
 	$scope.noWrapSlides = false;
@@ -19,5 +19,63 @@ app.controller('homeController', ['$scope', function ($scope) {
 		img: 'img/mi_gran_dia_boda.jpg',
 		text: 'Te ayudamos a organizar tu boda'
 	}];
+
+	supplierService
+		.getEvents()
+		.then(function(data) {
+			console.log(data);
+			$scope.eventItems = data;
+		});
+
+	$scope.getEvents = function (){
+		return $scope.eventItems;
+	}
+
+	/**/
+
+	/*
+	$scope.eventItems = [
+                {
+                    id: 1,
+                    name:"Bodas",
+                    icon:"bodas"
+                }, 
+                {
+                    id: 2,
+                    name:"Cumpleaños",
+                    icon:"cumpleanos"
+                }, 
+                {
+                    id: 3,
+                    name:"Quinceañeras",
+                    icon:"quinceaneras"
+                }, 
+                {
+                    id: 4,
+                    name:"Graduaciones",
+                    icon:"graduaciones"
+                }, 
+                {
+                    id: 7,
+                    name:"Bautizos",
+                    icon:"bautizo"
+                }, 
+                {
+                    id: 8,
+                    name:"Conferencias",
+                    icon:"conferencias"
+                }, 
+                {
+                    id: 9,
+                    name:"Showers",
+                    icon:"showers"
+                }, 
+                {
+                    id: 10,
+                    name:"Otros",
+                    icon:"icon_otros"
+                }
+            ];
+    */
    
 }]);

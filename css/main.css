@@ -37,16 +37,16 @@
 .icon-proveedores:before {
   content: ""; }
 
-.icon-bautizo:before {
+.icon-bautizo:before, .icon-bautizos:before {
   content: ""; }
 
-.icon-bodas:before {
+.icon-bodas:before, .icon-bodas:before {
   content: ""; }
 
 .icon-conferencias:before {
   content: ""; }
 
-.icon-cumpleanos:before {
+.icon-cumpleanos:before, .icon-cumpleaños:before {
   content: ""; }
 
 .icon-graduaciones:before {
@@ -55,7 +55,7 @@
 .icon-icon_otros:before {
   content: ""; }
 
-.icon-quinceaneras:before {
+.icon-quinceaneras:before, .icon-quinceañeras:before {
   content: ""; }
 
 .icon-showers:before {

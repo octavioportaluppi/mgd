@@ -15,10 +15,12 @@
 		</div>
 		<div class="col-md-5 separator"></div>
 	</div>
-	<div class="row events" ng-controller="eventsController">
-		<div class="col-xs-6 col-sm-3" ng-repeat="event in eventItems track by event.id">
-			<a href="#/events/{{event.id}}" class="event-icon"><span class="icon-{{event.icon}}"></span></a>
-			<a href="#/events/{{event.id}}"><h2 class="event-name">{{event.name}}</h2></a>
+	<div class="row events">
+		<div class="col-xs-6 col-sm-3" ng-repeat="event in getEvents()">
+			<a href="#/events/{{event.Id}}?eventName={{event.Name}}" class="event-icon">
+				<span class="icon-{{event.Name.toLowerCase()}}"></span>
+			</a>
+			<a href="#/events/{{event.Id}}?eventName={{event.Name}}"><h2 class="event-name">{{event.Name}}</h2></a>
 		</div>
 	</div>
 </div>
