@@ -21,13 +21,41 @@
 }
 
 .list-nav {
-	height: 50px;
-	padding: 20px; 
+	padding: 20px 0; 
+	list-style: none;
+	display: inline-block;
+}
+
+.list-nav li {
+	display: inline;
 }
 
 .list-nav a {
-	padding: 15px 0;
-	background: #ffffff;
-	border: 1px #cecece solid; 
-	border-radius: 1px; 
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    float: left;
+    text-decoration: none;
+
+    color: #818181;
+    background-color: #FFFFFF;
+    border: 1px solid #CECECE;
+    margin: 0 3px;
+
+    font-size: 14px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.list-nav a.active {
+	color: #FFFFFF;
+    background-color: #ee3470;
+    border: 1px solid #ee3470;
+}
+
+.list-nav li:last-child a {
+    width: 80px;
 }
