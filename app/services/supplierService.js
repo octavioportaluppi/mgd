@@ -104,10 +104,16 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     };
 
     //britez
-    var getSuppliersByEvent = function (eventId) {
+    var getSuppliersByEvent = function (eventId, max, offset) {
 
         return $http
-            .get(serviceBase + 'api/eventtype/' + eventId + '/suppliers')
+            //.get(serviceBase + 'api/eventtype/' + eventId + '/suppliers')
+            .get(serviceBase + 'api/suppliers', 
+                {
+                    params: {
+                        size: max, offset: offset
+                    }
+                });
 
     }
 

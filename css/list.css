@@ -5,7 +5,7 @@
 	border-radius: 5px;
 }
 
-.list-header h3 {
+.list-header h4, .list-item h4 {
 	padding: 5px 0 0 0; 
 	font-weight: 600; 
 	color: #818181;
@@ -16,8 +16,39 @@
 	background: #ffffff; 
 	border-radius: 5px; 
 	border: 1px #cecece solid; 
-	padding: 20px; 
+	padding: 15px 0; 
 	margin: 20px 0;
+}
+
+.list-item div:last-child {
+	padding-left: 0;
+}
+
+.list-item img {
+	width: 100%;
+}
+
+.list-item .ligth-description {
+	color: #cecece;
+}
+
+.list-item p {
+	padding: 10px 0 0 0;
+	color: #818181;
+}
+
+.divider {
+	width: 100%;
+	height: 2px;
+	background-color: #cecece;
+	margin: 5px 0;
+}
+
+.more-info {
+	float: right;
+	color: #aed136;
+	cursor: pointer;
+	padding: 10px 0;
 }
 
 .list-nav {
@@ -58,4 +89,8 @@
 
 .list-nav li:last-child a {
     width: 80px;
+}
+
+.navbar-header {
+	margin: 0 0 0 20px;
 }
