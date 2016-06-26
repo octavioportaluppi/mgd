@@ -1,69 +1,42 @@
 'use strict';
-app.controller('eventsController', ['$scope', function ($scope) {
+app.controller(
+    'eventsController', 
+    [
+        '$scope', 
+        '$routeParams', 
+        'supplierService', 
+        function ($scope, $routeParams , supplierService) {
 
-    $scope.eventItems = [
-        {
-            id: 1,
-            name:"Bodas",
-        }, {
-            id: 2,
-            name:"Cumpleaños",
-        }, {
-            id: 3,
-            name:"Quinceañeras",
-        }, {
-            id: 4,
-            name:"Graduaciones",
-        }, {
-            id: 7,
-            name:"Bautizos",
-        }, {
-            id: 8,
-            name:"Conferencias",
-        }, {
-            id: 9,
-            name:"Showers",
-        }, {
-            id: 10,
-            name:"Otros",
-        }
-    ];
+            $scope.offset = 0;
+            $scope.size = 5;
+            $scope.eventName = $routeParams.eventName;
 
-    var eventIcons= [
-        {
-            id: 1,
-            icon:"bodas",
-        }, {
-            id: 2,
-            icon:"cumpleanos",
-        }, {
-            id: 3,
-            icon:"quinceaneras",
-        }, {
-            id: 4,
-            icon:"graduaciones",
-        }, {
-            id: 7,
-            icon:"bautizo",
-        }, {
-            id: 8,
-            icon:"conferencias",
-        }, {
-            id: 9,
-            icon:"showers",
-        }, {
-            id: 10,
-            icon:"icon_otros",
-        }
-    ];
-
-    $scope.icon = function(eventId) {
-        function findIcon(id){
-            for (var i = 0; i < eventIcons.length; i++){
-                if (eventIcons[i].id === id)
-                    return eventIcons[i].icon;
+            $scope.getSuppliers = function (){
+                supplierService
+                    .getSuppliersByEvent(
+                        $routeParams.eventId, 
+                        $scope.size,
+                        $scope.offset)
+                    .success(function (response){
+                        $scope.suppliers = response;
+                    })
             }
+
+            $scope.nextPage = function(){
+                $scope.offset = $scope.offset + $scope.size;
+                $scope.getSuppliers();
+            }
+
+            $scope.isCurrentPage = function(pageNumber){
+                return $scope.offset == pageNumber;
+            }
+
+            $scope.goPage = function(pageNumber){
+                $scope.offset = pageNumber;
+                $scope.getSuppliers();
+            }
+
+            $scope.getSuppliers();
         }
-        return "icon-"+findIcon(eventId);
-    }    
-}]);
+    ]
+);

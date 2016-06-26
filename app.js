@@ -42,7 +42,7 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/planner.html"
     });    
 
-    $routeProvider.when("/events", {
+    $routeProvider.when("/events/:eventId", {
         controller: "eventsController",
         templateUrl: "/app/views/events.html"
     });    
@@ -102,6 +102,7 @@ app.filter('tel', function () {
 });
 
 var serviceBase = 'http://randallcanezr-001-site2.ftempurl.com/';
+
 app.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase,
     clientId: 'ngAuthApp'
