@@ -23,7 +23,7 @@ app.controller(
             }
 
             $scope.nextPage = function(){
-                $scope.offset = $scope.offset + 1;
+                $scope.offset = $scope.offset + $scope.size;
                 $scope.getSuppliers();
             }
 
