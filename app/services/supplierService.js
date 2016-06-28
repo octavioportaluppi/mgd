@@ -114,9 +114,19 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
                     }
                 });
 
-    }
+    };
 
+    var getAllSuppliers = function (max, offset) {
 
+        return $http
+            .get(serviceBase + 'api/suppliers',
+                {
+                    params: {
+                        size: max, offset: offset
+                    }
+                });
+
+    };
 
     supplierServiceFactory.getDashboard = _getDashboard;
     supplierServiceFactory.eventTypes = _eventTypes;
@@ -127,6 +137,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.getSuppliers = _getSuppliers;   
     supplierServiceFactory.suppliers = _suppliers;   
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
+    supplierServiceFactory.getAllSuppliers = getAllSuppliers;
 
     return supplierServiceFactory;
 }]);
