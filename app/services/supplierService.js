@@ -107,7 +107,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     var getSuppliersByEvent = function (eventId, max, offset) {
 
         return $http
-            .get(serviceBase + 'api/eventtype/' + eventId + '/suppliers',
+            .get(serviceBase + 'api/eventtypes/' + eventId + '/suppliers',
                 {
                     params: {
                         size: max, offset: offset
