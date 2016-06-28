@@ -1,3 +1,18 @@
-<multi-step-container class="sliding-steps simple-prev-next" steps="stepsPlanner"><main step-container="step-container"></main><div class="container"><div class="row"><div class="col-lg-12 text-center signup-nav"><div class="form-group text-center"><button class="btn btn-default btn-submit prev" ng-hide="$isFirst()" ng-click="$previousStep()">Regresar</button><button class="btn btn-default btn-submit next" ng-hide="$isLast()" ng-click="$nextStep()">Siguiente</button><button class="btn btn-default btn-submit next" ng-show="$isLast()" ng-click="signupPlanner()" type="submit">Finalizar</button><div></div> {{registration}}
- {{planner}}
- {{message}}</div></div></div></div></multi-step-container>
+<multi-step-container class="sliding-steps simple-prev-next" steps="stepsPlanner">
+	<main step-container="step-container"></main>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center signup-nav">
+				<div class="form-group text-center">
+					<button class="btn btn-default btn-submit prev" ng-hide="$isFirst()" ng-click="$previousStep()">Regresar</button>
+					<button class="btn btn-default btn-submit next" ng-hide="$isLast()" ng-click="$nextStep()">Siguiente</button>
+					<button class="btn btn-default btn-submit next" ng-show="$isLast()" ng-click="signupPlanner()" type="submit">Finalizar</button>
+					<div></div>
+				{{registration}}
+ 				{{planner}}
+ 				{{message}}
+				</div>
+			</div>
+		</div>
+	</div>
+</multi-step-container>
