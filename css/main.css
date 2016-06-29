@@ -40,13 +40,13 @@
 .icon-bautizo:before, .icon-bautizos:before {
   content: ""; }
 
-.icon-bodas:before, .icon-bodas:before {
+.icon-bodas:before {
   content: ""; }
 
 .icon-conferencias:before {
   content: ""; }
 
-.icon-cumpleanos:before, .icon-cumpleaños:before {
+.icon-cumpleanos:before {
   content: ""; }
 
 .icon-graduaciones:before {
@@ -55,7 +55,7 @@
 .icon-icon_otros:before {
   content: ""; }
 
-.icon-quinceaneras:before, .icon-quinceañeras:before {
+.icon-quinceaneras:before {
   content: ""; }
 
 .icon-showers:before {
@@ -88,10 +88,10 @@
 .icon-lugares:before {
   content: ""; }
 
-.icon-mobiliario:before, .icon-renta:before {
+.icon-mobiliario:before, .icon-renta-de-mobiliario:before {
   content: ""; }
 
-.icon-musica:before {
+.icon-musica:before, .icon-musica-y-sonido:before{
   content: ""; }
 
 .icon-organizadores:before {
@@ -103,7 +103,7 @@
 .icon-pastelerias:before {
   content: ""; }
 
-.icon-pinatas:before, .icon-piñatas:before{
+.icon-pinatas:before {
   content: ""; }
 
 .icon-presentadores:before {
@@ -112,16 +112,16 @@
 .icon-recuerdos:before {
   content: ""; }
 
-.icon-regalos:before, .icon-mesa:before{
+.icon-regalos:before, .icon-mesa-de-regalos:before {
   content: ""; }
 
 .icon-salon:before {
   content: ""; }
 
-.icon-trajes:before, .icon-smokings:before {
+.icon-trajes:before, .icon-smokings-y-trajes:before {
   content: ""; }
 
-.icon-trajes_bebe:before, .icon-trajes:before{
+.icon-trajes_bebe:before, .icon-trajes-para-bebe:before{
   content: ""; }
 
 .icon-transporte:before {
@@ -130,7 +130,7 @@
 .icon-vestidos:before {
   content: ""; }
 
-.icon-viajes:before, .icon-agencias:before {
+.icon-viajes:before, .icon-agencias-de-viaje:before{
   content: ""; }
 
 .icon-video:before {

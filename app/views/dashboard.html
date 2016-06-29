@@ -75,7 +75,7 @@
                           <input type="checkbox"
                                  checklist-model="services"
                                   checklist-value="item.Id"/>
-                                  <span class="icon-{{item.Name.toLowerCase() | removeAcentos}}"></span>
+                                  <span class="{{item.Name | icon}}"></span>
                                   {{item.Name}} </label>
                                   </div>
                         <div class="col-md-6"
