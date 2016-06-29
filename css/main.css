@@ -88,7 +88,7 @@
 .icon-lugares:before {
   content: ""; }
 
-.icon-mobiliario:before {
+.icon-mobiliario:before, .icon-renta:before {
   content: ""; }
 
 .icon-musica:before {
@@ -103,7 +103,7 @@
 .icon-pastelerias:before {
   content: ""; }
 
-.icon-pinatas:before {
+.icon-pinatas:before, .icon-piñatas:before{
   content: ""; }
 
 .icon-presentadores:before {
@@ -112,16 +112,16 @@
 .icon-recuerdos:before {
   content: ""; }
 
-.icon-regalos:before {
+.icon-regalos:before, .icon-mesa:before{
   content: ""; }
 
 .icon-salon:before {
   content: ""; }
 
-.icon-trajes:before {
+.icon-trajes:before, .icon-smokings:before {
   content: ""; }
 
-.icon-trajes_bebe:before {
+.icon-trajes_bebe:before, .icon-trajes:before{
   content: ""; }
 
 .icon-transporte:before {
@@ -130,7 +130,7 @@
 .icon-vestidos:before {
   content: ""; }
 
-.icon-viajes:before {
+.icon-viajes:before, .icon-agencias:before {
   content: ""; }
 
 .icon-video:before {

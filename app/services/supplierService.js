@@ -127,6 +127,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
                 });
 
     };
+    
 
     supplierServiceFactory.getDashboard = _getDashboard;
     supplierServiceFactory.eventTypes = _eventTypes;
@@ -138,6 +139,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.suppliers = _suppliers;   
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
+ 
 
     return supplierServiceFactory;
 }]);
