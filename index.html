@@ -62,17 +62,17 @@
 						</nav>
 						<nav class="navbar navbar-default navbar-fixed-top sub-nav" ng-show="authentication.isAuth">
 							<style ng-if="authentication.isAuth">body {padding-top: 110px;}</style>
-							<div class="container-fluid drawer-menu">
+							<div class="drawer-menu">
 								<div class="row" ng-show="authentication.userType === 'planner'">
 									<div class="col-xs-4"><a href="#/account">Mi Cuenta</a></div>
 									<div class="col-xs-4"><a href="#/events">Mis Eventos</a></div>
 									<div class="col-xs-4"><a href="#/planner">Organizador       </a></div>
 								</div>
-								<div class="row" ng-show="authentication.userType === 'supplier'">
-									<div class="col-xs-4"><a href="#/account">Mi Cuenta</a></div>
-									<div class="col-xs-4"><a href="#/profile">Mi perfil</a></div>
-									<div class="col-xs-4"><a href="#/dashboard">Dashboard</a></div>
-								</div>
+								<ul class="nav" ng-show="authentication.userType === 'supplier'">
+									<li class=" nav-tabs nav-justified "><a class="col-xs-4" ng-href="#/account">Mi Cuenta</a></li>
+									<li class="nav-tabs nav-justified "><a class="col-xs-4" ng-href="#/profile">Mi perfil</a></li>
+									<li class="nav-tabs nav-justified "><a class="col-xs-4" ng-href="#/dashboard">Dashboard</a></li>
+								</ul>
 							</div>
 						</nav>
 					</div>
@@ -112,6 +112,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
+		<script src="//rawgit.com/angular/bower-material/master/angular-material.js"></script>
 		<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
 		<script src="bower_components/angular-progress-arc/angular-progress-arc.min.js"></script>
 		<script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
