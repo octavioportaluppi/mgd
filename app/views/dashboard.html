@@ -60,30 +60,33 @@
                         </div>
                         <div class="col-xs-2">
                             <button class="btn btn-default btn-submit" ng-show="!editServices" ng-click="editServices = !editServices">Editar</button>
-                            <button class="btn btn-default btn-submit" ng-show="editServices" ng-click="saveServices(service)">Guardar</button>
+                            <button class="btn btn-default btn-submit" ng-show="editServices" ng-click="saveServices(service);editServices = !editServices">Guardar</button>
                         </div>
                     </div>
                     <div class="row register-panel frame">
+                        <div class="col-md-6"
+                            ng-if="editServices"
+                            ng-repeat="item in serviceTypes">
+                            <label class="btn btn-default" ng-class="{'active': haveItem(item.Id)}">
+                                <input
+                                    type="checkbox"
+                                    checklist-model="dashboard.ServiceTypes"
+                                    checklist-value="item"/>
+                                <span class="{{item.Name | icon}}"></span>
+                                {{item.Name}}
+                            </label>
+                        </div>
                         <div class="col-md-12 text-center"
-                             ng-if="dashboard.ServiceTypes == '' &amp;&amp; !editServices">
-                             <h1>No has seleccionado algún servicio</h1>
-                             </div>
+                             ng-if="dashboard.ServiceTypes.length === 0 && !editServices">
+                            <h1>No has seleccionado algún servicio</h1>
+                        </div>
                         <div class="col-md-6"
-                         ng-if="editServices"
-                          ng-repeat="item in serviceTypes">
-                          <label class="btn btn-default" ng-class="{'active': services.indexOf(item.Name) == -1}">
-                          <input type="checkbox"
-                                 checklist-model="services"
-                                  checklist-value="item.Id"/>
-                                  <span class="{{item.Name | icon}}"></span>
-                                  {{item.Name}} </label>
-                                  </div>
-                        <div class="col-md-6"
-                         ng-if="!editServices"
-                          ng-repeat="item in servicesTypes">
-                          <label class="btn btn-default"
-                                ng-class="{'active': services.indexOf(serviceItems[item-1].id) != -1}"><span
-                                ng-class="icon({{serviceItems[item-1].id}})"></span>{{serviceItems[item-1].name}}</label>
+                             ng-if="!editServices"
+                            ng-repeat="item in dashboard.ServiceTypes">
+                            <label class="btn btn-default active">
+                                <span class="{{item.Name | icon}}"></span>
+                                {{item.Name}}
+                            </label>
                         </div>
                     </div>
                 </div>

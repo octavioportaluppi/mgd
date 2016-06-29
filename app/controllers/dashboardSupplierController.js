@@ -1,9 +1,6 @@
 ﻿'use strict';
 app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService', function ($scope, supplierService, authService) {
-	
-	$scope.editServices = false;
-    $scope.serviceTypes;
-	
+
 	$scope.supplier = {
         Name: '',
         Description: '',
@@ -14,14 +11,6 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
         InstagramUrl: '',
         Phone: ''
     };
-
-    supplierService
-        .getServices()
-        .then(function (data) {
-            $scope.serviceTypes = data
-        });
-	
-
 
     $scope.events = [];
     
@@ -45,8 +34,6 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 		$scope.supplier.FacebookUrl = res.FacebookUrl;
 		$scope.supplier.InstagramUrl = res.InstagramUrl;
 		$scope.supplier.TwitterUrl = res.TwitterUrl;
-		$scope.services = supplierService.ServiceTypes;
-        $scope.services = supplierService.getServices();
 		$scope.chart = getProgress();
 	});
 
@@ -68,4 +55,20 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 		}
 		return value;
 	};
+
+	//britez
+
+	$scope.editServices = false;
+
+	supplierService
+		.getServices()
+		.then(function (data) {
+			$scope.serviceTypes = data
+		});
+
+	$scope.haveItem = function(itemId){
+		return $scope.dashboard.ServiceTypes.find(function(it){
+			return it.Id === itemId;
+		})
+	}
 }]);
