@@ -142,4 +142,11 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
         }, 2000);
     }
 
+    //Britez
+    $scope.saveSupplierData = function (form, callback){
+        if(form.$valid) {
+            callback();
+        }
+    }
+
 }]);
