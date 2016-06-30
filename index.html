@@ -18,6 +18,7 @@
 		<link rel="stylesheet" href="css/icons.css">
 		<link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
 		<link rel="stylesheet" href="node_modules/angular-xeditable/dist/css/xeditable.min.css">
+		<link rel="stylesheet" href="css/dashboard.css">
 	</head>
 	<body data-ng-app="AngularFunctions" flow-prevent-drop>
 		<div class="navbar navbar-default navbar-fixed-top" ng-controller="indexController">
@@ -68,20 +69,24 @@
 								<div class="row" ng-show="authentication.userType === 'planner'">
 									<div class="col-xs-4"><a href="#/account">Mi Cuenta</a></div>
 									<div class="col-xs-4"><a href="#/events">Mis Eventos</a></div>
-									<div class="col-xs-4"><a href="#/planner">Organizador       </a></div>
+									<div class="col-xs-4"><a href="#/planner">Organizador</a></div>
 								</div>
-								<div class="row" ng-show="authentication.userType === 'supplier'">
-									<div class="col-xs-4"><a href="#/account">Mi Cuenta</a></div>
-									<div class="col-xs-4"><a href="#/profile">Mi perfil</a></div>
-									<div class="col-xs-4"><a href="#/dashboard">Dashboard</a></div>
-								</div>
+								<ul class="nav" ng-show="authentication.userType === 'supplier'">
+									<li>
+										<a class="col-xs-4" ng-class="{ 'active' : isActive('/home')}" href="#/account">Mi Cuenta</a></li>
+									<li>
+										<a class="col-xs-4" ng-class="{ 'active' : isActive('/')}" href="#/profile">Mi perfil</a></li>
+									<li>
+										<a class="col-xs-4" ng-class="{ 'active' : isActive('/dashboard')}" href="#/dashboard">Dashboard</a>
+									</li>
+								</ul>
 							</div>
 						</nav>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div data-ng-view="" autoscroll=""></div>
+		<div ng-view=""></div>
 	</body>
 	<footer>
 		<div class="container">
@@ -114,7 +119,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
-		<script src="//rawgit.com/angular/bower-material/master/angular-material.js"></script>
 		<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
 		<script src="bower_components/angular-progress-arc/angular-progress-arc.min.js"></script>
 		<script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>

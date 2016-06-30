@@ -19,6 +19,11 @@ app.controller('indexController', ['$scope', '$location', 'authService', '$uibMo
 
     $scope.authentication = authService.authentication;
 
+	//britez
+	$scope.isActive = function(currentLocation) {
+		return $location.path() == currentLocation;
+	}
+
 }]);
 
 app.controller('modalController', function ($scope, $uibModalInstance, $location) {

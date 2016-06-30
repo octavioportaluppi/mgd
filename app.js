@@ -148,7 +148,20 @@ app.filter('tel', function () {
 
         return 'icon-' + source;
     };
+})
+
+
+
+.filter('firstLetter', function() {
+    return function(input) {
+        if(input){
+            return input[0].toUpperCase() + input.slice(1);
+        }
+    }
 });
+
+
+
 
 
 

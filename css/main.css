@@ -880,15 +880,12 @@ nav.navbar.navbar-fixed-top {
   }
 }
 
-.nav > li > a:hover,
-.nav > li > a:focus {
+.nav > li > a:hover {
   text-decoration: none;
   background-color: #aed136;
 }
 
 .nav>li>a {
-  position: relative;
-  display: block;
   padding: 15px 15px;
 }
 

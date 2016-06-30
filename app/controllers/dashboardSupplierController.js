@@ -1,22 +1,14 @@
 ﻿'use strict';
-app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService', function ($scope, supplierService, authService) {
+app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService', function ($scope, supplierService, authService,$location) {
 
 	$scope.supplier = {
-        Name: '',
-        Description: '',
-        Address: '',
-        CityId: 1,
-        FacebookUrl: '',
-        TwitterUrl: '',
-        InstagramUrl: '',
-        Phone: ''
-    };
+	};
 
     $scope.events = [];
     
     $scope.chart = 0;
 
-    $scope.cities = [{ 'id': 1, 'name': 'Hermosillo' }];
+
 
 	$scope.dashboard = '';
     
@@ -27,6 +19,7 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 	supplierService.getDashboard().then(function(res) {
 		console.log(res);
 		$scope.dashboard = res;
+		$scope.supplier.City = res.City;
 		$scope.supplier.Name = res.Name;
 		$scope.supplier.Address = res.Address;
 		$scope.supplier.Phone = res.Phone;
@@ -60,6 +53,7 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 
 	$scope.editServices = false;
 
+
 	supplierService
 		.getServices()
 		.then(function (data) {
@@ -70,5 +64,10 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 		return $scope.dashboard.ServiceTypes.find(function(it){
 			return it.Id === itemId;
 		})
-	}
+	};
+
+	
+
+
+
 }]);
