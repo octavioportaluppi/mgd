@@ -41,11 +41,17 @@
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
-				<input class="form-control" name="password" required="required" type="password" placeholder="Contraseña" ng-model="registration.Password"
-				ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}" pattern="'^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$'"/>
+				<input
+						class="form-control"
+						name="password"
+						required="required"
+						type="password"
+						placeholder="Contraseña"
+						ng-model="registration.Password"
+						ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/><!-- ng-pattern="'^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$'"-->
 				<div class="error" ng-show="data.$submitted || data.password.$touched">
       				<div ng-show="data.password.$error.required">Elije una contraseña.</div>
-      				<div ng-show="data.password.$error.pattern">La contraseña debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.</div>
+      				<!--|| data.password.$error.pattern  <div ng-show="data.password.$error.pattern">La contraseña debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.</div>-->
     			</div>
 			</div>
 		</div>
@@ -56,7 +62,6 @@
 				compare-to="registration.Password"/>
 				<div class="error" ng-show="data.$submitted || data.passwordConfirm.$touched">
       				<div ng-show="data.passwordConfirm.$error.required">Confirma la contraseña.</div>
-      				<div ng-show="data.passwordConfirm.$error.passwordVerify">Las contraseñas no coinciden.</div>
       				<div ng-show="data.passwordConfirm.$error.compareTo">Las contraseñas no coinciden.</div>
     			</div>
 			</div>
