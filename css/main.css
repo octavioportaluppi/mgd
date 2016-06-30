@@ -399,7 +399,7 @@ option {
   margin-top: 15px; }
 
 .signup-field {
-  padding: 2px 7px; }
+  padding: 5px 7px; }
 
 /************ Register Evento ***************/
 h1.promt {
@@ -763,6 +763,7 @@ nav.navbar.navbar-fixed-top {
   width: 100%; }
 
 @media only screen and (min-width: 425px) {
+
   button h5 {
     font-size: 0.38198em; }
   .modal-welcome h1 {
@@ -773,6 +774,7 @@ nav.navbar.navbar-fixed-top {
     text-align: center; } }
 
 @media only screen and (min-width: 768px) {
+
   body {
     padding-top: 80px;
   }

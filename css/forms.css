@@ -1,0 +1,14 @@
+.form-control.invalid {
+	border: 1px #ee3470 solid;
+}
+
+.form-group .error {
+	position: absolute;
+    padding: 4px 0 0 13px;
+    color: #ee3470;
+}
+
+.form-step .btn.invalid {
+	background: #ee3470;
+    cursor: not-allowed;
+}
