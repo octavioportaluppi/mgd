@@ -1,5 +1,7 @@
 ﻿'use strict';
-app.controller('signupController', ['$scope', '$location', '$timeout', 'authService', function ($scope, $location, $timeout, authService) {
+app.controller('signupController', [
+    '$scope', '$location', '$timeout', 'authService', 'supplierService',
+    function ($scope, $location, $timeout, authService, supplierService) {
 
     $scope.savedSuccessfully = false;
     $scope.message = "";
@@ -32,8 +34,6 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
 
     $scope.events = [];
 
-    $scope.cities = [{ 'id': 1, 'name': 'Hermosillo' }];
-    
     $scope.stepsPlanner = [
         {
             templateUrl: '/app/views/signup-supplier-data.html',
@@ -148,5 +148,11 @@ app.controller('signupController', ['$scope', '$location', '$timeout', 'authServ
             callback();
         }
     }
+
+    supplierService
+        .getCities()
+        .then(function (data) {
+            $scope.cities = data;
+        })
 
 }]);
