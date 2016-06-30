@@ -1,12 +1,11 @@
 .form-control.invalid {
-	border: 3px #ee3470 solid;
+	border: 1px #ee3470 solid;
 }
 
 .form-group .error {
 	position: absolute;
     padding: 4px 0 0 13px;
     color: #ee3470;
-    font-weight: 600;
 }
 
 .form-step .btn.invalid {
