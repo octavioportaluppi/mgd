@@ -15,33 +15,33 @@
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/list.css">
 		<link rel="stylesheet" href="css/forms.css">
+		<link rel="stylesheet" href="css/icons.css">
 		<link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
 		<link rel="stylesheet" href="node_modules/angular-xeditable/dist/css/xeditable.min.css">
 	</head>
 	<body data-ng-app="AngularFunctions" flow-prevent-drop>
 		<div class="navbar navbar-default navbar-fixed-top" ng-controller="indexController">
-			<!--<div class="" >-->
-				<!--<div class="row">-->
+			<div class="container-fluid" >
+				<div class="row">
 					<div class="navbar-header">
-
+						<a class="navbar-brand" href="#/">
+							<object class="logo" type="image/svg+xml" data="img/mi_gran_dia_logo_svg.svg" style="pointer-events: none"></object>
+						</a>
 						<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-
-						<a class="navbar-brand" href="#/">
-							<object class="logo" type="image/svg+xml" data="img/mi_gran_dia_logo_svg.svg" style="pointer-events: none"></object>
-						</a>
 					</div>
-
 					<div id="nav-container">
 						<nav class="navbar-collapse collapse" uib-collapse="isCollapsed">
-							<ul class="nav navbar-nav navbar-left">
+							<ul class="nav navbar-nav">
 								<li role="presentation"><a href="#/suppliers">Proveedores</a></li>
+								<!--<span class="caret"></span>-->
 								<li role="presentation"><a href="#/contact">Contacto</a></li>
+								<!--<span class="caret"></span>-->
 							</ul>
-							<ul class="user-nav nav navbar-nav navbar-right">
+							<ul class="user-nav nav navbar-nav">
 								<li ng-hide="authentication.isAuth" uib-dropdown on-toggle="toggled(open)">
 									<a href id="simple-dropdown" uib-dropdown-toggle>Iniciar sesión</a>
 									<ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
@@ -55,6 +55,8 @@
 								<li class="disabled" ng-hide="!authentication.isAuth">
 									<a href="">Hola, {{authentication.Email}}</a>
 								</li>
+								<!--li(ng-hide="!authentication.isAuth")a(href="#/profile") Perfil-->
+								<!--li(ng-hide="!authentication.isAuth")a(href="#/dashboard") Dashboard-->
 								<li ng-hide="!authentication.isAuth">
 									<a href="" ng-click="logOut()">Cerrar sesión                                    </a>
 								</li>
@@ -62,7 +64,7 @@
 						</nav>
 						<nav class="navbar navbar-default navbar-fixed-top sub-nav" ng-show="authentication.isAuth">
 							<style ng-if="authentication.isAuth">body {padding-top: 110px;}</style>
-							<div class="container-fluid drawer-menu">
+							<div class="drawer-menu">
 								<div class="row" ng-show="authentication.userType === 'planner'">
 									<div class="col-xs-4"><a href="#/account">Mi Cuenta</a></div>
 									<div class="col-xs-4"><a href="#/events">Mis Eventos</a></div>
@@ -76,8 +78,8 @@
 							</div>
 						</nav>
 					</div>
-				<!--</div>-->
-			<!--</div>-->
+				</div>
+			</div>
 		</div>
 		<div data-ng-view="" autoscroll=""></div>
 	</body>
@@ -112,6 +114,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
+		<script src="//rawgit.com/angular/bower-material/master/angular-material.js"></script>
 		<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
 		<script src="bower_components/angular-progress-arc/angular-progress-arc.min.js"></script>
 		<script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>

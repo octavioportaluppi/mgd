@@ -37,6 +37,7 @@ app.controller(
             }
 
             $scope.getSuppliers();
+            
             supplierService
                 .getEvents()
                 .then(function(response){

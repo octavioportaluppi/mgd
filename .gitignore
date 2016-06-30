@@ -1,7 +1,6 @@
 node_modules/**
-
-node_modules/.bin/**
-
-*.log
-.idea
+.idea/
+app/npm-debug.log
 *.iml
+node_modules/.bin/**
+*.log

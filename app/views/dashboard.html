@@ -1,1 +1,106 @@
-<div class="container-fluid gray-bg"><div class="container supplier"><div class="row"><div class="col-lg-9 col-sm-12"><div class="container-fluid"><div class="row frame"><div class="col-xs-4"><img class="avatar img-circle" src="img/loverde_avatar.jpg"/></div><div class="col-xs-4"><h1 editable-text="supplier.Name">{{supplier.Name}}</h1><p>Nombre</p><div ng-if="dashboard.ServiceTypes !=0" ng-repeat="service in services" ng-controller="servicesController"><div class="service-type">{{serviceItems[service].name}}</div></div><p class="description">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p></div><div class="col-xs-4"><h3> <a ng-href="{{supplier.FacebookUrl}}" editable-text="supplier.FacebookUrl">{{supplier.FacebookUrl}}</a></h3><p>Facebook</p><h3><a ng-href="{{supplier.TwitterUrl}}" editable-text="supplier.TwitterUrl">{{supplier.TwitterUrl}}</a></h3><p>Twitter</p><h3><a ng-href="{{supplier.InstagramUrl}}" editable-text="supplier.InstagramUrl">{{supplier.InstagramUrl}}</a></h3><p>Instagram</p></div></div><div class="row"><div class="col-xs-6 col-md-3 menu-item"><a>Mi Perfil</a></div><div class="col-xs-6 col-md-3 menu-item"><a>Mis Visitas</a></div><div class="col-xs-6 col-md-3 menu-item"><a>Favoritos</a></div><div class="col-xs-6 col-md-3 menu-item"><a>Upgrade</a></div></div><div class="row"><div class="col-xs-10"><h2>Info</h2></div><div class="col-xs-2"><button class="btn btn-default btn-submit">Editar</button></div></div><div class="row frame"><div class="col-xs-5"><h2 class="address" editable-text="supplier.Address">{{supplier.Address}}</h2><p>Dirección</p><h1 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h1><p>Teléfono</p><h3 class="price-range">$$$</h3><p>Rango de precios</p><h3 class="hours">Martes a Domingo<br>9:00 - 23:00 Hrs.</h3><p>Horario</p></div><div class="col-xs-7"><p class="description" editable-textarea="supplier.Description" e-rows="7" e-cols="40">{{supplier.Description}}</p><p>Descripción</p></div></div><div class="row"><div class="col-xs-10"><h2>Servicios</h2><p>Selecciona los servicios que ofrece tu empresa.</p>{{services}}</div><div class="col-xs-2"><button class="btn btn-default btn-submit" ng-click="editServices = !editServices">Editar</button></div></div><div class="row register-panel frame" ng-controller="servicesController"><div class="col-md-12 text-center" ng-if="dashboard.ServiceTypes == '' &amp;&amp; !editServices"><h1>No has seleccionado algún servicio</h1></div><div class="col-md-6" ng-if="editServices" ng-repeat="item in serviceItems"><label class="btn btn-default" ng-class="{'active': services.indexOf(item.id) != -1}"><input type="checkbox" checklist-model="services" checklist-value="item.id"/><span ng-class="icon({{item.id}})"></span>{{item.name}}</label></div><div class="col-md-6" ng-if="!editServices" ng-repeat="item in services"><label class="btn btn-default" ng-class="{'active': services.indexOf(serviceItems[item-1].id) != -1}"><span ng-class="icon({{serviceItems[item-1].id}})"></span>{{serviceItems[item-1].name}}</label></div></div></div></div><div class="col-lg-3 col-sm-12"><div class="row frame text-center"><h1>AD</h1></div><div class="row frame text-center"><h2>Perfil {{chart*100}}% completado</h2><progress-arc complete="chart" stroke-width="30" size="200" stroke="#8c3e96"></progress-arc></div><div class="row frame text-center"><div ng-if="message">{{message}}</div><button class="btn btn-default btn-submit" ng-click="update()">Guardar cambios</button></div></div></div></div></div>
+<div class="container-fluid gray-bg">
+    <div class="container supplier">
+        <div class="row">
+            <div class="col-lg-9 col-sm-12">
+                <div class="container-fluid">
+                    <div class="row frame">
+                        <div class="col-xs-4"><img class="avatar img-circle" src="img/loverde_avatar.jpg"/></div>
+                        <div class="col-xs-4"><h1 editable-text="supplier.Name">{{supplier.Name}}</h1>
+                            <p>Nombre</p>
+                            <div ng-if="dashboard.ServiceTypes !=0" ng-repeat="service in services"
+                                 ng-controller="servicesController">
+                                <div class="service-type">{{serviceItems[service].name}}</div>
+                            </div>
+                            <p class="description">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p></div>
+                        <div class="col-xs-4"><h3><a ng-href="{{supplier.FacebookUrl}}"
+                                                     editable-text="supplier.FacebookUrl">{{supplier.FacebookUrl}}</a>
+                        </h3>
+                            <p>Facebook</p>
+                            <h3><a ng-href="{{supplier.TwitterUrl}}" editable-text="supplier.TwitterUrl">{{supplier.TwitterUrl}}</a>
+                            </h3>
+                            <p>Twitter</p>
+                            <h3><a ng-href="{{supplier.InstagramUrl}}" editable-text="supplier.InstagramUrl">{{supplier.InstagramUrl}}</a>
+                            </h3>
+                            <p>Instagram</p></div>
+                        <div class="col-xs">
+                            <button class="btn btn-default btn-submit">Editar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3 menu-item"><a>Mi Perfil</a></div>
+                        <div class="col-xs-6 col-md-3 menu-item"><a>Mis Visitas</a></div>
+                        <div class="col-xs-6 col-md-3 menu-item"><a>Favoritos</a></div>
+                        <div class="col-xs-6 col-md-3 menu-item"><a>Upgrade</a></div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-xs-10"><h2>SOBRE MI</h2></div>
+                        <div class="col-xs">
+                            <button class="btn btn-default btn-submit">Editar</button>
+                        </div>
+                    </div>
+
+                    <div class="row frame">
+                        <div class="col-xs-5"><h2 class="address" editable-text="supplier.Address">
+                            {{supplier.Address}}</h2>
+                            <p>Dirección</p>
+                            <h1 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h1>
+                            <p>Teléfono</p>
+                            <h3 class="price-range">$$$</h3>
+                            <p>Rango de precios</p>
+                            <h3 class="hours">Martes a Domingo<br>9:00 - 23:00 Hrs.</h3>
+                            <p>Horario</p></div>
+                        <div class="col-xs-7"><p class="description" editable-textarea="supplier.Description" e-rows="7"
+                                                 e-cols="40">{{supplier.Description}}</p>
+                            <p>Descripción</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10"><h2>Servicios</h2>
+                            <p>Selecciona los servicios que ofrece tu empresa.</p>
+                        </div>
+                        <div class="col-xs-2">
+                            <button class="btn btn-default btn-submit" ng-show="!editServices" ng-click="editServices = !editServices">Editar</button>
+                            <button class="btn btn-default btn-submit" ng-show="editServices" ng-click="saveServices(service);editServices = !editServices">Guardar</button>
+                        </div>
+                    </div>
+                    <div class="row register-panel frame">
+                        <div class="col-md-6"
+                            ng-if="editServices"
+                            ng-repeat="item in serviceTypes">
+                            <label class="btn btn-default" ng-class="{'active': haveItem(item.Id)}">
+                                <input
+                                    type="checkbox"
+                                    checklist-model="dashboard.ServiceTypes"
+                                    checklist-value="item"/>
+                                <span class="{{item.Name | icon}}"></span>
+                                {{item.Name}}
+                            </label>
+                        </div>
+                        <div class="col-md-12 text-center"
+                             ng-if="dashboard.ServiceTypes.length === 0 && !editServices">
+                            <h1>No has seleccionado algún servicio</h1>
+                        </div>
+                        <div class="col-md-6"
+                             ng-if="!editServices"
+                            ng-repeat="item in dashboard.ServiceTypes">
+                            <label class="btn btn-default active">
+                                <span class="{{item.Name | icon}}"></span>
+                                {{item.Name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-12">
+                <div class="row frame text-center"><h1>AD</h1></div>
+                <div class="row frame text-center"><h2>Perfil {{chart*100}}% completado</h2>
+                    <progress-arc complete="chart" stroke-width="30" size="200" stroke="#8c3e96"></progress-arc>
+                </div>
+                <div class="row frame text-center">
+                    <div ng-if="message">{{message}}</div>
+                    <button class="btn btn-default btn-submit" ng-click="update()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

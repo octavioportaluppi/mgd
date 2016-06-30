@@ -99,7 +99,58 @@ app.filter('tel', function () {
 
         return (country + " (" + city + ") " + number).trim();
     };
+})
+
+
+
+.filter('icon', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        source = source.toLowerCase();
+
+        var values = [
+            {
+                id:'á',
+                replace: 'a'
+            },
+            {
+                id:'é',
+                replace: 'e'
+            },
+            {
+                id:'í',
+                replace: 'i'
+            },
+            {
+                id:'ó',
+                replace: 'o'
+            },
+            {
+                id:'ú',
+                replace: 'u'
+            },
+            {
+                id:'ñ',
+                replace: 'n'
+            },
+            {
+                id:' ',
+                replace: '-'
+            }
+        ];
+
+        values.forEach(function(value){
+           source = source.split(value.id).join(value.replace);
+        });
+
+        return 'icon-' + source;
+    };
 });
+
+
 
 var serviceBase = 'http://randallcanezr-001-site2.ftempurl.com/';
 
