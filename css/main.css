@@ -764,10 +764,6 @@ nav.navbar.navbar-fixed-top {
 
 @media only screen and (min-width: 425px) {
 
-  .navbar-fixed-top, .navbar-container {
-    height: 80px;
-  }
-
   button h5 {
     font-size: 0.38198em; }
   .modal-welcome h1 {
