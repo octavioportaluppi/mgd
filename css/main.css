@@ -29,7 +29,7 @@
 /* box */
 body {
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
-  padding-top: 95px;
+  padding-top: 80px;
   margin: 0;
   background: #ececec; }
 
@@ -52,42 +52,14 @@ h3.head {
 /** Nav bar */
 
 .logo {
-  width: 220px;
-  margin: 5px 0 0 0;
-}
+  width: 196px; }
 
 .navbar {
   margin: 0;
-  background: #fff;
-}
+  background: #fff; }
 
 .navbar-fixed-top {
-  border: 0;
-  padding: 10px 20px;
-}
-
-.navbar-toggle {
-  margin: 12px 0 !important;
-  background-color: #dadada;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  height: 52px;
-  width: 52px;
-}
-
-.navbar-toggle .icon-bar {
-  display: block;
-  width: 30px;
-  height: 5px;
-  border-radius: 2px;
-  background: #818181;
-}
-
-/** FIN NAV BAR */
-
-.navbar-brand {
-  padding: 0;
-}
+  border: 0; }
 
 nav.navbar.navbar-fixed-top {
   height: 124px; }
@@ -749,6 +721,24 @@ h1.promt {
   border: 1px solid #d4d4d4;
   box-shadow: none; }
 
+.navbar-toggle {
+  position: relative;
+  float: right;
+  padding: 10px;
+  margin-top: 14px !important;
+  background-color: #dadada;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 52px;
+  width: 52px; }
+
+.navbar-toggle .icon-bar {
+  display: block;
+  width: 30px;
+  height: 5px;
+  border-radius: 2px;
+  background: #818181; }
+
 nav.navbar.navbar-fixed-top {
   height: 80px; }
 
@@ -763,7 +753,6 @@ nav.navbar.navbar-fixed-top {
   width: 100%; }
 
 @media only screen and (min-width: 425px) {
-
   button h5 {
     font-size: 0.38198em; }
   .modal-welcome h1 {
@@ -776,23 +765,9 @@ nav.navbar.navbar-fixed-top {
 @media only screen and (min-width: 768px) {
 
   body {
-    padding-top: 80px;
-  }
-
-  .navbar-brand {
-    margin: 0 !important;
-  }
-
+    padding-top: 60px; }
   .logo {
-    width: 230px;
-    margin: 0;
-  }
-  
-  .navbar-collapse {
-    float: right;
-    margin-top: 10px;
-  }
-
+    width: 112px; }
   .navbar-default .navbar-nav > li > a {
     font-size: 0.61805em;
     line-height: 30px;
@@ -842,43 +817,21 @@ nav.navbar.navbar-fixed-top {
     display: table;
     font-size: 2.61792em;
     min-height: 15vw;
-    width: 15vw; }
-}
+    width: 15vw; } }
 
 @media only screen and (min-width: 1024px) {
-
-  body {
-    padding: 95px 0 0 0;
-  }
-  
-  .navbar-fixed-top {
-    height: 95px;
-  }
-
-  .logo {
-    width: 280px;
-  }
-
   h2.address {
-    font-size: 1.2em;
-  }
-
+    font-size: 1.2em; }
   .navbar-default .navbar-nav > li > a {
     font-size: 1em;
-    padding: 15px 22px;
-  }
-
+    padding: 15px 22px; }
   .login-form {
-    min-height: 600px;
-  }
-
+    min-height: 600px; }
   .event-name {
     text-transform: uppercase;
     color: #818181;
     font-size: 1.618em;
-    text-align: center;
-  }
-}
+    text-align: center; } }
 
 .nav > li > a:hover {
   text-decoration: none;

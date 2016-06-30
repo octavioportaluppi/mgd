@@ -21,8 +21,8 @@
 		<link rel="stylesheet" href="css/dashboard.css">
 	</head>
 	<body data-ng-app="AngularFunctions" flow-prevent-drop>
-		<div class="navbar navbar-default navbar-fixed-top" ng-controller="indexController">
-			<div class="container-fluid" >
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid" ng-controller="indexController">
 				<div class="row">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="#/">
@@ -36,13 +36,13 @@
 					</div>
 					<div id="nav-container">
 						<nav class="navbar-collapse collapse" uib-collapse="isCollapsed">
-							<ul class="nav navbar-nav">
+							<ul class="nav navbar-nav navbar-left">
 								<li role="presentation"><a href="#/suppliers">Proveedores</a></li>
 								<!--<span class="caret"></span>-->
 								<li role="presentation"><a href="#/contact">Contacto</a></li>
 								<!--<span class="caret"></span>-->
 							</ul>
-							<ul class="user-nav nav navbar-nav">
+							<ul class="user-nav nav navbar-nav navbar-right">
 								<li ng-hide="authentication.isAuth" uib-dropdown on-toggle="toggled(open)">
 									<a href id="simple-dropdown" uib-dropdown-toggle>Iniciar sesión</a>
 									<ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
