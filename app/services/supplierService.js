@@ -52,7 +52,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
 
     };
 
-    var _getCities = function () {
+    var getCities = function () {
 
         var deferred = $q.defer();
         $http.get(serviceBase + 'api/cities').success(function (res) {
@@ -139,6 +139,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.suppliers = _suppliers;   
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
+    supplierServiceFactory.getCities = getCities;
  
 
     return supplierServiceFactory;

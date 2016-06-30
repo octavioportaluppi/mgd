@@ -1,0 +1,7 @@
+ul > li {
+    cursor: pointer;
+}
+
+.active:focus, .active {
+    background: #aed136 !important;
+}

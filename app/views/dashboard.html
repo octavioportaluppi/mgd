@@ -40,9 +40,12 @@
                         </div>
                     </div>
 
-                    <div class="row frame">
-                        <div class="col-xs-5"><h2 class="address" editable-text="supplier.Address">
-                            {{supplier.Address}}</h2>
+                    <div class="row frame" >
+                        <div class="col-xs-5">
+                            <h2 class="address" editable-text="supplier.Address">
+                            {{supplier.Address | firstLetter }}</h2>
+                            <h2 class="address" editable-text="supplier.Address">
+                                {{supplier.City.Name | firstLetter}} </h2>
                             <p>Dirección</p>
                             <h1 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h1>
                             <p>Teléfono</p>
@@ -51,7 +54,7 @@
                             <h3 class="hours">Martes a Domingo<br>9:00 - 23:00 Hrs.</h3>
                             <p>Horario</p></div>
                         <div class="col-xs-7"><p class="description" editable-textarea="supplier.Description" e-rows="7"
-                                                 e-cols="40">{{supplier.Description}}</p>
+                                                 e-cols="40">{{supplier.Description |  firstLetter}}</p>
                             <p>Descripción</p></div>
                     </div>
                     <div class="row">
@@ -97,7 +100,7 @@
                     <progress-arc complete="chart" stroke-width="30" size="200" stroke="#8c3e96"></progress-arc>
                 </div>
                 <div class="row frame text-center">
-                    <div ng-if="message">{{message}}</div>
+                    <div  g-if="message">{{message}}</div>
                     <button class="btn btn-default btn-submit" ng-click="update()">Guardar cambios</button>
                 </div>
             </div>
