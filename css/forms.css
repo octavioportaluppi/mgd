@@ -2,10 +2,20 @@
 	border: 1px #ee3470 solid;
 }
 
-.form-group .error {
+form .error {
 	position: absolute;
     padding: 4px 0 0 13px;
     color: #ee3470;
+}
+
+.signup-error {
+    padding: 15px 0;
+}
+
+.signup-field input[disabled] {
+    background-color: #e0e0e0;
+    opacity: 1;
+    color: #818181;
 }
 
 .form-step .btn.invalid {

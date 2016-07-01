@@ -23,7 +23,6 @@ app.controller('homeController', ['$scope', 'supplierService', function ($scope,
 	supplierService
 		.getEvents()
 		.then(function(data) {
-			console.log(data);
 			$scope.eventItems = data;
 		});
 

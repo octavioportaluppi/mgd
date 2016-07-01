@@ -3,16 +3,14 @@ app.controller('signupController', [
     '$scope', '$location', '$timeout', 'authService', 'supplierService',
     function ($scope, $location, $timeout, authService, supplierService) {
 
-    $scope.savedSuccessfully = false;
-    $scope.message = "";
+    /*$scope.savedSuccessfully = false;
+    $scope.message = "";*/
 
-    $scope.registration = {
-        Email: "",
-        Password: "",
-        ConfirmPassword: ""
-    };
+    $scope.registration = {};
+    $scope.supplier = {};
+    $scope.supplierEvents = [];
 
-    $scope.planner = {
+    /*$scope.planner = {
         FirstName: "",
         LastName: "",
         CityId: '',
@@ -31,8 +29,7 @@ app.controller('signupController', [
     };
 
     $scope.services = [];
-
-    $scope.events = [];
+    */
 
     $scope.stepsPlanner = [
         {
@@ -81,7 +78,6 @@ app.controller('signupController', [
         maxDate: new Date(),
         startingDay: 1
     };
-
 
     $scope.openDatePicker = function() {
         $scope.datepicker.opened = true;
@@ -144,10 +140,67 @@ app.controller('signupController', [
 
     //Britez
     $scope.saveSupplierData = function (form, callback){
-        if(form.$valid) {
-            callback();
+
+        if(form.$valid && $scope.checkPassword()) {
+
+            //authService
+                //.saveRegistration($scope.registration)
+                //.then(
+                    //function() {
+                        //authService
+                            //.login($scope.registration, 'supplier')
+                            //.then(function() {
+                                //TODO: change this for current auth
+                                $scope.authentication = {isAuth: true};
+                                callback();
+                            //})
+                    //},
+                    //function(error) {
+                        //$scope.errorMessage = error;
+                        //form.$valid = false;
+                   //}
+            //)
+
         }
-    }
+    };
+
+    $scope.saveSupplierBusinessData = function (form, callback) {
+        if (form.$valid) {
+            //authService
+                //.saveSupplier($scope.supplier)
+                //.then(function (){
+                    callback();
+                //})
+        }
+    };
+
+    $scope.getSupplierBusinessData = function (callback) {
+        //TODO: Get suppler business data to edit
+        callback();
+    };
+
+    $scope.saveSupplierEvents = function (callback) {
+        //authService
+        //.saveSupplier($scope.supplier)
+        //.then(function (){
+        callback();
+        //})
+    };
+
+    $scope.checkPassword = function(){
+        if($scope.registration.Password === ''){
+            return true;
+        }
+
+        return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$')
+            .test($scope.registration.Password);
+    };
+
+    $scope.hasEvent = function(event){
+        return $scope.supplierEvents.find(function (item){
+            return item.Id === event.Id;
+        })
+    };
 
     supplierService
         .getCities()

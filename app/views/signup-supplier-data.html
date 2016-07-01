@@ -15,6 +15,14 @@
 				<h1 class="promt">Introduce tus datos</h1>
 			</div>
 		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
+			<div class="form-group signup-error">
+				<div class="error">
+					<div ng-show="errorMessage">{{errorMessage.data.ModelState[''][1]}}</div>
+				</div>
+			</div>
+		</div>
+		<!-- TODO: El planner no es parte del supplier
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
 				<input 
@@ -30,15 +38,24 @@
     			</div>
 			</div>
 		</div>
+		-->
+		<!-- TODO: El planner no es parte del supplier
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
-				<input class="form-control" name="lastName" required="required" type="text" placeholder="Apellido(s)" ng-model="planner.LastName"
+				<input
+						class="form-control"
+						name="lastName"
+						required="required"
+						type="text"
+						placeholder="Apellido(s)"
+						ng-model="planner.LastName"
 				ng-class="{'invalid':data.lastName.$error.required && (data.$submitted || data.lastName.$touched)}"/>
 				<div class="error" ng-show="data.$submitted || data.lastName.$touched">
       				<div ng-show="data.lastName.$error.required">Dinos tu apellido.</div>
     			</div>
 			</div>
 		</div>
+		-->
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
 				<input
@@ -48,18 +65,28 @@
 						type="password"
 						placeholder="Contraseña"
 						ng-model="registration.Password"
-						ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/><!-- ng-pattern="'^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$'"-->
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/>
 				<div class="error" ng-show="data.$submitted || data.password.$touched">
       				<div ng-show="data.password.$error.required">Elije una contraseña.</div>
-      				<!--|| data.password.$error.pattern  <div ng-show="data.password.$error.pattern">La contraseña debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.</div>-->
+					<div ng-show="!checkPassword()">
+						Debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.
+					</div>
     			</div>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
-				<input class="form-control" name="passwordConfirm" required="required" type="password" placeholder="Confirmar contraseña" ng-model="registration.ConfirmPassword"
-				ng-class="{'invalid':(data.passwordConfirm.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.passwordConfirm.$touched)}"
-				compare-to="registration.Password"/>
+				<input
+						class="form-control"
+						name="passwordConfirm"
+						required="required"
+						type="password"
+						placeholder="Confirmar contraseña"
+						ng-model="registration.ConfirmPassword"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.passwordConfirm.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.passwordConfirm.$touched)}"
+						compare-to="registration.Password"/>
 				<div class="error" ng-show="data.$submitted || data.passwordConfirm.$touched">
       				<div ng-show="data.passwordConfirm.$error.required">Confirma la contraseña.</div>
       				<div ng-show="data.passwordConfirm.$error.compareTo">Las contraseñas no coinciden.</div>
@@ -68,18 +95,29 @@
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
-				<input class="form-control" name="email" required="required" type="email" placeholder="Email" ng-model="registration.Email"
-				ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
+				<input
+						class="form-control"
+						name="email"
+						required="required"
+						type="email"
+						placeholder="Email"
+						ng-model="registration.Email"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
 				<div class="error" ng-show="data.$submitted || data.email.$touched">
       				<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
       				<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
     			</div>
 			</div>
 		</div>
+		<!-- TODO: el supplier va en otro lado
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
 				<div class="input-group" style="margin: 0; padding: 0">
-					<input class="form-control" type="text" uib-datepicker-popup="dd/MM/yyyy" ng-model="planner.Birthdate" is-open="datepicker.opened" datepicker-options="dateOptions" close-text="Cerrar" clear-text="Borrar" current-text="Hoy" alt-input-formats="altInputFormats" placeholder="DD/MM/AAAA" popup-placement="top-right" dropdown-append-to-body="dropdown-append-to-body" name="birthDate" required=""
+					<input
+							class="form-control"
+							type="text" uib-datepicker-popup="dd/MM/yyyy"
+							ng-model="planner.Birthdate" is-open="datepicker.opened" datepicker-options="dateOptions" close-text="Cerrar" clear-text="Borrar" current-text="Hoy" alt-input-formats="altInputFormats" placeholder="DD/MM/AAAA" popup-placement="top-right" dropdown-append-to-body="dropdown-append-to-body" name="birthDate" required=""
 					ng-class="{'invalid':(data.birthDate.$error.required || data.birthDate.$error.date) && (data.$submitted || data.birthDate.$touched)}"/>
 					<div class="input-group-btn">
 						<button class="btn btn-default btn-input" type="button" ng-click="openDatePicker()">
@@ -93,6 +131,8 @@
     			</div>
 			</div>
 		</div>
+		-->
+		<!-- TODO: el supplier va en otro lado
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
 				<select class="form-control" required="" ng-model="planner.CityId" name="city"
@@ -104,6 +144,7 @@
 	      		</div>
 			</div>
 		</div>
+		-->
 	</div>
 	<div class="container text-center">
 		<button class="btn btn-default btn-submit prev" ng-hide="$isFirst()" ng-click="$previousStep()">Regresar</button>
