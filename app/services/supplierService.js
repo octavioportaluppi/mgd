@@ -52,7 +52,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
 
     };
 
-    var getCities = function () {
+    var _getCities = function () {
 
         var deferred = $q.defer();
         $http.get(serviceBase + 'api/cities').success(function (res) {
@@ -104,13 +104,6 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     };
 
     //britez
-    
-   // [
-      //  1,
-    //    2,
-  //      4
- //   ]
-
     var updateSuppliersService = function (services) {
         return $http
             .put(serviceBase + 'api/suppliers/servicetypes', services)
@@ -119,7 +112,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     var getSuppliersByEvent = function (eventId, max, offset) {
 
         return $http
-                .get(serviceBase + 'api/eventtypes/' + eventId + '/suppliers',
+            .get(serviceBase + 'api/eventtypes/' + eventId + '/suppliers',
                 {
                     params: {
                         size: max, offset: offset
@@ -151,8 +144,8 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.suppliers = _suppliers;   
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
-    supplierServiceFactory.getCities = getCities;
-    supplierServiceFactory.updateSuppliersService  = updateSuppliersService;
+    supplierServiceFactory.getCities = _getCities;
+    supplierServiceFactory.updateSuppliersService = updateSuppliersService;
  
 
     return supplierServiceFactory;

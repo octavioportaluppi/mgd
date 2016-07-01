@@ -25,120 +25,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icon-agenda:before {
-  content: ""; }
-
-.icon-invitados:before {
-  content: ""; }
-
-.icon-presupuesto:before {
-  content: ""; }
-
-.icon-proveedores:before {
-  content: ""; }
-
-.icon-bautizo:before, .icon-bautizos:before {
-  content: ""; }
-
-.icon-bodas:before {
-  content: ""; }
-
-.icon-conferencias:before {
-  content: ""; }
-
-.icon-cumpleanos:before {
-  content: ""; }
-
-.icon-graduaciones:before {
-  content: ""; }
-
-.icon-icon_otros:before {
-  content: ""; }
-
-.icon-quinceaneras:before {
-  content: ""; }
-
-.icon-showers:before {
-  content: ""; }
-
-.icon-catering:before {
-  content: ""; }
-
-.icon-decoracion:before {
-  content: ""; }
-
-.icon-dulcerias:before {
-  content: ""; }
-
-.icon-entretenimiento:before {
-  content: ""; }
-
-.icon-florerias:before {
-  content: ""; }
-
-.icon-fotografia:before {
-  content: ""; }
-
-.icon-invitaciones:before {
-  content: ""; }
-
-.icon-joyeria:before {
-  content: ""; }
-
-.icon-lugares:before {
-  content: ""; }
-
-.icon-mobiliario:before, .icon-renta-de-mobiliario:before {
-  content: ""; }
-
-.icon-musica:before, .icon-musica-y-sonido:before{
-  content: ""; }
-
-.icon-organizadores:before {
-  content: ""; }
-
-.icon-otros:before {
-  content: ""; }
-
-.icon-pastelerias:before {
-  content: ""; }
-
-.icon-pinatas:before {
-  content: ""; }
-
-.icon-presentadores:before {
-  content: ""; }
-
-.icon-recuerdos:before {
-  content: ""; }
-
-.icon-regalos:before, .icon-mesa-de-regalos:before {
-  content: ""; }
-
-.icon-salon:before {
-  content: ""; }
-
-.icon-trajes:before, .icon-smokings-y-trajes:before {
-  content: ""; }
-
-.icon-trajes_bebe:before, .icon-trajes-para-bebe:before{
-  content: ""; }
-
-.icon-transporte:before {
-  content: ""; }
-
-.icon-vestidos:before {
-  content: ""; }
-
-.icon-viajes:before, .icon-agencias-de-viaje:before{
-  content: ""; }
-
-.icon-video:before {
-  content: ""; }
-
-.icon-zapatos:before {
-  content: ""; }
-
 /* color palettte */
 /* box */
 body {
@@ -162,6 +48,8 @@ h3.head {
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 1em; }
+
+/** Nav bar */
 
 .logo {
   width: 196px; }
@@ -483,7 +371,7 @@ option {
   margin-top: 15px; }
 
 .signup-field {
-  padding: 2px 7px; }
+  padding: 5px 7px; }
 
 /************ Register Evento ***************/
 h1.promt {
@@ -875,6 +763,7 @@ nav.navbar.navbar-fixed-top {
     text-align: center; } }
 
 @media only screen and (min-width: 768px) {
+
   body {
     padding-top: 60px; }
   .logo {

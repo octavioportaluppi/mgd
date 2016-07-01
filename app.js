@@ -1,4 +1,12 @@
-﻿var app = angular.module('AngularFunctions', ['ngRoute', 'ngResource', 'ngAnimate', 'LocalStorageModule', 'multiStepForm', 'checklist-model', 'ui.bootstrap', 'flow', 'angular-progress-arc']);
+﻿var app = angular.module('AngularFunctions', ['ngRoute','ngResource',
+        'ngAnimate',
+        'LocalStorageModule',
+        'multiStepForm',
+        'checklist-model',
+        'ui.bootstrap',
+        'flow',
+        'angular-progress-arc',
+        'angular-loading-bar']);
 
 app.config(function($routeProvider) {
 
@@ -55,6 +63,10 @@ app.config(function($routeProvider) {
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });
+
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeBar = false;
+}]);
 
 app.filter('tel', function () {
     return function (tel) {
@@ -175,6 +187,26 @@ app.constant('ngAuthSettings', {
 app.config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
+
+app.directive("compareTo", function() {
+    return {
+      require: "ngModel",
+      scope: {
+        otherModelValue: "=compareTo"
+      },
+      link: function(scope, element, attributes, ngModel) {
+
+        ngModel.$validators.compareTo = function(modelValue) {
+          return modelValue == scope.otherModelValue;
+        };
+
+        scope.$watch("otherModelValue", function() {
+          ngModel.$validate();
+        });
+      }
+    };
+  }
+);
 
 app.run(['authService', function(authService) {
     authService.fillAuthData();
