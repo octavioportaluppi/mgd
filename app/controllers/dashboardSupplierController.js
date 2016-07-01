@@ -1,26 +1,16 @@
 ﻿'use strict';
 app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService', function ($scope, supplierService, authService) {
 
-	$scope.supplier = {
-	};
-
-    $scope.events = [];
-    
+	$scope.supplier = {};
     $scope.chart = 0;
-
-
-
 	$scope.dashboard = '';
-    
     $scope.services = [];
-
     $scope.message = '';
 
 	$scope.getDashboard = function() {
 		supplierService
 			.getDashboard()
 			.then(function(res) {
-				console.log(res);
 				$scope.dashboard = res;
 				$scope.supplier.City = res.City;
 				$scope.supplier.Name = res.Name;
@@ -44,7 +34,6 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 	function getProgress() {
 		var value = 0;
 		for (var field in $scope.supplier) {
-			console.log($scope.supplier[field]);
 			if ($scope.supplier[field] !== '') {
 				value += .125;
 			}
@@ -54,6 +43,15 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 
 	//britez
 	$scope.editServices = false;
+	$scope.editAboutMe = false;
+
+	$scope.updateDetails = function(){
+        supplierService
+            .updateSuppliertsAboutMe($scope.supplier)
+            .then(function () {
+                $scope.getDashboard();
+            })
+	};
 
 	$scope.updateServices = function (){
 		var ids = $scope

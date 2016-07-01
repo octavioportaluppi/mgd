@@ -1,0 +1,46 @@
+<div class="row frame" >
+    <div class="col-xs-5">
+        <h2 class="address" editable-text="supplier.Address">Direccion</h2>
+        <input
+                class="form-control"
+                name="inputAddress"
+                required=""
+                type="text"
+                placeholder="Direccion"
+                ng-model="supplier.Address"/>
+        <h2 class="address" editable-text="supplier.Address">Ciudad</h2>
+        <select
+            class="form-control"
+            name="inputCity"
+            required=""
+            ng-model="supplier.City.Name">
+        <option>{{supplier.City.Name}}</option>
+        </select>
+        <h2 class="address" editable-text="supplier.Phone">Telefono</h2>
+       <input
+           class="form-control"
+           name="inputPhone"
+           required=""
+           type=""
+           placeholder="Telefono"
+           ng-model="supplier.Phone"/>
+        <!--<h3 class="price-range">$$$</h3>
+        <p>Rango de precios</p>
+        <h3 class="hours">Martes a Domingo<br>9:00 - 23:00 Hrs.</h3>
+        <p>Horario</p>-->
+    </div>
+    <div class="col-xs-7">
+        <h2 class="address" editable-text="supplier.Address">Da un breve descripcion de tu negocio :</h2>
+     <textarea
+       class="form-control dashTextarea"
+        name="textTareaDescription"
+        required=""
+        type=""
+        placeholder="Descripcion"
+       ng-model="supplier.Description"
+       rows="10"
+       cols="50">
+     </textarea>
+    </div>
+</div>
+
