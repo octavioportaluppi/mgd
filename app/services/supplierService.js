@@ -104,10 +104,22 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     };
 
     //britez
+    
+   // [
+      //  1,
+    //    2,
+  //      4
+ //   ]
+
+    var updateSuppliersTypes = function (services) {
+        return $http
+            .put(serviceBase + 'api/suppliers/servicetypes', services)
+    };
+
     var getSuppliersByEvent = function (eventId, max, offset) {
 
         return $http
-            .get(serviceBase + 'api/eventtypes/' + eventId + '/suppliers',
+                .get(serviceBase + 'api/eventtypes/' + eventId + '/suppliers',
                 {
                     params: {
                         size: max, offset: offset
@@ -140,6 +152,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
     supplierServiceFactory.getCities = getCities;
+    supplierServiceFactory.updateSuppliersTypes = updateSuppliersTypes;
  
 
     return supplierServiceFactory;

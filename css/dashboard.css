@@ -5,3 +5,7 @@ ul > li {
 .active:focus, .active {
     background: #aed136 !important;
 }
+
+.active:focus, .actived {
+    background: #ee3470 !important;
+}
