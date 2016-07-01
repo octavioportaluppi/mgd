@@ -1,8 +1,10 @@
 ﻿'use strict';
-app.controller('indexController', ['$scope', '$location', 'authService', '$uibModal', function ($scope, $location, authService, $uibModal) {
+app.controller('indexController', ['$scope', '$location', 'authService', '$uibModal', 'cfpLoadingBar', function ($scope, $location, authService, $uibModal, cfpLoadingBar) {
   $scope.isCollapsed = true;
   $scope.plannerCollapsed = true;
   $scope.suppliersCollapsed = true;
+
+	cfpLoadingBar.start();
 
 	$scope.signup = function() {
 	var modalInstance = $uibModal.open({
