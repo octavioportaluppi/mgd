@@ -2,6 +2,6 @@ ul > li {
     cursor: pointer;
 }
 
-.active:focus, .active {
-    background: #aed136;
+.dashTextarea{
+    resize: none ;
 }
