@@ -44,10 +44,6 @@ app.controller('signupController', [
             hasForm: true
         },
         {
-            templateUrl: '/app/views/signup-supplier-business.html',
-            hasForm: true
-        },
-        {
             templateUrl: '/app/views/signup-supplier-event.html',
             hasForm: true
         },
@@ -140,28 +136,40 @@ app.controller('signupController', [
 
     //Britez
     $scope.saveSupplierData = function (form, callback){
-
         if(form.$valid && $scope.checkPassword()) {
-
-            //authService
-                //.saveRegistration($scope.registration)
-                //.then(
-                    //function() {
-                        //authService
-                            //.login($scope.registration, 'supplier')
-                            //.then(function() {
-                                //TODO: change this for current auth
-                                $scope.authentication = {isAuth: true};
-                                callback();
-                            //})
-                    //},
-                    //function(error) {
-                        //$scope.errorMessage = error;
-                        //form.$valid = false;
-                   //}
-            //)
-
+            if($scope.authentication && $scope.authentication.isAuth) {
+                $scope.updateUser();
+            } else {
+                $scope.createUser();
+            }
         }
+    };
+
+    $scope.updateUser = function(){
+        //TODO: Update the user data;
+    };
+
+    $scope.createUser = function(){
+        authService
+            .saveRegistration($scope.registration)
+            .then(
+            function() {
+                authService
+                    .login($scope.registration, 'supplier')
+                    .then(function() {
+                        $scope.authentication = authService.authentication;
+                        authService
+                            .saveSupplier($scope.supplier)
+                            .then(function (){
+                                callback();
+                            })
+                    })
+            },
+            function(error) {
+                $scope.errorMessage = error;
+                form.$valid = false;
+            }
+        );
     };
 
     $scope.saveSupplierBusinessData = function (form, callback) {
@@ -174,14 +182,9 @@ app.controller('signupController', [
         }
     };
 
-    $scope.getSupplierBusinessData = function (callback) {
-        //TODO: Get suppler business data to edit
-        callback();
-    };
-
     $scope.saveSupplierEvents = function (callback) {
         //authService
-        //.saveSupplier($scope.supplier)
+            //.saveSupplier($scope.supplier)
         //.then(function (){
         callback();
         //})
@@ -207,5 +210,11 @@ app.controller('signupController', [
         .then(function (data) {
             $scope.cities = data;
         })
+
+    supplierService
+        .getEvents()
+        .then(function (data){
+           $scope.events = data;
+        });
 
 }]);

@@ -13,8 +13,8 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -85px;
-    margin-top: -85px;
+    margin-left: -125px;
+    margin-top: -45px;
 }
 .spinner-icon span {
     display: inline-block;

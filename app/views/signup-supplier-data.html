@@ -22,23 +22,38 @@
 				</div>
 			</div>
 		</div>
-		<!-- TODO: El planner no es parte del supplier
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
 				<input 
 					class="form-control"
-					name="inputName" 
+					name="supplierName"
 					required="" 
 					type="text" 
-					placeholder="Nombre(s)" 
-					ng-model="planner.FirstName"
-					ng-class="{'invalid':data.inputName.$error.required && (data.$submitted || data.inputName.$touched)}"/>
-				<div class="error" ng-show="data.$submitted || data.inputName.$touched">
-      				<div ng-show="data.inputName.$error.required">Dinos tu nombre(s).</div>
+					placeholder="Nombre del proveedor"
+					ng-model="supplier.Name"
+					ng-class="{'invalid':data.supplierName.$error.required && (data.$submitted || data.supplierName.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.supplierName.$touched">
+      				<div ng-show="data.supplierName.$error.required">Dinos el nombre del proveedor.</div>
     			</div>
 			</div>
 		</div>
-		-->
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="email"
+						required="required"
+						type="email"
+						placeholder="Email"
+						ng-model="registration.Email"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.email.$touched">
+					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
+					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
+				</div>
+			</div>
+		</div>
 		<!-- TODO: El planner no es parte del supplier
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
@@ -97,62 +112,63 @@
 			<div class="form-group signup-field">
 				<input
 						class="form-control"
-						name="email"
+						name="phone"
 						required="required"
-						type="email"
-						placeholder="Email"
-						ng-model="registration.Email"
-						ng-disabled="authentication.isAuth"
-						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
-				<div class="error" ng-show="data.$submitted || data.email.$touched">
-      				<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
-      				<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
-    			</div>
-			</div>
-		</div>
-		<!-- TODO: el supplier va en otro lado
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-			<div class="form-group signup-field">
-				<div class="input-group" style="margin: 0; padding: 0">
-					<input
-							class="form-control"
-							type="text" uib-datepicker-popup="dd/MM/yyyy"
-							ng-model="planner.Birthdate" is-open="datepicker.opened" datepicker-options="dateOptions" close-text="Cerrar" clear-text="Borrar" current-text="Hoy" alt-input-formats="altInputFormats" placeholder="DD/MM/AAAA" popup-placement="top-right" dropdown-append-to-body="dropdown-append-to-body" name="birthDate" required=""
-					ng-class="{'invalid':(data.birthDate.$error.required || data.birthDate.$error.date) && (data.$submitted || data.birthDate.$touched)}"/>
-					<div class="input-group-btn">
-						<button class="btn btn-default btn-input" type="button" ng-click="openDatePicker()">
-							<span class="glyphicon glyphicon-calendar"></span>
-						</button>
-					</div>
+						type="phone"
+						placeholder="Teléfono"
+						ng-model="supplier.Phone"
+						ng-class="{'invalid':data.phone.$error.required && (data.$submitted || data.phone.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.phone.$touched">
+					<div ng-show="data.phone.$error.required">Danos un telefono.</div>
 				</div>
-				<div class="error" ng-show="data.$submitted || data.birthDate.$touched">
-	      			<div ng-show="data.birthDate.$error.required">Dinos tu fecha de nacimiento.</div>
-	      			<div ng-show="data.birthDate.$error.date">La fecha ingresada es inválida.</div>
-    			</div>
 			</div>
 		</div>
-		-->
-		<!-- TODO: el supplier va en otro lado
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
-				<select class="form-control" required="" ng-model="planner.CityId" name="city"
-				ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}">
-					<option value="" disabled="disabled" selected="selected">Ciudad</option><option value="1">Hermosillo</option>
+				<select class="form-control" ng-model="supplier.StateId" name="state"
+						ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}">
+					<option value="" disabled="disabled" selected="selected" class="placeholder">POBLACIÓN</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<select class="form-control" required="" ng-model="supplier.CityId" name="city"
+						ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}">
+					<option value="" disabled="disabled" selected="selected" class="placeholder">CIUDAD</option>
+					<option value="{{city.Id}}" ng-repeat="city in cities">{{city.Name}}</option>
 				</select>
 				<div class="error" ng-show="data.$submitted || data.city.$touched">
-	      			<div ng-show="data.city.$error.required">Dinos tu ciudad.</div>
-	      		</div>
+					<div ng-show="data.city.$error.required">Dinos tu ciudad.</div>
+				</div>
 			</div>
 		</div>
-		-->
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<textarea class="form-control" required="" ng-model="supplier.Description" name="description"
+						  placeholder="Descripción"
+						ng-class="{'invalid':data.description.$error.required && (data.$submitted || data.description.$touched)}">
+				</textarea>
+				<div class="error" ng-show="data.$submitted || data.description.$touched">
+					<div ng-show="data.description.$error.required">Déjanos una descripción.</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="container text-center">
-		<button class="btn btn-default btn-submit prev" ng-hide="$isFirst()" ng-click="$previousStep()">Regresar</button>
-		<button 
-			class="btn btn-default btn-submit next"
-			ng-class="[{'invalid':!data.$valid && data.$submitted}]"
-			ng-hide="$isLast()" 
-			ng-click="saveSupplierData(data, $nextStep)">Siguiente</button>
-		<button class="btn btn-default btn-submit next" ng-show="$isLast()" ng-click="signupPlanner()" type="submit">Finalizar</button>
+		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-3">
+			<button class="btn btn-default btn-submit prev" ng-disabled="$isFirst()">Regresar</button>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+			<button
+				class="btn btn-default btn-submit next"
+				ng-class="[{'invalid':!data.$valid && data.$submitted}]"
+				ng-hide="$isLast()"
+				ng-click="saveSupplierData(data, $nextStep)">Siguiente</button>
+			<button
+					class="btn btn-default btn-submit next"
+					ng-click="$nextStep()">Skip for dev
+			</button>
+		</div>
 	</div>
 </form>

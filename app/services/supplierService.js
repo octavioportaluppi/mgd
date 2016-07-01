@@ -140,7 +140,6 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
     supplierServiceFactory.getCities = _getCities;
- 
 
     return supplierServiceFactory;
 }]);
