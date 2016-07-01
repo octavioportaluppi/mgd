@@ -111,7 +111,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
   //      4
  //   ]
 
-    var updateSuppliersTypes = function (services) {
+    var updateSuppliersService = function (services) {
         return $http
             .put(serviceBase + 'api/suppliers/servicetypes', services)
     };
@@ -152,7 +152,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
     supplierServiceFactory.getCities = getCities;
-    supplierServiceFactory.updateSuppliersTypes = updateSuppliersTypes;
+    supplierServiceFactory.updateSuppliersService  = updateSuppliersService;
  
 
     return supplierServiceFactory;

@@ -63,7 +63,7 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 				return service.Id;
 			});
 		supplierService
-			.updateSuppliersTypes(ids)
+			.updateSuppliersService(ids)
 			.then(function () {
 				$scope.editServices = !$scope.editServices;
 				$scope.getDashboard();
