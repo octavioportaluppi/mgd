@@ -1,7 +1,15 @@
+body {
+    padding-top: 150px;
+}
+
 .main-nav {
     height: 150px;
     background: #FFF;
     padding: 30px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
 }
 
 .main-nav .logo {
