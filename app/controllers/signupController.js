@@ -179,16 +179,27 @@ app.controller('signupController', [
     };
 
     $scope.getSupplierServices = function (callback) {
+        $scope.ServiceTypes = [];
         supplierService
-            .getServices()
+            .getDashboard()
             .then(
                 function (data) {
-                    $scope.ServiceTypes = data;
-                    supplierService
-                        .getDashboard()
-                        .then(
-                            function (data) { $scope.supplier.ServiceTypes = data.ServiceTypes });
-                    callback();
+                    $scope.supplier.ServiceTypes = data.ServiceTypes;
+                    $scope
+                        .supplierEvents
+                        .forEach(function (event){
+                            supplierService
+                                .getEventServices(event.Id)
+                                .then(function (data) {
+                                    data.forEach(function (item){
+                                        var find = $scope.ServiceTypes.find(function(it){return item.Id === it.Id});
+                                        if(!find){
+                                            $scope.ServiceTypes.push(item);
+                                        }
+                                    });
+                                });
+                        });
+                        callback();
                 });
     };
 
@@ -224,6 +235,10 @@ app.controller('signupController', [
         return $scope.supplierEvents.find(function (item){
             return item.Id === event.Id;
         })
+    };
+
+    $scope.getServiceTypes = function (){
+        return $scope.ServiceTypes;
     };
 
     supplierService

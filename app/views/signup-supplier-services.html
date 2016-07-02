@@ -1,11 +1,11 @@
 <div class="container-fluid main">
-    <div class="container">
-        <div class="col-lg-12 text-center"><h1 class="promt">¿Qué servicios ofreces?</h1></div>
+    <div class="col-lg-12 text-center">
+        <h1 class="promt">¿Qué servicios ofreces?</h1>
     </div>
     <div class="container register-panel">
         <div
                 class="col-md-4"
-                ng-repeat="item in ServiceTypes">
+                ng-repeat="item in getServiceTypes()">
             <label
                     class="btn btn-default"
                     ng-class="{'active': hasService(item)}">
@@ -18,13 +18,20 @@
         </div>
     </div>
 </div>
+
 <div class="container text-center">
-    <button
-            class="btn btn-default btn-submit prev"
-            ng-hide="$isFirst()"
-            ng-click="$previousStep()">Regresar</button>
-    <button
-            class="btn btn-default btn-submit next"
-            ng-click="saveSupplierServices($nextStep)">Siguiente
-    </button>
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-3">
+        <button class="btn btn-default btn-submit prev">Regresar</button>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+        <button
+                class="btn btn-default btn-submit next"
+                ng-disabled="supplierEvents.length === 0"
+                ng-click="saveSupplierServices($nextStep)">Siguiente
+        </button>
+        <button
+                class="btn btn-default btn-submit next"
+                ng-click="$nextStep()">Skip for dev
+        </button>
+    </div>
 </div>
