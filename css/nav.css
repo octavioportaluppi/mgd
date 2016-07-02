@@ -1,0 +1,55 @@
+.main-nav {
+    height: 150px;
+    background: #FFF;
+    padding: 30px;
+}
+
+.main-nav .logo {
+    width: 350px;
+    float: left;
+}
+
+.main-nav .main-menu,
+.main-nav .floating-menu {
+    padding: 0;
+    margin: 0;
+}
+
+.main-nav .floating-menu {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin: 0 0 0 -235px;
+}
+
+.main-nav .floating-menu li,
+.main-nav .main-menu li {
+    display: inline-block;
+}
+
+.main-nav .floating-menu a {
+    padding: 10px 20px;
+    line-height: 35px;
+    color: #aed136;
+}
+
+.main-nav .floating-menu .active {
+    background-color: #aed136;
+    font-weight: 600;
+    color: #fff;
+}
+
+.main-nav .main-menu {
+    float: right;
+}
+
+.main-nav .main-menu li {
+    margin: 0 20px;
+    padding: 40px 0;
+}
+
+.main-nav .main-menu a {
+    color: #818181;
+    text-transform: uppercase;
+}
+
