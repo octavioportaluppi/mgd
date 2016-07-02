@@ -52,11 +52,7 @@ app.controller('signupController', [
             hasForm: true
         },
         {
-            templateUrl: '/app/views/signup-supplier-pictures.html',
-            hasForm: true
-        },
-        {
-            templateUrl: '/app/views/signup-supplier-suscription.html',
+            templateUrl: '/app/views/signup-welcome.html',
             hasForm: true
         }
     ];
