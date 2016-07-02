@@ -182,12 +182,27 @@ app.controller('signupController', [
         }
     };
 
-    $scope.saveSupplierEvents = function (callback) {
-        //authService
-            //.saveSupplier($scope.supplier)
-        //.then(function (){
-        callback();
-        //})
+    $scope.getSupplierServices = function (callback) {
+        supplierService
+            .getServices()
+            .then(
+                function (data) {
+                    $scope.ServiceTypes = data;
+                    supplierService
+                        .getDashboard()
+                        .then(
+                            function (data) { $scope.supplier.ServiceTypes = data.ServiceTypes });
+                    callback();
+                });
+    };
+
+    $scope.saveSupplierServices = function (callback) {
+        var ids = $scope.supplier.ServiceTypes.map(function (it) { return it.Id });
+        supplierService
+            .updateSuppliersService(ids)
+            .then(function (){
+                callback();
+        })
     };
 
     $scope.checkPassword = function(){
@@ -197,6 +212,16 @@ app.controller('signupController', [
 
         return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$')
             .test($scope.registration.Password);
+    };
+
+    $scope.hasService = function(event){
+        if(!$scope.supplier.ServiceTypes) {
+            return false;
+        }
+
+        return $scope.supplier.ServiceTypes.find(function (item){
+            return item.Id === event.Id;
+        })
     };
 
     $scope.hasEvent = function(event){
@@ -209,12 +234,12 @@ app.controller('signupController', [
         .getCities()
         .then(function (data) {
             $scope.cities = data;
-        })
+        });
 
     supplierService
         .getEvents()
-        .then(function (data){
-           $scope.events = data;
+        .then(function (response){
+           $scope.events = response.data;
         });
 
 }]);

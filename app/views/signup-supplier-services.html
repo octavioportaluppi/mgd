@@ -2,10 +2,29 @@
     <div class="container">
         <div class="col-lg-12 text-center"><h1 class="promt">¿Qué servicios ofreces?</h1></div>
     </div>
-    <div class="container register-panel" ng-controller="servicesController">
-        <div class="col-md-4" ng-repeat="item in serviceItems"><label class="btn btn-default"
-                                                                      ng-class="{'active': services.indexOf(item.id) != -1}"><input
-                type="checkbox" checklist-model="services" checklist-value="item.id"/><span
-                ng-class="icon({{item.id}})"></span>{{item.name}}</label></div>
+    <div class="container register-panel">
+        <div
+                class="col-md-4"
+                ng-repeat="item in ServiceTypes">
+            <label
+                    class="btn btn-default"
+                    ng-class="{'active': hasService(item)}">
+                <input
+                    type="checkbox"
+                    checklist-model="supplier.ServiceTypes" checklist-value="item"/>
+                <span class="{{item.Name | icon }}"></span>
+                {{item.Name}}
+            </label>
+        </div>
     </div>
+</div>
+<div class="container text-center">
+    <button
+            class="btn btn-default btn-submit prev"
+            ng-hide="$isFirst()"
+            ng-click="$previousStep()">Regresar</button>
+    <button
+            class="btn btn-default btn-submit next"
+            ng-click="saveSupplierServices($nextStep)">Siguiente
+    </button>
 </div>
