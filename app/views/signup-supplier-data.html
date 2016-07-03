@@ -12,7 +12,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="text-center">
-				<h1 class="promt">Introduce tus datos</h1>
+				<h1 class="promt"></h1>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
@@ -148,10 +148,6 @@
 				ng-class="[{'invalid':!data.$valid && data.$submitted}]"
 				ng-hide="$isLast()"
 				ng-click="saveSupplierData(data, $nextStep)">Siguiente</button>
-			<button
-					class="btn btn-default btn-submit next"
-					ng-click="$nextStep()">Skip for dev
-			</button>
 		</div>
 	</div>
 </form>

@@ -26,13 +26,15 @@ body {
 .main-nav .floating-menu {
     position: absolute;
     top: 0;
-    left: 100%;
-    margin: 0 0 0 -235px;
+    width: 100%;
+    margin-left: -60px;
+
 }
 
 .main-nav .floating-menu li,
 .main-nav .main-menu li {
     display: inline-block;
+    float: right;
 }
 
 .main-nav .floating-menu a {

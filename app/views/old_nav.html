@@ -24,13 +24,13 @@
                             <a href id="simple-dropdown" uib-dropdown-toggle>Iniciar sesión</a>
                             <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
                                 <li><a href="#/login-planner">Organizador</a></li>
-                                <li><a href="#/login-supplier">Proveedor</a></li>
+                                <li><a >Proveedor</a></li>
                             </ul>
                         </li>
                         <li ng-hide="authentication.isAuth">
                             <a href="" ng-click="signup()">Regístrate</a>
                         </li>
-                        <li  ng-hide="!authentication.isAuth">
+                        <li ng-hide="!authentication.isAuth">
                             <a ng-class="{ 'act': isActive('/dashboard')}"  href="#/dashboard">Hola, {{authentication.Email}}</a>
                         </li>
                         <li ng-hide="!authentication.isAuth">

@@ -25,26 +25,38 @@
 	<body
 		data-ng-app="AngularFunctions"
 		flow-prevent-drop>
-		<nav class="main-nav clearfix">
+		<nav
+			class="main-nav clearfix"
+			ng-controller="indexController">
 			<object
 				class="logo"
 				type="image/svg+xml"
 				data="img/mi_gran_dia_logo_svg.svg">
 			</object>
 			<ul class="floating-menu">
-				<li><a href="#" class="active">Log-In</a></li>
-				<li><a href="#">REGÍSTRATE</a></li>
+				<li ng-hide="authentication.isAuth">
+					<a href="" ng-click="signup()">REGÍSTRATE</a>
+				</li>
+				<li ng-hide="authentication.isAuth">
+					<a href="#/login-supplier" class="active">Log-In</a>
+				</li>
+				<li ng-hide="!authentication.isAuth">
+					<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+				</li>
+				<li ng-hide="!authentication.isAuth">
+					<a href="#/dashboard" class="active">Hola, {{authentication.Email}}</a>
+				</li>
 			</ul>
 			<ul class="main-menu">
 				<li><a href="/#">Mi Evento</a></li>
 				<li><a href="/#">Organizador</a></li>
-				<li><a href="/#">Proveedores</a></li>
+				<li><a href="#/suppliers">Proveedores</a></li>
 				<li><a href="/#">Contacto</a></li>
 			</ul>
 		</nav>
 		<div ng-view=""></div>
-		<!--
 		<footer>
+		<!--
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-6">
@@ -68,8 +80,8 @@
 					</div>
 				</div>
 			</div>
-		</footer>
 		-->
+		</footer>
 	</body>
 	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
