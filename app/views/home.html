@@ -1,21 +1,23 @@
-<uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-	<uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-		<div class="carousel-image" style="background-image:url('{{slide.img}}')">
-			<div class="carousel-caption">{{slide.text}}</div>
+<div class="container-fluid">
+	<uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+		<uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+			<div class="carousel-image" style="background-image:url('{{slide.img}}')">
+				<div class="carousel-caption">{{slide.text}}</div>
+			</div>
+		</uib-slide>
+	</uib-carousel>
+	<div class="page-divider">
+		<div class="content">
+			<span>Comienza a Organizar</span>
 		</div>
-	</uib-slide>
-</uib-carousel>
-<div class="page-divider">
-	<div class="content">
-		<span>Comienza a Organizar</span>
+		<div class="caret-icon"><div></div></div>
 	</div>
-	<div class="caret-icon"><div></div></div>
-</div>
-<div class="events">
-	<div class="col-md-3 col-sm-3" ng-repeat="event in getEvents()">
-		<a href="#/events/{{event.Id}}" class="event-icon">
-			<span class="{{event.Name | icon}}"></span>
-		</a>
-		<a href="#/events/{{event.Id}}"><h2 class="event-name">{{event.Name}}</h2></a>
+	<div class="events">
+		<div class="col-md-3 col-sm-3" ng-repeat="event in getEvents()">
+			<a href="#/events/{{event.Id}}" class="event-icon">
+				<span class="{{event.Name | icon}}"></span>
+			</a>
+			<a href="#/events/{{event.Id}}"><h2 class="event-name">{{event.Name}}</h2></a>
+		</div>
 	</div>
 </div>
