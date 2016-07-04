@@ -29,7 +29,7 @@
 /* box */
 body {
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
-  padding-top: 80px;
+  /*padding-top: 80px;*/
   margin: 0;
   background: #ececec; }
 
@@ -89,21 +89,6 @@ nav.navbar {
 .navbar-right {
   margin-right: 0; }
 
-.item {
-  height: 600px;
-  width: 100%; }
-  .item img {
-    width: 100%; }
-
-.carousel-caption {
-  font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
-  font-size: 4.2358em;
-  font-weight: 900;
-  text-transform: uppercase;
-  top: 35%;
-  padding-bottom: 0;
-  line-height: 95%; }
-
 .btn {
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
   font-weight: 500;
@@ -117,7 +102,12 @@ nav.navbar {
 .btn-default {
   box-shadow: none;
   border: 0;
-  border-radius: 0; }
+  border-radius: 0;
+}
+
+.btn-default[disabled]{
+  color: #818181;
+}
 
 .separator {
   min-height: 30px;
@@ -176,6 +166,12 @@ label.btn.btn-default {
   max-height: 60px;
   margin-right: 10px; }
 
+/** EVENTS */
+
+.events {
+  padding: 0 80px;
+}
+
 .events div:nth-child(n+2):nth-child(odd):nth-child(-n+7) .event-icon span {
   background: #aed136; }
 
@@ -194,22 +190,28 @@ label.btn.btn-default {
   text-align: center;
   font-size: 1.618em;
   margin: 3vw auto;
-  height: 1px;
-  min-height: 25vw;
-  width: 25vw; }
-  .event-icon span {
+  height: 90px;
+  width: 90px;
+}
+
+.event-icon span {
     display: table-cell;
     vertical-align: middle;
     position: static;
     bottom: 0;
     border-radius: 50%;
-    background: #faa41a; }
+    background: #faa41a;
+}
 
 .event-name {
   text-transform: uppercase;
   color: #818181;
   font-size: 1em;
-  text-align: center; }
+  font-weight: 600;
+  text-align: center;
+}
+
+/** END EVENTS */
 
 .service {
   min-height: 50px;
@@ -266,22 +268,6 @@ footer {
   footer li a {
     color: #818181; }
 
-.carousel-image {
-  display: table;
-  background-position: center;
-  background-size: cover;
-  min-height: 500px;
-  height: 1px;
-  width: 100%; }
-
-.carousel-caption {
-  right: 10%;
-  left: 10%;
-  display: table-cell;
-  vertical-align: middle;
-  position: static;
-  bottom: 0; }
-
 /******** Login *********/
 .login-caption h1 {
   font-weight: 900; }
@@ -296,11 +282,13 @@ footer {
   background-size: cover;
   background-position: center;
   text-align: center;
-  min-height: 400px;
-  position: relative; }
+  position: relative;
+}
 
 .img-panel-full-register {
-  background-image: url("../img/mi_gran_dia_cumpleanos.jpg"); }
+  background-image: url("../img/mi_gran_dia_cumpleanos.jpg");
+  padding: 0 30%;
+}
 
 .img-supplier {
   background-image: url("../img/mi_gran_dia_conferencia.jpg");
@@ -331,12 +319,6 @@ footer {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  background: #fff; }
-
-.form-control {
-  font-size: 1em;
-  letter-spacing: 3px;
-  color: #ee3470;
   background: #fff; }
 
 .btn-input {
@@ -746,11 +728,8 @@ nav.navbar.navbar-fixed-top {
   font-size: 1.618em;
   top: 25%;
   padding-bottom: 0;
-  line-height: 105%; }
-
-.item {
-  height: 400px;
-  width: 100%; }
+  line-height: 105%;
+}
 
 @media only screen and (min-width: 425px) {
   button h5 {
@@ -764,8 +743,11 @@ nav.navbar.navbar-fixed-top {
 
 @media only screen and (min-width: 768px) {
 
+  /*
   body {
     padding-top: 60px; }
+  */
+
   .logo {
     width: 112px; }
   .navbar-default .navbar-nav > li > a {
@@ -813,11 +795,14 @@ nav.navbar.navbar-fixed-top {
     color: #818181;
     font-size: 1em;
     text-align: center; }
+  /*
   .event-icon {
     display: table;
     font-size: 2.61792em;
     min-height: 15vw;
-    width: 15vw; } }
+    width: 15vw; }
+    */
+}
 
 @media only screen and (min-width: 1024px) {
   h2.address {
@@ -842,3 +827,29 @@ nav.navbar.navbar-fixed-top {
   padding: 15px 15px;
 }
 
+.page-divider {
+  text-align: center;
+  color: #aed136;
+}
+
+.page-divider .caret-icon div {
+  margin: 0 auto;
+  width: 10px;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #aed136 transparent transparent transparent;
+}
+
+.page-divider .content{
+  background: #aed136;
+  padding: 30px;
+  text-align: center;
+  display: block;
+}
+
+.page-divider span {
+  text-transform: uppercase;
+  color: #FFF;
+  font-size: 2rem;
+  letter-spacing: 7px;
+}

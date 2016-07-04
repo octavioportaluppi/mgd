@@ -24,20 +24,6 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
         return deferred.promise;        
     }
 
-    var _getEvents = function () {
-
-        var deferred = $q.defer();
-
-        $http.get(serviceBase + 'api/eventtypes').then(function (res) {
-            deferred.resolve(res.data);
-        }, function (err, status) {
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
-
-    };
-
     var _getServices = function () {
 
         var deferred = $q.defer();
@@ -109,13 +95,13 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
         return $http
             .put(serviceBase + 'api/suppliers', details)
     };
+
     var updateSuppliersService = function (services) {
         return $http
             .put(serviceBase + 'api/suppliers/servicetypes', services)
     };
 
     var getSuppliersByEvent = function (eventId, max, offset) {
-
         return $http
             .get(serviceBase + 'api/eventtypes/' + eventId + '/suppliers',
                 {
@@ -123,11 +109,9 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
                         size: max, offset: offset
                     }
                 });
-
     };
 
     var getAllSuppliers = function (max, offset) {
-
         return $http
             .get(serviceBase + 'api/suppliers',
                 {
@@ -135,9 +119,11 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
                         size: max, offset: offset
                     }
                 });
-
     };
-    
+
+    var _getEvents = function () {
+        return $http.get(serviceBase + 'api/eventtypes');
+    };
 
     supplierServiceFactory.getDashboard = _getDashboard;
     supplierServiceFactory.eventTypes = _eventTypes;

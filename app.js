@@ -66,6 +66,14 @@ app.config(function($routeProvider) {
 
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeBar = false;
+    cfpLoadingBarProvider.spinnerTemplate =
+    '<div id="loading-bar-spinner">' +
+        '<div class="spinner-icon">' +
+            '<span></span>' +
+            '<span></span>' +
+            '<span></span>' +
+        '</div>' +
+    '</div>';
 }]);
 
 app.filter('tel', function () {
@@ -112,8 +120,6 @@ app.filter('tel', function () {
         return (country + " (" + city + ") " + number).trim();
     };
 })
-
-
 
 .filter('icon', function(){
     return function (source) {
@@ -162,8 +168,6 @@ app.filter('tel', function () {
     };
 })
 
-
-
 .filter('firstLetter', function() {
     return function(input) {
         if(input){
@@ -171,11 +175,6 @@ app.filter('tel', function () {
         }
     }
 });
-
-
-
-
-
 
 var serviceBase = 'http://randallcanezr-001-site2.ftempurl.com/';
 
