@@ -63,3 +63,66 @@ body {
     text-transform: uppercase;
 }
 
+.navbar-toggle {
+    float: right;
+    background-color: #dadada;
+    height: 52px;
+    width: 52px;
+}
+
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 30px;
+    height: 5px;
+    border-radius: 2px;
+    background: #818181;
+}
+
+@media only screen and (min-width: 320px) {
+    .main-nav .floating-menu,
+    .main-nav .main-menu {
+        display: none;
+    }
+    
+    .main-nav .navbar-toggle {
+        display: inline;
+        margin: 0 !important;
+    }
+
+    .main-nav .logo { width: 175px; }
+
+    body { padding-top: 100px; }
+
+    .main-nav { height: 100px; }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-nav .floating-menu,
+    .main-nav .main-menu {
+        display: none;
+    }
+
+    .main-nav .navbar-toggle {
+        display: inline;
+        margin: 20px 14px 14px 14px !important;
+    }
+
+    .main-nav .logo { width: 350px; }
+
+    body { padding-top: 150px; }
+
+    .main-nav { height: 150px; }
+}
+
+@media only screen and (min-width: 1024px) {
+    .main-nav .floating-menu,
+    .main-nav .main-menu {
+        display: inherit;
+    }
+
+    .main-nav .navbar-toggle {
+        display: none;
+    }
+}
+
+
