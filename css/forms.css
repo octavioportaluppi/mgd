@@ -55,3 +55,20 @@ form .error {
 	background: #ee3470;
     cursor: not-allowed;
 }
+
+.question {
+    padding: 20px;
+    background: #CECECE;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+.question * {
+    display: block;
+    width: 100%;
+}
+
+.question label {
+    color: #818181;
+    font-size: 1.5rem;
+}

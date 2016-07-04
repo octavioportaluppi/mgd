@@ -90,7 +90,6 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     };
 
     //britez
-
     var updateSupplierProfile = function(details){
         return $http
             .put(serviceBase + 'api/suppliers', details)
@@ -121,6 +120,11 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
                 });
     };
 
+    var getQuestions = function (serviceId) {
+      return $http
+          .get(serviceBase + 'api/servicetypes/' + serviceId + '/questions');
+    };
+
     var _getEvents = function () {
         return $http.get(serviceBase + 'api/eventtypes');
     };
@@ -138,7 +142,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.getCities = _getCities;
     supplierServiceFactory.updateSuppliersService = updateSuppliersService;
     supplierServiceFactory.updateSupplierProfile = updateSupplierProfile;
-
+    supplierServiceFactory.getQuestions = getQuestions;
 
     return supplierServiceFactory;
 }]);

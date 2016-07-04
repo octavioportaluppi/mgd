@@ -3,133 +3,18 @@ app.controller('signupController', [
     '$scope', '$location', '$timeout', 'authService', 'supplierService',
     function ($scope, $location, $timeout, authService, supplierService) {
 
-    /*$scope.savedSuccessfully = false;
-    $scope.message = "";*/
-
     $scope.registration = {};
     $scope.supplier = {};
     $scope.supplierEvents = [];
 
-    /*$scope.planner = {
-        FirstName: "",
-        LastName: "",
-        CityId: '',
-        Birthdate: ""
-    };
-
-    $scope.supplier = {
-        Name: '',
-        Description: '',
-        Address: '',
-        CityId: '',
-        FacebookUrl: '',
-        TwitterUrl: '',
-        InstagramUrl: '',
-        Phone: ''
-    };
-
-    $scope.services = [];
-    */
-
-    $scope.stepsPlanner = [
-        {
-            templateUrl: '/app/views/signup-supplier-data.html',
-            hasForm: true
-        }
-    ];
-    
     $scope.stepsSupplier = [
-        {
-            templateUrl: '/app/views/signup-supplier-data.html',
-            hasForm: true
-        },
-        {
-            templateUrl: '/app/views/signup-supplier-event.html',
-            hasForm: true
-        },
-        {
-            templateUrl: '/app/views/signup-supplier-services.html',
-            hasForm: true
-        },
-        {
-            templateUrl: '/app/views/signup-welcome.html',
-            hasForm: true
-        }
+        { templateUrl: '/app/views/signup-supplier-data.html', hasForm: true },
+        { templateUrl: '/app/views/signup-supplier-event.html', hasForm: true },
+        { templateUrl: '/app/views/signup-supplier-services.html', hasForm: true },
+        { templateUrl: '/app/views/signup-supplier-questions.html', hasForm: true },
+        { templateUrl: '/app/views/signup-welcome.html', hasForm: true }
     ];
     
-    $scope.datepicker = {
-        opened: false
-    };
-
-    $scope.altInputFormats = ['M!/d!/yyyy'];
-
-    $scope.dateOptions = {
-        appendToBody: true,
-        placement: 'top-right',
-        formatYear: 'yy',
-        maxDate: new Date(),
-        startingDay: 1
-    };
-
-    $scope.openDatePicker = function() {
-        $scope.datepicker.opened = true;
-    };
-
-    $scope.signupPlanner = function () {
-        console.log($scope.registration);
-        authService.saveRegistration($scope.registration).then(function (response) {
-            $scope.savedSuccessfully = true;
-            $scope.message = "El usuario se ha registrado exitosamente";
-            authService.login($scope.registration, 'planner').then(function (response) {
-                authService.savePlanner($scope.planner).then(function (response) {    
-                    startTimer();
-                });
-            });
-        },
-         function (response) {
-             console.log(response);
-             var errors = [];
-             for (var key in response.data.ModelState) {
-                 for (var i = 0; i < response.data.ModelState[key].length; i++) {
-                     errors.push(response.data.ModelState[key][i]);
-                 }
-             }
-             $scope.message = "El registro falló  debido a:" + errors.join(' ');
-         }); 
-    };
-
-    $scope.signupSupplier = function () {
-        console.log($scope.registration);
-        authService.saveRegistration($scope.registration).then(function (response) {
-            $scope.savedSuccessfully = true;
-            $scope.message = "El usuario se ha registrado exitosamente";
-            authService.login($scope.registration, 'supplier').then(function (response) {
-                authService.savePlanner($scope.planner).then(function (response) {    
-                    authService.saveSupplier($scope.supplier).then(function (response) {    
-                        startTimer();
-                    });
-                });
-            });
-        },
-         function (response) {
-             console.log(response);
-             var errors = [];
-             for (var key in response.data.ModelState) {
-                 for (var i = 0; i < response.data.ModelState[key].length; i++) {
-                     errors.push(response.data.ModelState[key][i]);
-                 }
-             }
-             $scope.message = "El registro falló  debido a:" + errors.join(' ');
-         }); 
-    };    
-
-    var startTimer = function () {
-        var timer = $timeout(function () {
-            $timeout.cancel(timer);
-            $location.path('/welcome');
-        }, 2000);
-    }
-
     //Britez
     $scope.saveSupplierData = function (form, callback){
         if(form.$valid && $scope.checkPassword()) {
@@ -168,17 +53,8 @@ app.controller('signupController', [
         );
     };
 
-    $scope.saveSupplierBusinessData = function (form, callback) {
-        if (form.$valid) {
-            //authService
-                //.saveSupplier($scope.supplier)
-                //.then(function (){
-                    callback();
-                //})
-        }
-    };
-
     $scope.getSupplierServices = function (callback) {
+        //TODO: Change to correct service
         $scope.ServiceTypes = [];
         supplierService
             .getDashboard()
@@ -208,8 +84,30 @@ app.controller('signupController', [
         supplierService
             .updateSuppliersService(ids)
             .then(function (){
+                $scope.getSupplierQuestions();
                 callback();
         })
+    };
+
+    $scope.getSupplierQuestions = function () {
+        $scope.questions = [];
+        $scope
+            .supplier
+            .ServiceTypes
+            .forEach(function (service){
+                supplierService
+                    .getQuestions(service.Id)
+                    .then(function (response){
+                        response
+                            .data
+                            .forEach(function (question){
+                                var find = $scope.questions.find(function(it){return question.Id === it.Id});
+                                if(!find) {
+                                    $scope.questions.push(question);
+                                }
+                            });
+                    });
+            })
     };
 
     $scope.checkPassword = function(){
@@ -239,6 +137,10 @@ app.controller('signupController', [
 
     $scope.getServiceTypes = function (){
         return $scope.ServiceTypes;
+    };
+
+    $scope.getQuestions = function () {
+        return $scope.questions;
     };
 
     supplierService
