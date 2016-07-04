@@ -47,7 +47,7 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 
 	$scope.updateDetails = function(){
         supplierService
-            .updateSuppliertsAboutMe($scope.supplier)
+            .updateSupplierProfile($scope.supplier)
             .then(function () {
                 $scope.getDashboard();
             })

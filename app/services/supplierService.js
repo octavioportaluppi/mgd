@@ -105,7 +105,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
 
     //britez
 
-    var updateSuppliertsAboutMe = function(details){
+    var updateSupplierProfile = function(details){
         return $http
             .put(serviceBase + 'api/suppliers', details)
     };
@@ -151,7 +151,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
     supplierServiceFactory.getCities = _getCities;
     supplierServiceFactory.updateSuppliersService = updateSuppliersService;
-    supplierServiceFactory.updateSuppliertsAboutMe = updateSuppliertsAboutMe;
+    supplierServiceFactory.updateSupplierProfile = updateSupplierProfile;
 
 
     return supplierServiceFactory;
