@@ -48,6 +48,11 @@ body {
     color: #aed136;
 }
 
+.main-nav .main-menu a.active {
+    color: #ee3470;
+    background: none;
+}
+
 .main-nav .floating-menu .active {
     background-color: #aed136;
     font-weight: 600;

@@ -23,12 +23,7 @@ app.controller('indexController', ['$scope', '$location', 'authService', '$uibMo
 	//britez
 	$scope.isActive = function(currentLocation) {
 		return $location.path() == currentLocation;
-	}
-
-	$scope.isCollapsed = function() {
-		return $scope.collapsed;
-	}
-
+	};
 }]);
 
 app.controller('modalController', function ($scope, $uibModalInstance, $location) {

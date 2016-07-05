@@ -21,20 +21,20 @@ app.controller('signupController', [
             if($scope.authentication && $scope.authentication.isAuth) {
                 $scope.updateUser(callback);
             } else {
-                $scope.createUser(callback);
+                $scope.createUser(form, callback);
             }
         }
     };
 
     $scope.updateUser = function(callback){
         supplierService
-            .updateSupplierProfile($scope.registration)
+            .updateSupplierProfile($scope.supplier)
             .then(function () {
                 callback();
             })
     };
 
-    $scope.createUser = function(callback){
+    $scope.createUser = function(form, callback){
         authService
             .saveRegistration($scope.registration)
             .then(
@@ -43,6 +43,7 @@ app.controller('signupController', [
                     .login($scope.registration, 'supplier')
                     .then(function() {
                         $scope.authentication = authService.authentication;
+                        $scope.supplier.OpeningHours = {DayFrom: 0, DayTo: 6, HoursFrom: '12:00', HoursTo:'23:00'};
                         authService
                             .saveSupplier($scope.supplier)
                             .then(function (){
