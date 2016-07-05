@@ -9,18 +9,23 @@
             class="col-xs-10 col-xs-offset-1 col-md-10 question signup-field"
             ng-repeat="question in getQuestions()">
             <label>{{question.Text}}</label>
-            <input type="text" class="form-control"/>
+            <input type="text" class="form-control" required="required" name="{{question.Id}}"
+                   ng-model="supplierQuestions"
+                   ng-class="{'invalid':questions[question.Id].$error.required && (questions.$submitted || questions[question.Id].$touched)}"/>
+            <div class="error" ng-show="questions.$submitted || questions[question.Id].$touched">
+                <div ng-show="questions[question.Id].$error.required">Esta pregunta es obligatoria.</div>
+            </div>
         </div>
     </div>
     <div class="container text-center">
         <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-3">
             <button class="btn btn-default btn-submit prev"
-                    ng-click="$previous()">Regresar</button>
+                    ng-click="$previousStep()">Regresar</button>
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
             <button
                     class="btn btn-default btn-submit next"
-                    ng-disabled="true"
+                    ng-disabled="!questions.$valid"
                     ng-click="saveSupplierQuestions($nextStep)">Siguiente
             </button>
             <button

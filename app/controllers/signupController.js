@@ -19,18 +19,22 @@ app.controller('signupController', [
     $scope.saveSupplierData = function (form, callback){
         if(form.$valid && $scope.checkPassword()) {
             if($scope.authentication && $scope.authentication.isAuth) {
-                $scope.updateUser();
+                $scope.updateUser(callback);
             } else {
-                $scope.createUser();
+                $scope.createUser(callback);
             }
         }
     };
 
-    $scope.updateUser = function(){
-        //TODO: Update the user data;
+    $scope.updateUser = function(callback){
+        supplierService
+            .updateSupplierProfile($scope.registration)
+            .then(function () {
+                callback();
+            })
     };
 
-    $scope.createUser = function(){
+    $scope.createUser = function(callback){
         authService
             .saveRegistration($scope.registration)
             .then(
@@ -54,28 +58,22 @@ app.controller('signupController', [
     };
 
     $scope.getSupplierServices = function (callback) {
-        //TODO: Change to correct service
         $scope.ServiceTypes = [];
         supplierService
             .getDashboard()
             .then(
                 function (data) {
                     $scope.supplier.ServiceTypes = data.ServiceTypes;
-                    $scope
+                    var eventsIds = $scope
                         .supplierEvents
-                        .forEach(function (event){
-                            supplierService
-                                .getEventServices(event.Id)
-                                .then(function (data) {
-                                    data.forEach(function (item){
-                                        var find = $scope.ServiceTypes.find(function(it){return item.Id === it.Id});
-                                        if(!find){
-                                            $scope.ServiceTypes.push(item);
-                                        }
-                                    });
-                                });
+                        .map(function (event){ return event.Id})
+                        .join(",");
+                    supplierService
+                        .getEventServices(eventsIds)
+                        .then(function (data) {
+                            $scope.ServiceTypes = data.found;
+                            callback();
                         });
-                        callback();
                 });
     };
 
@@ -91,23 +89,26 @@ app.controller('signupController', [
 
     $scope.getSupplierQuestions = function () {
         $scope.questions = [];
-        $scope
-            .supplier
-            .ServiceTypes
-            .forEach(function (service){
-                supplierService
-                    .getQuestions(service.Id)
-                    .then(function (response){
-                        response
-                            .data
-                            .forEach(function (question){
-                                var find = $scope.questions.find(function(it){return question.Id === it.Id});
-                                if(!find) {
-                                    $scope.questions.push(question);
-                                }
-                            });
-                    });
-            })
+        var ids = $scope
+                    .supplier
+                    .ServiceTypes
+                    .map(function (service) { return service.Id })
+                    .join(",");
+        supplierService
+            .getQuestions(ids)
+            .then(function (response) {
+                $scope.questions = response.data.found;
+            });
+    };
+
+    $scope.saveSupplierQuestions = function(form, callback) {
+      if (form.$valid){
+        supplierService
+            .saveQuestions($scope.questions)
+            .then(function (){
+                callback();
+            });
+      }
     };
 
     $scope.checkPassword = function(){

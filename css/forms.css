@@ -57,7 +57,7 @@ form .error {
 }
 
 .question {
-    padding: 20px;
+    padding: 20px 20px 35px 20px;
     background: #CECECE;
     margin-bottom: 20px;
     border-radius: 3px;

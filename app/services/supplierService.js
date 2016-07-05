@@ -125,6 +125,11 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
           .get(serviceBase + 'api/servicetypes/' + serviceId + '/questions');
     };
 
+    var saveQuestions = function (questions) {
+        return $http
+            .post(serviceBase + 'api/answers', questions);
+    };
+
     var _getEvents = function () {
         return $http.get(serviceBase + 'api/eventtypes');
     };
@@ -143,6 +148,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.updateSuppliersService = updateSuppliersService;
     supplierServiceFactory.updateSupplierProfile = updateSupplierProfile;
     supplierServiceFactory.getQuestions = getQuestions;
+    supplierServiceFactory.saveQuestions = saveQuestions;
 
     return supplierServiceFactory;
 }]);
