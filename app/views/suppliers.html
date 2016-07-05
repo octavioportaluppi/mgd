@@ -1,1 +1,34 @@
-<div class="container-fluid" ng-controller="homeController"><div class="row"><uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides"><uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id"><div class="col-xs-12 carousel-image" style="background-image:url('{{slide.img}}')"><div class="carousel-caption">{{slide.text}}</div></div></uib-slide></uib-carousel></div><div class="row"><div ng-controller="eventsController"><uib-tabset active="activeJustified" justified="true"><uib-tab ng-repeat="event in events track by event.Id"><uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span><div class="service-name">{{event.Name}}</div></uib-tab-heading><div class="service col-xs-12 col-md-6" ng-repeat="service in eventsServices[$index].services track by service.Id" ng-controller="servicesController"><span ng-class="icon({{service.Id}})"></span><a>{{service['Name']}}</a></div></uib-tab></uib-tabset></div></div></div>
+<div class="container">
+    <div class="list-header">
+        <h4>Proveedores</h4>
+        <p>Acontinuación un listado de proveedores.</p>
+    </div>
+    <div ng-repeat="supplier in suppliers" class="list-item clearfix row">
+        <div class="col-md-2">
+            <img src="img/photo-placeholder.jpg"/>
+        </div>
+        <div class="col-md-10">
+            <h4>{{supplier.Name}}</h4>
+            <span class="ligth-description">{{supplier.City.Name}}</span>
+            <span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
+            <span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
+            <p>{{supplier.Description}}</p>
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Rango de precio: $$$$</p>
+                </div>
+                <div class="col-md-6">
+                    <a class="more-info">MAS INFORMACIÓN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="list-nav">
+        <li><a class="{{isCurrentPage(0)?'active':''}}" ng-click="goPage(0)">1</a></li>
+        <li><a class="{{isCurrentPage(5)?'active':''}}" ng-click="goPage(5)">2</a></li>
+        <li><a class="{{isCurrentPage(10)?'active':''}}" ng-click="goPage(10)">3</a></li>
+        <li><a class="{{isCurrentPage(15)?'active':''}}" ng-click="goPage(15)">4</a></li>
+        <li><a ng-click="nextPage();">Siguiente</a></li>
+    </ul>
+</div>

@@ -9,7 +9,7 @@ app.controller(
 
             $scope.offset = 0;
             $scope.size = 5;
-            $scope.eventName = $routeParams.eventName;
+            //$scope.eventName = $routeParams.eventName;
 
             $scope.getSuppliers = function (){
                 supplierService
@@ -37,6 +37,15 @@ app.controller(
             }
 
             $scope.getSuppliers();
+            
+            supplierService
+                .getEvents()
+                .then(function(response){
+                    $scope.event = response.find(function(item){
+                        return item.Id == $routeParams.eventId;
+                    })
+
+                })
         }
     ]
 );

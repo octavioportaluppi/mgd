@@ -1,3 +1,6 @@
 node_modules/**
-
+.idea/
+app/npm-debug.log
+*.iml
 node_modules/.bin/**
+*.log

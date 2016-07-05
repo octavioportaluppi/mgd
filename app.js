@@ -1,4 +1,12 @@
-﻿var app = angular.module('AngularFunctions', ['ngRoute', 'ngResource', 'ngAnimate', 'LocalStorageModule', 'multiStepForm', 'checklist-model', 'ui.bootstrap', 'flow', 'angular-progress-arc']);
+﻿var app = angular.module('AngularFunctions', ['ngRoute','ngResource',
+        'ngAnimate',
+        'LocalStorageModule',
+        'multiStepForm',
+        'checklist-model',
+        'ui.bootstrap',
+        'flow',
+        'angular-progress-arc',
+        'angular-loading-bar']);
 
 app.config(function($routeProvider) {
 
@@ -56,6 +64,18 @@ app.config(function($routeProvider) {
 
 });
 
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeBar = false;
+    cfpLoadingBarProvider.spinnerTemplate =
+    '<div id="loading-bar-spinner">' +
+        '<div class="spinner-icon">' +
+            '<span></span>' +
+            '<span></span>' +
+            '<span></span>' +
+        '</div>' +
+    '</div>';
+}]);
+
 app.filter('tel', function () {
     return function (tel) {
         if (!tel) { return ''; }
@@ -99,6 +119,61 @@ app.filter('tel', function () {
 
         return (country + " (" + city + ") " + number).trim();
     };
+})
+
+.filter('icon', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        source = source.toLowerCase();
+
+        var values = [
+            {
+                id:'á',
+                replace: 'a'
+            },
+            {
+                id:'é',
+                replace: 'e'
+            },
+            {
+                id:'í',
+                replace: 'i'
+            },
+            {
+                id:'ó',
+                replace: 'o'
+            },
+            {
+                id:'ú',
+                replace: 'u'
+            },
+            {
+                id:'ñ',
+                replace: 'n'
+            },
+            {
+                id:' ',
+                replace: '-'
+            }
+        ];
+
+        values.forEach(function(value){
+           source = source.split(value.id).join(value.replace);
+        });
+
+        return 'icon-' + source;
+    };
+})
+
+.filter('firstLetter', function() {
+    return function(input) {
+        if(input){
+            return input[0].toUpperCase() + input.slice(1);
+        }
+    }
 });
 
 var serviceBase = 'http://randallcanezr-001-site2.ftempurl.com/';
@@ -111,6 +186,26 @@ app.constant('ngAuthSettings', {
 app.config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
+
+app.directive("compareTo", function() {
+    return {
+      require: "ngModel",
+      scope: {
+        otherModelValue: "=compareTo"
+      },
+      link: function(scope, element, attributes, ngModel) {
+
+        ngModel.$validators.compareTo = function(modelValue) {
+          return modelValue == scope.otherModelValue;
+        };
+
+        scope.$watch("otherModelValue", function() {
+          ngModel.$validate();
+        });
+      }
+    };
+  }
+);
 
 app.run(['authService', function(authService) {
     authService.fillAuthData();

@@ -1,3 +1,161 @@
-<div class="container-fluid main"><div class="row"><div class="col-xs-12 text-center"><h3 class="head" ng-if="!events">No tienes eventos registrados, ¡comienza ahora!</h3></div></div><div class="row"><div class="col-xs-12 text-center"><uib-accordion><uib-accordion-group ng-repeat="event in events track by $index"><uib-accordion-heading><div class="row"><div class="col-xs-12"><span class="pull-left glyphicon" ng-class="{'glyphicon-chevron-down': status.isCustomHeaderOpen, 'glyphicon-chevron-right': !status.isCustomHeaderOpen}"></span><span class="pull-left event-head">{{event.Title}}</span><span class="pull-right event-head">{{event.Date | date:'medium'}}</span></div></div></uib-accordion-heading><div class="row"><div class="col-xs-12 carousel-image" style="background-image:url('img/mi_gran_dia_conferencia.jpg')"><div class="carousel-caption">Faltan 30 días para tu próximo evento: Conferencia</div></div></div><div class="row"><uib-tabset class="planner-nav" active="activeJustified" justified="true"><uib-tab><uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span><div class="service-name">Agenda</div></uib-tab-heading><div class="container-fluid" ng-controller="tasksController"><div class="row"><div class="col-xs-12 col-md-4 column"><h3 class="head">Nueva tarea</h3><div class="form-group"><input class="form-control" type="text" placeholder="Nombre de tarea" ng-model="newTask.Title"/></div><div class="form-group"><div class="input-group"><input class="form-control" type="text" uib-datepicker-popup="dd-MM-yyyy" ng-model="newTask.DueDate" is-open="datepicker.opened" datepicker-options="dateOptions" close-text="Cerrar" clear-text="Borrar" current-text="Hoy" alt-input-formats="altInputFormats" placeholder="Fecha límite (DD/MM/AAAA)" popup-placement="top-right" dropdown-append-to-body="dropdown-append-to-body"/><div class="input-group-btn"><button class="btn btn-default btn-input" type="button" ng-click="openDatePicker()"><span class="glyphicon glyphicon-calendar"></span></button></div></div></div><div class="form-group"><textarea class="form-control" type="textarea" placeholder="Notas" ng-model="newTask.Notes"></textarea></div><div class="form-group"><button class="btn btn-default btn-submit" ng-click="addTask()">Agregar</button></div></div><div class="col-xs-12 col-md-4 column"><h3 class="head">Tareas</h3><h4 ng-if="tasks[0].taskItems == ''">No has agregado tareas</h4><ul><li style="margin-top: 10px" ng-repeat="task in tasks[0].taskItems track by $index"><a>{{task.Title}}</a><div class="btn-group"><button class="btn btn-default btn-input" type="button"><input style="margin: 0" type="checkbox"/></button><button class="btn btn-default btn-input" type="button"><span class="glyphicon glyphicon-pencil"></span></button><button class="btn btn-default btn-input" type="button"><span class="glyphicon glyphicon-trash"></span></button></div></li></ul><button class="btn btn-default btn-submit" ng-if="pendingChanges" ng-click="saveTasks()">Guardar</button></div><div class="col-xs-12 col-md-4 column"></div></div></div></uib-tab><uib-tab><uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span><div class="service-name">Presupuesto</div></uib-tab-heading><div class="container-fluid" ng-controller="budgetController"></div></uib-tab><uib-tab><uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span><div class="service-name">Invitados</div></uib-tab-heading><div class="container-fluid" ng-controller="guestsController"></div></uib-tab><uib-tab><uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span><div class="service-name">Proveedores</div></uib-tab-heading><div class="container-fluid" ng-controller="vendorsController"></div></uib-tab></uib-tabset></div></uib-accordion-group></uib-accordion></div></div><div class="row"><div class="col-xs-12 text-center"><h3 class="head">Agregar evento</h3></div></div><div class="row"><div class="col-xs-12 text-center"><form class="form-inline"><div class="form-group signup-field"><input class="form-control" type="text" placeholder="Evento" ng-model="newEvent.Title"/></div><div class="form-group signup-field"><div class="input-group"><input class="form-control" type="text" uib-datepicker-popup="dd-MM-yyyy" ng-model="newEvent.Date" is-open="eventDatepicker.opened" datepicker-options="dateOptions" close-text="Cerrar" clear-text="Borrar" current-text="Hoy" alt-input-formats="altInputFormats" placeholder="Fecha (DD/MM/AAAA)" popup-placement="top-right" dropdown-append-to-body="dropdown-append-to-body"/><div class="input-group-btn"><button class="btn btn-default btn-input" type="button" ng-click="openEventDatepicker()"><span class="glyphicon glyphicon-calendar"></span></button></div></div></div><div class="form-group signup-field"><select class="form-control" required="required" ng-model="newEvent.EventTypeId"><option value="" disabled="disabled" selected="selected">Tipo de evento</option><option value="1">Bodas                  </option><option value="2">Cumpleaños</option><option value="3">Quinceañeras             </option><option value="4">Graduaciones                  </option><option value="7">Bautizos           </option><option value="8">Conferencias                  </option><option value="9">Showers                  </option><option value="10">Otros</option></select></div><div class="form-group signup-field"><select class="form-control" required="required" ng-model="newEvent.CityId"><option value="" disabled="disabled" selected="selected">Ciudad</option><option value="1">Hermosillo                  </option></select></div><div class="form-group signup-field"><input class="form-control" type="number" placeholder="Presupuesto ($)" ng-model="newEvent.Budget"/></div><button class="btn btn-default btn-submit" type="submit" ng-click="save(newEvent)">Agregar</button></form></div></div><div class="row">{{message | json}}
-{{newEvent}}
-{{events}}</div></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-xs-12 text-center"><h3 class="head" ng-if="!events">No tienes eventos registrados, ¡comienza
+            ahora!</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <uib-accordion>
+                <uib-accordion-group ng-repeat="event in events track by $index">
+                    <uib-accordion-heading>
+                        <div class="row">
+                            <div class="col-xs-12"><span class="pull-left glyphicon"
+                                                         ng-class="{'glyphicon-chevron-down': status.isCustomHeaderOpen, 'glyphicon-chevron-right': !status.isCustomHeaderOpen}"></span><span
+                                    class="pull-left event-head">{{event.Title}}</span><span
+                                    class="pull-right event-head">{{event.Date | date:'medium'}}</span></div>
+                        </div>
+                    </uib-accordion-heading>
+                    <div class="row">
+                        <div class="col-xs-12 carousel-image"
+                             style="background-image:url('img/mi_gran_dia_conferencia.jpg')">
+                            <div class="carousel-caption">Faltan 30 días para tu próximo evento: Conferencia</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <uib-tabset class="planner-nav" active="activeJustified" justified="true">
+                            <uib-tab>
+                                <uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span>
+                                    <div class="service-name">Agenda</div>
+                                </uib-tab-heading>
+                                <div class="container-fluid" ng-controller="tasksController">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-4 column"><h3 class="head">Nueva tarea</h3>
+                                            <div class="form-group"><input class="form-control" type="text"
+                                                                           placeholder="Nombre de tarea"
+                                                                           ng-model="newTask.Title"/></div>
+                                            <div class="form-group">
+                                                <div class="input-group"><input class="form-control" type="text"
+                                                                                uib-datepicker-popup="dd-MM-yyyy"
+                                                                                ng-model="newTask.DueDate"
+                                                                                is-open="datepicker.opened"
+                                                                                datepicker-options="dateOptions"
+                                                                                close-text="Cerrar" clear-text="Borrar"
+                                                                                current-text="Hoy"
+                                                                                alt-input-formats="altInputFormats"
+                                                                                placeholder="Fecha límite (DD/MM/AAAA)"
+                                                                                popup-placement="top-right"
+                                                                                dropdown-append-to-body="dropdown-append-to-body"/>
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default btn-input" type="button"
+                                                                ng-click="openDatePicker()"><span
+                                                                class="glyphicon glyphicon-calendar"></span></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><textarea class="form-control" type="textarea"
+                                                                              placeholder="Notas"
+                                                                              ng-model="newTask.Notes"></textarea></div>
+                                            <div class="form-group">
+                                                <button class="btn btn-default btn-submit" ng-click="addTask()">
+                                                    Agregar
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4 column"><h3 class="head">Tareas</h3><h4
+                                                ng-if="tasks[0].taskItems == ''">No has agregado tareas</h4>
+                                            <ul>
+                                                <li style="margin-top: 10px"
+                                                    ng-repeat="task in tasks[0].taskItems track by $index"><a>{{task.Title}}</a>
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-default btn-input" type="button"><input
+                                                                style="margin: 0" type="checkbox"/></button>
+                                                        <button class="btn btn-default btn-input" type="button"><span
+                                                                class="glyphicon glyphicon-pencil"></span></button>
+                                                        <button class="btn btn-default btn-input" type="button"><span
+                                                                class="glyphicon glyphicon-trash"></span></button>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <button class="btn btn-default btn-submit" ng-if="pendingChanges"
+                                                    ng-click="saveTasks()">Guardar
+                                            </button>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4 column"></div>
+                                    </div>
+                                </div>
+                            </uib-tab>
+                            <uib-tab>
+                                <uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span>
+                                    <div class="service-name">Presupuesto</div>
+                                </uib-tab-heading>
+                                <div class="container-fluid" ng-controller="budgetController"></div>
+                            </uib-tab>
+                            <uib-tab>
+                                <uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span>
+                                    <div class="service-name">Invitados</div>
+                                </uib-tab-heading>
+                                <div class="container-fluid" ng-controller="guestsController"></div>
+                            </uib-tab>
+                            <uib-tab>
+                                <uib-tab-heading class="tabs"><span ng-class="icon({{event.Id}})"></span>
+                                    <div class="service-name">Proveedores</div>
+                                </uib-tab-heading>
+                                <div class="container-fluid" ng-controller="vendorsController"></div>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                </uib-accordion-group>
+            </uib-accordion>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center"><h3 class="head">Agregar evento</h3></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <form class="form-inline">
+                <div class="form-group signup-field"><input class="form-control" type="text" placeholder="Evento"
+                                                            ng-model="newEvent.Title"/></div>
+                <div class="form-group signup-field">
+                    <div class="input-group"><input class="form-control" type="text" uib-datepicker-popup="dd-MM-yyyy"
+                                                    ng-model="newEvent.Date" is-open="eventDatepicker.opened"
+                                                    datepicker-options="dateOptions" close-text="Cerrar"
+                                                    clear-text="Borrar" current-text="Hoy"
+                                                    alt-input-formats="altInputFormats" placeholder="Fecha (DD/MM/AAAA)"
+                                                    popup-placement="top-right"
+                                                    dropdown-append-to-body="dropdown-append-to-body"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default btn-input" type="button" ng-click="openEventDatepicker()">
+                                <span class="glyphicon glyphicon-calendar"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group signup-field"><select class="form-control" required="required"
+                                                             ng-model="newEvent.EventTypeId">
+                    <option value="" disabled="disabled" selected="selected">Tipo de evento</option>
+                    <option value="1">Bodas</option>
+                    <option value="2">Cumpleaños</option>
+                    <option value="3">Quinceañeras</option>
+                    <option value="4">Graduaciones</option>
+                    <option value="7">Bautizos</option>
+                    <option value="8">Conferencias</option>
+                    <option value="9">Showers</option>
+                    <option value="10">Otros</option>
+                </select></div>
+                <div class="form-group signup-field"><select class="form-control" required="required"
+                                                             ng-model="newEvent.CityId">
+                    <option value="" disabled="disabled" selected="selected">Ciudad</option>
+                    <option value="1">Hermosillo</option>
+                </select></div>
+                <div class="form-group signup-field"><input class="form-control" type="number"
+                                                            placeholder="Presupuesto ($)" ng-model="newEvent.Budget"/>
+                </div>
+                <button class="btn btn-default btn-submit" type="submit" ng-click="save(newEvent)">Agregar</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">{{message | json}}
+        {{newEvent}}
+        {{events}}
+    </div>
+</div>l

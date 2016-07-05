@@ -1,10 +1,11 @@
 ﻿'use strict';
 app.controller('indexController', ['$scope', '$location', 'authService', '$uibModal', function ($scope, $location, authService, $uibModal) {
-  $scope.isCollapsed = true;
-  $scope.plannerCollapsed = true;
-  $scope.suppliersCollapsed = true;
+  	$scope.collapsed = 'lalalalalalal';
+  	$scope.plannerCollapsed = true;
+  	$scope.suppliersCollapsed = true;
 
 	$scope.signup = function() {
+
 	var modalInstance = $uibModal.open({
   		animation: true,
 	      templateUrl: '/app/views/signup-modal.html',
@@ -19,6 +20,10 @@ app.controller('indexController', ['$scope', '$location', 'authService', '$uibMo
 
     $scope.authentication = authService.authentication;
 
+	//britez
+	$scope.isActive = function(currentLocation) {
+		return $location.path() == currentLocation;
+	};
 }]);
 
 app.controller('modalController', function ($scope, $uibModalInstance, $location) {

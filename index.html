@@ -14,131 +14,128 @@
 		<link rel="stylesheet" href="css/angular-datepicker.min.css">
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/list.css">
+		<link rel="stylesheet" href="css/forms.css">
+		<link rel="stylesheet" href="css/icons.css">
+		<link rel="stylesheet" href="css/spinner.css">
 		<link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
-		<link rel="stylesheet" href="node_modules/angular-xeditable/dist/css/xeditable.min.css">
+		<link rel="stylesheet" href="css/dashboard.css">
+		<link rel="stylesheet" href="css/nav.css">
+		<link rel="stylesheet" href="css/carrousel.css">
 	</head>
-	<body data-ng-app="AngularFunctions" flow-prevent-drop>
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="container-fluid" ng-controller="indexController">
+	<body
+		data-ng-app="AngularFunctions"
+		flow-prevent-drop
+		ng-controller="indexController">
+		<nav
+			class="main-nav clearfix">
+			<object
+				class="logo"
+				type="image/svg+xml"
+				data="img/mi_gran_dia_logo_svg.svg">
+			</object>
+			<ul class="floating-menu">
+				<li ng-hide="authentication.isAuth">
+					<a href="" ng-click="signup()">REGÍSTRATE</a>
+				</li>
+				<li ng-hide="authentication.isAuth">
+					<a href="#/login-supplier" class="active">Log-In</a>
+				</li>
+				<li ng-hide="!authentication.isAuth">
+					<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+				</li>
+				<li ng-hide="!authentication.isAuth">
+					<a href="#/dashboard" class="active">Hola, {{authentication.Email}}</a>
+				</li>
+			</ul>
+			<ul class="main-menu">
+				<li><a href="/#">Mi Evento</a></li>
+				<li><a href="/#">Organizador</a></li>
+				<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a></li>
+				<li><a href="/#">Contacto</a></li>
+			</ul>
+			<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</nav>
+		<ul class="responsive-menu" uib-collapse="isCollapsed">
+			<li><a href="/#">Mi Evento</a></li>
+			<li><a href="/#">Organizador</a></li>
+			<li><a href="#/suppliers">Proveedores</a></li>
+			<li><a href="/#">Contacto</a></li>
+			<li ng-hide="authentication.isAuth" class="active">
+				<a href="" ng-click="signup()">REGÍSTRATE</a>
+			</li>
+			<li ng-hide="authentication.isAuth" class="active">
+				<a href="#/login-supplier">Log-In</a>
+			</li>
+			<li ng-hide="!authentication.isAuth" class="active">
+				<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+			</li>
+			<li ng-hide="!authentication.isAuth" class="active">
+				<a href="#/dashboard">Hola, {{authentication.Email}}</a>
+			</li>
+		</ul>
+		<div ng-view=""></div>
+		<footer>
+			<div class="container">
 				<div class="row">
-					<div class="navbar-header">
-						<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="#/">
-							<object class="logo" type="image/svg+xml" data="img/mi_gran_dia_logo_svg.svg" style="pointer-events: none"></object>
-						</a>
+					<div class="col-xs-6">
+						<ul>
+							<li role="presentation"><a href="#Condición Legal">Condición Legal</a></li>
+							<li role="presentation"><a href="#¿Quiénes somos?">¿Quiénes somos?</a></li>
+							<li role="presentation"><a href="#FAQ">FAQ</a></li>
+							<li role="presentation"><a href="#Contacto">Contacto</a></li>
+						</ul>
 					</div>
-					<div id="nav-container">
-						<nav class="navbar-collapse collapse" uib-collapse="isCollapsed">
-							<ul class="nav navbar-nav navbar-left">
-								<li role="presentation"><a href="#/suppliers">Proveedores</a></li>
-								<!--<span class="caret"></span>-->
-								<li role="presentation"><a href="#/contact">Contacto</a></li>
-								<!--<span class="caret"></span>-->
-							</ul>
-							<ul class="user-nav nav navbar-nav navbar-right">
-								<li ng-hide="authentication.isAuth" uib-dropdown on-toggle="toggled(open)">
-									<a href id="simple-dropdown" uib-dropdown-toggle>Iniciar sesión</a>
-									<ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
-										<li><a href="#/login-planner">Organizador</a></li>
-										<li><a href="#/login-supplier">Proveedor</a></li>
-									</ul>
-								</li>
-								<li ng-hide="authentication.isAuth">
-									<a href="" ng-click="signup()">Regístrate</a>
-								</li>
-								<li class="disabled" ng-hide="!authentication.isAuth">
-									<a href="">Hola, {{authentication.Email}}</a>
-								</li>
-								<!--li(ng-hide="!authentication.isAuth")a(href="#/profile") Perfil-->
-								<!--li(ng-hide="!authentication.isAuth")a(href="#/dashboard") Dashboard-->
-								<li ng-hide="!authentication.isAuth">
-									<a href="" ng-click="logOut()">Cerrar sesión                                    </a>
-								</li>
-							</ul>
-						</nav>
-						<nav class="navbar navbar-default navbar-fixed-top sub-nav" ng-show="authentication.isAuth">
-							<style ng-if="authentication.isAuth">body {padding-top: 110px;}</style>
-							<div class="container-fluid drawer-menu">
-								<div class="row" ng-show="authentication.userType === 'planner'">
-									<div class="col-xs-4"><a href="#/account">Mi Cuenta</a></div>
-									<div class="col-xs-4"><a href="#/events">Mis Eventos</a></div>
-									<div class="col-xs-4"><a href="#/planner">Organizador       </a></div>
-								</div>
-								<div class="row" ng-show="authentication.userType === 'supplier'">
-									<div class="col-xs-4"><a href="#/account">Mi Cuenta</a></div>
-									<div class="col-xs-4"><a href="#/profile">Mi perfil</a></div>
-									<div class="col-xs-4"><a href="#/dashboard">Dashboard</a></div>
-								</div>
-							</div>
-						</nav>
+					<div class="col-xs-6 text-right">
+						<ul>
+							<li role="presentation"><a href="#">Facebook</a></li>
+							<li role="presentation"><a href="#">Twitter</a></li>
+						</ul>
+					</div>
+					<div class="row">
+						<div class="col-xs-12 text-center">
+							<ul><li><a href="#">Developed by RedTree Marketing</a></li></ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div data-ng-view="" autoscroll=""></div>
+		</footer>
 	</body>
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-6">
-					<ul>
-						<li role="presentation"><a href="#Condición Legal">Condición Legal</a></li>
-						<li role="presentation"><a href="#¿Quiénes somos?">¿Quiénes somos?</a></li>
-						<li role="presentation"><a href="#FAQ">FAQ</a></li>
-						<li role="presentation"><a href="#Contacto">Contacto</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-6 text-right">
-					<ul>
-						<li role="presentation"><a href="#">Facebook</a></li>
-						<li role="presentation"><a href="#">Twitter</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12 text-center">
-					<ul><li><a href="#">Developed by RedTree Marketing</a></li></ul>
-				</div>
-			</div>
-		</div>
-		<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
-		<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-		<script src="bower_components/angular-progress-arc/angular-progress-arc.min.js"></script>
-		<script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
-		<script src="js/angular-local-storage.min.js"></script>
-		<script src="js/angular-multi-step-form.min.js"></script>
-		<script src="js/angular-locale_es-mx.js"></script>
-		<script src="js/checklist-model.js"></script>
-		<script src="app.js"></script>
-		<script src="app/services/authInterceptorService.js?v=2"></script>
-		<script src="app/services/authService.js?v=2"></script>
-		<script src="app/services/supplierService.js?v=2"></script>
-		<script src="app/services/plannerService.js?v=2"></script>
-		<script src="app/controllers/indexController.js?v=2"></script>
-		<script src="app/controllers/homeController.js?v=2"></script>
-		<script src="app/controllers/loginController.js?v=2"></script>
-		<script src="app/controllers/signupController.js?v=2"></script>
-		<script src="app/controllers/suscriptionController.js?v=2"></script>
-		<script src="app/controllers/welcomeController.js?v=2"></script>
-		<script src="app/controllers/eventsController.js?v=2"></script>
-		<script src="app/controllers/servicesController.js?v=2"></script>
-		<script src="app/controllers/suppliersController.js?v=2"></script>
-		<script src="app/controllers/dashboardSupplierController.js?v=2"></script>
-		<script src="app/controllers/profileController.js?v=2"></script>
-		<script src="app/controllers/plannerController.js?v=2"></script>
-		<script src="app/controllers/tasksController.js?v=2"></script>
-		<script src="app/controllers/budgetController.js?v=2"></script>
-		<script src="app/controllers/guestsController.js?v=2"></script>
-		<script src="app/controllers/vendorsController.js?v=2"></script>
-	</footer>
+	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
+	<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+	<script src="node_modules/angular-loading-bar/build/loading-bar.min.js"></script>
+	<script src="bower_components/angular-progress-arc/angular-progress-arc.min.js"></script>
+	<script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
+	<script src="js/angular-local-storage.min.js"></script>
+	<script src="js/angular-multi-step-form.min.js"></script>
+	<script src="js/angular-locale_es-mx.js"></script>
+	<script src="js/checklist-model.js"></script>
+	<script src="app.js"></script>
+	<script src="app/services/authInterceptorService.js?v=2"></script>
+	<script src="app/services/authService.js?v=2"></script>
+	<script src="app/services/supplierService.js?v=2"></script>
+	<script src="app/services/plannerService.js?v=2"></script>
+	<script src="app/controllers/indexController.js?v=2"></script>
+	<script src="app/controllers/homeController.js?v=2"></script>
+	<script src="app/controllers/loginController.js?v=2"></script>
+	<script src="app/controllers/signupController.js?v=2"></script>
+	<script src="app/controllers/suscriptionController.js?v=2"></script>
+	<script src="app/controllers/eventsController.js?v=2"></script>
+	<script src="app/controllers/suppliersController.js?v=2"></script>
+	<script src="app/controllers/dashboardSupplierController.js?v=2"></script>
+	<script src="app/controllers/profileController.js?v=2"></script>
+	<script src="app/controllers/plannerController.js?v=2"></script>
+	<script src="app/controllers/tasksController.js?v=2"></script>
+	<script src="app/controllers/budgetController.js?v=2"></script>
+	<script src="app/controllers/guestsController.js?v=2"></script>
+	<script src="app/controllers/vendorsController.js?v=2"></script>
 </html>

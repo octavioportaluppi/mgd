@@ -1,1 +1,189 @@
-<div class="container-fluid"><div class="row"><div class="carousel-image img-panel-full img-panel-full-register"><div class="carousel-caption">Regístrate para ofrecer tus servicios<h2>Sólo te toma unos minutos.</h2></div></div></div></div><div class="container"> <div class="row"><div class="text-center"><h1 class="promt">Introduce tus datos</h1></div></div><form class="form-horizontal main" name="supplier-data" form-step-validity="form-step-validity"><div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0"><div class="form-group signup-field"><input class="form-control" id="inputName" required="required" type="text" placeholder="Nombre(s)" ng-model="planner.FirstName"/></div></div><div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0"><div class="form-group signup-field"><input class="form-control" id="inputName" required="required" type="text" placeholder="Apellido(s)" ng-model="planner.LastName"/></div></div><div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0"><div class="form-group signup-field"><input class="form-control" id="inputPasswordConfirm" required="required" type="password" placeholder="Confirmar contraseña" ng-model="registration.ConfirmPassword"/></div></div><div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0"><div class="form-group signup-field"><input class="form-control" id="inputPassword" required="required" type="password" placeholder="Contraseña" ng-model="registration.Password"/></div></div><div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0"><div class="form-group signup-field"><input class="form-control" id="inputEmail" required="required" type="email" placeholder="Email" ng-model="registration.Email"/></div></div><div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0"><div class="form-group signup-field"><div class="input-group" style="margin: 0; padding: 0"><input class="form-control" type="text" uib-datepicker-popup="dd-MM-yyyy" ng-model="planner.Birthdate" is-open="datepicker.opened" datepicker-options="dateOptions" close-text="Cerrar" clear-text="Borrar" current-text="Hoy" alt-input-formats="altInputFormats" placeholder="DD/MM/AAAA" popup-placement="top-right" dropdown-append-to-body="dropdown-append-to-body"/><div class="input-group-btn"><button class="btn btn-default btn-input" type="button" ng-click="openDatePicker()"><span class="glyphicon glyphicon-calendar"></span></button></div></div></div></div><div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0"><div class="form-group signup-field"><select class="form-control" required="required" ng-model="planner.CityId"><option value="" disabled="disabled" selected="selected">Ciudad</option><option value="1">Hermosillo</option></select></div></div></form></div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="carousel-image img-panel-full img-panel-full-register">
+			<div class="carousel-caption">
+				Regístrate para ofrecer tus servicios
+				<h2>Registrarte es completamente gratis, en unos minutos podrás ofrecer tus servicios en migrandia.mx.</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<form class="form-horizontal main" name="data" form-step-validity="form-step-validity" novalidate>
+	<div class="container">
+		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
+			<div class="form-group signup-error">
+				<div class="error">
+					<div ng-show="errorMessage">{{errorMessage.data.ModelState[''][1]}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input 
+					class="form-control"
+					name="supplierName"
+					required="" 
+					type="text" 
+					placeholder="Nombre del proveedor"
+					ng-model="supplier.Name"
+					ng-class="{'invalid':data.supplierName.$error.required && (data.$submitted || data.supplierName.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.supplierName.$touched">
+      				<div ng-show="data.supplierName.$error.required">Dinos el nombre del proveedor.</div>
+    			</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="email"
+						required="required"
+						type="email"
+						placeholder="Email"
+						ng-model="registration.Email"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.email.$touched">
+					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
+					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="password"
+						required="required"
+						type="password"
+						placeholder="Contraseña"
+						ng-model="registration.Password"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.password.$touched">
+      				<div ng-show="data.password.$error.required">Elije una contraseña.</div>
+					<div ng-show="!checkPassword()">
+						Debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.
+					</div>
+    			</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="passwordConfirm"
+						required="required"
+						type="password"
+						placeholder="Confirmar contraseña"
+						ng-model="registration.ConfirmPassword"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.passwordConfirm.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.passwordConfirm.$touched)}"
+						compare-to="registration.Password"/>
+				<div class="error" ng-show="data.$submitted || data.passwordConfirm.$touched">
+      				<div ng-show="data.passwordConfirm.$error.required">Confirma la contraseña.</div>
+      				<div ng-show="data.passwordConfirm.$error.compareTo">Las contraseñas no coinciden.</div>
+    			</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="phone"
+						required="required"
+						type="phone"
+						placeholder="Teléfono"
+						ng-model="supplier.Phone"
+						ng-class="{'invalid':data.phone.$error.required && (data.$submitted || data.phone.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.phone.$touched">
+					<div ng-show="data.phone.$error.required">Danos un telefono.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<select class="form-control" ng-model="supplier.StateId" name="state"
+						ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}">
+					<option value="" disabled="disabled" selected="selected" class="placeholder">POBLACIÓN</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<select class="form-control" required="" ng-model="supplier.CityId" name="city"
+						ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}">
+					<option value="" disabled="disabled" selected="selected" class="placeholder">CIUDAD</option>
+					<option value="{{city.Id}}" ng-repeat="city in cities">{{city.Name}}</option>
+				</select>
+				<div class="error" ng-show="data.$submitted || data.city.$touched">
+					<div ng-show="data.city.$error.required">Dinos tu ciudad.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						placeholder="Horario de apertura"/>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-6">
+			<div class="form-group signup-field">
+				<textarea class="form-control" required="" ng-model="supplier.Description" name="description"
+						  placeholder="Descripción"
+						ng-class="{'invalid':data.description.$error.required && (data.$submitted || data.description.$touched)}">
+				</textarea>
+				<div class="error" ng-show="data.$submitted || data.description.$touched">
+					<div ng-show="data.description.$error.required">Déjanos una descripción.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 clearfix">
+			<label class="default-image-title">Sube tu logotipo</label>
+			<div class="default-image pull-left"></div>
+			<div class="default-image-caption pull-left">
+				<span>600px x 600px</span>
+				<span>.jpg, .png</span>
+				<button
+					class="btn btn-default btn-submit"
+					ng-click="">Buscar</button>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 clearfix">
+			<label class="default-image-title">Sube imágenes</label>
+			<div class="col-md-3">
+				<div class="default-image"></div>
+			</div>
+			<div class="col-md-3">
+				<div class="default-image"></div>
+			</div>
+			<div class="col-md-3">
+				<div class="default-image"></div>
+			</div>
+			<div class="col-md-3">
+				<div class="default-image"></div>
+			</div>
+			<button
+				class="btn btn-default btn-submit pull-right"
+				ng-click="">Buscar</button>
+		</div>
+	</div>
+	<div class="container text-center">
+		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-3">
+			<button class="btn btn-default btn-submit prev" ng-disabled="$isFirst()">Regresar</button>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+			<button
+				class="btn btn-default btn-submit next"
+				ng-class="[{'invalid':!data.$valid && data.$submitted}]"
+				ng-hide="$isLast()"
+				ng-click="saveSupplierData(data, $nextStep)">Siguiente</button>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+			<button
+					class="btn btn-default btn-submit next"
+					ng-click="$nextStep()">Skip</button>
+		</div>
+	</div>
+</form>

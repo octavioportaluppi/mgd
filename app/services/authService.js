@@ -17,7 +17,9 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     };
 
     var _saveRegistration = function (registration) {
+
         _logOut();
+
         var deferred = $q.defer();
             
         $http.post(serviceBase + 'api/account/register', registration ).then(function (response) {
@@ -45,10 +47,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     };
 
     var _saveSupplier = function (supplier) {
-            
-        return $http.post(serviceBase + 'api/suppliers', supplier ).then(function (response) {
-            return response;
-        });
+        return $http.post(serviceBase + 'api/suppliers', supplier );
     };
 
     var _updateSupplier = function (supplier) {
