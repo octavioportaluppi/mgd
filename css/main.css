@@ -414,12 +414,13 @@ h1.promt {
     .account ul .uncheck {
       list-style-image: url("../img/uncheck.png"); }
 
-.pattern {
-  background: url("../img/mi_gran_dia_pattern.png") repeat; }
 
 .main {
   padding: 30px 0;
   background: #ececec; }
+
+.main.pattern {
+  background: url("../img/mi_gran_dia_pattern.png") repeat; }
 
 .signup-nav {
   padding: 30px 0; }
