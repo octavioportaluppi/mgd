@@ -39,17 +39,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     };
 
     var _getCities = function () {
-
-        var deferred = $q.defer();
-        $http.get(serviceBase + 'api/cities').success(function (res) {
-            _cities = res;
-            deferred.resolve(res);
-        }).error(function (err, status) {
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
-
+        return $http.get(serviceBase + 'api/cities')
     };
 
     var _getEventServices = function (event) {

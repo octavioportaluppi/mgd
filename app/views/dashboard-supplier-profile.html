@@ -1,0 +1,46 @@
+<form class=" form-group"name="data">
+<div class="row frame">
+    <div class="col-xs-4">
+        <img class="avatar img-circle" src="img/loverde_avatar.jpg"/></div>
+    <div class="col-xs-4">
+        <input
+        type="text"
+        required=""
+        ng-model="supplier.Name"
+        class="form-control"
+        name="inputName"
+        placeholder="Nombre"/>
+        <p>Nombre</p>
+        <p class="description">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p>
+    </div>
+    <div class="col-xs-4">
+        <input
+                type="text"
+                required=""
+                ng-model="supplier.FacebookUrl"
+                class="form-control"
+                name="inputFacebookUrl"
+                placeholder="Facebook"/>
+        <p>Facebook</p>
+        <input
+                type="text"
+                required=""
+                ng-model="supplier.TwitterUrl"
+                class="form-control"
+                name="inputTwitterUrl"
+                placeholder="Twitter"/>
+        <p>Twitter</p>
+        <input
+                type="text"
+                required=""
+                ng-model="supplier.InstagramUrl"
+                class="form-control"
+                name="inputInstagramUrl"
+                placeholder="Instagram"/>
+        <p>Instagram</p>
+    </div>
+    <div class="col-xs">
+        <button ng-show="editProfile" ng-click="updateProfile()" class="btn btn-default btn-save">Guardar</button>
+    </div>
+</div>
+</form>

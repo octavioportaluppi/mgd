@@ -5,3 +5,26 @@ ul > li {
 .dashTextarea{
     resize: none ;
 }
+
+.index-title {
+    padding: 5px 0 0 0;
+    font-weight: 900;
+    color: #818181;
+    text-transform: uppercase;
+}
+
+.sub-title {
+    padding: 5px 0 0 0;
+    font-size: 25px;
+    font-weight: bold ;
+    color: #818181;
+    text-transform: uppercase;
+}
+
+.btn-save {
+    background: #ee3470;
+    color: #fff;
+    margin: 10px 0;
+    font-size: 1em;
+}
+

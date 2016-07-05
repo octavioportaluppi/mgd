@@ -3,9 +3,10 @@
         <div class="row">
             <div class="col-lg-9 col-sm-12">
                 <div class="container-fluid">
-                    <div class="row frame">
+
+                    <div class="row frame" ng-show="!editProfile">
                         <div class="col-xs-4"><img class="avatar img-circle" src="img/loverde_avatar.jpg"/></div>
-                        <div class="col-xs-4"><h1 editable-text="supplier.Name">{{supplier.Name}}</h1>
+                        <div class="col-xs-4"><h1 editable-text="supplier.Name" class="index-title">{{supplier.Name | uppercase}}</h1>
                             <p>Nombre</p>
                             <div ng-if="dashboard.ServiceTypes !=0" ng-repeat="service in services"
                                  ng-controller="dashboardSupplierController">
@@ -23,9 +24,12 @@
                             </h3>
                             <p>Instagram</p></div>
                         <div class="col-xs">
-                            <button class="btn btn-default btn-submit">Editar</button>
+                            <button  ng-show="!editProfile" ng-click="editProfile = !editProfile" class="btn btn-default btn-submit" >Editar</button>
                         </div>
                     </div>
+
+                    <ng-include ng-show="editProfile" src="'/app/views/dashboard-supplier-profile.html'"></ng-include>
+
                     <div class="row">
                         <div class="col-xs-6 col-md-3 menu-item"><a>Mi Perfil</a></div>
                         <div class="col-xs-6 col-md-3 menu-item"><a>Mis Visitas</a></div>
@@ -34,46 +38,40 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-xs-10"><h2>SOBRE MI</h2></div>
-                        <div class="col-xs">
+                        <div class=" col-xs-10"><h2 class="sub-title">SOBRE MI</h2></div>
 
-                            <button   ng-show="!editAbout"  ng-click="editAboutMe = !editAboutMe" class="btn btn-default btn-submit" >Editar</button>
-                            <button ng-click="updateDetails()"  ng-show="editAboutMe"class="btn btn-default btn-submit" >Guardar</button>
+                            <button  ng-show="!editAboutMe" ng-click="editAboutMe = !editAboutMe" class="btn btn-default btn-submit" >Editar</button>
+
+
                         <!-- Edit about ME !--->
+                        <ng-include ng-show="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
 
-                        <ng-include  ng-show="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
-                     </div>
                 </div>
                 <div class="row frame" ng-show="!editAboutMe">
                     <div class="col-xs-5">
                         <h2 class="address" editable-text="supplier.Address">
                         {{supplier.Address | firstLetter }}</h2>
                         <h2 class="address" editable-text="supplier.Address">
-                            {{supplier.City.Name | firstLetter}} </h2>
-                        <p>Dirección</p>
-                        <h1 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h1>
-                        <p>Teléfono</p>
-                        <!--<h3 class="price-range">$$$</h3>
-                        <p>Rango de precios</p>--->
-                        <h3 class="hours">Martes a Domingo<br>9:00 - 23:00 Hrs.</h3>
-                        <p>Horario</p></div>
+                            {{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</h2><br>
+                        <h4 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h4>
+                        <h5 class="price-range">$$$</h5>
+                        <h2 class="hours" editable-text="supplier.Address"></h2>
+                    </div>
                     <div class="col-xs-7"><p class="description" editable-textarea="supplier.Description" e-rows="7"
                                              e-cols="40">{{supplier.Description |  firstLetter}}</p>
-                        <p>Descripción</p></div>
+                        </div>
+
                 </div>
+                    <button  ng-show="editAboutMe" ng-click="updateDetails()"  class="btn pull-right btn-save" >Guardar</button>
                 <div class="row">
-                    <div class="col-xs-10"><h2>Servicios</h2>
-                        <p>Selecciona los servicios que ofrece tu empresa.</p>
+                    <div class="col-xs-10">
+                        <h2 class="sub-title">Servicios</h2>
                     </div>
                     <div class="col-xs-2">
                         <button
                                 class="btn btn-default btn-submit"
                                 ng-show="!editServices"
                                 ng-click="editServices = !editServices">Editar</button>
-                        <button
-                                class="btn btn-default btn-submit"
-                                ng-show="editServices"
-                                ng-click="updateServices();">Guardar</button>
                     </div>
                 </div>
                 <div class="row register-panel frame">
@@ -103,16 +101,18 @@
                         </label>
                     </div>
                 </div>
+
+                    <button
+                            class="btn btn pull-right btn-save "
+                            ng-show="editServices"
+                            ng-click="updateServices();">Guardar</button>
+
             </div>
         </div>
         <div class="col-lg-3 col-sm-12">
             <div class="row frame text-center"><h1>AD</h1></div>
             <div class="row frame text-center"><h2>Perfil {{chart*100}}% completado</h2>
                 <progress-arc complete="chart" stroke-width="30" size="200" stroke="#8c3e96"></progress-arc>
-            </div>
-            <div class="row frame text-center">
-                <div  g-if="message">{{message}}</div>
-                <button class="btn btn-default btn-submit" ng-click="update()">Guardar cambios</button>
             </div>
         </div>
     </div>
