@@ -1,12 +1,11 @@
 ﻿'use strict';
-app.controller('indexController', ['$scope', '$location', 'authService', '$uibModal', 'cfpLoadingBar', function ($scope, $location, authService, $uibModal, cfpLoadingBar) {
-  $scope.isCollapsed = true;
-  $scope.plannerCollapsed = true;
-  $scope.suppliersCollapsed = true;
-
-	cfpLoadingBar.start();
+app.controller('indexController', ['$scope', '$location', 'authService', '$uibModal', function ($scope, $location, authService, $uibModal) {
+  	$scope.collapsed = 'lalalalalalal';
+  	$scope.plannerCollapsed = true;
+  	$scope.suppliersCollapsed = true;
 
 	$scope.signup = function() {
+
 	var modalInstance = $uibModal.open({
   		animation: true,
 	      templateUrl: '/app/views/signup-modal.html',
@@ -24,6 +23,10 @@ app.controller('indexController', ['$scope', '$location', 'authService', '$uibMo
 	//britez
 	$scope.isActive = function(currentLocation) {
 		return $location.path() == currentLocation;
+	}
+
+	$scope.isCollapsed = function() {
+		return $scope.collapsed;
 	}
 
 }]);

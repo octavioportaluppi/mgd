@@ -18,9 +18,14 @@ body {
 }
 
 .main-nav .main-menu,
-.main-nav .floating-menu {
+.main-nav .floating-menu,
+.responsive-menu {
     padding: 0;
     margin: 0;
+}
+
+.responsive-menu {
+    background: #FFF;
 }
 
 .main-nav .floating-menu {
@@ -58,7 +63,23 @@ body {
     padding: 40px 0;
 }
 
-.main-nav .main-menu a {
+.responsive-menu li {
+    margin: 0;
+    padding: 10px 20px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.responsive-menu li.active {
+    background-color: #aed136;
+}
+
+.responsive-menu li.active a {
+    color: #FFF;
+}
+
+.main-nav .main-menu a,
+.responsive-menu a {
     color: #818181;
     text-transform: uppercase;
 }
@@ -86,7 +107,7 @@ body {
     
     .main-nav .navbar-toggle {
         display: inline;
-        margin: 0 !important;
+        margin: 0 20px 0 0 !important;
     }
 
     .main-nav .logo { width: 175px; }
@@ -120,9 +141,9 @@ body {
         display: inherit;
     }
 
-    .main-nav .navbar-toggle {
+    .main-nav .navbar-toggle,
+    .responsive-menu,
+    .responsive-menu.collapse.in {
         display: none;
     }
 }
-
-

@@ -24,10 +24,10 @@
 	</head>
 	<body
 		data-ng-app="AngularFunctions"
-		flow-prevent-drop>
+		flow-prevent-drop
+		ng-controller="indexController">
 		<nav
-			class="main-nav clearfix"
-			ng-controller="indexController">
+			class="main-nav clearfix">
 			<object
 				class="logo"
 				type="image/svg+xml"
@@ -59,6 +59,24 @@
 				<span class="icon-bar"></span>
 			</button>
 		</nav>
+		<ul class="responsive-menu" uib-collapse="isCollapsed">
+			<li><a href="/#">Mi Evento</a></li>
+			<li><a href="/#">Organizador</a></li>
+			<li><a href="#/suppliers">Proveedores</a></li>
+			<li><a href="/#">Contacto</a></li>
+			<li ng-hide="authentication.isAuth" class="active">
+				<a href="" ng-click="signup()">REGÍSTRATE</a>
+			</li>
+			<li ng-hide="authentication.isAuth" class="active">
+				<a href="#/login-supplier">Log-In</a>
+			</li>
+			<li ng-hide="!authentication.isAuth" class="active">
+				<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+			</li>
+			<li ng-hide="!authentication.isAuth" class="active">
+				<a href="#/dashboard">Hola, {{authentication.Email}}</a>
+			</li>
+		</ul>
 		<div ng-view=""></div>
 		<footer>
 			<div class="container">
