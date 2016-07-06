@@ -104,8 +104,14 @@ app.controller('signupController', [
 
     $scope.saveSupplierQuestions = function(form, callback) {
       if (form.$valid){
+          var answers = Object
+              .keys($scope.supplier.questions)
+              .map(function (key) {
+                  return {QuestionId: key, Text: $scope.supplier.questions[key]}
+              });
+
         supplierService
-            .saveQuestions($scope.questions)
+            .saveQuestions(answers)
             .then(function (){
                 callback();
             });
