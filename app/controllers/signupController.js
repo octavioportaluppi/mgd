@@ -1,10 +1,11 @@
 ﻿'use strict';
 app.controller('signupController', [
-    '$scope', '$location', '$timeout', 'authService', 'supplierService', 'stateService', 'dateService',
-    function ($scope, $location, $timeout, authService, supplierService, stateService, dateService) {
+    '$scope', '$location', '$timeout', 'authService', 'supplierService', 'stateService', 'dateService', 'Upload',
+    function ($scope, $location, $timeout, authService, supplierService, stateService, dateService, Upload) {
 
     $scope.registration = {};
     $scope.supplier = {};
+    $scope.supplier.photos = [];
     $scope.supplierEvents = [];
 
     $scope.stepsSupplier = [
@@ -17,13 +18,13 @@ app.controller('signupController', [
     
     //Britez
     $scope.saveSupplierData = function (form, callback){
-        if(form.$valid && $scope.checkPassword()) {
-            if($scope.authentication && $scope.authentication.isAuth) {
+        //if(form.$valid && $scope.checkPassword()) {
+            //if($scope.authentication && $scope.authentication.isAuth) {
                 $scope.updateUser(callback);
-            } else {
-                $scope.createUser(form, callback);
-            }
-        }
+            //} else {
+            //    $scope.createUser(form, callback);
+            //}
+        //}
     };
 
     $scope.updateUser = function(callback){
@@ -43,7 +44,6 @@ app.controller('signupController', [
                     .login($scope.registration, 'supplier')
                     .then(function() {
                         $scope.authentication = authService.authentication;
-                        $scope.supplier.OpeningHours = {DayFrom: 0, DayTo: 6, HoursFrom: '12:00', HoursTo:'23:00'};
                         authService
                             .saveSupplier($scope.supplier)
                             .then(function (){

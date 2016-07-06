@@ -1,5 +1,6 @@
 ﻿'use strict';
-app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSettings', function ($http, $q, localStorageService, ngAuthSettings) {
+app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSettings', 'Upload',
+    function ($http, $q, localStorageService, ngAuthSettings, Upload) {
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
     var authServiceFactory = {};
@@ -47,7 +48,19 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     };
 
     var _saveSupplier = function (supplier) {
-        return $http.post(serviceBase + 'api/suppliers', supplier );
+        var promise = $http.post(serviceBase + 'api/suppliers', supplier );
+        promise.then(function (){
+            if(supplier.profilePic) {
+                _uploadLogo(supplier.profilePic, true);
+            }
+
+            if(supplier.photos.length > 0) {
+                supplier.photos.forEach(function(photo){
+                    _uploadLogo(photo, false);
+                })
+            }
+        });
+        return promise;
     };
 
     var _updateSupplier = function (supplier) {
@@ -135,6 +148,13 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     };
 
+    var _uploadLogo = function (picFile, isLogo) {
+        return Upload.upload({
+            url: serviceBase +'/api/SupplierPictures',
+            data: {Title: '', Description: '', IsLogo: isLogo, file: picFile}
+        });
+    };
+
     authServiceFactory.saveRegistration = _saveRegistration;
     authServiceFactory.savePlanner = _savePlanner;
     authServiceFactory.saveSupplier = _saveSupplier;
@@ -147,6 +167,8 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     authServiceFactory.externalAuthData = _externalAuthData;
     authServiceFactory.registerExternal = _registerExternal;
+
+    authServiceFactory.uploadLogo = _uploadLogo;
 
     return authServiceFactory;
 }]);
