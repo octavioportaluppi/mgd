@@ -117,7 +117,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
 
     var saveQuestions = function (questions) {
         return $http
-            .post(serviceBase + 'api/answers', questions);
+            .put(serviceBase + 'api/suppliers/answers', questions);
     };
 
     var _getEvents = function () {
