@@ -32,7 +32,7 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 				value += 0.1;
 			}
 		}
-		return value.toFixed(1);
+		return Math.floor(value);
 	}
 
 	//britez
