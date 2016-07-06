@@ -18,9 +18,14 @@ body {
 }
 
 .main-nav .main-menu,
-.main-nav .floating-menu {
+.main-nav .floating-menu,
+.responsive-menu {
     padding: 0;
     margin: 0;
+}
+
+.responsive-menu {
+    background: #FFF;
 }
 
 .main-nav .floating-menu {
@@ -43,6 +48,11 @@ body {
     color: #aed136;
 }
 
+.main-nav .main-menu a.active {
+    color: #ee3470;
+    background: none;
+}
+
 .main-nav .floating-menu .active {
     background-color: #aed136;
     font-weight: 600;
@@ -58,8 +68,87 @@ body {
     padding: 40px 0;
 }
 
-.main-nav .main-menu a {
+.responsive-menu li {
+    margin: 0;
+    padding: 10px 20px;
+    text-decoration: none;
+    list-style: none;
+}
+
+.responsive-menu li.active {
+    background-color: #aed136;
+}
+
+.responsive-menu li.active a {
+    color: #FFF;
+}
+
+.main-nav .main-menu a,
+.responsive-menu a {
     color: #818181;
     text-transform: uppercase;
 }
 
+.navbar-toggle {
+    float: right;
+    background-color: #dadada;
+    height: 52px;
+    width: 52px;
+}
+
+.navbar-toggle .icon-bar {
+    display: block;
+    width: 30px;
+    height: 5px;
+    border-radius: 2px;
+    background: #818181;
+}
+
+@media only screen and (min-width: 320px) {
+    .main-nav .floating-menu,
+    .main-nav .main-menu {
+        display: none;
+    }
+    
+    .main-nav .navbar-toggle {
+        display: inline;
+        margin: 0 20px 0 0 !important;
+    }
+
+    .main-nav .logo { width: 175px; }
+
+    body { padding-top: 100px; }
+
+    .main-nav { height: 100px; }
+}
+
+@media only screen and (min-width: 768px) {
+    .main-nav .floating-menu,
+    .main-nav .main-menu {
+        display: none;
+    }
+
+    .main-nav .navbar-toggle {
+        display: inline;
+        margin: 20px 14px 14px 14px !important;
+    }
+
+    .main-nav .logo { width: 350px; }
+
+    body { padding-top: 150px; }
+
+    .main-nav { height: 150px; }
+}
+
+@media only screen and (min-width: 1024px) {
+    .main-nav .floating-menu,
+    .main-nav .main-menu {
+        display: inherit;
+    }
+
+    .main-nav .navbar-toggle,
+    .responsive-menu,
+    .responsive-menu.collapse.in {
+        display: none;
+    }
+}

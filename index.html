@@ -24,10 +24,10 @@
 	</head>
 	<body
 		data-ng-app="AngularFunctions"
-		flow-prevent-drop>
+		flow-prevent-drop
+		ng-controller="indexController">
 		<nav
-			class="main-nav clearfix"
-			ng-controller="indexController">
+			class="main-nav clearfix">
 			<object
 				class="logo"
 				type="image/svg+xml"
@@ -50,13 +50,35 @@
 			<ul class="main-menu">
 				<li><a href="/#">Mi Evento</a></li>
 				<li><a href="/#">Organizador</a></li>
-				<li><a href="#/suppliers">Proveedores</a></li>
+				<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a></li>
 				<li><a href="/#">Contacto</a></li>
 			</ul>
+			<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
 		</nav>
+		<ul class="responsive-menu" uib-collapse="isCollapsed">
+			<li><a href="/#">Mi Evento</a></li>
+			<li><a href="/#">Organizador</a></li>
+			<li><a href="#/suppliers">Proveedores</a></li>
+			<li><a href="/#">Contacto</a></li>
+			<li ng-hide="authentication.isAuth" class="active">
+				<a href="" ng-click="signup()">REGÍSTRATE</a>
+			</li>
+			<li ng-hide="authentication.isAuth" class="active">
+				<a href="#/login-supplier">Log-In</a>
+			</li>
+			<li ng-hide="!authentication.isAuth" class="active">
+				<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+			</li>
+			<li ng-hide="!authentication.isAuth" class="active">
+				<a href="#/dashboard">Hola, {{authentication.Email}}</a>
+			</li>
+		</ul>
 		<div ng-view=""></div>
 		<footer>
-		<!--
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-6">
@@ -73,14 +95,13 @@
 							<li role="presentation"><a href="#">Twitter</a></li>
 						</ul>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 text-center">
-						<ul><li><a href="#">Developed by RedTree Marketing</a></li></ul>
+					<div class="row">
+						<div class="col-xs-12 text-center">
+							<ul><li><a href="#">Developed by RedTree Marketing</a></li></ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		-->
 		</footer>
 	</body>
 	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
