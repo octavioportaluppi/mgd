@@ -1,11 +1,9 @@
 ﻿'use strict';
-app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService', function ($scope, supplierService, authService) {
+app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService', function ($scope, supplierService) {
 
 	$scope.supplier = {};
     $scope.chart = 0;
 	$scope.dashboard = '';
-    $scope.services = [];
-    $scope.message = '';
 
 	$scope.getDashboard = function() {
 		supplierService
@@ -20,37 +18,49 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 				$scope.supplier.FacebookUrl = res.FacebookUrl;
 				$scope.supplier.InstagramUrl = res.InstagramUrl;
 				$scope.supplier.TwitterUrl = res.TwitterUrl;
-				$scope.dashboard.serviceTypes = res.serviceTypes;
+				$scope.supplier.State = res.State;
+				$scope.supplier.OpeningHours = res.OpeningHours;
 				$scope.chart = getProgress();
 		});
 	};
-
-	$scope.update = function() {
-		authService.updateSupplier($scope.supplier).then(function(res) {
-			$scope.message = 'Perfil actualizado';
-		});
-	};
+    
 
 	function getProgress() {
 		var value = 0;
 		for (var field in $scope.supplier) {
 			if ($scope.supplier[field] !== '') {
-				value += .125;
+				value += 0.1;
 			}
 		}
-		return value;
+		return Math.floor(value);
 	}
 
 	//britez
 	$scope.editServices = false;
 	$scope.editAboutMe = false;
+	$scope.editProfile = false;
 
 	$scope.updateDetails = function(){
+		var cityId = $scope.supplier.City.Id;
+		$scope.supplier.CityId = cityId;
+		delete $scope.supplier.City;
         supplierService
             .updateSupplierProfile($scope.supplier)
             .then(function () {
+				$scope.editAboutMe = !$scope.editAboutMe;
                 $scope.getDashboard();
             })
+	};
+
+	$scope.updateProfile = function(){
+		var cityId = $scope.supplier.City.Id;
+		$scope.supplier.CityId = cityId;
+        supplierService
+			.updateSupplierProfile($scope.supplier)
+			.then(function(){
+				$scope.editProfile = !$scope.editProfile;
+				$scope.getDashboard();
+			})
 	};
 
 	$scope.updateServices = function (){
@@ -72,6 +82,12 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 		.getServices()
 		.then(function (data) {
 			$scope.serviceTypes = data
+		});
+
+	supplierService
+		.getCities()
+		.then(function (response) {
+			$scope.cities = response.data;
 		});
 
 	$scope.getDashboard();
