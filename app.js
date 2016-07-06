@@ -6,7 +6,8 @@
         'ui.bootstrap',
         'flow',
         'angular-progress-arc',
-        'angular-loading-bar']);
+        'angular-loading-bar',
+        'ngFileUpload']);
 
 app.config(function($routeProvider) {
 

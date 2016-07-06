@@ -1,10 +1,11 @@
 ﻿'use strict';
 app.controller('signupController', [
-    '$scope', '$location', '$timeout', 'authService', 'supplierService',
-    function ($scope, $location, $timeout, authService, supplierService) {
+    '$scope', '$location', '$timeout', 'authService', 'supplierService', 'stateService', 'dateService', 'Upload',
+    function ($scope, $location, $timeout, authService, supplierService, stateService, dateService, Upload) {
 
     $scope.registration = {};
     $scope.supplier = {};
+    $scope.supplier.photos = [];
     $scope.supplierEvents = [];
 
     $scope.stepsSupplier = [
@@ -17,13 +18,13 @@ app.controller('signupController', [
     
     //Britez
     $scope.saveSupplierData = function (form, callback){
-        if(form.$valid && $scope.checkPassword()) {
-            if($scope.authentication && $scope.authentication.isAuth) {
+        //if(form.$valid && $scope.checkPassword()) {
+            //if($scope.authentication && $scope.authentication.isAuth) {
                 $scope.updateUser(callback);
-            } else {
-                $scope.createUser(form, callback);
-            }
-        }
+            //} else {
+            //    $scope.createUser(form, callback);
+            //}
+        //}
     };
 
     $scope.updateUser = function(callback){
@@ -43,7 +44,6 @@ app.controller('signupController', [
                     .login($scope.registration, 'supplier')
                     .then(function() {
                         $scope.authentication = authService.authentication;
-                        $scope.supplier.OpeningHours = {DayFrom: 0, DayTo: 6, HoursFrom: '12:00', HoursTo:'23:00'};
                         authService
                             .saveSupplier($scope.supplier)
                             .then(function (){
@@ -104,8 +104,14 @@ app.controller('signupController', [
 
     $scope.saveSupplierQuestions = function(form, callback) {
       if (form.$valid){
+          var answers = Object
+              .keys($scope.supplier.questions)
+              .map(function (key) {
+                  return {QuestionId: key, Text: $scope.supplier.questions[key]}
+              });
+
         supplierService
-            .saveQuestions($scope.questions)
+            .saveQuestions(answers)
             .then(function (){
                 callback();
             });
@@ -145,10 +151,18 @@ app.controller('signupController', [
         return $scope.questions;
     };
 
-    supplierService
-        .getCities()
-        .then(function (data) {
-            $scope.cities = data;
+    $scope.getCities = function() {
+        stateService
+            .getCities($scope.supplier.StateId)
+            .then(function (response){
+               $scope.cities = response.data;
+            });
+    };
+
+    stateService
+        .getStates()
+        .then(function (response) {
+            $scope.states = response.data;
         });
 
     supplierService
@@ -156,5 +170,7 @@ app.controller('signupController', [
         .then(function (response){
            $scope.events = response.data;
         });
+
+    $scope.days = dateService.getDays();
 
 }]);
