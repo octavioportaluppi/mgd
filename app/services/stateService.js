@@ -1,0 +1,20 @@
+﻿'use strict';
+app.factory('stateService', ['$http', 'ngAuthSettings', function ($http, ngAuthSettings) {
+
+    var serviceBase = ngAuthSettings.apiServiceBaseUri;
+
+    var stateServiceFactory = {};
+
+    var _getStates = function () {
+        return $http.get(serviceBase + 'api/States');
+    };
+
+    var _getCities = function (stateId) {
+        return $http.get(serviceBase + 'api/States/' + stateId + '/Cities');
+    };
+
+    stateServiceFactory.getStates = _getStates;
+    stateServiceFactory.getCities = _getCities;
+
+    return stateServiceFactory;
+}]);
