@@ -39,17 +39,7 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     };
 
     var _getCities = function () {
-
-        var deferred = $q.defer();
-        $http.get(serviceBase + 'api/cities').success(function (res) {
-            _cities = res;
-            deferred.resolve(res);
-        }).error(function (err, status) {
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
-
+        return $http.get(serviceBase + 'api/cities')
     };
 
     var _getEventServices = function (event) {
@@ -90,7 +80,6 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     };
 
     //britez
-
     var updateSupplierProfile = function(details){
         return $http
             .put(serviceBase + 'api/suppliers', details)
@@ -121,6 +110,16 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
                 });
     };
 
+    var getQuestions = function (serviceId) {
+      return $http
+          .get(serviceBase + 'api/servicetypes/' + serviceId + '/questions');
+    };
+
+    var saveQuestions = function (questions) {
+        return $http
+            .post(serviceBase + 'api/answers', questions);
+    };
+
     var _getEvents = function () {
         return $http.get(serviceBase + 'api/eventtypes');
     };
@@ -138,7 +137,8 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.getCities = _getCities;
     supplierServiceFactory.updateSuppliersService = updateSuppliersService;
     supplierServiceFactory.updateSupplierProfile = updateSupplierProfile;
-
+    supplierServiceFactory.getQuestions = getQuestions;
+    supplierServiceFactory.saveQuestions = saveQuestions;
 
     return supplierServiceFactory;
 }]);
