@@ -103,10 +103,17 @@
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
-				<select class="form-control" ng-model="supplier.StateId" name="state"
-						ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}">
+				<select class="form-control" name="state"
+						ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}"
+						ng-model="supplier.StateId"
+						required="required"
+						ng-change="getCities()">
 					<option value="" disabled="disabled" selected="selected" class="placeholder">POBLACIÓN</option>
+					<option ng-repeat="state in states" value="{{state.Id}}">{{state.Name}}</option>
 				</select>
+				<div class="error" ng-show="data.$submitted || data.state.$touched">
+					<div ng-show="data.state.$error.required">Dinos la población a la que perteneces.</div>
+				</div>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
@@ -117,18 +124,73 @@
 					<option value="{{city.Id}}" ng-repeat="city in cities">{{city.Name}}</option>
 				</select>
 				<div class="error" ng-show="data.$submitted || data.city.$touched">
-					<div ng-show="data.city.$error.required">Dinos tu ciudad.</div>
+					<div ng-show="data.city.$error.required">Dinos la ciudad a la que perteneces.</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
-				<input
-						class="form-control"
-						placeholder="Horario de apertura"/>
+				<div class="opening-hours clearfix">
+					<label>HORARIO APERTURA</label>
+					<div class="pull-right">
+						<select
+							class="form-control"
+							required=""
+							ng-model="supplier.OpeningHours.DayFrom"
+							name="dayFrom"
+							ng-class="{'invalid':data.dayFrom.$error.required && (data.$submitted || data.dayFrom.$touched)}">
+							<option value="{{day.id}}" ng-repeat="day in days">{{day.name}}</option>
+						</select>
+						<input
+							class="form-control"
+							name="hoursFrom"
+							required="required"
+							type="text"
+							placeholder="HH:MM"
+							ng-model="supplier.OpeningHours.HoursFrom"
+							ng-class="{'invalid':(data.hoursFrom.$error.required || data.hoursFrom.$error.pattern) && (data.$submitted || data.hoursFrom.$touched)}"
+							ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
+					</div>
+				</div>
+				<div class="error" ng-show="data.$submitted || data.description.$touched">
+					<div ng-show="data.dayFrom.$error.required">Dinos el dia de apertura.</div>
+					<div ng-show="data.hoursFrom.$error.required">Dinos el horario de apertura.</div>
+					<div ng-show="data.hoursFrom.$error.pattern">El horario de apertura es incorrecto.</div>
+				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-6">
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<div class="opening-hours clearfix">
+					<label>HORARIO CIERRE</label>
+					<div class="pull-right">
+						<select
+								class="form-control"
+								required=""
+								ng-model="supplier.OpeningHours.DayTo"
+								name="dayTo"
+								ng-class="{'invalid':data.dayTo.$error.required && (data.$submitted || data.dayTo.$touched)}">
+							<option value="{{day.id}}" ng-repeat="day in days">{{day.name}}</option>
+						</select>
+						<input
+								class="form-control"
+								name="hoursTo"
+								required="required"
+								type="text"
+								placeholder="HH:MM"
+								ng-model="supplier.OpeningHours.HoursTo"
+								ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
+								ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
+					</div>
+				</div>
+				<div class="error" ng-show="data.$submitted || data.description.$touched">
+					<div ng-show="data.dayTo.$error.required">Dinos el dia de cierre.</div>
+					<div ng-show="data.hoursTo.$error.required">Dinos el horario de cierre.</div>
+					<div ng-show="data.hoursTo.$error.pattern">El horario de cierre es incorrecto.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
 				<textarea class="form-control" required="" ng-model="supplier.Description" name="description"
 						  placeholder="Descripción"

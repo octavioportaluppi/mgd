@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.controller('signupController', [
-    '$scope', '$location', '$timeout', 'authService', 'supplierService',
-    function ($scope, $location, $timeout, authService, supplierService) {
+    '$scope', '$location', '$timeout', 'authService', 'supplierService', 'stateService', 'dateService',
+    function ($scope, $location, $timeout, authService, supplierService, stateService, dateService) {
 
     $scope.registration = {};
     $scope.supplier = {};
@@ -145,10 +145,18 @@ app.controller('signupController', [
         return $scope.questions;
     };
 
-    supplierService
-        .getCities()
-        .then(function (data) {
-            $scope.cities = data;
+    $scope.getCities = function() {
+        stateService
+            .getCities($scope.supplier.StateId)
+            .then(function (response){
+               $scope.cities = response.data;
+            });
+    };
+
+    stateService
+        .getStates()
+        .then(function (response) {
+            $scope.states = response.data;
         });
 
     supplierService
@@ -156,5 +164,7 @@ app.controller('signupController', [
         .then(function (response){
            $scope.events = response.data;
         });
+
+    $scope.days = dateService.getDays();
 
 }]);

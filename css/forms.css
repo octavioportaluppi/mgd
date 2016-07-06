@@ -51,6 +51,23 @@ form .error {
     color: #818181;
 }
 
+.signup-field .opening-hours label {
+    font-size: 1.4rem;
+    float: left;
+    line-height: 38px;
+}
+
+.signup-field .opening-hours select{
+    float: left;
+    width: 100px;
+    margin: 0 10px 0 0;
+}
+
+.signup-field .opening-hours input{
+    float: left;
+    width: 90px;
+}
+
 .form-step .btn.invalid {
 	background: #ee3470;
     cursor: not-allowed;
