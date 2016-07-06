@@ -26,13 +26,18 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
     
 
 	function getProgress() {
-		var value = 0;
+		$scope.value = 0;
+        if($scope.dashboard.ServiceTypes.length !== 0){
+                $scope.value += 0.091;
+        }
 		for (var field in $scope.supplier) {
-			if ($scope.supplier[field] !== '') {
-				value += 0.1;
+			if ($scope.supplier[field] !== null) {
+				delete $scope.supplier.CityId;
+				$scope.value += 0.091;
 			}
 		}
-		return Math.floor(value);
+		var total = $scope.value.toFixed(2);
+		return total;
 	}
 
 	//britez
