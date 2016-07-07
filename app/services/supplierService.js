@@ -1,5 +1,6 @@
 ﻿'use strict';
-app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http, $q, ngAuthSettings) {
+app.factory('supplierService',
+    ['$http', '$q', 'ngAuthSettings', 'authService', function ($http, $q, ngAuthSettings, authService) {
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
     var supplierServiceFactory = {};
@@ -10,8 +11,6 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
 
     var _suppliers = [];
     
-    var _cities = [];
-
     var _getDashboard = function () {
         var deferred = $q.defer();
 
@@ -36,10 +35,6 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
 
         return deferred.promise;
 
-    };
-
-    var _getCities = function () {
-        return $http.get(serviceBase + 'api/cities')
     };
 
     var _getEventServices = function (event) {
@@ -81,8 +76,22 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
 
     //britez
     var updateSupplierProfile = function(details){
-        return $http
-            .put(serviceBase + 'api/suppliers', details)
+        var promise = $http
+            .put(serviceBase + 'api/suppliers', details);
+        promise.then(function () {
+            if(details.profilePic) {
+                authService.uploadLogo(details.profilePic, true);
+            }
+
+            /*
+            if(supplier.photos.length > 0) {
+                supplier.photos.forEach(function(photo){
+                    _uploadLogo(photo, false);
+                })
+            }
+            */
+        });
+        return promise;
     };
 
     var updateSuppliersService = function (services) {
@@ -134,7 +143,6 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.suppliers = _suppliers;   
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
-    supplierServiceFactory.getCities = _getCities;
     supplierServiceFactory.updateSuppliersService = updateSuppliersService;
     supplierServiceFactory.updateSupplierProfile = updateSupplierProfile;
     supplierServiceFactory.getQuestions = getQuestions;

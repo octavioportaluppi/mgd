@@ -65,18 +65,20 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     var _updateSupplier = function (supplier) {
             
-        return $http.put(serviceBase + 'api/suppliers', supplier ).then(function (response) {
-            return response;
-        });
-    };
+        var promise = $http.put(serviceBase + 'api/suppliers', supplier );
+        promise.then(function (response) {
+            if(supplier.profilePic) {
+                _uploadLogo(supplier.profilePic, true);
+            }
 
-    var _saveServices = function (services) {
-        for (var i = services.length - 1; i >= 0; i--) {
-                        services[i]
-                    };            
-        return $http.post(serviceBase + 'api/suppliers/servicetypes', services ).then(function (response) {
-            return response;
+            /*
+            if(supplier.photos.length > 0) {
+                supplier.photos.forEach(function(photo){
+                    _uploadLogo(photo, false);
+                })
+            }*/
         });
+        return promise;
     };
 
     var _login = function (loginData, type) {
@@ -125,7 +127,6 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     };
 
-
     var _registerExternal = function (registerExternalData) {
 
         var deferred = $q.defer();
@@ -150,7 +151,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     var _uploadLogo = function (picFile, isLogo) {
         return Upload.upload({
-            url: serviceBase +'/api/SupplierPictures',
+            url: serviceBase +'/api/Pictures',
             data: {Title: '', Description: '', IsLogo: isLogo, file: picFile}
         });
     };

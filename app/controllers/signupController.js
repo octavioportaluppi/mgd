@@ -18,13 +18,13 @@ app.controller('signupController', [
     
     //Britez
     $scope.saveSupplierData = function (form, callback){
-        //if(form.$valid && $scope.checkPassword()) {
-            //if($scope.authentication && $scope.authentication.isAuth) {
+        if(form.$valid && $scope.checkPassword()) {
+            if($scope.authentication && $scope.authentication.isAuth) {
                 $scope.updateUser(callback);
-            //} else {
-            //    $scope.createUser(form, callback);
-            //}
-        //}
+            } else {
+                $scope.createUser(form, callback);
+            }
+        }
     };
 
     $scope.updateUser = function(callback){
