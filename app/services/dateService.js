@@ -3,7 +3,7 @@ app.factory('dateService', [function () {
 
     var dateServiceFactory = {};
 
-    var _days = [
+    var days = [
         { id: 0, name: 'Domingo'},
         { id: 1, name: 'Lunes' },
         { id: 2, name: 'Martes' },
@@ -14,7 +14,7 @@ app.factory('dateService', [function () {
     ];
 
     var _getDays = function () {
-        return _days;
+        return days;
     };
 
     dateServiceFactory.getDays = _getDays;

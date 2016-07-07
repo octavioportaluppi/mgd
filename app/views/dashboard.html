@@ -50,6 +50,7 @@
                     <ng-include ng-show="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
 
                     <div class="row frame" ng-show="!editAboutMe">
+
                     <div class="col-xs-5">
                         <h2 class="address" editable-text="supplier.Address">
                         {{supplier.Address | firstLetter }}</h2>
@@ -57,9 +58,13 @@
                             {{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</h2><br>
                         <h4 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h4>
                         <h5 class="price-range">$$$</h5>
-                        <h2 class="hours" editable-text="supplier.Address">
-                            {{supplier.OpeningHours.DayTo | firstLetter}}
-                            {{supplier.OpeningHours.HoursTo | firstLetter}}</h2>
+                        <h2 class="hours">
+                            {{supplier.OpeningHours.DayFrom}} A
+                            {{supplier.OpeningHours.DayTo }}<br>
+                            {{supplier.OpeningHours.HoursTo | firstLetter}} A
+                            {{supplier.OpeningHours.HoursFrom | firstLetter}}
+
+                        </h2>
                     </div>
                     <div class="col-xs-7"><p class="description" editable-textarea="supplier.Description" e-rows="7"
                                              e-cols="40">{{supplier.Description |  firstLetter}}</p>

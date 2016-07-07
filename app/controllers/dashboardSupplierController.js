@@ -1,9 +1,25 @@
 ﻿'use strict';
-app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService', function ($scope, supplierService) {
+app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService','dateService', function ($scope, supplierService,dateService) {
 
 	$scope.supplier = {};
     $scope.chart = 0;
 	$scope.dashboard = '';
+
+
+
+	$scope.days = [
+		{ id: 0, name: 'Domingo'},
+		{ id: 1, name: 'Lunes' },
+		{ id: 2, name: 'Martes' },
+		{ id: 3, name: 'Miercoles' },
+		{ id: 4, name: 'Jueves' },
+		{ id: 5, name: 'Viernes' },
+		{ id: 5, name: 'Sabado' }
+	];
+
+	$scope.getDays = function () {
+		return $scope.days;
+	};
 
 	$scope.getDashboard = function() {
 		supplierService
@@ -19,7 +35,7 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 				$scope.supplier.InstagramUrl = res.InstagramUrl;
 				$scope.supplier.TwitterUrl = res.TwitterUrl;
 				$scope.supplier.State = res.State;
-				$scope.supplier.OpeningHours = res.OpeningHours;
+				$scope.supplier.OpeningHours = res.OpeningHours
 				$scope.chart = getProgress();
 		});
 	};
@@ -28,15 +44,15 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 	function getProgress() {
 		$scope.value = 0;
         if($scope.dashboard.ServiceTypes.length !== 0){
-                $scope.value += 0.091;
+                $scope.value += 0.1;
         }
 		for (var field in $scope.supplier) {
-			if ($scope.supplier[field] !== null) {
+			if ( $scope.supplier[field] !== "" && $scope.supplier[field] !== null) {
 				delete $scope.supplier.CityId;
-				$scope.value += 0.091;
+				$scope.value += 0.09;
 			}
 		}
-		var total = $scope.value.toFixed(2);
+		var total = $scope.value.toFixed(1);
 		return total;
 	}
 
@@ -102,6 +118,5 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 			return it.Id === itemId;
 		})
 	};
-
 }]);
 
