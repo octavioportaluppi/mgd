@@ -59,8 +59,11 @@
                         <h4 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h4>
                         <h5 class="price-range">$$$</h5>
                         <h2 class="hours">
-                            {{supplier.OpeningHours.DayFrom}} A
-                            {{supplier.OpeningHours.DayTo }}<br>
+                            <div ng-model="day.name" >
+                                {{supplier.OpeningHours.DayFrom}} A
+                                {{supplier.OpeningHours.DayTo}}<br>
+                            </div >
+
                             {{supplier.OpeningHours.HoursTo | firstLetter}} A
                             {{supplier.OpeningHours.HoursFrom | firstLetter}}
 
