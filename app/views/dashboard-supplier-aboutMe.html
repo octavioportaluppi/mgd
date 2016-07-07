@@ -64,10 +64,18 @@
                     <select
                             class="form-control"
                             required=""
+                            ng-model="supplier.OpeningHours.DayFrom"
+                            name="dayFrom"
+                            ng-class="{'invalid':data.dayFrom.$error.required && (data.$submitted || data.dayFrom.$touched)}">
+                        <option selected="selected" value="{{day.id}}" ng-repeat="day in getDays()">{{day.name}}</option>
+                    </select>
+                    <select
+                            class="form-control"
+                            required=""
                             ng-model="supplier.OpeningHours.DayTo"
                             name="dayTo"
                             ng-class="{'invalid':data.dayTo.$error.required && (data.$submitted || data.dayTo.$touched)}">
-                        <option value="{{day.id}}" ng-repeat="day in days">{{day.name}}</option>
+                        <option selected="selected" value="{{day.id}}" ng-repeat="day in getDays()">{{day.name}}</option>
                     </select>
                     <input
                             class="form-control"
@@ -77,6 +85,15 @@
                             placeholder="HH:MM"
                             ng-model="supplier.OpeningHours.HoursTo"
                             ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
+                            ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
+                    <input
+                            class="form-control"
+                            name="hoursFrom"
+                            required="required"
+                            type="text"
+                            placeholder="HH:MM"
+                            ng-model="supplier.OpeningHours.HoursFrom"
+                            ng-class="{'invalid':(data.hoursFrom.$error.required || data.hoursFrom.$error.pattern) && (data.$submitted || data.hoursFrom.$touched)}"
                             ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
                 </div>
             </div>
@@ -96,7 +113,6 @@
              rows="10"
              cols="50">
      </textarea>
-            </div>
         </div>
     </div>
 </form>
