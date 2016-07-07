@@ -35,7 +35,7 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 				$scope.supplier.InstagramUrl = res.InstagramUrl;
 				$scope.supplier.TwitterUrl = res.TwitterUrl;
 				$scope.supplier.State = res.State;
-				$scope.supplier.OpeningHours = res.OpeningHours
+				$scope.supplier.OpeningHours = res.OpeningHours;
 				$scope.chart = getProgress();
 		});
 	};
@@ -118,5 +118,6 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 			return it.Id === itemId;
 		})
 	};
+
 }]);
 
