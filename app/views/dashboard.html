@@ -73,16 +73,17 @@
             </div>
             <ng-include ng-if="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
         </div>
-        <!--
-        <div>
-            <div class=" col-xs-10"><h2 class="sub-title">SERVICIOS</h2></div>
-            <button
-                class="btn btn-default btn-submit"
-                ng-show="!editServices"
-                ng-click="editServices = !editServices">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-                Editar</button>
+        <div class="clearfix">
+        <div class=" col-xs-10">
+            <h2 class="sub-title">SERVICIOS</h2>
         </div>
+        <button
+            class="btn btn-default btn-submit"
+            ng-show="!editServices"
+            ng-click="editServices = !editServices">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            Editar</button>
+    </div>
         <div class="register-panel frame clearfix">
             <div class="col-md-12 text-center"
                  ng-if="dashboard.ServiceTypes.length === 0 && !editServices">
@@ -90,12 +91,12 @@
             </div>
             <div ng-if="editServices">
                 <div class="col-md-6"
-                    ng-repeat="item in serviceTypes">
+                     ng-repeat="item in serviceTypes">
                     <label class="btn btn-default"  ng-class="{'active': haveItem(item.Id)}">
                         <input
-                            type="checkbox"
-                            checklist-model="dashboard.ServiceTypes"
-                            checklist-value="item"/>
+                                type="checkbox"
+                                checklist-model="dashboard.ServiceTypes"
+                                checklist-value="item"/>
                         <span class="{{item.Name | icon}}"></span>
                         {{item.Name}}
                     </label>
@@ -107,7 +108,7 @@
             </div>
             <div ng-if="!editServices">
                 <div class="col-md-6"
-                    ng-repeat="item in dashboard.ServiceTypes">
+                     ng-repeat="item in dashboard.ServiceTypes">
                     <label class="btn btn-default active">
                         <span class="{{item.Name | icon}}"></span>
                         {{item.Name}}
@@ -115,14 +116,12 @@
                 </div>
             </div>
         </div>
-        -->
     </div>
-    <!--
+
     <div class="col-lg-3 col-md-3 col-sm-12">
         <div class="frame text-center header"><h1>AD</h1></div>
-        <div class="frame text-center header"><h2>Perfil {{chart*100}}% completado</h2>
+        <div class="frame text-center header"><span>Perfil {{chart*100}}% completado</span>
             <progress-arc complete="chart" stroke-width="15" size="100" stroke="#8c3e96"></progress-arc>
         </div>
     </div>
-    -->
 </div>
