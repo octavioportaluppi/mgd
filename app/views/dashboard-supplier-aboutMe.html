@@ -14,34 +14,33 @@
         </div>
     </div>
     <div class="signup-field">
-        <label>Estado</label>
-        <select
-                class="form-control"
-                name="inputState"
-                required=""
-                ng-model="supplier.State.Id"
-                ng-class="{'invalid':data.inputState.$error.required && (data.$submitted || data.inputState.$touched)}">
-            <option ng-repeat="state in states" value="{{state.Id}}">{{state.Name}}</option>
-        </select>
-        <div class="dashboard-error" ng-show="data.$submitted || data.inputState.$touched">
-            <div ng-show="data.inputState.$error.required">Dinos la población a la que perteneces.</div>
-        </div>
+            <label>Estado</label>
+            <div class="form-group signup-field">
+                <select class="form-control" name="state"
+                        ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}"
+                        ng-model="supplier.StateId"
+                        required="required"
+                        ng-change="getCities()">
+                    <option value="" disabled="disabled" selected="selected" class="placeholder">POBLACIÓN</option>
+                    <option ng-repeat="state in states" value="{{state.Id}}">{{state.Name}}</option>
+                </select>
+                <div class="error" ng-show="data.$submitted || data.state.$touched">
+                    <div ng-show="data.state.$error.required">Dinos la población a la que perteneces.</div>
+                </div>
+            </div>
     </div>
     <div class="signup-field">
-        <label>Ciudad</label>
-            <select
-                    class="form-control"
-                    name="inputCity"
-                    required=""
-                    ng-model="supplier.City"
-                    ng-options="city.Name for city in cities track by city.Id"
-                    ng-class="{'invalid':data.inputCity.$error.required && (data.$submitted || data.inputCity.$touched)}">
-            </select>
-        <option ng-repeat="state in states" value="{{state.Id}}"></option>
-        <div class="dashboard-error" ng-show="data.$submitted || data.inputCity.$touched">
-            <div ng-show="data.inputCity.$error.required">Dinos la ciudad la que perteneces.</div>
-        </div>
-        </div>
+            <label>Ciudad</label>
+            <div class="form-group signup-field">
+                <select class="form-control" required="" ng-model="supplier.CityId" name="city"
+                        ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}">
+                    <option value="" disabled="disabled" selected="selected" class="placeholder">CIUDAD</option>
+                    <option value="{{city.Id}}" ng-repeat="city in cities">{{city.Name}}</option>
+                </select>
+                <div class="error" ng-show="data.$submitted || data.city.$touched">
+                    <div ng-show="data.city.$error.required">Dinos la ciudad a la que perteneces.</div>
+                </div>
+            </div>
     </div>
     <div class="signup-field">
         <label>Telefono</label>
@@ -49,7 +48,7 @@
                 class="form-control"
                 name="inputPhone"
                 required="required"
-                type=""
+                type="text"
                 placeholder="Telefono"
                 ng-model="supplier.Phone"
                 ng-class="{'invalid':data.inputPhone.$error.required && (data.$submitted || data.inputPhone.$touched)}"/>

@@ -52,7 +52,7 @@ app.controller('dashboardSupplierController',
 		for (var field in $scope.supplier) {
 			if ( $scope.supplier[field] !== "" && $scope.supplier[field] !== null) {
 				delete $scope.supplier.CityId;
-				$scope.value += 0.09;
+				$scope.value += 0.08;
 			}
 		}
 		var total = $scope.value.toFixed(1);
