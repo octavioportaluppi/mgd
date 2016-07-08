@@ -169,6 +169,30 @@ app.filter('tel', function () {
     };
 })
 
+.filter('day', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        var values = [
+            { id: 0, name: 'Domingo' },
+            { id: 1, name: 'Lunes' },
+            { id: 2, name: 'Martes' },
+            { id: 3, name: 'Miercoles' },
+            { id: 4, name: 'Jueves' },
+            { id: 5, name: 'Viernes' },
+            { id: 6, name: 'Sabado' }
+        ];
+
+        var result = values.find(function (it){return it.id == source});
+        if (!result){
+            return source;
+        }
+        return result.name;
+    };
+})
+
 .filter('firstLetter', function() {
     return function(input) {
         if(input){

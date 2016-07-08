@@ -1,4 +1,4 @@
-<div class="container-fluid gray-bg supplier">
+<div class="container gray-bg supplier">
     <div class="col-lg-9 col-md-9 col-sm-12">
         <div class="frame header clearfix">
             <div ng-show="!editProfile">
@@ -9,7 +9,6 @@
                 <div class="col-xs-9">
                     <div class="col-xs-11">
                         <h1 class="index-title">{{supplier.Name}}</h1>
-                        <p class="description">{{supplier.Description}}</p>
                         <p class="since">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p>
                         <button  ng-show="!editProfile" ng-click="editProfile = !editProfile" class="btn btn-default btn-submit" >
                             <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -40,8 +39,8 @@
             <div class="col-xs-6 col-md-3 menu-item"><a>Favoritos</a></div>
             <div class="col-xs-6 col-md-3 menu-item"><a>Upgrade</a></div>
         </div>
-        <div class="row">
-            <div class=" col-xs-10"><h2 class="sub-title">SOBRE MI</h2></div>
+        <div class="clearfix">
+            <div class="col-xs-10"><h2 class="sub-title">SOBRE MI</h2></div>
             <button
                 ng-show="!editAboutMe"
                 ng-click="editAboutMe = !editAboutMe"
@@ -52,33 +51,30 @@
         </div>
         <!-- Edit about ME !--->
         <div class="frame clearfix">
-            <div ng-show="!editAboutMe">
-                <div class="col-xs-5">
-                    <h2 class="address" editable-text="supplier.Address">
-                    {{supplier.Address | firstLetter }}</h2>
-                    <h2 class="address" editable-text="supplier.Address">
-                        {{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</h2><br>
-                    <h4 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h4>
-                    <h5 class="price-range">$$$</h5>
-                    <h2 class="hours">
-                        <div ng-model="day.name" >
-                            {{supplier.OpeningHours.DayFrom}} A
-                            {{supplier.OpeningHours.DayTo}}<br>
-                        </div >
-
-                        {{supplier.OpeningHours.HoursTo | firstLetter}} A
-                        {{supplier.OpeningHours.HoursFrom | firstLetter}}
-
-                    </h2>
+            <div ng-if="!editAboutMe">
+                <div class="col-md-5">
+                    <div class="info-group">
+                        <p class="address">{{supplier.Address | firstLetter }}</p>
+                        <p class="address">{{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</p>
+                    </div>
+                    <div class="info-group">
+                        <p class="phone">{{supplier.Phone | tel}}</p>
+                        <p>
+                            {{supplier.OpeningHours.DayFrom | day}} a
+                            {{supplier.OpeningHours.DayTo | day}} de
+                            {{supplier.OpeningHours.HoursTo}}hs a
+                            {{supplier.OpeningHours.HoursFrom}}hs
+                        </p>
+                    </div>
                 </div>
-                <div class="col-xs-7">
-                    <p class="description" editable-textarea="supplier.Description" e-rows="7"
-                                         e-cols="40">{{supplier.Description |  firstLetter}}</p>
+                <div class="col-md-7">
+                    <p>{{supplier.Description}}</p>
                 </div>
             </div>
-            <ng-include ng-show="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
+            <ng-include ng-if="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
         </div>
-        <div class="row">
+        <!--
+        <div>
             <div class=" col-xs-10"><h2 class="sub-title">SERVICIOS</h2></div>
             <button
                 class="btn btn-default btn-submit"
@@ -119,12 +115,14 @@
                 </div>
             </div>
         </div>
-
+        -->
     </div>
+    <!--
     <div class="col-lg-3 col-md-3 col-sm-12">
         <div class="frame text-center header"><h1>AD</h1></div>
         <div class="frame text-center header"><h2>Perfil {{chart*100}}% completado</h2>
             <progress-arc complete="chart" stroke-width="15" size="100" stroke="#8c3e96"></progress-arc>
         </div>
     </div>
+    -->
 </div>
