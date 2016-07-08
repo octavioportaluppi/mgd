@@ -451,16 +451,6 @@ h1.promt {
 .supplier {
   color: #818181;
   letter-spacing: 3px; }
-  .supplier .frame {
-    border: #cecece solid 1px;
-    border-radius: 5px;
-    background: #fff;
-    margin-top: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px; }
-  .supplier .btn-submit {
-    font-size: 1em;
-    margin-top: 20px; }
   .supplier .gallery {
     top: 20px; }
   .supplier .swiper-container {
@@ -484,10 +474,6 @@ h1.promt {
     opacity: 0.4; }
   .supplier .gallery-thumbs .swiper-slide-active {
     opacity: 1; }
-  .supplier .avatar {
-    width: 100%;
-    padding: 20px;
-    max-width: 250px; }
   .supplier .name {
     font-size: 2.61792em;
     font-weight: 900;
@@ -504,25 +490,8 @@ h1.promt {
   .supplier .check {
     list-style-image: url("../img/check.png");
     margin-bottom: 0; }
-  .supplier .description {
-    letter-spacing: 0;
-    font-size: 1em; }
   .supplier .highlights, .supplier .description {
     margin: 15px 0; }
-  .supplier .menu-item {
-    display: inline-block;
-    text-align: center;
-    background: #cecece;
-    padding-top: 10px;
-    padding-bottom: 10px; }
-    .supplier .menu-item:hover {
-      background: #aed136; }
-    .supplier .menu-item a {
-      font-size: 1em;
-      color: #fff;
-      text-transform: uppercase;
-      text-decoration: none; }
-
 .editable-input.editable-has-buttons {
   width: 66% !important; }
 

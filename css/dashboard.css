@@ -6,19 +6,82 @@ ul > li {
     resize: none ;
 }
 
-.index-title {
-    padding: 5px 0 0 0;
-    font-weight: 900;
-    color: #818181;
-    text-transform: uppercase;
+.supplier .frame {
+    border: #cecece solid 1px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 20px;
 }
 
-.sub-title {
+.supplier .frame.header {
+    margin-top: 20px;
+    border-radius: 5px 5px 0  0;
+}
+
+.supplier .avatar {
+    width: 100%;
+    max-width: 250px;
+}
+
+.supplier .index-title {
+    margin: 0;
+    font-weight: 900;
+    color: #CECECE;
+    text-transform: uppercase;
+    font-size: 29px;
+}
+
+.supplier .description {
+    letter-spacing: 0;
+    font-size: 17px;
+    margin: 5px 0;
+}
+
+.supplier .since {
+    font-size: 10px;
+    margin: 5px 0;
+}
+
+.frame .social {
+    text-align: center;
+}
+
+.frame .social a {
+    color: #818181;
+    font-size: 2.3rem;
+    text-align: center;
+}
+
+.frame .social a:hover {
+    color: #CECECE;
+    font-size: 2.7rem;
+    -webkit-transition: font-size 10ms;
+    -moz-transition: font-size 10ms;
+    -ms-transition: font-size 10ms;
+    -o-transition: font-size 10ms;
+    transition: font-size 10ms;
+}
+
+.frame .form-group label {
+    color: #818181;
+    font-size: 1.4rem;
+}
+
+.frame .form-group input, .frame .form-group textarea {
+    border: 1px #cecece solid;
+}
+
+.supplier .sub-title {
     padding: 5px 0 0 0;
     font-size: 25px;
     font-weight: bold ;
     color: #818181;
     text-transform: uppercase;
+}
+
+.supplier .btn-default {
+    font-size: 1em;
+    margin: 10px 0;
 }
 
 .btn-save {
@@ -28,3 +91,22 @@ ul > li {
     font-size: 1em;
 }
 
+.supplier .menu-item {
+    display: inline-block;
+    text-align: center;
+    background: #cecece;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.supplier .menu-item.active,
+.supplier .menu-item:hover {
+    background: #aed136;
+}
+
+.supplier .menu-item a {
+    font-size: 1em;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+}

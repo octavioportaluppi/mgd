@@ -48,37 +48,34 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     };
 
     var _saveSupplier = function (supplier) {
-        var promise = $http.post(serviceBase + 'api/suppliers', supplier );
-        promise.then(function (){
-            if(supplier.profilePic) {
-                _uploadLogo(supplier.profilePic, true);
-            }
+        var promises = [];
+        promises.push($http.post(serviceBase + 'api/suppliers', supplier));
+        if(supplier.profilePic) {
+            promises.push(_uploadLogo(supplier.profilePic, true));
+        }
 
-            if(supplier.photos.length > 0) {
-                supplier.photos.forEach(function(photo){
-                    _uploadLogo(photo, false);
-                })
-            }
-        });
-        return promise;
+        if(supplier.photos.length > 0) {
+            supplier.photos.forEach(function(photo){
+                promises.push(_uploadLogo(photo, false));
+            })
+        }
+        return $q.all(promises);
     };
 
     var _updateSupplier = function (supplier) {
-            
-        var promise = $http.put(serviceBase + 'api/suppliers', supplier );
-        promise.then(function (response) {
-            if(supplier.profilePic) {
-                _uploadLogo(supplier.profilePic, true);
-            }
+        var promises = [];
+        promises.push($http.put(serviceBase + 'api/suppliers', supplier));
+        if(supplier.profilePic) {
+            promises.push(_uploadLogo(supplier.profilePic, true));
+        }
 
-            /*
-            if(supplier.photos.length > 0) {
-                supplier.photos.forEach(function(photo){
-                    _uploadLogo(photo, false);
-                })
-            }*/
-        });
-        return promise;
+        /*
+        if(supplier.photos.length > 0) {
+            supplier.photos.forEach(function(photo){
+                _uploadLogo(photo, false);
+            })
+        }*/
+        return $q.all(promises);
     };
 
     var _login = function (loginData, type) {

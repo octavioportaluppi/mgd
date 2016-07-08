@@ -1,119 +1,122 @@
-<form class="row frame" name="data">
-    <div class="container-fluid"    >
-        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-            <div class="form-group">
-                <h2 class="address">Direccion</h2>
+<form name="data">
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+        <div class="form-group">
+            <h2 class="address">Direccion</h2>
+            <input
+                class="form-control"
+                name="inputAddress"
+                required="required"
+                type="text"
+                placeholder="Direccion"
+                ng-model="supplier.Address"
+                ng-class="{'invalid':data.inputAddress.$error.required && (data.$submitted || data.inputAddress.$touched)}"/>
+            <div class="error" ng-show="data.$submitted || data.inputAddress.$touched">
+                <div ng-show="data.inputAddress.$error.required">Agregue una direccion.</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-5 col-xs-offset-1 col-md-6 col-md-offset-0">
+        <div class="form-group">
+            <h2 class="address">Ciudad</h2>
+            <select
+                    class="form-control"
+                    name="inputCity"
+                    required=""
+                    ng-model="supplier.City"
+                    ng-options="city.Name for city in cities track by city.Id">
+            </select>
+        </div>
+    </div>
+    <div class="col-xs-5 col-xs-offset-1 col-md-6 col-md-offset-0">
+        <div class="form-group">
+            <h2 class="address" editable-text="supplier.Address">Estado</h2>
+            <select
+                    class="form-control"
+                    name="inputState"
+                    required=""
+                    ng-model="supplier.State.Name">
+                <option>{{supplier.State.Name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+        <div class="form-group">
+            <h2 class="address" editable-text="supplier.Phone">Telefono</h2>
+            <input
+                    class="form-control"
+                    name="inputPhone"
+                    required="required"
+                    type=""
+                    placeholder="Telefono"
+                    ng-model="supplier.Phone"
+                    ng-class="{'invalid':data.inputPhone.$error.required && (data.$submitted || data.inputPhone.$touched)}"/>
+            <div class="error" ng-show="data.$submitted || data.inputPhone.$touched">
+                <div ng-show="data.inputPhone.$error.required">Agregar un telefono.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+        <div class="input-group  col-lg-6">
+            <h2 class="address">Horario</h2>
+            <div class="pull-right">
+                <select
+                        class="form-control"
+                        required=""
+                        ng-model="supplier.OpeningHours.DayFrom"
+                        name="dayFrom"
+                        ng-class="{'invalid':data.dayFrom.$error.required && (data.$submitted || data.dayFrom.$touched)}">
+                    <option selected="selected" value="{{day.id}}" ng-repeat="day in getDays()">{{day.name}}</option>
+                </select>
+                <select
+                        class="form-control"
+                        required=""
+                        ng-model="supplier.OpeningHours.DayTo"
+                        name="dayTo"
+                        ng-class="{'invalid':data.dayTo.$error.required && (data.$submitted || data.dayTo.$touched)}">
+                    <option selected="selected" value="{{day.id}}" ng-repeat="day in getDays()">{{day.name}}</option>
+                </select>
                 <input
                         class="form-control"
-                        name="inputAddress"
+                        name="hoursTo"
                         required="required"
                         type="text"
-                        placeholder="Direccion"
-                        ng-model="supplier.Address"
-                        ng-class="{'invalid':data.inputAddress.$error.required && (data.$submitted || data.inputAddress.$touched)}"/>
-                <div class="error" ng-show="data.$submitted || data.inputAddress.$touched">
-                    <div ng-show="data.inputAddress.$error.required">Agregue una direccion.</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-5 col-xs-offset-1 col-md-6 col-md-offset-0">
-            <div class="form-group">
-                <h2 class="address">Ciudad</h2>
-                <select
-                        class="form-control"
-                        name="inputCity"
-                        required=""
-                        ng-model="supplier.City"
-                        ng-options="city.Name for city in cities track by city.Id">
-                </select>
-            </div>
-        </div>
-        <div class="col-xs-5 col-xs-offset-1 col-md-6 col-md-offset-0">
-            <div class="form-group">
-                <h2 class="address" editable-text="supplier.Address">Estado</h2>
-                <select
-                        class="form-control"
-                        name="inputState"
-                        required=""
-                        ng-model="supplier.State.Name">
-                    <option>{{supplier.State.Name}}</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-            <div class="form-group">
-                <h2 class="address" editable-text="supplier.Phone">Telefono</h2>
+                        placeholder="HH:MM"
+                        ng-model="supplier.OpeningHours.HoursTo"
+                        ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
+                        ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
                 <input
                         class="form-control"
-                        name="inputPhone"
+                        name="hoursFrom"
                         required="required"
-                        type=""
-                        placeholder="Telefono"
-                        ng-model="supplier.Phone"
-                        ng-class="{'invalid':data.inputPhone.$error.required && (data.$submitted || data.inputPhone.$touched)}"/>
-                <div class="error" ng-show="data.$submitted || data.inputPhone.$touched">
-                    <div ng-show="data.inputPhone.$error.required">Agregar un telefono.</div>
-                </div>
+                        type="text"
+                        placeholder="HH:MM"
+                        ng-model="supplier.OpeningHours.HoursFrom"
+                        ng-class="{'invalid':(data.hoursFrom.$error.required || data.hoursFrom.$error.pattern) && (data.$submitted || data.hoursFrom.$touched)}"
+                        ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
             </div>
         </div>
+    </div>
 
-        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-            <div class="input-group  col-lg-6">
-                <h2 class="address">Horario</h2>
-                <div class="pull-right">
-                    <select
-                            class="form-control"
-                            required=""
-                            ng-model="supplier.OpeningHours.DayFrom"
-                            name="dayFrom"
-                            ng-class="{'invalid':data.dayFrom.$error.required && (data.$submitted || data.dayFrom.$touched)}">
-                        <option selected="selected" value="{{day.id}}" ng-repeat="day in getDays()">{{day.name}}</option>
-                    </select>
-                    <select
-                            class="form-control"
-                            required=""
-                            ng-model="supplier.OpeningHours.DayTo"
-                            name="dayTo"
-                            ng-class="{'invalid':data.dayTo.$error.required && (data.$submitted || data.dayTo.$touched)}">
-                        <option selected="selected" value="{{day.id}}" ng-repeat="day in getDays()">{{day.name}}</option>
-                    </select>
-                    <input
-                            class="form-control"
-                            name="hoursTo"
-                            required="required"
-                            type="text"
-                            placeholder="HH:MM"
-                            ng-model="supplier.OpeningHours.HoursTo"
-                            ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
-                            ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
-                    <input
-                            class="form-control"
-                            name="hoursFrom"
-                            required="required"
-                            type="text"
-                            placeholder="HH:MM"
-                            ng-model="supplier.OpeningHours.HoursFrom"
-                            ng-class="{'invalid':(data.hoursFrom.$error.required || data.hoursFrom.$error.pattern) && (data.$submitted || data.hoursFrom.$touched)}"
-                            ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
-                </div>
-            </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+        <div class="form-group">
+            <h2 class="address" editable-text="supplier.Address">Da un breve descripcion de tu negocio
+                :</h2>
+             <textarea
+                     class="form-control dashTextarea "
+                     name="textTareaDescription"
+                     required=""
+                     type=""
+                     placeholder="Descripcion"
+                     ng-model="supplier.Description"
+                     rows="10"
+                     cols="50">
+             </textarea>
         </div>
-
-        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-            <div class="form-group">
-                <h2 class="address" editable-text="supplier.Address">Da un breve descripcion de tu negocio
-                    :</h2>
-     <textarea
-             class="form-control dashTextarea "
-             name="textTareaDescription"
-             required=""
-             type=""
-             placeholder="Descripcion"
-             ng-model="supplier.Description"
-             rows="10"
-             cols="50">
-     </textarea>
-        </div>
+    </div>
+    <div class="signup-field">
+        <button ng-click="updateProfile()" class="btn btn-default btn-submit pull-left" >Guardar</button>
+        <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
     </div>
 </form>
 

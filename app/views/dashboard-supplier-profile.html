@@ -1,46 +1,82 @@
-<form class=" form-group"name="data">
-<div class="row frame">
-    <div class="col-xs-4">
-        <img class="avatar img-circle" src="img/loverde_avatar.jpg"/></div>
-    <div class="col-xs-4">
-        <input
-        type="text"
-        required=""
-        ng-model="supplier.Name"
-        class="form-control"
-        name="inputName"
-        placeholder="Nombre"/>
-        <p>Nombre</p>
-        <p class="description">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p>
+<form class=" form-group" name="data">
+    <div class="col-xs-3">
+        <img class="avatar img-circle"
+             src="img/photo-placeholder.jpg"
+             ng-if="!supplier.pic"
+             ngf-select
+             ng-model="supplier.profilePic"
+             accept="image/*"
+             ngf-max-size="2MB"/>
+        <img class="avatar img-circle"
+             src="{{supplier.pic}}"
+             ngf-select
+             accept="image/*"
+             ng-if="supplier.pic && !supplier.profilePic"
+             ng-model="supplier.profilePic"
+             ngf-max-size="2MB"/>
+        <img class="avatar img-circle"
+             ng-if="supplier.profilePic"
+             ngf-thumbnail="supplier.profilePic"
+             class="default-image pull-left"
+             ngf-select
+             ng-model="supplier.profilePic"
+             accept="image/*"
+             ngf-max-size="2MB"/>
     </div>
-    <div class="col-xs-4">
-        <input
+
+    <div class="col-xs-9">
+        <div class="signup-field">
+            <label>Nombre:</label>
+            <input
+                type="text"
+                required=""
+                ng-model="supplier.Name"
+                class="form-control"
+                name="inputName"
+                placeholder="Nombre"/>
+        </div>
+        <div class="signup-field">
+            <label>Descripción:</label>
+            <textarea
+                type="text"
+                required=""
+                ng-model="supplier.Description"
+                class="form-control"
+                name="inputDescription">{{supplier.Description}}</textarea>
+        </div>
+        <div class="signup-field">
+            <label>Facebook:</label>
+            <input
                 type="text"
                 required=""
                 ng-model="supplier.FacebookUrl"
                 class="form-control"
                 name="inputFacebookUrl"
                 placeholder="Facebook"/>
-        <p>Facebook</p>
-        <input
+        </div>
+        <div class="signup-field">
+            <label>Twitter:</label>
+            <input
                 type="text"
                 required=""
                 ng-model="supplier.TwitterUrl"
                 class="form-control"
                 name="inputTwitterUrl"
                 placeholder="Twitter"/>
-        <p>Twitter</p>
-        <input
+        </div>
+        <div class="signup-field">
+            <label>Instagram:</label>
+            <input
                 type="text"
                 required=""
                 ng-model="supplier.InstagramUrl"
                 class="form-control"
                 name="inputInstagramUrl"
                 placeholder="Instagram"/>
-        <p>Instagram</p>
+        </div>
+        <div class="signup-field">
+            <button ng-click="updateProfile()" class="btn btn-default btn-submit pull-left" >Guardar</button>
+            <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
+        </div>
     </div>
-    <div class="col-xs">
-        <button ng-show="editProfile" ng-click="updateProfile()" class="btn btn-default btn-save">Guardar</button>
-    </div>
-</div>
 </form>
