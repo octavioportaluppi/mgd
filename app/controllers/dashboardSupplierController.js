@@ -38,6 +38,7 @@ app.controller('dashboardSupplierController',
 				$scope.supplier.TwitterUrl = res.TwitterUrl;
 				$scope.supplier.State = res.State;
 				$scope.supplier.OpeningHours = res.OpeningHours;
+				$scope.supplier.LogoId = res.LogoId;
 				$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image';
 				$scope.chart = getProgress();
 		});

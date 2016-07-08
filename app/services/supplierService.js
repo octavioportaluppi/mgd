@@ -79,15 +79,20 @@ app.factory('supplierService',
         var promises = [];
         promises.push($http.put(serviceBase + 'api/suppliers', details));
         if(details.profilePic) {
-            promises.push(authService.uploadLogo(details.profilePic, true));
+            if(details.LogoId){
+                authService.deletePicture(details.LogoId)
+                    .then(function (){
+                        promises.push(authService.uploadLogo(details.profilePic, true));
+                    })
+            } else {
+                promises.push(authService.uploadLogo(details.profilePic, true));
+            }
         }
-        /*
-        if(supplier.photos.length > 0) {
-            supplier.photos.forEach(function(photo){
-                _uploadLogo(photo, false);
+        if(details.photos && details.photos.length > 0) {
+            details.photos.forEach(function(photo){
+                authService.uploadLogo(photo, false);
             })
         }
-        */
         return $q.all(promises);
     };
 

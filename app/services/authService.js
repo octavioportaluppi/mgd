@@ -22,9 +22,9 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         _logOut();
 
         var deferred = $q.defer();
-            
+
         $http.post(serviceBase + 'api/account/register', registration ).then(function (response) {
-            
+
             deferred.resolve(response);
         }, function (err) {
             deferred.reject(err);
@@ -34,14 +34,14 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     };
 
     var _savePlanner = function (planner) {
-            
+
         return $http.post(serviceBase + 'api/planners', planner ).then(function (response) {
             return response;
         });
     };
 
     var _updatePlanner = function (planner) {
-            
+
         return $http.put(serviceBase + 'api/planners', planner ).then(function (response) {
             return response;
         });
@@ -66,15 +66,22 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         var promises = [];
         promises.push($http.put(serviceBase + 'api/suppliers', supplier));
         if(supplier.profilePic) {
-            promises.push(_uploadLogo(supplier.profilePic, true));
+            if(supplier.LogoId){
+                _deletePicture(supplier.LogoId)
+                    .then(function (){
+                        promises.push(_uploadLogo(supplier.profilePic, true));
+                })
+
+            } else {
+                promises.push(_uploadLogo(supplier.profilePic, true));
+            }
         }
 
-        /*
         if(supplier.photos.length > 0) {
             supplier.photos.forEach(function(photo){
                 _uploadLogo(photo, false);
             })
-        }*/
+        }
         return $q.all(promises);
     };
 
@@ -82,7 +89,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
         var data = "grant_type=password&username=" + loginData.Email + "&password=" + loginData.Password;
         var deferred = $q.defer();
-        
+
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
             console.log(response);
             localStorageService.set('authorizationData', { token: response.access_token, Email: loginData.Email, userType: type });
@@ -146,6 +153,10 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     };
 
+    var _deletePicture = function (picId) {
+        return $http.delete( serviceBase + '/api/Pictures/' + picId);
+    };
+
     var _uploadLogo = function (picFile, isLogo) {
         return Upload.upload({
             url: serviceBase +'/api/Pictures',
@@ -167,6 +178,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     authServiceFactory.registerExternal = _registerExternal;
 
     authServiceFactory.uploadLogo = _uploadLogo;
+    authServiceFactory.deletePicture = _deletePicture;
 
     return authServiceFactory;
 }]);
