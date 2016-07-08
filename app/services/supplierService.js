@@ -76,22 +76,19 @@ app.factory('supplierService',
 
     //britez
     var updateSupplierProfile = function(details){
-        var promise = $http
-            .put(serviceBase + 'api/suppliers', details);
-        promise.then(function () {
-            if(details.profilePic) {
-                authService.uploadLogo(details.profilePic, true);
-            }
-
-            /*
-            if(supplier.photos.length > 0) {
-                supplier.photos.forEach(function(photo){
-                    _uploadLogo(photo, false);
-                })
-            }
-            */
-        });
-        return promise;
+        var promises = [];
+        promises.push($http.put(serviceBase + 'api/suppliers', details));
+        if(details.profilePic) {
+            promises.push(authService.uploadLogo(details.profilePic, true));
+        }
+        /*
+        if(supplier.photos.length > 0) {
+            supplier.photos.forEach(function(photo){
+                _uploadLogo(photo, false);
+            })
+        }
+        */
+        return $q.all(promises);
     };
 
     var updateSuppliersService = function (services) {

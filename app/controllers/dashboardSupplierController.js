@@ -1,11 +1,10 @@
 ﻿'use strict';
-app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'authService', function ($scope, supplierService) {
+app.controller('dashboardSupplierController',
+	['$scope', 'supplierService', 'ngAuthSettings', 'stateService', function ($scope, supplierService, ngAuthSettings, stateService) {
 
 	$scope.supplier = {};
     $scope.chart = 0;
 	$scope.dashboard = '';
-
-
 
 	$scope.days = [
 		{ id: 0, name: 'Domingo'},
@@ -22,6 +21,9 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 	};
 
 	$scope.getDashboard = function() {
+		$scope.editProfile = false;
+		$scope.editServices = false;
+		$scope.editAboutMe = false;
 		supplierService
 			.getDashboard()
 			.then(function(res) {
@@ -36,6 +38,7 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 				$scope.supplier.TwitterUrl = res.TwitterUrl;
 				$scope.supplier.State = res.State;
 				$scope.supplier.OpeningHours = res.OpeningHours;
+				$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image';
 				$scope.chart = getProgress();
 		});
 	};
@@ -105,13 +108,22 @@ app.controller('dashboardSupplierController', ['$scope', 'supplierService', 'aut
 			$scope.serviceTypes = data
 		});
 
-	supplierService
-		.getCities()
+	$scope.getCities = function() {
+		stateService
+			.getCities($scope.supplier.StateId)
+			.then(function (response){
+				$scope.cities = response.data;
+			});
+	};
+
+	stateService
+		.getStates()
 		.then(function (response) {
-			$scope.cities = response.data;
+			$scope.states = response.data;
 		});
 
-	$scope.getDashboard();
+
+		$scope.getDashboard();
 
 	$scope.haveItem = function(itemId){
 		return $scope.dashboard.ServiceTypes.find(function(it){
