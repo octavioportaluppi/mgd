@@ -107,3 +107,7 @@ ul > li {
 .supplier .info-group {
     margin: 0 0 20px 0;
 }
+
+.dashboard-error {
+    color:#ee3470;
+}

@@ -84,8 +84,19 @@ app.controller('dashboardSupplierController',
 			.then(function(){
 				$scope.editProfile = !$scope.editProfile;
 				$scope.getDashboard();
+
 			})
+
 	};
+
+        $scope.saveSupplierProfile = function (form, callback){
+            if(form.$valid ) {
+                    $scope.updateProfile(callback);
+                } else {
+               $scope.editProfile;
+                }
+
+        };
 
 	$scope.updateServices = function (){
 		var ids = $scope
