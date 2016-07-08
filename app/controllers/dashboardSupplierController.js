@@ -98,6 +98,14 @@ app.controller('dashboardSupplierController',
 
         };
 
+        $scope.saveSupplierAboutMe = function (form,callback){
+            if(form.$valid) {
+                $scope.updateDetails(callback)
+            }else{
+                $scope.editAboutMe;
+            }
+        };
+
 	$scope.updateServices = function (){
 		var ids = $scope
 			.dashboard

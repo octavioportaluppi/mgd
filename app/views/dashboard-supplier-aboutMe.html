@@ -9,7 +9,7 @@
             placeholder="Direccion"
             ng-model="supplier.Address"
             ng-class="{'invalid':data.inputAddress.$error.required && (data.$submitted || data.inputAddress.$touched)}"/>
-        <div class="error" ng-show="data.$submitted || data.inputAddress.$touched">
+        <div class="dashboard-error" ng-show="data.$submitted || data.inputAddress.$touched">
             <div ng-show="data.inputAddress.$error.required">Agregue una direccion.</div>
         </div>
     </div>
@@ -19,9 +19,13 @@
                 class="form-control"
                 name="inputState"
                 required=""
-                ng-model="supplier.State.Id">
-            <option value="">{{supplier.State.Name}}</option>
+                ng-model="supplier.State.Id"
+                ng-class="{'invalid':data.inputState.$error.required && (data.$submitted || data.inputState.$touched)}">
+            <option ng-repeat="state in states" value="{{state.Id}}">{{state.Name}}</option>
         </select>
+        <div class="dashboard-error" ng-show="data.$submitted || data.inputState.$touched">
+            <div ng-show="data.inputState.$error.required">Dinos la población a la que perteneces.</div>
+        </div>
     </div>
     <div class="signup-field">
         <label>Ciudad</label>
@@ -30,8 +34,13 @@
                     name="inputCity"
                     required=""
                     ng-model="supplier.City"
-                    ng-options="city.Name for city in cities track by city.Id">
+                    ng-options="city.Name for city in cities track by city.Id"
+                    ng-class="{'invalid':data.inputCity.$error.required && (data.$submitted || data.inputCity.$touched)}">
             </select>
+        <option ng-repeat="state in states" value="{{state.Id}}"></option>
+        <div class="dashboard-error" ng-show="data.$submitted || data.inputCity.$touched">
+            <div ng-show="data.inputCity.$error.required">Dinos la ciudad la que perteneces.</div>
+        </div>
         </div>
     </div>
     <div class="signup-field">
@@ -44,7 +53,7 @@
                 placeholder="Telefono"
                 ng-model="supplier.Phone"
                 ng-class="{'invalid':data.inputPhone.$error.required && (data.$submitted || data.inputPhone.$touched)}"/>
-        <div class="error" ng-show="data.$submitted || data.inputPhone.$touched">
+        <div class="dashboard-error" ng-show="data.$submitted || data.inputPhone.$touched">
             <div ng-show="data.inputPhone.$error.required">Agregar un telefono.</div>
         </div>
     </div>
@@ -70,6 +79,9 @@
                     ng-model="supplier.OpeningHours.HoursTo"
                     ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
                     ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
+            <div class="dashboard-error" ng-show="data.$submitted || data.hoursTo.$touched">
+                <div ng-show="data.hoursTo.$error.required">Agregar un Horario.</div>
+            </div>
         </div>
     </div>
     <div class="signup-field">
@@ -94,6 +106,9 @@
                     ng-model="supplier.OpeningHours.HoursFrom"
                     ng-class="{'invalid':(data.hoursFrom.$error.required || data.hoursFrom.$error.pattern) && (data.$submitted || data.hoursFrom.$touched)}"
                     ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
+            <div class="dashboard-error" ng-show="data.$submitted || data.hoursFrom.$touched">
+                <div ng-show="data.hoursFrom.$error.required">Agregar un Horario.</div>
+            </div>
         </div>
     </div>
     <div class="signup-field">
@@ -106,11 +121,15 @@
                 placeholder="Descripcion"
                 ng-model="supplier.Description"
                 rows="10"
-                cols="50">
+                cols="50"
+                ng-class="{'invalid':data.textTareaDescription.$error.required && (data.$submitted || data.textTareaDescription.$touched)}">
                  </textarea>
+        <div class="dashboard-error" ng-show="data.$submitted || data.textTareaDescription.$touched">
+            <div ng-show="data.textTareaDescription.$error.required">Agregar una Descripcion.</div>
+        </div>
     </div>
     <div class="signup-field">
-        <button ng-click="updateProfile()" class="btn btn-default btn-submit pull-left" >Guardar</button>
+        <button ng-click="saveSupplierAboutMe(data,form)" class="btn btn-default btn-submit pull-left" >Guardar</button>
         <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
     </div>
 </form>
