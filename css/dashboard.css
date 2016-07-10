@@ -111,3 +111,9 @@ ul > li {
 .dashboard-error {
     color:#ee3470;
 }
+
+.supplier .default-image {
+    width: 150px;
+    height: 150px;
+    border: none;
+}

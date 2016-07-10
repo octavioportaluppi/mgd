@@ -24,6 +24,7 @@ app.controller('dashboardSupplierController',
 		$scope.editProfile = false;
 		$scope.editServices = false;
 		$scope.editAboutMe = false;
+		$scope.editAnswers = false;
 		supplierService
 			.getDashboard()
 			.then(function(res) {
@@ -39,12 +40,18 @@ app.controller('dashboardSupplierController',
 				$scope.supplier.State = res.State;
 				$scope.supplier.OpeningHours = res.OpeningHours;
 				$scope.supplier.LogoId = res.LogoId;
+				$scope.supplier.Pictures = res.Pictures
+					.filter(function (pic) {
+						return !pic.IsLogo;
+					})
+					.map(function (pic) {
+					return ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image';
+				});
 				$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image';
 				$scope.chart = getProgress();
 		});
 	};
     
-
 	function getProgress() {
 		$scope.value = 0;
         if($scope.dashboard.ServiceTypes.length !== 0){
@@ -64,6 +71,7 @@ app.controller('dashboardSupplierController',
 	$scope.editServices = false;
 	$scope.editAboutMe = false;
 	$scope.editProfile = false;
+	$scope.editAnswers = false;
 
 	$scope.updateDetails = function(){
 		var cityId = $scope.supplier.City.Id;
@@ -90,22 +98,21 @@ app.controller('dashboardSupplierController',
 
 	};
 
-        $scope.saveSupplierProfile = function (form, callback){
-            if(form.$valid ) {
-                    $scope.updateProfile(callback);
-                } else {
-               $scope.editProfile;
-                }
+	$scope.saveSupplierProfile = function (form, callback){
+		if(form.$valid ) {
+				$scope.updateProfile(callback);
+			} else {
+		   $scope.editProfile;
+		}
+	};
 
-        };
-
-        $scope.saveSupplierAboutMe = function (form,callback){
-            if(form.$valid) {
-                $scope.updateDetails(callback)
-            }else{
-                $scope.editAboutMe;
-            }
-        };
+	$scope.saveSupplierAboutMe = function (form,callback){
+		if(form.$valid) {
+			$scope.updateDetails(callback)
+		}else{
+			$scope.editAboutMe;
+		}
+	};
 
 	$scope.updateServices = function (){
 		var ids = $scope
@@ -140,10 +147,31 @@ app.controller('dashboardSupplierController',
 		.getStates()
 		.then(function (response) {
 			$scope.states = response.data;
+	});
+
+	$scope.getDashboard();
+
+	supplierService
+		.getAnswers()
+		.then(function (response){
+			$scope.answers = response.data;
+			$scope.questions = [];
+			$scope.answers.forEach(function (answer){
+				$scope.questions[answer.Id] = answer;
+			});
 		});
 
-
-		$scope.getDashboard();
+	$scope.updateQuestions = function(){
+		var questions = [];
+		$scope.questions.forEach(function (question){
+			questions.push({ QuestionId: question.Question.Id, Text: question.Text });
+		});
+		supplierService
+			.saveQuestions(questions)
+			.then(function (){
+				$scope.getDashboard();
+			})
+	};
 
 	$scope.haveItem = function(itemId){
 		return $scope.dashboard.ServiceTypes.find(function(it){
