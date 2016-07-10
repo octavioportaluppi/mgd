@@ -49,12 +49,12 @@ app.config(function($routeProvider) {
     $routeProvider.when("/planner", {
         controller: "plannerController",
         templateUrl: "/app/views/planner.html"
-    });    
+    });
 
     $routeProvider.when("/events/:eventId", {
         controller: "eventsController",
         templateUrl: "/app/views/events.html"
-    });    
+    });
 
     $routeProvider.when("/welcome", {
         controller: "welcomeController",
@@ -131,34 +131,13 @@ app.filter('tel', function () {
         source = source.toLowerCase();
 
         var values = [
-            {
-                id:'á',
-                replace: 'a'
-            },
-            {
-                id:'é',
-                replace: 'e'
-            },
-            {
-                id:'í',
-                replace: 'i'
-            },
-            {
-                id:'ó',
-                replace: 'o'
-            },
-            {
-                id:'ú',
-                replace: 'u'
-            },
-            {
-                id:'ñ',
-                replace: 'n'
-            },
-            {
-                id:' ',
-                replace: '-'
-            }
+            { id:'á', replace: 'a' },
+            { id:'é', replace: 'e' },
+            { id:'í', replace: 'i' },
+            { id:'ó', replace: 'o' },
+            { id:'ú', replace: 'u' },
+            { id:'ñ', replace: 'n' },
+            { id:' ', replace: '-' }
         ];
 
         values.forEach(function(value){
@@ -211,26 +190,6 @@ app.constant('ngAuthSettings', {
 app.config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
-
-app.directive("compareTo", function() {
-    return {
-      require: "ngModel",
-      scope: {
-        otherModelValue: "=compareTo"
-      },
-      link: function(scope, element, attributes, ngModel) {
-
-        ngModel.$validators.compareTo = function(modelValue) {
-          return modelValue == scope.otherModelValue;
-        };
-
-        scope.$watch("otherModelValue", function() {
-          ngModel.$validate();
-        });
-      }
-    };
-  }
-);
 
 app.run(['authService', function(authService) {
     authService.fillAuthData();

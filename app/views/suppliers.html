@@ -1,30 +1,7 @@
-<div class="container">
-    <div class="list-header">
-        <h4>Proveedores</h4>
-        <p>Acontinuación un listado de proveedores.</p>
-    </div>
-    <div ng-repeat="supplier in suppliers" class="list-item clearfix row">
-        <div class="col-md-2">
-            <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
-            <img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
-        </div>
-        <div class="col-md-10">
-            <h4>{{supplier.Name}}</h4>
-            <span class="ligth-description">{{supplier.City.Name}}</span>
-            <span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
-            <span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
-            <p>{{supplier.Description}}</p>
-            <div class="divider"></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Rango de precio: $$$$</p>
-                </div>
-                <div class="col-md-6">
-                    <a class="more-info">MAS INFORMACIÓN</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<my-supplier-list
+        title="Proveedores"
+        descripion="A continuacion un listado de proveedores"></my-supplier-list>
+<!--<div class="container">
     <ul class="list-nav">
         <li><a class="{{isCurrentPage(1)?'active':''}}" ng-click="goPage(1)">1</a></li>
         <li><a class="{{isCurrentPage(2)?'active':''}}" ng-click="goPage(2)">2</a></li>
@@ -32,4 +9,4 @@
         <li><a class="{{isCurrentPage(4)?'active':''}}" ng-click="goPage(4)">4</a></li>
         <li><a ng-click="nextPage();">Siguiente</a></li>
     </ul>
-</div>
+</div>-->

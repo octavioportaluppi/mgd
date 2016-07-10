@@ -5,10 +5,6 @@ app.factory('supplierService',
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
     var supplierServiceFactory = {};
 
-    var _eventTypes = {};
-
-    var _serviceTypes = {};
-
     var _suppliers = [];
     
     var _getDashboard = function () {
@@ -27,7 +23,6 @@ app.factory('supplierService',
 
         var deferred = $q.defer();
         $http.get(serviceBase + 'api/servicetypes').success(function (res) {
-            _serviceTypes = res;
             deferred.resolve(res);
         }).error(function (err, status) {
             deferred.reject(err);
@@ -140,8 +135,6 @@ app.factory('supplierService',
     };
 
     supplierServiceFactory.getDashboard = _getDashboard;
-    supplierServiceFactory.eventTypes = _eventTypes;
-    supplierServiceFactory.serviceTypes = _serviceTypes;
     supplierServiceFactory.getEvents = _getEvents;
     supplierServiceFactory.getServices = _getServices;    
     supplierServiceFactory.getEventServices = _getEventServices; 

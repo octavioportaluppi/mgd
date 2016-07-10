@@ -1,0 +1,49 @@
+<div class="search col-md-12">
+    <div class="container clearfix">
+        <div class="col-md-6">
+            <input
+                placeholder="Escribe que buscas">
+        </div>
+        <div class="col-md-3 text-center">
+            <select>
+                <option>Elije una ciudad</option>
+                <option ng-repeat="city in cities" value="{{city.Id}}">{{city.Name}}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <button
+                class="pull-right btn btn-default btn-search">
+                Buscar
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="list-header">
+        <h4>Proveedores</h4>
+        <p>Acontinuación un listado de proveedores.</p>
+    </div>
+    <div ng-repeat="supplier in suppliers" class="list-item clearfix row">
+        <div class="col-md-2">
+            <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
+            <img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
+        </div>
+        <div class="col-md-10">
+            <h4>{{supplier.Name}}</h4>
+            <span class="ligth-description">{{supplier.City.Name}}</span>
+            <span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
+            <span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
+            <p>{{supplier.Description}}</p>
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Rango de precio: $$$$</p>
+                </div>
+                <div class="col-md-6">
+                    <a class="more-info">MAS INFORMACIÓN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
