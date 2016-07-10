@@ -26,11 +26,13 @@
     </div>
     <div ng-repeat="supplier in suppliers" class="list-item clearfix row">
         <div class="col-md-2">
-            <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
-            <img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
+            <a href="#/suppliers/{{supplier.Id}}">
+                <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
+                <img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
+            </a>
         </div>
         <div class="col-md-10">
-            <h4>{{supplier.Name}}</h4>
+            <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
             <span class="ligth-description">{{supplier.City.Name}}</span>
             <span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
             <span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
@@ -41,7 +43,7 @@
                     <p>Rango de precio: $$$$</p>
                 </div>
                 <div class="col-md-6">
-                    <a class="more-info">MAS INFORMACIÓN</a>
+                    <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
                 </div>
             </div>
         </div>

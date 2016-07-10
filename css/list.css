@@ -5,11 +5,13 @@
 	border-radius: 5px;
 }
 
-.list-header h4, .list-item h4 {
+.list-header a, .list-item a {
 	padding: 5px 0 0 0; 
 	font-weight: 600; 
 	color: #818181;
 	text-transform: uppercase;
+	display: block;
+	font-size: 2rem;
 }
 
 .list-item {
@@ -44,11 +46,12 @@
 	margin: 5px 0;
 }
 
-.more-info {
+.list-item .more-info {
 	float: right;
 	color: #aed136;
 	cursor: pointer;
 	padding: 10px 0;
+	font-size: 1.3rem;
 }
 
 .list-nav {
