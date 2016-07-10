@@ -161,7 +161,10 @@ app.controller('dashboardSupplierController',
 			});
 		});
 
-	$scope.updateQuestions = function(){
+	$scope.updateQuestions = function(form){
+		if(!form.$valid){
+			return;
+		}
 		var questions = [];
 		$scope.questions.forEach(function (question){
 			questions.push({ QuestionId: question.Question.Id, Text: question.Text });

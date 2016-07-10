@@ -145,12 +145,16 @@
                     <input
                         class="form-control"
                         name="{{answer.Question.Id}}"
-                        required=""
+                        required="required"
                         type="text"
-                        ng-model="questions[answer.Id].Text"/>
+                        ng-model="questions[answer.Id].Text"
+                        ng-class="{'invalid':questionsForm[answer.Question.Id].$error.required && (questionsForm.$submitted || questionsForm[answer.Question.Id].$touched)}"/>
+                    <div class="dashboard-error" ng-show="questionsForm.$submitted || questionsForm[answer.Question.Id].$touched">
+                        <div ng-show="questionsForm[answer.Question.Id].$error.required">Esta pregunta es obligatoria.</div>
+                    </div>
                 </div>
                 <div class="signup-field col-md-12">
-                    <button ng-click="updateQuestions()" class="btn btn-default btn-submit pull-left" >Guardar</button>
+                    <button ng-click="updateQuestions(questionsForm)" class="btn btn-default btn-submit pull-left" >Guardar</button>
                     <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
                 </div>
             </form>
