@@ -111,12 +111,12 @@ app.factory('supplierService',
                 });
     };
 
-    var getAllSuppliers = function (max, offset) {
+    var getAllSuppliers = function (max, page) {
         return $http
             .get(serviceBase + 'api/suppliers',
                 {
                     params: {
-                        size: max, offset: offset
+                        size: max, page: page
                     }
                 });
     };
