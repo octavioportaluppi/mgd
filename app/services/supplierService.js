@@ -106,14 +106,26 @@ app.factory('supplierService',
                 });
     };
 
-    var getAllSuppliers = function (max, page) {
+    var getAllSuppliers = function (max, page, filter, query, cityId) {
+
+        var params = createFilters(max, page, filter, query, cityId);
+
         return $http
             .get(serviceBase + 'api/suppliers',
-                {
-                    params: {
-                        size: max, page: page
-                    }
-                });
+                { params: params });
+    };
+
+    var createFilters = function(max, page, filter, query, cityId){
+        var params = {};
+        params.size = max;
+        params.page = page;
+        if(filter)
+            params[filter.name] = filter.value;
+        if(query)
+            params.query = query;
+        if(cityId)
+            params.CityId = cityId;
+        return params;
     };
 
     var getAnswers = function () {

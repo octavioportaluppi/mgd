@@ -1,22 +1,24 @@
 <div class="search col-md-12">
     <div class="container clearfix">
-        <div class="col-md-6">
-            <input
-                placeholder="Escribe que buscas">
-        </div>
-        <div class="col-md-3 text-center">
-            <select>
-                <option>Elije una ciudad</option>
-                <option ng-repeat="city in cities" value="{{city.Id}}">{{city.Name}}</option>
-            </select>
-        </div>
-        <div class="col-md-3">
-            <button
-                class="pull-right btn btn-default btn-search">
-                Buscar
-                <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-        </div>
+        <form ng-submit="doQuery()">
+            <div class="col-md-6">
+                <input
+                    placeholder="Escribe que buscas"
+                    ng-model="query">
+            </div>
+            <div class="col-md-3 text-center">
+                <select ng-model="CityId">
+                    <option value="" selected>Elije una ciudad</option>
+                    <option ng-repeat="city in cities" value="{{city.Id}}">{{city.Name}}</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <button class="pull-right btn btn-default btn-search">
+                    Buscar
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+        </form>
     </div>
 </div>
 <div class="container">
@@ -73,7 +75,7 @@
                     </uib-accordion-heading>
                     <ul>
                         <li ng-repeat="filter in filters[filterKey]">
-                            <a>{{filter.Title}}<span>{{filter.Count}}</span></a>
+                            <a ng-click="doFilter(filterKey, filter)">{{filter.Title}}<span>{{filter.Count}}</span></a>
                         </li>
                     </ul>
                 </uib-accordion-group>

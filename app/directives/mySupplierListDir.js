@@ -1,17 +1,22 @@
 'use strict';
 
-var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService',
-    function ($scope, supplierService, ngAuthSettings, stateService){
+var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService', '$filter',
+    function ($scope, supplierService, ngAuthSettings, stateService, $filter){
 
     $scope.size = 5;
     $scope.page = 1;
+    $scope.filter = $scope.filter || undefined;
+    $scope.query = $scope.query || undefined;
 
     $scope.getSuppliers = function (){
         $scope.loading = true;
         supplierService
             .getAllSuppliers(
             $scope.size,
-            $scope.page)
+            $scope.page,
+            $scope.filter,
+            $scope.query,
+            $scope.CityId)
             .success(function (response){
                 $scope.loading = false;
                 $scope.totalSuppliers = response.TotalResults;
@@ -30,7 +35,10 @@ var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService',
         supplierService
             .getAllSuppliers(
             $scope.size,
-            $scope.page)
+            $scope.page,
+            $scope.filter,
+            $scope.query,
+            $scope.CityId)
             .success(function (response){
                 $scope.loading = false;
                 $scope.suppliers = $scope.suppliers.concat(response.Content);
@@ -61,6 +69,18 @@ var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService',
         if(!$scope.filters)
             return;
         return Object.keys($scope.filters);
+    };
+
+    $scope.doFilter = function(filterKey, filter){
+        $scope.page = 1;
+        $scope.filter = {name: filterKey.replace('Filter', 'Id'), value: filter.Id };
+        $scope.getSuppliers();
+    };
+
+    $scope.doQuery = function(){
+        $scope.page = 1;
+        $scope.filter = undefined;
+        $scope.getSuppliers();
     }
 }];
 
