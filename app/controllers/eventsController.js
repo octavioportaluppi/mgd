@@ -7,41 +7,31 @@ app.controller(
         'supplierService', 
         function ($scope, $routeParams , supplierService) {
 
-            $scope.offset = 0;
+            $scope.page = 1;
             $scope.size = 5;
-            //$scope.eventName = $routeParams.eventName;
 
             $scope.getSuppliers = function (){
                 supplierService
                     .getSuppliersByEvent(
                         $routeParams.eventId, 
                         $scope.size,
-                        $scope.offset)
+                        $scope.page)
                     .success(function (response){
-                        $scope.suppliers = response;
+                        $scope.suppliers = response.Content;
                     })
-            }
+            };
 
             $scope.nextPage = function(){
-                $scope.offset = $scope.offset + $scope.size;
+                $scope.page = $scope.page + 1;
                 $scope.getSuppliers();
-            }
-
-            $scope.isCurrentPage = function(pageNumber){
-                return $scope.offset == pageNumber;
-            }
-
-            $scope.goPage = function(pageNumber){
-                $scope.offset = pageNumber;
-                $scope.getSuppliers();
-            }
+            };
 
             $scope.getSuppliers();
             
             supplierService
                 .getEvents()
                 .then(function(response){
-                    $scope.event = response.find(function(item){
+                    $scope.event = response.data.find(function(item){
                         return item.Id == $routeParams.eventId;
                     })
 

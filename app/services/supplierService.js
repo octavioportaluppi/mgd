@@ -96,12 +96,12 @@ app.factory('supplierService',
             .put(serviceBase + 'api/suppliers/servicetypes', services)
     };
 
-    var getSuppliersByEvent = function (eventId, max, offset) {
+    var getSuppliersByEvent = function (eventId, max, page) {
         return $http
-            .get(serviceBase + 'api/eventtypes/' + eventId + '/suppliers',
+            .get(serviceBase + 'api/suppliers',
                 {
                     params: {
-                        size: max, offset: offset
+                        size: max, page: page, EventTypeId: eventId
                     }
                 });
     };
