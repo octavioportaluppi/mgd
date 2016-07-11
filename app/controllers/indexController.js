@@ -1,16 +1,16 @@
 ﻿'use strict';
 app.controller('indexController', ['$scope', '$location', 'authService', '$uibModal', function ($scope, $location, authService, $uibModal) {
-  	$scope.collapsed = 'lalalalalalal';
-  	$scope.plannerCollapsed = true;
+
+	$scope.plannerCollapsed = true;
   	$scope.suppliersCollapsed = true;
 
 	$scope.signup = function() {
 
-	var modalInstance = $uibModal.open({
-  		animation: true,
-	      templateUrl: '/app/views/signup-modal.html',
-	      controller: 'modalController'
-	    });
+		var modalInstance = $uibModal.open({
+			animation: true,
+			  templateUrl: '/app/views/signup-modal.html',
+			  controller: 'modalController'
+			});
 	};
 
     $scope.logOut = function () {

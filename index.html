@@ -45,7 +45,8 @@
 					<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
 				</li>
 				<li ng-hide="!authentication.isAuth">
-					<a href="#/dashboard" class="active">Hola, {{authentication.Email}}</a>
+					<a href="#/dashboard-planner" class="active" ng-if="authentication.userType == 'planner'">Hola, {{authentication.Email}}</a>
+					<a href="#/dashboard" class="active" ng-if="authentication.userType == 'supplier'">Hola, {{authentication.Email}}</a>
 				</li>
 			</ul>
 			<ul class="main-menu">
@@ -130,10 +131,13 @@
 	<script src="app/services/dateService.js?v=2"></script>
 	<script src="app/services/supplierService.js?v=2"></script>
 	<script src="app/services/plannerService.js?v=2"></script>
+
+	<!-- Controllers -->
 	<script src="app/controllers/indexController.js?v=2"></script>
 	<script src="app/controllers/homeController.js?v=2"></script>
 	<script src="app/controllers/loginController.js?v=2"></script>
 	<script src="app/controllers/signupController.js?v=2"></script>
+	<script src="app/controllers/signupPlannerController.js?v=2"></script>
 	<script src="app/controllers/suscriptionController.js?v=2"></script>
 	<script src="app/controllers/eventsController.js?v=2"></script>
 	<script src="app/controllers/suppliersController.js?v=2"></script>
