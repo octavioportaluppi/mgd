@@ -7,13 +7,16 @@ var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService',
     $scope.page = 1;
 
     $scope.getSuppliers = function (){
+        $scope.loading = true;
         supplierService
             .getAllSuppliers(
             $scope.size,
             $scope.page)
             .success(function (response){
+                $scope.loading = false;
                 $scope.totalSuppliers = response.TotalResults;
                 $scope.filters = response.QueryFilterInfo;
+                $scope.totalPages = response.TotalPages;
                 $scope.suppliers = response.Content;
                 $scope.suppliers.forEach(function(supplier){
                     if (supplier.LogoId > 0)
@@ -22,7 +25,31 @@ var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService',
             })
     };
 
+    $scope.getMoreSuppliers = function (){
+        $scope.loading = true;
+        supplierService
+            .getAllSuppliers(
+            $scope.size,
+            $scope.page)
+            .success(function (response){
+                $scope.loading = false;
+                $scope.suppliers = $scope.suppliers.concat(response.Content);
+                $scope.suppliers.forEach(function(supplier) {
+                    if (supplier.LogoId > 0)
+                        supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image';
+                });
+            })
+    };
+
     $scope.getSuppliers();
+
+    $scope.nextPage = function(){
+        if($scope.page == $scope.totalPages){
+            return;
+        }
+        $scope.page = $scope.page + 1;
+        $scope.getMoreSuppliers();
+    };
 
     stateService
         .getAllCities()
@@ -31,6 +58,8 @@ var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService',
         });
 
     $scope.getFilterNames = function(){
+        if(!$scope.filters)
+            return;
         return Object.keys($scope.filters);
     }
 }];

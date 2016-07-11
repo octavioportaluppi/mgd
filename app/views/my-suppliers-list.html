@@ -30,7 +30,12 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div ng-repeat="supplier in suppliers" class="list-item clearfix row">
+        <div
+            ng-repeat="supplier in suppliers"
+            class="list-item clearfix row"
+            infinite-scroll='nextPage()'
+            infinite-scroll-disabled='loading'
+            infinite-scroll-distance='1'>
             <div class="col-md-4">
                 <a href="#/suppliers/{{supplier.Id}}">
                     <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
@@ -72,19 +77,6 @@
                         </li>
                     </ul>
                 </uib-accordion-group>
-                <!--
-                <uib-accordion-group is-open="true">
-                    <uib-accordion-heading>
-                        Tipo de servicio
-                        <i class="pull-right glyphicon glyphicon-chevron-right"></i>
-                    </uib-accordion-heading>
-                    <ul>
-                        <li>Locaciones <span>6</span></li>
-                        <li>Catering</li>
-                        <li>Invitaciones</li>
-                    </ul>
-                </uib-accordion-group>
-                -->
             </uib-accordion>
         </div>
     </div>

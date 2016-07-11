@@ -7,7 +7,8 @@
         'flow',
         'angular-progress-arc',
         'angular-loading-bar',
-        'ngFileUpload']);
+        'ngFileUpload',
+        'infinite-scroll']);
 
 app.config(function($routeProvider) {
 
