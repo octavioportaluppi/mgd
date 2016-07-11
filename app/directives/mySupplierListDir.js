@@ -12,6 +12,8 @@ var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService',
             $scope.size,
             $scope.page)
             .success(function (response){
+                $scope.totalSuppliers = response.TotalResults;
+                $scope.filters = response.QueryFilterInfo;
                 $scope.suppliers = response.Content;
                 $scope.suppliers.forEach(function(supplier){
                     if (supplier.LogoId > 0)
@@ -28,9 +30,9 @@ var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService',
            $scope.cities = response.data;
         });
 
-
-
-
+    $scope.getFilterNames = function(){
+        return Object.keys($scope.filters);
+    }
 }];
 
 app.directive('mySupplierList', function() {

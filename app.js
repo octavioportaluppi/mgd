@@ -172,6 +172,26 @@ app.filter('tel', function () {
     };
 })
 
+.filter('filterKey', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        var values = [
+            { id: 'CityFilter', key: 'Estado' },
+            { id: 'EventTypeFilter', key: 'Tipo de Evento' },
+            { id: 'ServiceTypeFilter', key: 'Tipo de Servicio' }
+        ];
+
+        var result = values.find(function (it){return it.id == source});
+        if (!result){
+            return source;
+        }
+        return result.key;
+    };
+})
+
 .filter('firstLetter', function() {
     return function(input) {
         if(input){

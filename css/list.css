@@ -5,13 +5,31 @@
 	border-radius: 5px;
 }
 
-.list-header a, .list-item a {
+.list-header a,
+.list-header h4,
+.list-item a,
+.list-item h4{
 	padding: 5px 0 0 0; 
 	font-weight: 600; 
 	color: #818181;
 	text-transform: uppercase;
 	display: block;
 	font-size: 2rem;
+}
+
+.list-header h4 {
+	display: inline;
+	float: left;
+}
+
+.list-header span {
+	padding: 5px 10px;
+	color: #FFF;
+	background: #818181;
+	border-radius: 5px;
+	margin: 8px;
+	display: inline;
+	float: left;
 }
 
 .list-item {
@@ -133,4 +151,68 @@
 
 .search input:focus {
 	border: none;
+}
+
+.filter-list {
+	background: #cecece;
+	border: 1px #cecece solid;
+	border-radius: 4px 4px 0 0;
+	padding: 15px;
+	margin: 20px 0 0 0;
+	font-weight: 600;
+	color: #818181;
+	text-align: center;
+}
+
+.panel-default > .panel-heading {
+	border-radius: 0;
+	border: none;
+	background: #fff;
+	color: #818181;
+}
+
+.panel-group .panel+.panel {
+	margin: 0;
+	border-top: 1px;
+}
+
+.panel-title {
+	font-size: 1.4rem;
+	font-weight: bolder;
+}
+
+.panel-title i {
+	font-size: 1rem;
+	color: #aed136;
+}
+
+.panel-body {
+	padding: 0;
+}
+
+.panel-body ul {
+	margin: 0;
+	list-style: none;
+	padding: 0;
+}
+
+.panel-body li {
+	padding: 5px;
+}
+
+.panel-body li a{
+	color: #818181;
+}
+
+.panel-body span {
+	padding: 2px 4px;
+	color: #818181;
+	background: #cecece;
+	border-radius: 5px;
+	margin: 0 0 0 3px;
+	font-size: 1rem;
+}
+
+.panel-body li:hover {
+	background: #cecece;
 }
