@@ -89,7 +89,8 @@ app.directive('mySupplierList', function() {
         restrict: 'E',
         scope: {
             title: '@',
-            descripion: '@'
+            descripion: '@',
+            filter: '='
         },
         templateUrl: '/app/views/my-suppliers-list.html',
         controller: controller

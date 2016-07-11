@@ -1,34 +1,62 @@
 <div class="container">
-	<div class="list-header">
-		<h4>Proveedores de {{event.Name}}</h4>
-		<p>Acontinuación un listado de proveedores.</p>
-	</div>
-	<div ng-repeat="supplier in suppliers" class="list-item clearfix row">
-		<div class="col-md-2">
-			<img src="img/photo-placeholder.jpg"/>
+	<div class="list-header clearfix">
+		<div class="col-md-12">
+			<h4>Proveedores de {{event.Name}}</h4>
+			<span>{{totalSuppliers}} proveedores</span>
 		</div>
-		<div class="col-md-10">
-			<h4>{{supplier.Name}}</h4>
-			<span class="ligth-description">{{supplier.City.Name}}</span>
-			<span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
-			<span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
-			<p>{{supplier.Description}}</p>
-			<div class="divider"></div>
-			<div class="row">
-				<div class="col-md-6">
-					<p>Rango de precio: $$$$</p>
-				</div>
-				<div class="col-md-6">
-					<a class="more-info">MAS INFORMACIÓN</a>
+		<div class="col-md-12">
+			<p>A continuación un listado de proveedores.</p>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div
+			ng-repeat="supplier in suppliers"
+			class="list-item clearfix row"
+			infinite-scroll='nextPage()'
+			infinite-scroll-disabled='loading'
+			infinite-scroll-distance='1'>
+			<div class="col-md-4">
+				<a href="#/suppliers/{{supplier.Id}}">
+					<img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
+					<img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
+				</a>
+			</div>
+			<div class="col-md-8">
+				<a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
+				<span class="ligth-description">{{supplier.City.Name}}</span>
+				<span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
+				<span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
+				<p>{{supplier.Description}}</p>
+				<div class="divider"></div>
+				<div class="row">
+					<div class="col-md-6">
+						<p>Rango de precio: $$$$</p>
+					</div>
+					<div class="col-md-6">
+						<a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<ul class="list-nav">
-		<li><a class="{{isCurrentPage(0)?'active':''}}" ng-click="goPage(0)">1</a></li>
-		<li><a class="{{isCurrentPage(5)?'active':''}}" ng-click="goPage(5)">2</a></li>
-		<li><a class="{{isCurrentPage(10)?'active':''}}" ng-click="goPage(10)">3</a></li>
-		<li><a class="{{isCurrentPage(15)?'active':''}}" ng-click="goPage(15)">4</a></li>
-		<li><a ng-click="nextPage();">Siguiente</a></li>
-	</ul>
+	<div class="col-md-3">
+		<div class="filter-list clearfix row">
+			<span>Filtrar por:</span>
+		</div>
+		<div div="filter-content">
+			<uib-accordion close-others="true">
+				<uib-accordion-group ng-repeat="filterKey in getFilterNames()">
+					<uib-accordion-heading>
+						{{filterKey | filterKey}}
+						<i class="pull-right glyphicon glyphicon-chevron-right"></i>
+					</uib-accordion-heading>
+					<ul>
+						<li ng-repeat="filter in filters[filterKey]">
+							<a ng-click="doFilter(filterKey, filter)">{{filter.Title}}<span>{{filter.Count}}</span></a>
+						</li>
+					</ul>
+				</uib-accordion-group>
+			</uib-accordion>
+		</div>
+	</div>
 </div>
