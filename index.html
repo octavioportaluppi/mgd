@@ -22,6 +22,7 @@
 		<link rel="stylesheet" href="css/dashboard.css">
 		<link rel="stylesheet" href="css/nav.css">
 		<link rel="stylesheet" href="css/carrousel.css">
+		<link rel="stylesheet" href="css/planner.css">
 	</head>
 	<body
 		data-ng-app="AngularFunctions"
@@ -45,7 +46,7 @@
 					<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
 				</li>
 				<li ng-hide="!authentication.isAuth">
-					<a href="#/dashboard-planner" class="active" ng-if="authentication.userType == 'planner'">Hola, {{authentication.Email}}</a>
+					<a href="#/planner" class="active" ng-if="authentication.userType == 'planner'">Hola, {{authentication.Email}}</a>
 					<a href="#/dashboard" class="active" ng-if="authentication.userType == 'supplier'">Hola, {{authentication.Email}}</a>
 				</li>
 			</ul>
