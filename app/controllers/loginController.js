@@ -3,7 +3,7 @@ app.controller('loginController', ['$scope', '$interval', '$location', 'authServ
 
     $scope.loginData = {
         Email: "",
-        Password: "",
+        Password: ""
     };
 
     $scope.message = "";
@@ -20,34 +20,16 @@ app.controller('loginController', ['$scope', '$interval', '$location', 'authServ
             });
     };
 
-
-    $scope.login = function (userType) {
-        console.log(userType);
-        authService.login($scope.loginData, userType).then(function (response) {
-            supplierService.getDashboard().then(function(res){
-                if (userType == 'planner') {
-                    authService.logOut();
-                    $scope.message = 'Tu cuenta es de Organizador, por favor inicia sesión <a href="/login-planner">aquí</a>';  
-                } else {
-                    $location.path('/'); 
-                }
-            }, function(err) {
-                if (userType == 'supplier') {
-                    authService.logOut();
-                    $scope.message = 'Tu cuenta es de Proveedor, por favor inicia sesión <a href="/login-supplier">aquí</a>';  
-                } else {
-                    $location.path('/');         
-                }
+    $scope.loginPlanner = function () {
+        authService
+            .login($scope.loginData, 'planner')
+            .then(
+            function () {
+                $location.path('/planner');
+            },
+            function (err) {
+                $scope.message = err.error_description;
             });
-                
-
-
-            $location.path('/');
-
-        },
-         function (err) {
-             $scope.message = err.error_description;
-         });
     };
 
     $scope.authExternalProvider = function (provider) {
