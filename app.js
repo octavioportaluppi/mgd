@@ -28,7 +28,7 @@ app.config(function($routeProvider) {
     });
 
     $routeProvider.when("/signup-planner", {
-        controller: "signupController",
+        controller: "signupPlannerController",
         templateUrl: "/app/views/signup-planner.html"
     });
 

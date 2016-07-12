@@ -1,0 +1,54 @@
+.planner-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.planner-nav li {
+    float: left;
+    display: inline;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    padding: 20px 0;
+    background: #cecece;
+}
+
+.planner-nav li.odd {
+    background: #c0c0c0;
+}
+
+.planner-nav a {
+    color: #818181;
+}
+
+.planner-nav .active {
+    background: #aed136;
+}
+
+.planner-nav .active a {
+    color: #FFF;
+}
+
+.planner-list .list-item {
+    padding: 15px;
+}
+
+.planner-list .divider {
+    margin: 15px 0;
+}
+
+.planner-list .list-item p {
+    margin: 0;
+    padding: 0;
+}
+
+.planner-list .event-buttons .btn-more-info {
+    border: 1px #aed136 solid;
+    color: #aed136;
+    margin: 0 5px 0 0;
+}
+
+.planner-list .event-buttons .btn-submit {
+    margin: 0;
+}

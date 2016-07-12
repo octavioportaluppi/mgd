@@ -34,17 +34,11 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     };
 
     var _savePlanner = function (planner) {
-
-        return $http.post(serviceBase + 'api/planners', planner ).then(function (response) {
-            return response;
-        });
+        return $http.post(serviceBase + 'api/planners', planner);
     };
 
     var _updatePlanner = function (planner) {
-
-        return $http.put(serviceBase + 'api/planners', planner ).then(function (response) {
-            return response;
-        });
+        return $http.put(serviceBase + 'api/planners', planner );
     };
 
     var _saveSupplier = function (supplier) {
@@ -165,10 +159,13 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
     };
 
     authServiceFactory.saveRegistration = _saveRegistration;
+
     authServiceFactory.savePlanner = _savePlanner;
     authServiceFactory.saveSupplier = _saveSupplier;
+
     authServiceFactory.updatePlanner = _updatePlanner;
     authServiceFactory.updateSupplier = _updateSupplier;
+
     authServiceFactory.login = _login;
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;
