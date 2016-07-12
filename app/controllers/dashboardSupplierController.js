@@ -1,6 +1,40 @@
 ﻿'use strict';
 app.controller('dashboardSupplierController',
-	['$scope', 'supplierService', 'ngAuthSettings', 'stateService', function ($scope, supplierService, ngAuthSettings, stateService) {
+	['$scope', 'supplierService', 'ngAuthSettings', 'stateService', 'authService', '$location',
+		function ($scope, supplierService, ngAuthSettings, stateService, authService, $location) {
+
+	//check logged
+	if(!authService
+		.authentication.isAuth || authService
+			.authentication.authType !== 'supplier') {
+		$location.path('/login-supplier');
+	} else {
+		supplierService
+			.getServices()
+			.then(function (data) {
+				$scope.serviceTypes = data
+			});
+
+		supplierService
+			.getAnswers()
+			.then(function (response){
+				$scope.answers = response.data;
+				$scope.questions = [];
+				$scope.answers.forEach(function (answer){
+					$scope.questions[answer.Id] = answer;
+				});
+			});
+
+		stateService
+			.getStates()
+			.then(function (response) {
+				$scope.states = response.data;
+			});
+
+		$scope.getDashboard();
+
+	}
+
 
 	$scope.supplier = {};
     $scope.chart = 0;
@@ -129,12 +163,6 @@ app.controller('dashboardSupplierController',
 			})
 	};
 
-	supplierService
-		.getServices()
-		.then(function (data) {
-			$scope.serviceTypes = data
-		});
-
 	$scope.getCities = function() {
 		stateService
 			.getCities($scope.supplier.StateId)
@@ -142,24 +170,6 @@ app.controller('dashboardSupplierController',
 				$scope.cities = response.data;
 			});
 	};
-
-	stateService
-		.getStates()
-		.then(function (response) {
-			$scope.states = response.data;
-	});
-
-	$scope.getDashboard();
-
-	supplierService
-		.getAnswers()
-		.then(function (response){
-			$scope.answers = response.data;
-			$scope.questions = [];
-			$scope.answers.forEach(function (answer){
-				$scope.questions[answer.Id] = answer;
-			});
-		});
 
 	$scope.updateQuestions = function(form){
 		if(!form.$valid){

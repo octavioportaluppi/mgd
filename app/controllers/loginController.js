@@ -8,6 +8,19 @@ app.controller('loginController', ['$scope', '$interval', '$location', 'authServ
 
     $scope.message = "";
 
+    $scope.loginSupplier = function () {
+        authService
+            .login($scope.loginData, 'supplier')
+            .then(
+            function () {
+                $location.path('/dashboard');
+            },
+            function (err) {
+                $scope.message = err.error_description;
+            });
+    };
+
+
     $scope.login = function (userType) {
         console.log(userType);
         authService.login($scope.loginData, userType).then(function (response) {

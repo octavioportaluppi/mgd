@@ -53,6 +53,12 @@ body {
     background: none;
 }
 
+.main-nav .main-menu .enterprise a{
+    background: #858;
+    padding: 10px;
+    color: #FFF;
+}
+
 .main-nav .floating-menu .active {
     background-color: #aed136;
     font-weight: 600;

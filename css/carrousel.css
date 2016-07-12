@@ -36,9 +36,16 @@
 
 .carousel-caption {
     font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
-    font-size: 4.5rem;
+    font-size: 3rem;
+    margin: 0 0 30px 0;
     font-weight: 900;
     text-transform: uppercase;
+}
+
+.carousel-info {
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: normal;
 }
 
 .carousel-caption h2 {

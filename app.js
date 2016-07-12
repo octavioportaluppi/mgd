@@ -57,11 +57,6 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/events.html"
     });
 
-    $routeProvider.when("/welcome", {
-        controller: "welcomeController",
-        templateUrl: "/app/views/signup-welcome.html"
-    });
-
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });
