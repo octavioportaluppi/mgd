@@ -46,7 +46,8 @@
 					<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
 				</li>
 				<li ng-hide="!authentication.isAuth">
-					<a href="#/planner" class="active">Hola, {{authentication.Email}}</a>
+					<a href="#/planner" class="active" ng-if="authentication.userType === 'planner'">Hola, {{authentication.Email}}</a>
+					<a href="#/dashboard" class="active" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
 				</li>
 			</ul>
 			<ul class="main-menu">
