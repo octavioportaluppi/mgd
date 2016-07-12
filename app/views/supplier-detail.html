@@ -1,3 +1,4 @@
+
 <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
     <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
         <div class="carousel-image" style="background-image:url('{{slide.img}}')">
@@ -5,12 +6,24 @@
         </div>
     </uib-slide>
 </uib-carousel>
+<div class="img-pad">
+<div class="container supplier frame header">
+
+    <div class=" col-md-1 col-md-offset-1 " ng-repeat="pic in supplier.Pictures">
+        <img
+                ng-show="pic"
+                src="{{pic}}"
+                class="default-image"/>
+    </div>
+</div>
+</div>
 
 <div class="container gray-bg supplier">
     <div class="frame header clearfix">
     <div class="col-lg-9 col-md-9 col-sm-12">
     <div class="col-xs-3">
-        <img class="avatar img-circle" src="{{supplier.LogoId}}"/>
+        <img class="avatar img-circle" src="img/photo-placeholder.jpg" ng-if="supplier.LogoId < 0"/>
+        <img class="avatar img-circle" src="{{supplier.LogoUrl}}" ng-if="supplier.LogoId > 0"/>
     </div>
     <div class="col-xs-9">
         <div class="col-xs-11">

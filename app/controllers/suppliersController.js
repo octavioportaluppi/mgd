@@ -9,9 +9,21 @@ app.controller('suppliersController',
             .getSuppliersById($routeParams.supplierId)
             .then(function(res){
                 $scope.supplier = res.data;
-                $scope.supplier.LogoId = res.LogoId;
-                $scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId ;
-            })
+                if ($scope.supplier.LogoId > 0)
+                $scope.supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' +   $scope.supplier.LogoId + '/Image';
+                $scope.supplier.Pictures = res.data.Pictures
+                .map(function (pic) {
+                    return ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image';
+                });
+
+            });
+
+
+
+
+
+
+
 
             $scope.isSupplier = false;
             $scope.myInterval = 3000;
