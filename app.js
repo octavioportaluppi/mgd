@@ -62,6 +62,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/signup-welcome.html"
     });
 
+    $routeProvider.when("/suppliers/:supplierId",{
+        controller: "suppliersController",
+        templateUrl: "/app/views/supplier-detail.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });

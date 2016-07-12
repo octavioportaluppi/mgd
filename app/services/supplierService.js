@@ -35,7 +35,8 @@ app.factory('supplierService',
     var _getEventServices = function (event) {
         //console.log(event);
         var deferred = $q.defer();
-        $http.get(serviceBase + 'api/eventtypes/'+event+'/servicetypes').success(function (res) {
+        $http.get(serviceBase + 'api/eventtypes/'+event+'/servicetypes')
+            .success(function (res) {
             //console.log(res);
             deferred.resolve(res);
         }).error(function (err, status) {
@@ -115,6 +116,11 @@ app.factory('supplierService',
                 { params: params });
     };
 
+    var getSuppliersById = function(id){
+        return $http
+            .get(serviceBase + 'api/suppliers/' + id)
+    };
+
     var createFilters = function(max, page, filter, query, cityId){
         var params = {};
         params.size = max;
@@ -159,6 +165,7 @@ app.factory('supplierService',
     supplierServiceFactory.getQuestions = getQuestions;
     supplierServiceFactory.getAnswers = getAnswers;
     supplierServiceFactory.saveQuestions = saveQuestions;
+    supplierServiceFactory.getSuppliersById = getSuppliersById;
 
     return supplierServiceFactory;
 }]);
