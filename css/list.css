@@ -22,7 +22,7 @@
 	float: left;
 }
 
-.list-header span {
+.list-header .span-header {
 	padding: 5px 10px;
 	color: #FFF;
 	background: #818181;

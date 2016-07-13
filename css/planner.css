@@ -52,3 +52,8 @@
 .planner-list .event-buttons .btn-submit {
     margin: 0;
 }
+
+.planner-list .event-form {
+    padding: 20px 0 0 0;
+    border-top: 1px solid rgb(192, 192, 192);
+}
