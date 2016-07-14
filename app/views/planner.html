@@ -144,22 +144,34 @@
             ng-repeat="event in events">
             <div class="col-md-6 row">
                 <a>{{event.Title}}</a>
-                <span class="ligth-description">{{event.City.Name}}</span>
+                <span class="ligth-description">{{event.City.Name}}, {{event.State.Name}}</span>
             </div>
             <div class="col-md-6 row event-buttons pull-right">
-                <button class="btn btn-defasult btn-submit pull-right" ng-disabled="true"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-defasult btn-submit pull-right" ng-click="event.delete = !event.delete;"><i class="fa fa-trash"></i></button>
                 <button class="btn btn-defasult btn-more-info pull-right">MAS INFORMACION</button>
+            </div>
+            <div class="col-md-12 row delete-form" uib-collapse="!event.delete">
+                <p>¿Esta seguro de eliminar este evento?</p>
+                <div class="col-md-6">
+                    <button class="btn btn-defasult btn-submit" ng-click="delete(event)">
+                        Borrar
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-defasult" ng-click="event.delete = !event.delete">Cancelar</button>
+                </div>
             </div>
             <div class="divider col-md-12"></div>
             <div class="col-md-6 row">
                 <p class="ligth-description">Fecha: {{event.Date | date: 'dd MMMM, yyyy hh:mm a'}}</p>
                 <!--<p class="ligth-description">Locacion: Salon de eventos Versalles</p>-->
-                <!--<p class="ligth-description">Invitados: 100</p>-->
+                <p class="ligth-description">Invitados: {{event.GuestsCount}}</p>
             </div>
             <div class="col-md-6 pull-right">
                 <p class="ligth-description">Limite de presupuesto: {{event.Budget}} MXN</p>
                 <p class="ligth-description">Presupuesto gastado: {{event.Budget - event.AvailableBudget}} MXN</p>
-                <!--<p class="ligth-description">Proveedores guardados: 5</p>-->
+                <p class="ligth-description">Proveedores guardados: {{event.SuppliersCount}}</p>
             </div>
         </div>
 

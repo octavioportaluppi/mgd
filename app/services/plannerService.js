@@ -41,11 +41,16 @@ app.factory('plannerService', ['$http', '$q', 'ngAuthSettings', function ($http,
 
     };
 
+    var _delete = function (event) {
+        return $http.delete(serviceBase + 'api/events/' + event.Id);
+    };
+
     plannerServiceFactory.events = _events;
     plannerServiceFactory.getEvent = _getEvent;
     plannerServiceFactory.getEvents = _getEvents;
     plannerServiceFactory.saveEvent = _saveEvent;
     plannerServiceFactory.updateEvent = _updateEvent;
+    plannerServiceFactory.deleteEvent = _delete;
     
     return plannerServiceFactory;
 }]);

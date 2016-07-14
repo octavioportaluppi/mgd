@@ -22,6 +22,9 @@ app.controller('plannerController',
 	};
 
 	$scope.getPastEventKeys = function () {
+		if(!$scope.pastEvents) {
+			return;
+		}
 		return Object.keys($scope.pastEvents);
 	};
 
@@ -55,7 +58,15 @@ app.controller('plannerController',
 				$scope.formCollapsed = true;
 				$scope.getEvents();
 			});
-	}
+	};
+
+	$scope.delete = function (event){
+		plannerService
+			.deleteEvent(event)
+			.then(function (){
+				$scope.getEvents();
+			})
+	};
 
 	$scope.getEvents();
 
