@@ -5,15 +5,31 @@ app.controller('plannerController',
 
 	$scope.formCollapsed = true;
 
-	plannerService.getEvents().then(function (response){
-		$scope.events = response.data.CurrentEvents;
-	});
+	$scope.getEvents = function() {
+		plannerService.getEvents().then(function (response){
+			$scope.events = response.data.CurrentEvents;
+			$scope.pastEvents = [];
+			response.data.PastEvents.map(
+				function (event){
+					var year = new Date(event.Date).getFullYear();
+					if(!$scope.pastEvents[year]){
+						$scope.pastEvents[year] = [];
+					}
+					$scope.pastEvents[year].push(event)
+				}
+			)
+		});
+	};
+
+	$scope.getPastEventKeys = function () {
+		return Object.keys($scope.pastEvents);
+	};
 
 	supplierService
 		.getEvents()
 		.then(function (response){
 			$scope.eventTypes = response.data;
-		});
+	});
 
 	$scope.getCities = function() {
 		stateService
@@ -36,8 +52,11 @@ app.controller('plannerController',
 		plannerService
 			.saveEvent($scope.event)
 			.then(function (){
+				$scope.formCollapsed = true;
 				$scope.getEvents();
 			});
 	}
+
+	$scope.getEvents();
 
 }]);

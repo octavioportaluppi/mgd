@@ -140,34 +140,11 @@
     </div>
 
     <div class="col-md-8">
-        <div
-            class="list-item clearfix">
-            <div class="col-md-6 row">
-                <a>Despedida Lore</a>
-                <span class="ligth-description">Hermosillo, Sonora</span>
-            </div>
-            <div class="col-md-6 row event-buttons pull-right">
-                <button class="btn btn-defasult btn-submit pull-right" ng-disabled="true"><i class="fa fa-trash"></i></button>
-                <button class="btn btn-defasult btn-more-info pull-right">MAS INFORMACION</button>
-            </div>
-            <div class="divider col-md-12"></div>
-            <div class="col-md-6 row">
-                <p class="ligth-description">Fecha: 23 Feb, 2016 4:00 PM</p>
-                <p class="ligth-description">Locacion: Salon de eventos Versalles</p>
-                <p class="ligth-description">Invitados: 100</p>
-            </div>
-            <div class="col-md-6 pull-right">
-                <p class="ligth-description">Limite de presupuesto: 30,000 MXN</p>
-                <p class="ligth-description">Presupuesto gastado: 15,000 MXN</p>
-                <p class="ligth-description">Proveedores guardados: 5</p>
-            </div>
-        </div>
-
         <div class="list-item clearfix"
             ng-repeat="event in events">
             <div class="col-md-6 row">
-                <a>Despedida Lore</a>
-                <span class="ligth-description">Hermosillo, Sonora</span>
+                <a>{{event.Title}}</a>
+                <span class="ligth-description">{{event.City.Name}}</span>
             </div>
             <div class="col-md-6 row event-buttons pull-right">
                 <button class="btn btn-defasult btn-submit pull-right" ng-disabled="true"><i class="fa fa-trash"></i></button>
@@ -175,14 +152,14 @@
             </div>
             <div class="divider col-md-12"></div>
             <div class="col-md-6 row">
-                <p class="ligth-description">Fecha: 23 Feb, 2016 4:00 PM</p>
-                <p class="ligth-description">Locacion: Salon de eventos Versalles</p>
-                <p class="ligth-description">Invitados: 100</p>
+                <p class="ligth-description">Fecha: {{event.Date | date: 'dd MMMM, yyyy hh:mm a'}}</p>
+                <!--<p class="ligth-description">Locacion: Salon de eventos Versalles</p>-->
+                <!--<p class="ligth-description">Invitados: 100</p>-->
             </div>
             <div class="col-md-6 pull-right">
-                <p class="ligth-description">Limite de presupuesto: 30,000 MXN</p>
-                <p class="ligth-description">Presupuesto gastado: 15,000 MXN</p>
-                <p class="ligth-description">Proveedores guardados: 5</p>
+                <p class="ligth-description">Limite de presupuesto: {{event.Budget}} MXN</p>
+                <p class="ligth-description">Presupuesto gastado: {{event.Budget - event.AvailableBudget}} MXN</p>
+                <!--<p class="ligth-description">Proveedores guardados: 5</p>-->
             </div>
         </div>
 
@@ -194,19 +171,17 @@
         </div>
         <div div="filter-content">
             <uib-accordion close-others="true">
-                <!--
-                <uib-accordion-group ng-repeat="filterKey in getFilterNames()">
+                <uib-accordion-group ng-repeat="key in getPastEventKeys()">
                     <uib-accordion-heading>
-                        {{filterKey | filterKey}}
+                        {{key}}
                         <i class="pull-right glyphicon glyphicon-chevron-right"></i>
                     </uib-accordion-heading>
                     <ul>
-                        <li ng-repeat="filter in filters[filterKey]">
-                            <a ng-click="doFilter(filterKey, filter)">{{filter.Title}}<span>{{filter.Count}}</span></a>
+                        <li ng-repeat="event in pastEvents[key]">
+                            <a ng-click="">{{event.Title}}</a>
                         </li>
                     </ul>
                 </uib-accordion-group>
-                -->
             </uib-accordion>
         </div>
     </div>
