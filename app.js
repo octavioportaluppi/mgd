@@ -67,6 +67,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/supplier-detail.html"
     });
 
+    $routeProvider.when("/events/:eventId/agenda",{
+        controller: "eventAgendaController",
+        templateUrl: "/app/views/event-agenda.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });

@@ -14,7 +14,8 @@
     background: #cecece;
 }
 
-.planner-nav li.odd {
+.planner-nav li.odd,
+.event-menu li.odd {
     background: #c0c0c0;
 }
 
@@ -22,7 +23,8 @@
     color: #818181;
 }
 
-.planner-nav .active {
+.planner-nav .active,
+.event-menu .active {
     background: #aed136;
 }
 
@@ -47,6 +49,10 @@
     border: 1px #aed136 solid;
     color: #aed136;
     margin: 0 5px 0 0;
+    font-weight: 500;
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
 }
 
 .planner-list .event-buttons .btn-submit {
@@ -65,4 +71,25 @@
 
 .planner-list .delete-form .btn-defasult {
     margin: 10px 0 0 0;
+}
+
+.event-menu {
+    list-style: none;
+    position: absolute;
+    top: 100%;
+    margin-top: -60px;
+    left: 50%;
+    margin-left: -320px;
+}
+
+.event-menu li {
+    display: inline;
+    float: left;
+    padding: 20px;
+    background: #cecece;
+    text-transform: uppercase;
+}
+
+.carousel-image.event-detail {
+    display: block;
 }
