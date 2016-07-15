@@ -92,14 +92,13 @@ app.controller('dashboardSupplierController',
 		var cityId = $scope.supplier.City.Id;
 		$scope.supplier.CityId = cityId;
         supplierService
-			.updateSupplierProfile($scope.supplier)
-			.then(function(){
-				$scope.editProfile = !$scope.editProfile;
-				$scope.getDashboard();
-
-			})
-
+			.updateSupplierProfile($scope.supplier,$scope.reload);
 	};
+
+	$scope.reload = function () {
+		$scope.editProfile = !$scope.editProfile;
+		$scope.getDashboard();
+	}
 
 	$scope.saveSupplierProfile = function (form, callback){
 		if(form.$valid ) {
