@@ -143,12 +143,12 @@
         <div class="list-item clearfix"
             ng-repeat="event in events">
             <div class="col-md-6 row">
-                <a href="#/events/{{event.Id}}/agenda">{{event.Title}}</a>
+                <a href="#/events/{{event.Id}}/detail">{{event.Title}}</a>
                 <span class="ligth-description">{{event.City.Name}}, {{event.State.Name}}</span>
             </div>
             <div class="col-md-6 row event-buttons pull-right">
                 <button class="btn btn-defasult btn-submit pull-right" ng-click="event.delete = !event.delete;"><i class="fa fa-trash"></i></button>
-                <a class="btn btn-defasult btn-more-info pull-right" href="#/events/{{event.Id}}/agenda">MAS INFORMACION</a>
+                <a class="btn btn-defasult btn-more-info pull-right" href="#/events/{{event.Id}}/detail">MAS INFORMACION</a>
             </div>
             <div class="col-md-12 row delete-form" uib-collapse="!event.delete">
                 <p>¿Esta seguro de eliminar este evento?</p>
@@ -190,7 +190,7 @@
                     </uib-accordion-heading>
                     <ul>
                         <li ng-repeat="event in pastEvents[key]">
-                            <a href="#/events/{{event.Id}}/agenda">{{event.Title}}</a>
+                            <a href="#/events/{{event.Id}}/detail">{{event.Title}}</a>
                         </li>
                     </ul>
                 </uib-accordion-group>

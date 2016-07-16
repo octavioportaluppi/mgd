@@ -24,11 +24,14 @@
 }
 
 .planner-nav .active,
-.event-menu .active {
+.event-menu li.active,
+.event-menu li:hover,
+.planner-nav li:hover{
     background: #aed136;
+    color: #FFF;
 }
 
-.planner-nav .active a {
+.planner-nav .active a{
     color: #FFF;
 }
 
@@ -75,11 +78,9 @@
 
 .event-menu {
     list-style: none;
-    position: absolute;
-    top: 100%;
-    margin-top: -105px;
-    left: 50%;
-    margin-left: -275px;
+    margin:0;
+    padding: 0;
+    text-align: center;
 }
 
 .event-menu li {
@@ -90,12 +91,97 @@
     text-transform: uppercase;
 }
 
-.carousel-image.event-detail {
-    display: block;
-}
-
 .event-menu .icon{
     display: block;
     font-size: 35px;
     margin: 0 0 10px 0;
+}
+
+.btn-budget-collapse {
+    padding: 5px 5px 3px 9px;
+    margin: 0 0 0 -40px;
+    background: rgba(192, 192, 192, 0.78);
+    position: absolute;
+}
+
+.btn-budget-add {
+    padding: 2px 2px 0 6px;
+    background: #8c3e96;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 100%;
+    margin: 0 0 0 -5px;
+}
+
+.btn-budget-submit {
+    background: rgba(140, 62, 150, 0.52);
+}
+
+.budget-input {
+    padding: 5px 5px 5px 5px;
+    background: #FFF;
+    color: rgba(192, 192, 192, 0.78);
+    border-radius: 3px;
+    border: none;
+    width: 100%;
+}
+
+.budget-left {
+    margin: 0 0 0 40px;
+}
+
+.budget-right {
+    margin: 0 35px 0 0;
+}
+
+.budget-total{
+    background: #aed136;
+    color: #FFF;
+}
+
+.budget-payment{
+    background: rgba(140, 62, 150, 0.32) !important;
+    margin: 2px 7px 11px 0;
+}
+
+.budget-add{
+    background: rgba(192, 192, 192, 0.78);
+    color: #FFF;
+}
+
+.budget-add::-moz-placeholder,
+.budget-payment::-moz-placeholder{
+    color: #FFF;
+}
+
+.budget-add::-webkit-input-placeholder,
+.budget-payment::-webkit-input-placeholder {
+    color: #FFF;
+}
+
+.budget-add:-ms-input-placeholder,
+.budget-payment:-ms-input-placeholder{
+    color: #FFF;
+}
+
+.budget-title{
+    text-align: center;
+    padding: 0 0 30px 0;
+}
+
+.budget-title span{
+    font-size: 2rem;
+    font-weight: 600;
+    color: #818181;
+}
+
+.budget.active {
+    background: none;
+}
+
+.budget.active .btn-budget-collapse,
+.budget.active .budget-input {
+    background-color: #8c3e96;
+    color: #FFF;
 }

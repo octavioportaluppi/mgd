@@ -67,9 +67,9 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/supplier-detail.html"
     });
 
-    $routeProvider.when("/events/:eventId/agenda",{
-        controller: "eventAgendaController",
-        templateUrl: "/app/views/event-agenda.html"
+    $routeProvider.when("/events/:eventId/detail",{
+        controller: "eventDetailController",
+        templateUrl: "/app/views/event-detail.html"
     });
 
     $routeProvider.otherwise({ redirectTo: "/" });
@@ -156,6 +156,32 @@ app.filter('tel', function () {
         });
 
         return 'icon-' + source;
+    };
+})
+
+.filter('background', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        source = source.toLowerCase();
+
+        var values = [
+            { id:'á', replace: 'a' },
+            { id:'é', replace: 'e' },
+            { id:'í', replace: 'i' },
+            { id:'ó', replace: 'o' },
+            { id:'ú', replace: 'u' },
+            { id:'ñ', replace: 'n' },
+            { id:' ', replace: '-' }
+        ];
+
+        values.forEach(function(value){
+            source = source.split(value.id).join(value.replace);
+        });
+
+        return source;
     };
 })
 

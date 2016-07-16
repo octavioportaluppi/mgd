@@ -10,17 +10,7 @@ app.factory('plannerService', ['$http', '$q', 'ngAuthSettings', function ($http,
     };
 
     var _getEvent = function (eventId) {
-
-        var deferred = $q.defer();
-
-        $http.get(serviceBase + 'api/events/' + eventId).then(function (res) {
-            deferred.resolve(res.data);
-        }, function (err, status) {
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
-
+        return $http.get(serviceBase + 'api/events/' + eventId)
     };
 
     var _saveEvent = function (event) {

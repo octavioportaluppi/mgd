@@ -5,7 +5,7 @@ app.controller(
         '$scope', 
         '$routeParams', 
         'supplierService', 
-        function ($scope, $routeParams , supplierService) {
+        function ($scope, $routeParams, supplierService) {
 
             $scope.size = 5;
             $scope.page = 1;
