@@ -27,8 +27,7 @@
         </div>
         <div class="col-md-3">
             <p class="budget-input budget-right"
-               ng-click="selectBudget(item)">$ {{item.Final}}</p>
-
+               ng-click="selectBudget(item)">$ {{item.PayedSoFar}}</p>
             <button
                     ng-click="selectBudget(item)"
                     ng-show="item.showChilds"
@@ -47,7 +46,7 @@
                 <p class="budget-input budget-payment ">&lt;Falta un titulo&gt;</p>
             </div>
             <div class="col-md-3">
-                <p class="budget-input budget-payment ">&lt;Falta un inicial&gt;</p>
+                <p class="budget-input budget-payment ">{{getPaymentMode(sub.PaymentMode).Text}}</p>
             </div>
             <div class="col-md-3">
                 <p class="budget-input budget-payment budget-right">$ {{sub.Value}}</p>
@@ -69,19 +68,21 @@
                        class="budget-input budget-total budget-payment"/>
             </div>
             <div class="col-md-3">
-                <input type="text"
-                       placeholder="$0"
-                       required="required"
-                       ng-model="newPayment.Initial"
-                       name="initial"
-                       class="budget-input budget-total budget-payment"/>
+                <select
+                        name="paymentMode"
+                        required="required"
+                        ng-model="newPayment.PaymentMode"
+                        class="budget-input budget-total budget-payment">
+                    <option value="" disabled>Selecciona el tipo de pago</option>
+                    <option value="{{paymentOption.Value}}" ng-repeat="paymentOption in paymentModes">{{paymentOption.Text}}</option>
+                </select>
             </div>
             <div class="col-md-3">
                 <input type="text"
                        placeholder="$0"
                        required="required"
                        ng-model="newPayment.Value"
-                       name="final"
+                       name="initial"
                        class="budget-input budget-total budget-payment"/>
                 <button
                         class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit">

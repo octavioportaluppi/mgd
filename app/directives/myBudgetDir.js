@@ -76,6 +76,23 @@ var budgetController = ['$scope', 'eventService',
 
         $scope.getBudgets();
 
+        eventService
+            .getPaymentModes()
+            .then(function(response){
+                $scope.paymentModes = response.data;
+            });
+
+        $scope.getPaymentMode = function (paymentMode){
+            if (!$scope.paymentModes){
+                return;
+            }
+            return $scope
+                .paymentModes
+                .find(function (payment){
+                    return payment.Value == paymentMode;
+                })
+        }
+
 }];
 
 app.directive('myBudget', function() {

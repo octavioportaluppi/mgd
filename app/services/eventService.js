@@ -25,11 +25,16 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
         return $http.get(serviceBase + 'api/events/' + eventId + '/budgetitems');
     };
 
+    var _getPaymentModes = function () {
+        return $http.get(serviceBase + 'api/paymentModes');
+    };
+
     eventServiceFactory.createBudgetItem = _createBudgetItem;
     eventServiceFactory.deleteBudget = _deleteBudget;
     eventServiceFactory.getBudgets = _getBudgets;
     eventServiceFactory.createPayment = _createPayment;
     eventServiceFactory.deletePayment = _deletePayment;
+    eventServiceFactory.getPaymentModes = _getPaymentModes;
 
     return eventServiceFactory;
 }]);
