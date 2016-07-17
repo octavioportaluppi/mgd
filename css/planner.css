@@ -155,6 +155,11 @@
     margin: 0 0 10px;
 }
 
+.budget-payment.invalid,
+.budget-total.invalid {
+    border: 1px #ee3470 solid;
+}
+
 .budget-add{
     background: rgba(192, 192, 192, 0.78);
     color: #FFF;
@@ -192,6 +197,11 @@
 
 .budget {
     cursor: pointer;
+}
+
+.budget .dashboard-error {
+    margin: 0 0 10px 0;
+    padding: 0 0 0 6px;
 }
 
 .budget.active .btn-budget-collapse,

@@ -29,15 +29,9 @@
             <p class="budget-input budget-right"
                ng-click="selectBudget(item)">$ {{item.PayedSoFar}}</p>
             <button
-                    ng-click="selectBudget(item)"
-                    ng-show="item.showChilds"
-                    class="btn btn-defasult btn-submit btn-budget-add">
-                <i class="fa fa-plus"></i>
-            </button>
-            <button
                     ng-click="deleteBudget(item.Id)"
                     ng-show="item.showChilds"
-                    class="btn btn-defasult btn-submit btn-budget-delete">
+                    class="btn btn-defasult btn-submit btn-budget-add">
                 <i class="fa fa-trash"></i>
             </button>
         </div>
@@ -57,35 +51,51 @@
                 </button>
             </div>
         </div>
-
-        <form ng-submit="addPayment(item.Id)" ng-if="item.showForm">
+        <form
+            ng-submit="addPayment(item.Id, newPaymentForm)"
+            ng-if="item.showForm"
+            name="newPaymentForm"
+            novalidate>
             <div class="col-md-6">
                 <input type="text"
                        placeholder="AGREGAR GASTO"
                        required="required"
                        name="title"
                        ng-model="newPayment.Title"
-                       class="budget-input budget-total budget-payment"/>
+                       class="budget-input budget-total budget-payment"
+                       ng-class="{'invalid':newPaymentForm.title.$error.required && (newPaymentForm.$submitted || newPaymentForm.title.$touched)}"/>
+                <div class="dashboard-error" ng-show="newPaymentForm.$submitted || newPaymentForm.title.$touched">
+                    <div ng-show="newPaymentForm.title.$error.required">Agregue un titulo para el pago.</div>
+                </div>
             </div>
             <div class="col-md-3">
                 <select
                         name="paymentMode"
                         required="required"
                         ng-model="newPayment.PaymentMode"
-                        class="budget-input budget-total budget-payment">
+                        class="budget-input budget-total budget-payment"
+                        ng-class="{'invalid':newPaymentForm.paymentMode.$error.required && (newPaymentForm.$submitted || newPaymentForm.paymentMode.$touched)}">
                     <option value="" disabled>Selecciona el tipo de pago</option>
                     <option value="{{paymentOption.Value}}" ng-repeat="paymentOption in paymentModes">{{paymentOption.Text}}</option>
                 </select>
+                <div class="dashboard-error" ng-show="newPaymentForm.$submitted || newPaymentForm.paymentMode.$touched">
+                    <div ng-show="newPaymentForm.paymentMode.$error.required">Agregue un medio de pago.</div>
+                </div>
             </div>
             <div class="col-md-3">
                 <input type="text"
                        placeholder="$0"
                        required="required"
                        ng-model="newPayment.Value"
-                       name="initial"
-                       class="budget-input budget-total budget-payment"/>
+                       name="value"
+                       class="budget-input budget-total budget-payment"
+                       ng-class="{'invalid':newPaymentForm.value.$error.required && (newPaymentForm.$submitted || newPaymentForm.value.$touched)}"/>
+                <div class="dashboard-error" ng-show="newPaymentForm.$submitted || newPaymentForm.value.$touched">
+                    <div ng-show="newPaymentForm.value.$error.required">Agregue un monto.</div>
+                </div>
                 <button
-                        class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit">
+                    ng-disabled="!newPaymentForm.$valid"
+                    class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit">
                     <i class="fa fa-plus"></i>
                 </button>
             </div>
@@ -109,26 +119,38 @@
                        placeholder="AGREGAR GASTO"
                        required="required"
                        name="title"
-                        ng-model="newBudget.Title"
-                        class="budget-input budget-total budget-add"/>
+                       ng-model="newBudget.Title"
+                       class="budget-input budget-total budget-add"
+                       ng-class="{'invalid':budgetForm.title.$error.required && (budgetForm.$submitted || budgetForm.title.$touched)}"/>
+                <div class="dashboard-error" ng-show="budgetForm.$submitted || budgetForm.title.$touched">
+                    <div ng-show="budgetForm.title.$error.required">Agregue un titulo para el gasto.</div>
+                </div>
             </div>
             <div class="col-md-3">
                 <input type="text"
                        placeholder="$0"
                        required="required"
-                        ng-model="newBudget.Initial"
+                       ng-model="newBudget.Initial"
                        name="initial"
-                        class="budget-input budget-total budget-add"/>
+                       class="budget-input budget-total budget-add"
+                       ng-class="{'invalid':budgetForm.initial.$error.required && (budgetForm.$submitted || budgetForm.initial.$touched)}"/>
+                <div class="dashboard-error" ng-show="budgetForm.$submitted || budgetForm.initial.$touched">
+                    <div ng-show="budgetForm.initial.$error.required">Agregue un monto inicial.</div>
+                </div>
             </div>
             <div class="col-md-3">
                 <input type="text"
                        placeholder="$0"
                        required="required"
-                        ng-model="newBudget.Final"
+                       ng-model="newBudget.Final"
                        name="final"
-                        class="budget-input budget-total budget-add"/>
+                       class="budget-input budget-total budget-add"
+                       ng-class="{'invalid':budgetForm.final.$error.required && (budgetForm.$submitted || budgetForm.final.$touched)}"/>
+                <div class="dashboard-error" ng-show="budgetForm.$submitted || budgetForm.final.$touched">
+                    <div ng-show="budgetForm.final.$error.required">Agregue un monto.</div>
+                </div>
                 <button
-                        class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit budget-add">
+                    class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit budget-add">
                     <i class="fa fa-plus"></i>
                 </button>
             </div>

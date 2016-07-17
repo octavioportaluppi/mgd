@@ -37,7 +37,10 @@ var budgetController = ['$scope', 'eventService',
                 })
         };
 
-        $scope.addPayment = function(budgetId){
+        $scope.addPayment = function(budgetId, form){
+            if(!form.$valid){
+                return;
+            }
             eventService
                 .createPayment(budgetId, $scope.newPayment)
                 .then(function () {
@@ -72,6 +75,7 @@ var budgetController = ['$scope', 'eventService',
             });
             budget.showChilds = !budget.showChilds;
             budget.showForm = !budget.showForm;
+            $scope.newPayment = {};
         };
 
         $scope.getBudgets();
