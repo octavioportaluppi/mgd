@@ -9,54 +9,70 @@
     <div class="col-md-3 budget-title">
         <span>MONTO PAGADO</span>
     </div>
-    <div ng-repeat="item in budgets" class="clearfix budget" ng-class="{'active':item.showChilds}">
+    <div ng-repeat="item in budgets"
+         class="clearfix budget"
+         ng-class="{'active':item.showChilds}">
         <div class="col-md-6">
             <button
-                ng-click="selectBudget(item)"
-                class="btn btn-defasult btn-submit btn-budget-collapse">
+                class="btn btn-defasult btn-submit btn-budget-collapse"
+                ng-click="selectBudget(item)">
                 <i ng-class="{'fa':true, 'fa-chevron-right':!item.showChilds, 'fa-chevron-down':item.showChilds}"></i>
             </button>
-            <p class="budget-input">{{item.Title}}</p>
+            <p class="budget-input"
+               ng-click="selectBudget(item)">{{item.Title}}</p>
         </div>
         <div class="col-md-3">
-            <p class="budget-input">$ {{item.Initial}}</p>
+            <p class="budget-input"
+               ng-click="selectBudget(item)">$ {{item.Initial}}</p>
         </div>
         <div class="col-md-3">
-            <p class="budget-input budget-right">$ {{item.Final}}</p>
+            <p class="budget-input budget-right"
+               ng-click="selectBudget(item)">$ {{item.Final}}</p>
 
             <button
-                    ng-click="item.showForm = true;"
+                    ng-click="selectBudget(item)"
                     ng-show="item.showChilds"
                     class="btn btn-defasult btn-submit btn-budget-add">
                 <i class="fa fa-plus"></i>
             </button>
+            <button
+                    ng-click="deleteBudget(item.Id)"
+                    ng-show="item.showChilds"
+                    class="btn btn-defasult btn-submit btn-budget-delete">
+                <i class="fa fa-trash"></i>
+            </button>
         </div>
-        <div ng-repeat="sub in item.subBudgets" uib-collapse="!item.showChilds">
+        <div ng-repeat="sub in item.Payments" uib-collapse="!item.showChilds">
             <div class="col-md-6">
-                <p class="budget-input budget-payment ">{{sub.Title}}</p>
+                <p class="budget-input budget-payment ">&lt;Falta un titulo&gt;</p>
             </div>
             <div class="col-md-3">
-                <p class="budget-input budget-payment ">$ {{sub.Initial}}</p>
+                <p class="budget-input budget-payment ">&lt;Falta un inicial&gt;</p>
             </div>
             <div class="col-md-3">
-                <p class="budget-input budget-payment budget-right">$ {{sub.Final}}</p>
+                <p class="budget-input budget-payment budget-right">$ {{sub.Value}}</p>
+                <button
+                        class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit"
+                        ng-click="deletePayment(sub.Id)">
+                    <i class="fa fa-trash"></i>
+                </button>
             </div>
         </div>
 
-        <form ng-submit="addSubBudget(item)" ng-if="item.showForm">
+        <form ng-submit="addPayment(item.Id)" ng-if="item.showForm">
             <div class="col-md-6">
                 <input type="text"
                        placeholder="AGREGAR GASTO"
                        required="required"
                        name="title"
-                       ng-model="newSubBudget.Title"
+                       ng-model="newPayment.Title"
                        class="budget-input budget-total budget-payment"/>
             </div>
             <div class="col-md-3">
                 <input type="text"
                        placeholder="$0"
                        required="required"
-                       ng-model="newSubBudget.Initial"
+                       ng-model="newPayment.Initial"
                        name="initial"
                        class="budget-input budget-total budget-payment"/>
             </div>
@@ -64,7 +80,7 @@
                 <input type="text"
                        placeholder="$0"
                        required="required"
-                       ng-model="newSubBudget.Final"
+                       ng-model="newPayment.Value"
                        name="final"
                        class="budget-input budget-total budget-payment"/>
                 <button

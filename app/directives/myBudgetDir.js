@@ -4,7 +4,7 @@ var budgetController = ['$scope', 'eventService',
     function ($scope, eventService){
 
         $scope.budgets = [];
-        $scope.newSubBudget = {};
+        $scope.newPayment = {};
 
         $scope.createBudget = function (form) {
             if(!form.$valid) {
@@ -37,22 +37,41 @@ var budgetController = ['$scope', 'eventService',
                 })
         };
 
-        $scope.addSubBudget = function(budget){
-            if(!budget.subBudgets) {
-                budget.subBudgets = [];
-            }
-            budget.subBudgets.push(angular.copy($scope.newSubBudget));
-            budget.showForm = false;
-            $scope.newSubBudget = {};
+        $scope.addPayment = function(budgetId){
+            eventService
+                .createPayment(budgetId, $scope.newPayment)
+                .then(function () {
+                    $scope.newPayment = {};
+                    $scope.getBudgets();
+                });
+        };
+
+        $scope.deleteBudget = function(budgetId) {
+            eventService
+                .deleteBudget(budgetId)
+                .then(function () {
+                    $scope.getBudgets();
+                })
+        };
+
+        $scope.deletePayment = function(paymentId) {
+            eventService
+                .deletePayment(paymentId)
+                .then(function () {
+                    $scope.getBudgets();
+                })
         };
 
         $scope.selectBudget = function(budget) {
             $scope.budgets.forEach(function (item){
+                if(item.Id === budget.Id){
+                    return;
+                }
                 item.showChilds = false;
                 item.showForm = false;
             });
-            budget.showChilds = true;
-            budget.showForm = true;
+            budget.showChilds = !budget.showChilds;
+            budget.showForm = !budget.showForm;
         };
 
         $scope.getBudgets();
