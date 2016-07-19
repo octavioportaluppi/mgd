@@ -29,12 +29,32 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
         return $http.get(serviceBase + 'api/paymentModes');
     };
 
+    var _getGuests = function (eventId) {
+        return $http.get(serviceBase + 'api/events/'+eventId+'/guests')
+    };
+
+    var _createGuests = function (eventId, groupGuestId, guest) {
+        return $http.post(serviceBase + 'api/events/'+eventId+'/guestsgroups/'+groupGuestId+'/guests', guest)
+    };
+
+    var _updateGuest = function (guest) {
+        return $http.put(serviceBase + 'api/guests', guest)
+    };
+
+    var _getGuestGroups = function(eventId) {
+        return $http.get(serviceBase + 'api/events/' + eventId + '/guestsgroups')
+    };
+
     eventServiceFactory.createBudgetItem = _createBudgetItem;
     eventServiceFactory.deleteBudget = _deleteBudget;
     eventServiceFactory.getBudgets = _getBudgets;
     eventServiceFactory.createPayment = _createPayment;
     eventServiceFactory.deletePayment = _deletePayment;
     eventServiceFactory.getPaymentModes = _getPaymentModes;
+    eventServiceFactory.getGuests = _getGuests;
+    eventServiceFactory.createGuest = _createGuests;
+    eventServiceFactory.updateGuest = _updateGuest;
+    eventServiceFactory.getGuestGroups = _getGuestGroups;
 
     return eventServiceFactory;
 }]);

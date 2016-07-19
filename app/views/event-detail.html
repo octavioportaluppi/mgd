@@ -53,8 +53,8 @@
 <div class="col-md-12" style="background-color: #FFF; min-height: 200px">
     <!--
     <my-agenda ng-if="currentDetail === 'agenda'" id="{{event.Id}}"></my-agenda>
-    <my-guest ng-if="currentDetail === 'invitados'" id="{{event.Id}}"></my-guest>
     <my-supplier ng-if="currentDetail === 'proveedores'" id="{{event.Id}}"></my-supplier>
     -->
+    <my-guest ng-show="isActive('invitados')" id="eventId"></my-guest>
     <my-budget ng-show="isActive('presupuesto')" id="eventId"></my-budget>
 </div>
