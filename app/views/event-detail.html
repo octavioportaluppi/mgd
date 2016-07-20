@@ -51,10 +51,10 @@
     </div>
 </div>
 <div class="col-md-12" style="background-color: #FFF; min-height: 200px">
-    <!--
-    <my-agenda ng-if="currentDetail === 'agenda'" id="{{event.Id}}"></my-agenda>
-    <my-guest ng-if="currentDetail === 'invitados'" id="{{event.Id}}"></my-guest>
-    <my-supplier ng-if="currentDetail === 'proveedores'" id="{{event.Id}}"></my-supplier>
-    -->
+
+    <my-agenda ng-show="isActive('agenda')" id="eventId"></my-agenda>
+
+    <!--<my-guest ng-if="currentDetail === 'invitados'" id="{{event.Id}}"></my-guest>
+    <my-supplier ng-if="currentDetail === 'proveedores'" id="{{event.Id}}"></my-supplier>  -->
     <my-budget ng-show="isActive('presupuesto')" id="eventId"></my-budget>
 </div>

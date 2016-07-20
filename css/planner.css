@@ -199,3 +199,31 @@
     background-color: #8c3e96;
     color: #FFF;
 }
+
+.calendar-filter:hover{
+    background: #f2ebf3;
+
+}
+
+.calendar-filterUnblock li{
+    display: block;
+}
+
+.info-filter {
+    padding: 0px 7px 0px 4px;
+    background: #d4b5d9;
+    border-radius: 50%;
+    margin: 0px 0px 0px 184px;
+    position: absolute
+}
+
+.panel-primary>.panel-heading {
+    color: #ffffff;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    padding: 5px 133px 1px 130px;
+}
+
+.panel-body {
+    padding: 10px 81px 9px 89px;
+}

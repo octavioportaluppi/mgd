@@ -1,4 +1,178 @@
+<div class="col-md-4 row">
+    <div class="budget-title">
+        <span>TAREAS</span>
+    </div>
 <div>
+    <ul class="calendar-filterUnblock">
+        <li class="calendar-filter">
+                <i class="info-filter">0</i>
+            <i class="fa  fa-calendar-o "></i>
+            Hoy
+        </li>
+        <li class="calendar-filter">
+            <i class="info-filter">0</i>
+            <i class="fa fa-calendar"></i>
+            Semana
+        </li>
+        <li class="calendar-filter">
+            <i class="info-filter">0</i>
+            <i class="icon-catering"></i>
+            Catering
+        </li>
+
+
+        <li class="calendar-filter">
+            <i class="info-filter">0</i>
+            <i class="fa fa-gift"></i>
+            Mesa de Regalo
+        </li>
+
+
+    </ul>
+</div>
+
+</div>
+
+<div class="col-md-4" row style="background: #faf5fb">
+    <div ng-repeat="item in taskItem">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{item.Title | firstLetter}}</div>
+            <div class="panel-body">{{item.ServiceType.Name}} {{item.DueDate | date:"MM/dd/yyyy"}}
+
+                    <button ng-click="deleteItem(item.Id)" class="btn btn-primary btn-sm">Borrar</button>
+                <button ng-click="editTask = !editTask" class="btn btn-primary btn-sm">Editar</button>
+            </div>
+            <form name="data" ng-show="editTask">
+                <div class="input-group">
+                    <input
+                            class="form-control"
+                            type="text"
+                            name="tarea"
+                            placeholder="Agregar Tarea"
+                            required="required"
+                            ng-model="item.Title"/>
+                </div>
+
+                <div class="input-group">
+                    <select class="form-control" ng-model="item.ServiceTypeId">
+                        <option ng-repeat="service in serviceTypes" value="{{service.Id}}">{{service.Name}}</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input
+                            class="form-control"
+                            type="text"
+                            uib-datepicker-popup="dd/MM/yyyy"
+                            ng-model="item.DueDate"
+                            name="date"
+                            is-open="datepicker.opened"
+                            datepicker-options="dateOptions"
+                            close-text="Cerrar"
+                            clear-text="Borrar"
+                            current-text="Hoy"
+                            alt-input-formats="altInputFormats"
+                            placeholder="DD/MM/YYYY"
+                            required="required"
+                            popup-placement="top-right"
+                    />
+                    <div class="input-group-btn">
+                        <button class="btn btn-default btn-input" type="button" ng-click="datepicker.opened = !datepicker.opened">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Agregar una nota</label>
+        <textarea
+                class="form-control dashTextarea "
+                name="textTareaDescription"
+                required=""
+                type="text"
+                placeholder="Nota"
+                ng-model="item.Notes"
+                rows="10"
+                cols="50"
+                ng-class="{'invalid':data.textTareaDescription.$error.required && (data.$submitted || data.textTareaDescription.$touched)}">
+                 </textarea>
+                    <div class="dashboard-error" ng-show="data.$submitted || data.textTareaDescription.$touched">
+                        <div ng-show="data.textTareaDescription.$error.required">Agregar una Nota.</div>
+                    </div>
+                </div>
+
+                <div class="signup-field">
+                    <button ng-click="update(item.Id)" class="btn btn-default pull-right">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <button ng-click="addTask = !addTask" class="btn btn-primary btn-sm">Agregar Tarea</button>
+
+    <form name="data" ng-show="addTask">
+    <div class="input-group">
+        <input
+        class="form-control"
+        type="text"
+        name="tarea"
+        placeholder="Agregar Tarea"
+        required="required"
+        ng-model="newTask.Title"
+       />
+    </div>
+
+        <div class="input-group">
+            <select class="form-control" ng-model="newTask.ServiceTypeId">
+                <option ng-repeat="service in serviceTypes" value="{{service.Id}}">{{service.Name}}</option>
+            </select>
+        </div>
+    <div class="input-group">
+        <input
+                class="form-control"
+                type="text"
+                uib-datepicker-popup="dd/MM/yyyy"
+                ng-model="newTask.DueDate"
+                name="date"
+                is-open="datepicker.opened"
+                datepicker-options="dateOptions"
+                close-text="Cerrar"
+                clear-text="Borrar"
+                current-text="Hoy"
+                alt-input-formats="altInputFormats"
+                placeholder="DD/MM/YYYY"
+                required="required"
+                popup-placement="top-right"
+              />
+        <div class="input-group-btn">
+            <button class="btn btn-default btn-input" type="button" ng-click="datepicker.opened = !datepicker.opened">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </button>
+        </div>
+    </div>
+        <div class="input-group">
+            <label>Agregar una nota</label>
+        <textarea
+                class="form-control dashTextarea "
+                name="textTareaDescription"
+                required=""
+                type="text"
+                placeholder="Nota"
+                ng-model="newTask.Notes"
+                rows="10"
+                cols="50"
+                ng-class="{'invalid':data.textTareaDescription.$error.required && (data.$submitted || data.textTareaDescription.$touched)}">
+                 </textarea>
+            <div class="dashboard-error" ng-show="data.$submitted || data.textTareaDescription.$touched">
+                <div ng-show="data.textTareaDescription.$error.required">Agregar una Nota.</div>
+            </div>
+        </div>
+
+        <div class="signup-field">
+            <button ng-click="createTask(task)" class="btn btn-default pull-right">Guardar</button>
+        </div>
+    </form>
+</div>
+
+<div class="col-md-4">
     Hola Agenda!
 
     Evento {{id}}

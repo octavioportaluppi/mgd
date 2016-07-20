@@ -21,14 +21,7 @@ app.factory('supplierService',
 
     var _getServices = function () {
 
-        var deferred = $q.defer();
-        $http.get(serviceBase + 'api/servicetypes').success(function (res) {
-            deferred.resolve(res);
-        }).error(function (err, status) {
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
+        return $http.get(serviceBase + 'api/servicetypes');
 
     };
 

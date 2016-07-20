@@ -169,8 +169,8 @@ app.controller('dashboardSupplierController',
 	} else {
 		supplierService
 			.getServices()
-			.then(function (data) {
-				$scope.serviceTypes = data
+			.then(function (response) {
+				$scope.serviceTypes = response.data
 			});
 
 		supplierService

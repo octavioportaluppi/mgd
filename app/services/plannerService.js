@@ -4,6 +4,8 @@ app.factory('plannerService', ['$http', '$q', 'ngAuthSettings', function ($http,
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
     var plannerServiceFactory = {};
     var _events = [];
+    
+    
 
     var _getEvents = function () {
         return $http.get(serviceBase + 'api/events')
