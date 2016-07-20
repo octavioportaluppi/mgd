@@ -20,28 +20,37 @@
     margin: 0 0 15px 0;
 }
 
-.guest-group .group-name,
-.guest-group .group-id,
-.guest-group .group-action {
-    padding: 7px 10px;
-    border-radius: 3px;
-}
-
 .guest-group .group-name{
-    background-color: #FFF;
     margin: 0 0 15px 0;
+    background-color: #FFF;
+    border-radius: 3px;
+    padding: 7px 10px;
 }
 
-.guest-group .group-id{
+.guest-group .group-id {
+    padding: 7px 5px 0 0;
+}
+
+.guest-group .group-id span{
     background-color: #aed136;
-    margin: 0 17px 0 0;
+    border-radius: 3px;
+    padding: 10px;
     color: #FFF;
 }
 
 .guest-group .group-action{
+    padding: 0 0 0 5px;
+}
+
+.guest-group .group-action i {
     background-color: #cecece;
-    margin: 0 0 0 17px;
+    padding: 10px;
+    border-radius: 3px;
     color: #FFF;
+}
+
+.guest-group .guest {
+    padding: 7px;
 }
 
 .guests .middle {
@@ -96,4 +105,20 @@
 
 .guests .disabled {
     color: #818181;
+}
+
+.guests .guest-group-form {
+    border-radius: 3px;
+    background: #FFF;
+    padding: 5px 0;
+}
+
+.guests .guest-group-form input[type=text] {
+    border: none;
+    padding: 3px;
+}
+
+.guests .guest-group-form input[type=text].invalid {
+    border: 1px #ee3470 solid;
+    border-radius: 3px;
 }

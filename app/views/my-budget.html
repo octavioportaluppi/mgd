@@ -137,23 +137,12 @@
                 <div class="dashboard-error" ng-show="budgetForm.$submitted || budgetForm.initial.$touched">
                     <div ng-show="budgetForm.initial.$error.required">Agregue un monto inicial.</div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <input type="text"
-                       placeholder="$0"
-                       required="required"
-                       ng-model="newBudget.Final"
-                       name="final"
-                       class="budget-input budget-total budget-add"
-                       ng-class="{'invalid':budgetForm.final.$error.required && (budgetForm.$submitted || budgetForm.final.$touched)}"/>
-                <div class="dashboard-error" ng-show="budgetForm.$submitted || budgetForm.final.$touched">
-                    <div ng-show="budgetForm.final.$error.required">Agregue un monto.</div>
-                </div>
                 <button
                     class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit budget-add">
                     <i class="fa fa-plus"></i>
                 </button>
             </div>
+            <div class="col-md-3"></div>
         </form>
     </div>
 </div>

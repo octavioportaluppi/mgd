@@ -6,6 +6,8 @@ var guestController = ['$scope', 'eventService',
     $scope.newGuest = {};
     $scope.newGuest.IsConfirmed = false;
 
+    $scope.newGuestGroup = {};
+
     $scope.createGuest = function (form){
         if(!form.$valid) {
             return;
@@ -16,7 +18,22 @@ var guestController = ['$scope', 'eventService',
             .then(function (){
                 $scope.getGuests();
                 $scope.newGuest = {};
-                form.$touched = false;
+                form.$setUntouched();
+                form.$setPristine();
+            })
+    };
+
+    $scope.createGuestGroup = function (form) {
+        if(!form.$valid) {
+            return;
+        }
+        eventService
+            .createGuestGroup($scope.id, $scope.newGuestGroup)
+            .then(function () {
+                $scope.getGuests();
+                $scope.newGuestGroup = {};
+                form.$setUntouched();
+                form.$setPristine();
             })
     };
 

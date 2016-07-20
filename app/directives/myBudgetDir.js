@@ -16,7 +16,9 @@ var budgetController = ['$scope', 'eventService',
                 .createBudgetItem($scope.newBudget)
                 .then(function(){
                     $scope.newBudget = {};
-                     $scope.getBudgets();
+                    form.$setUntouched();
+                    form.$setPristine();
+                    $scope.getBudgets();
                 })
         };
 
@@ -31,7 +33,7 @@ var budgetController = ['$scope', 'eventService',
                         .budgets
                         .forEach(function (budget) {
                             totalInitial += parseInt(budget.Initial);
-                            totalFinal += parseInt(budget.Final);
+                            totalFinal += parseInt(budget.PayedSoFar);
                         });
                     $scope.total = {Title: 'Total', Initial: totalInitial, Final: totalFinal}
                 })
@@ -45,6 +47,8 @@ var budgetController = ['$scope', 'eventService',
                 .createPayment(budgetId, $scope.newPayment)
                 .then(function () {
                     $scope.newPayment = {};
+                    form.$setUntouched();
+                    form.$setPristine();
                     $scope.getBudgets();
                 });
         };

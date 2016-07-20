@@ -37,6 +37,10 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
         return $http.post(serviceBase + 'api/events/'+eventId+'/guestsgroups/'+groupGuestId+'/guests', guest)
     };
 
+    var _createGuestGroups = function (eventId, guestGroup) {
+        return $http.post(serviceBase + 'api/events/'+eventId+'/guestsgroups', guestGroup)
+    };
+
     var _updateGuest = function (guest) {
         return $http.put(serviceBase + 'api/guests', guest)
     };
@@ -55,6 +59,7 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
     eventServiceFactory.createGuest = _createGuests;
     eventServiceFactory.updateGuest = _updateGuest;
     eventServiceFactory.getGuestGroups = _getGuestGroups;
+    eventServiceFactory.createGuestGroup = _createGuestGroups;
 
     return eventServiceFactory;
 }]);
