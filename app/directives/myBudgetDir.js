@@ -16,7 +16,9 @@ var budgetController = ['$scope', 'eventService',
                 .createBudgetItem($scope.newBudget)
                 .then(function(){
                     $scope.newBudget = {};
-                     $scope.getBudgets();
+                    form.$setUntouched();
+                    form.$setPristine();
+                    $scope.getBudgets();
                 })
         };
 
@@ -31,17 +33,22 @@ var budgetController = ['$scope', 'eventService',
                         .budgets
                         .forEach(function (budget) {
                             totalInitial += parseInt(budget.Initial);
-                            totalFinal += parseInt(budget.Final);
+                            totalFinal += parseInt(budget.PayedSoFar);
                         });
                     $scope.total = {Title: 'Total', Initial: totalInitial, Final: totalFinal}
                 })
         };
 
-        $scope.addPayment = function(budgetId){
+        $scope.addPayment = function(budgetId, form){
+            if(!form.$valid){
+                return;
+            }
             eventService
                 .createPayment(budgetId, $scope.newPayment)
                 .then(function () {
                     $scope.newPayment = {};
+                    form.$setUntouched();
+                    form.$setPristine();
                     $scope.getBudgets();
                 });
         };
@@ -72,9 +79,27 @@ var budgetController = ['$scope', 'eventService',
             });
             budget.showChilds = !budget.showChilds;
             budget.showForm = !budget.showForm;
+            $scope.newPayment = {};
         };
 
         $scope.getBudgets();
+
+        eventService
+            .getPaymentModes()
+            .then(function(response){
+                $scope.paymentModes = response.data;
+            });
+
+        $scope.getPaymentMode = function (paymentMode){
+            if (!$scope.paymentModes){
+                return;
+            }
+            return $scope
+                .paymentModes
+                .find(function (payment){
+                    return payment.Value == paymentMode;
+                })
+        }
 
 }];
 
