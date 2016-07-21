@@ -1,6 +1,11 @@
 .guests {
     color: #818181;
 }
+
+.guests .btn-edit {
+    margin: 10px 0 10px 0;
+}
+
 .guests .guests-title {
     margin: 60px 0 10px 0;
 }
@@ -27,8 +32,8 @@
 .guest-group .group-name{
     background-color: #FFF;
     border-radius: 3px;
-    padding: 5px 10px;
-    margin: 0 0 17px 0;
+    padding: 8px 10px;
+    margin: 0 0 12px 0;
 }
 
 .guest-group .group-id {
@@ -57,6 +62,10 @@
     padding: 7px;
 }
 
+.guest-group .btn {
+    padding: 6px 3px;
+}
+
 .guests .middle {
     text-align: center;
 }
@@ -73,6 +82,7 @@
     color: #8c3e96;
 }
 
+.guest-group .fa,
 .guest .fa {
     font-size: 2rem;
 }
@@ -117,11 +127,13 @@
     padding: 5px 0;
 }
 
+.guests .guest-group-form-edit input[type=text],
 .guests .guest-group-form input[type=text] {
     border: none;
     padding: 3px;
 }
 
+.guests .guest-group-form-edit input[type=text].invalid,
 .guests .guest-group-form input[type=text].invalid {
     border: 1px #ee3470 solid;
     border-radius: 3px;

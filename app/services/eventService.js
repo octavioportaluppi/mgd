@@ -41,12 +41,39 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
         return $http.post(serviceBase + 'api/events/'+eventId+'/guestsgroups', guestGroup)
     };
 
-    var _updateGuest = function (guest) {
-        return $http.put(serviceBase + 'api/guests', guest)
+    var _updateGuest = function (eventId, groupId, guestId, guest) {
+        return $http
+            .put(serviceBase +
+            'api/events/' + eventId +
+            '/guestsgroups/' + groupId +
+            '/guests/' + guestId, guest);
+    };
+
+    var _updateGuestGroup = function (eventId, groupId, guestGroup) {
+        return $http
+            .put(serviceBase +
+            'api/events/' + eventId +
+            '/guestsgroups/' + groupId, guestGroup);
     };
 
     var _getGuestGroups = function(eventId) {
         return $http.get(serviceBase + 'api/events/' + eventId + '/guestsgroups')
+    };
+
+    var _deleteGuest = function(eventId, groupId, guestId) {
+        return $http
+            .delete(serviceBase +
+            'api/events/' + eventId +
+            '/guestsgroups/' + groupId +
+            '/guests/' + guestId)
+    };
+
+    var _deleteGuestGroup = function(eventId, groupId) {
+        return $http
+            .delete(serviceBase +
+            'api/events/' + eventId +
+            '/guestsgroups/' + groupId +
+            '?keepGuests=true')
     };
 
     eventServiceFactory.createBudgetItem = _createBudgetItem;
@@ -60,6 +87,9 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
     eventServiceFactory.updateGuest = _updateGuest;
     eventServiceFactory.getGuestGroups = _getGuestGroups;
     eventServiceFactory.createGuestGroup = _createGuestGroups;
+    eventServiceFactory.updateGuestGroup = _updateGuestGroup;
+    eventServiceFactory.deleteGuest = _deleteGuest;
+    eventServiceFactory.deleteGuestGroup = _deleteGuestGroup;
 
     return eventServiceFactory;
 }]);

@@ -46,17 +46,6 @@ var guestController = ['$scope', 'eventService',
             })
     };
 
-    $scope.updateGuest = function (form) {
-        if(!form.$valid) {
-            return;
-        }
-        eventService
-            .updateGuest($scope.editGuest)
-            .then(function (){
-                $scope.getGuests();
-            });
-    };
-
     $scope.getGuestGroups = function () {
         eventService
             .getGuestGroups($scope.id)
@@ -69,6 +58,51 @@ var guestController = ['$scope', 'eventService',
                             .guests
                             .filter(function (guest){ return guest.Group.Id === group.Id })
                     })
+            })
+    };
+
+    $scope.deleteGuest = function (groupId, guestId) {
+      eventService
+          .deleteGuest($scope.id, groupId, guestId)
+          .then(function (){
+              $scope.getGuests();
+          })
+    };
+
+    $scope.updateGuest = function (form, guest) {
+        if(!form.$valid) {
+            return;
+        }
+
+        guest.GuestsGroupId = guest.Group.Id;
+
+        eventService
+            .updateGuest(
+                $scope.id,
+                guest.OldGroupId,
+                guest.Id,
+                guest)
+            .then(function () {
+                $scope.getGuests();
+            })
+    };
+
+    $scope.updateGuestGroup = function (form, guestGroup) {
+        if(!form.$valid) {
+            return;
+        }
+        eventService
+            .updateGuestGroup($scope.id, guestGroup.Id, guestGroup)
+            .then(function(){
+                $scope.getGuests();
+            })
+    };
+
+    $scope.deleteGuestGroup = function (guestGroupId) {
+        eventService
+            .deleteGuestGroup($scope.id, guestGroupId)
+            .then(function () {
+                $scope.getGuests();
             })
     };
 
