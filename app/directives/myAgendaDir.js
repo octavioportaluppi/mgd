@@ -29,9 +29,9 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService','eventServi
 
         $scope.createTask = function () {
             $scope.newTask.EventId = $scope.id;
-            $scope.newTask.Status = 0;
+            $scope.newTask.Status = '0';
             agendaService
-                .createTaskItems($scope.newTask)
+                .createTaskItems($scope.id,$scope.newTask)
                 .then(function () {
                     $scope.newTask = {};
                     $scope.addTask = !$scope.addTask;
@@ -56,9 +56,9 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService','eventServi
                 $scope.serviceTypes = res.data
             });
 
-        $scope.deleteItem = function(eventId) {
+        $scope.deleteItem = function(eventId ,id) {
             agendaService
-                .deletTaskItems(eventId)
+                .deletTaskItems(eventId , id)
                 .then(function () {
                     $scope.getItems();
                 })
@@ -66,9 +66,9 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService','eventServi
 
         };
 
-        $scope.update = function(eventId) {
+        $scope.update = function(id, task) {
             agendaService
-                .putTaskItems(eventId)
+                .putTaskItems($scope.id,id, task)
                 .then(function () {
                     $scope.editTask = !$scope.editTask;
                     $scope.getItems();
