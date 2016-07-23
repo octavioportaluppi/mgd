@@ -76,6 +76,10 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
             '?keepGuests=true')
     };
 
+    var _getSuppliers = function (eventId) {
+        return $http.get(serviceBase + 'api/events/' + eventId + '/suppliers');
+    };
+
     eventServiceFactory.createBudgetItem = _createBudgetItem;
     eventServiceFactory.deleteBudget = _deleteBudget;
     eventServiceFactory.getBudgets = _getBudgets;
@@ -90,6 +94,8 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
     eventServiceFactory.updateGuestGroup = _updateGuestGroup;
     eventServiceFactory.deleteGuest = _deleteGuest;
     eventServiceFactory.deleteGuestGroup = _deleteGuestGroup;
+
+    eventServiceFactory.getSuppliers = _getSuppliers;
 
     return eventServiceFactory;
 }]);

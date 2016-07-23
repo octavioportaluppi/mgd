@@ -1,5 +1,23 @@
-<div>
-    Hola Proveedor
-
-    Evento {{id}}
+<div class="row">
+    <div class="col-md-7" style="background-color: #F4F4F4; min-height: 400px;">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <p>Favoritos</p>
+            </div>
+            <div class="col-md-6 clearfix">
+                <input type="text" class="pull-right" placeholder="Buscar">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5" style="background-color: #ECECEC">
+        <div class="col-md-12">
+            <p>Agrega nuevos proveedores</p>
+        </div>
+        <div class="col-md-6 col-sm-6" ng-repeat="service in services">
+            <p>{{service.Name}}</p>
+        </div>
+        <div>
+            <p>Recomendaciones</p>
+        </div>
+    </div>
 </div>

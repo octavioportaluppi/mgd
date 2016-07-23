@@ -17,28 +17,22 @@ app.factory('supplierService',
         });
 
         return deferred.promise;        
-    }
+    };
 
     var _getServices = function () {
-
         return $http.get(serviceBase + 'api/servicetypes');
-
     };
 
     var _getEventServices = function (event) {
-        //console.log(event);
         var deferred = $q.defer();
         $http.get(serviceBase + 'api/eventtypes/'+event+'/servicetypes')
             .success(function (res) {
-            //console.log(res);
             deferred.resolve(res);
         }).error(function (err, status) {
             console.log('error');
             deferred.reject(err);
         });
-
         return deferred.promise;
-
     };
 
     var _getSuppliers = function () {
@@ -152,6 +146,10 @@ app.factory('supplierService',
         return $http.get(serviceBase + 'api/eventtypes');
     };
 
+    var _getPremiumSuppliers = function () {
+        return $http.get(serviceBase + 'api/suppliers/premium', {params: {max: 10}});
+    };
+
     supplierServiceFactory.getDashboard = _getDashboard;
     supplierServiceFactory.getEvents = _getEvents;
     supplierServiceFactory.getServices = _getServices;    
@@ -166,6 +164,8 @@ app.factory('supplierService',
     supplierServiceFactory.getAnswers = getAnswers;
     supplierServiceFactory.saveQuestions = saveQuestions;
     supplierServiceFactory.getSuppliersById = getSuppliersById;
+
+    supplierServiceFactory.getPremiumSuppliers = _getPremiumSuppliers;
 
     return supplierServiceFactory;
 }]);

@@ -4,8 +4,9 @@ app.controller(
     [
         '$scope', 
         '$routeParams', 
-        'supplierService', 
-        function ($scope, $routeParams, supplierService) {
+        'supplierService',
+        'ngAuthSettings',
+        function ($scope, $routeParams, supplierService, ngAuthSettings) {
 
             $scope.size = 5;
             $scope.page = 1;
