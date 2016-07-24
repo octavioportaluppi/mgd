@@ -38,9 +38,13 @@ app.config(function($routeProvider) {
     });
 
     $routeProvider.when("/suppliers", {
-        controller: "suppliersController",
         templateUrl: "/app/views/suppliers.html"
     });
+
+    /*$routeProvider.when("/suppliers/:supplierId",{
+        controller: "suppliersController",
+        templateUrl: "/app/views/supplier-detail.html"
+    });*/
 
     $routeProvider.when("/dashboard", {
         controller: "dashboardSupplierController",
@@ -62,10 +66,6 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/signup-welcome.html"
     });
 
-    $routeProvider.when("/suppliers/:supplierId",{
-        controller: "suppliersController",
-        templateUrl: "/app/views/supplier-detail.html"
-    });
 
     $routeProvider.when("/events/:eventId/detail",{
         controller: "eventDetailController",

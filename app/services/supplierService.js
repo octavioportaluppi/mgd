@@ -122,9 +122,10 @@ app.factory('supplierService',
         if(filter)
             params[filter.name] = filter.value;
         if(query)
-            params.query = query;
+            params.Query = query;
         if(cityId)
             params.CityId = cityId;
+        params.OrderSeed = 1;
         return params;
     };
 

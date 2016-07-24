@@ -1,6 +1,6 @@
 'use strict';
 
-var controller = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService', '$filter',
+var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService', '$filter',
     function ($scope, supplierService, ngAuthSettings, stateService, $filter){
 
     $scope.size = 5;
@@ -93,6 +93,6 @@ app.directive('mySupplierList', function() {
             filter: '='
         },
         templateUrl: '/app/views/my-suppliers-list.html',
-        controller: controller
+        controller: supplierListController
     };
 });

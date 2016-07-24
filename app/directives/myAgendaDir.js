@@ -26,7 +26,10 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
             $scope.datepicker.opened = true;
         };
 
-        $scope.createTask = function () {
+        $scope.createTask = function (form) {
+            if(!form.$valid) {
+                return;
+            }
             $scope.newTask.EventId = $scope.id;
             $scope.newTask.Status = '0';
             agendaService

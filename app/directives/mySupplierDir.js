@@ -2,7 +2,7 @@
 
 var controller = ['$scope', 'eventService', 'supplierService',
     function ($scope, eventService, supplierService){
-
+/*
         eventService
             .getSuppliers($scope.id)
             .then(function (response){
@@ -20,7 +20,7 @@ var controller = ['$scope', 'eventService', 'supplierService',
             .then(function (response) {
                 $scope.premiumSuppliers = response.data;
             })
-
+*/
 }];
 
 app.directive('mySupplier', function() {
