@@ -1,11 +1,11 @@
 'use strict';
 
-var controllerAgenda = ['$scope', 'supplierService', 'agendaService','eventService',
+var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
     function ($scope, supplierService, agendaService) {
 
         $scope.serviceTypes = {};
         $scope.newTask = {};
-        $scope.taskItem = {};
+        $scope.taskItem = [];
         $scope.addTask = false;
         $scope.editTask = false;
 
@@ -19,7 +19,6 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService','eventServi
             appendToBody: true,
             placement: 'top-right',
             formatYear: 'yy',
-            maxDate: new Date(),
             startingDay: 1
         };
 
@@ -44,6 +43,9 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService','eventServi
                 .getTaskItems($scope.id)
                 .then(function(response){
                     $scope.taskItem = response.data
+                    $scope.taskItem.forEach(function (item){
+                        item.DueDate = uibDateParser.input(item.DueDate)
+                    });
                 });
         };
 
@@ -56,9 +58,9 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService','eventServi
                 $scope.serviceTypes = res.data
             });
 
-        $scope.deleteItem = function(eventId ,id) {
+        $scope.deleteItem = function(id) {
             agendaService
-                .deletTaskItems(eventId , id)
+                .deletTaskItems($scope.id, id)
                 .then(function () {
                     $scope.getItems();
                 })
@@ -67,10 +69,13 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService','eventServi
         };
 
         $scope.update = function(id, task) {
+
+            task.ServiceTypeId = task.ServiceType.Id;
+
             agendaService
                 .putTaskItems($scope.id,id, task)
                 .then(function () {
-                    $scope.editTask = !$scope.editTask;
+                    $scope.editTask = false;
                     $scope.getItems();
                 })
         }
