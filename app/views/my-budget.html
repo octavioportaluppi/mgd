@@ -57,16 +57,7 @@
             name="newPaymentForm"
             novalidate>
             <div class="col-md-6">
-                <input type="text"
-                       placeholder="AGREGAR GASTO"
-                       required="required"
-                       name="title"
-                       ng-model="newPayment.Title"
-                       class="budget-input budget-total budget-payment"
-                       ng-class="{'invalid':newPaymentForm.title.$error.required && (newPaymentForm.$submitted || newPaymentForm.title.$touched)}"/>
-                <div class="dashboard-error" ng-show="newPaymentForm.$submitted || newPaymentForm.title.$touched">
-                    <div ng-show="newPaymentForm.title.$error.required">Agregue un titulo para el pago.</div>
-                </div>
+                <p class="budget-input budget-payment ">AGREGAR PAGO</p>
             </div>
             <div class="col-md-3">
                 <select
@@ -94,7 +85,6 @@
                     <div ng-show="newPaymentForm.value.$error.required">Agregue un monto.</div>
                 </div>
                 <button
-                    ng-disabled="!newPaymentForm.$valid"
                     class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit">
                     <i class="fa fa-plus"></i>
                 </button>
