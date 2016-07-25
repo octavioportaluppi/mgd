@@ -45,10 +45,11 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
             agendaService
                 .getTaskItems($scope.id)
                 .then(function(response){
-                    $scope.taskItem = response.data
-                    $scope.taskItem.forEach(function (item){
-                        item.DueDate = uibDateParser.input(item.DueDate)
-                    });
+                    $scope.taskItem = response.data.Content;
+                    $scope.filters = {};
+                    $scope.filters.today = response.data.TodayCount;
+                    $scope.filters.week = response.data.WeekCount;
+                    $scope.filters.services = response.data.CategoryCounts;
                 });
         };
 

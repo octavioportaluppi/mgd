@@ -8,32 +8,29 @@
                 <li class="clearfix">
                     <i class="fa fa-calendar-o"></i>
                     Hoy
-                    <i class="info-filter pull-right">0</i>
+                    <i class="info-filter pull-right">{{filters.today}}</i>
                 </li>
                 <li class="clearfix">
                     <i class="fa fa-calendar"></i>
                     Semana
-                    <i class="info-filter pull-right">0</i>
+                    <i class="info-filter pull-right">{{filters.week}}</i>
                 </li>
-                <li class="clearfix">
-                    <i class="icon icon-catering"></i>
-                    Catering
-                    <i class="info-filter pull-right">0</i>
-                </li>
-                <li class="clearfix">
-                    <i class="fa fa-gift"></i>
-                    Mesa de Regalo
-                    <i class="info-filter pull-right">0</i>
+                <li class="clearfix" ng-repeat="categoryFilter in filters.services">
+                    <i class="icon {{categoryFilter.Title | icon}}"></i>
+                    {{categoryFilter.Title}}
+                    <i class="info-filter pull-right">{{categoryFilter.Count}}</i>
                 </li>
             </ul>
         </div>
     </div>
     <div class="col-md-5" style="background-color: #FAF5FB; min-height: 400px;">
         <div class="col-md-12" style="margin: 20px 0 10px 0;">
-            <button
-                ng-click="addTask = !addTask"
-                style="width: 100%;"
-                class="btn btn-defasult btn-submit btn-task">Agregar Tarea</button>
+            <div class="row">
+                <button
+                    ng-click="addTask = !addTask"
+                    style="width: 100%;"
+                    class="btn btn-defasult btn-submit btn-task">Agregar Tarea</button>
+            </div>
         </div>
         <div class="col-md-12 task-form" uib-collapse="!addTask">
             <form name="data" novalidate="novalidate">
@@ -113,9 +110,18 @@
                 </div>
             </form>
         </div>
-
-        <div class="col-md-12" ng-repeat="item in taskItem">
-            <span class="ligth-description">{{item.Title}}</span>
+        <div class="col-md-12 task clearfix" ng-repeat="item in taskItem" ng-class="{'selected': item.selected}">
+            <div class="checkbox-item" ng-click="item.selected = !item.selected;">
+                <i class="fa fa-check"></i>
+            </div>
+            <span class="checkbox-label">
+                <input type="checkbox">
+                {{item.Title}}
+            </span>
+            <span class="pull-right">
+                {{item.DueDate | date: 'EEE, d '}}de{{item.DueDate | date: ' MMM de yyyy'}}
+            </span>
+            <!--
             <div class="list-item clearfix">
                 <div ng-hide="editTask == !editTask">
                     <div class="col-md-6">
@@ -124,7 +130,6 @@
                         <button ng-click="deleteItem(item.Id)" class="btn btn-primary btn-sm">Borrar</button>
                         <button ng-click="editTask = !editTask" class="btn btn-primary btn-sm">Editar</button>
                     </div>
-                    <!--
                     <form name="form" ng-show="editTask" novalidate="novalidate">
                         <div class="input-group">
                             <input
@@ -201,9 +206,9 @@
                             <button ng-click="update(item.Id, item)" class="btn btn-default pull-right">Guardar</button>
                         </div>
                     </form>
-                    -->
                 </div>
             </div>
+            -->
         </div>
 
     </div>

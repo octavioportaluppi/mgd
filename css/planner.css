@@ -238,13 +238,15 @@
 }
 
 .calendar-filter li .icon {
+    font-weight: 600;
+    font-size: 2.6rem;
     margin: 0;
-    font-size: 3rem;
+    padding: 0;
 }
 
 .calendar-filter li .fa{
     font-size: 2rem;
-    padding: 0 10px 0 0;
+    padding: 0 3px 0 4px;
 }
 
 
@@ -253,13 +255,62 @@
 }
 
 .calendar-filter li .info-filter {
-    padding: 5px 10px;
     font-style: normal;
     background: #d4b5d9;
     border-radius: 50%;
     color: #FFFFFF;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    padding: 3px 0 0 0;
 }
 
 .task-form .input-group {
     margin: 0 0 20px 0;
+}
+
+.task {
+    background-color: #d4b5d9;
+    padding: 0 10px;
+    border-radius: 3px;
+    margin: 0 0 15px;
+    cursor: pointer;
+}
+
+.task.selected {
+    background-color: #8c3e96;
+}
+
+.task .checkbox-item {
+    width: 17px;
+    height: 17px;
+    padding: 0 0 0 2px;
+    position: absolute;
+    background: #FFF;
+    border-radius: 3px;
+    color: #aed136;
+    top: 8px;
+}
+
+.task .checkbox-item i {
+    display: none;
+}
+
+.task.selected .checkbox-item i {
+    display: inline;
+}
+
+.task span {
+    color: #FFFFFF;
+    margin: 0 0 0 10px;
+    font-size: 1.5rem;
+    line-height: 35px;
+}
+
+.task span.checkbox-label {
+    text-transform: uppercase;
+}
+
+.task.selected span.checkbox-label {
+    text-decoration: line-through;
 }
