@@ -36,6 +36,8 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
                 .createTaskItems($scope.id,$scope.newTask)
                 .then(function () {
                     $scope.newTask = {};
+                    form.$setUntouched();
+                    form.$setPristine();
                     $scope.selectedFilter = 'all';
                     $scope.addTask = !$scope.addTask;
                     $scope.getItems()
