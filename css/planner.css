@@ -250,7 +250,8 @@
 }
 
 
-.calendar-filter li:hover{
+.calendar-filter li:hover,
+.calendar-filter li.selected {
     background: #f2ebf3;
 }
 
@@ -296,7 +297,7 @@
     display: none;
 }
 
-.task.selected .checkbox-item i {
+.task.completed .checkbox-item i {
     display: inline;
 }
 
@@ -311,6 +312,6 @@
     text-transform: uppercase;
 }
 
-.task.selected span.checkbox-label {
+.task.completed span.checkbox-label {
     text-decoration: line-through;
 }

@@ -5,17 +5,35 @@
                 <span>Tareas</span>
             </div>
             <ul class="col-md-12 calendar-filter">
-                <li class="clearfix">
+                <li
+                    class="clearfix"
+                    ng-class="{'selected': selectedFilter === 'all'}"
+                    ng-click="doFilter('all')">
+                    <i class="fa fa-thumb-tack"></i>
+                    Todos
+                    <i class="info-filter pull-right">{{total}}</i>
+                </li>
+                <li
+                    class="clearfix"
+                    ng-class="{'selected': selectedFilter === 'today'}"
+                    ng-click="doFilter('today')">
                     <i class="fa fa-calendar-o"></i>
                     Hoy
                     <i class="info-filter pull-right">{{filters.today}}</i>
                 </li>
-                <li class="clearfix">
+                <li
+                    class="clearfix"
+                    ng-class="{'selected': selectedFilter === 'week'}"
+                    ng-click="doFilter('week')">
                     <i class="fa fa-calendar"></i>
                     Semana
                     <i class="info-filter pull-right">{{filters.week}}</i>
                 </li>
-                <li class="clearfix" ng-repeat="categoryFilter in filters.services">
+                <li
+                    class="clearfix"
+                    ng-repeat="categoryFilter in filters.services"
+                    ng-class="{'selected': selectedFilter === categoryFilter.Id}"
+                    ng-click="doFilter('service', categoryFilter.Id)">
                     <i class="icon {{categoryFilter.Title | icon}}"></i>
                     {{categoryFilter.Title}}
                     <i class="info-filter pull-right">{{categoryFilter.Count}}</i>
@@ -110,8 +128,12 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-12 task clearfix" ng-repeat="item in taskItem" ng-class="{'selected': item.selected}">
-            <div class="checkbox-item" ng-click="item.selected = !item.selected;">
+        <div
+            class="col-md-12 task clearfix"
+            ng-repeat="item in taskItem"
+            ng-class="{'selected': item.selected, 'completed': item.Status === 1}"
+            ng-click="item.selected = !item.selected;">
+            <div class="checkbox-item" ng-click="completeTask(item)">
                 <i class="fa fa-check"></i>
             </div>
             <span class="checkbox-label">
@@ -119,7 +141,7 @@
                 {{item.Title}}
             </span>
             <span class="pull-right">
-                {{item.DueDate | date: 'EEE, d '}}de{{item.DueDate | date: ' MMM de yyyy'}}
+                {{item.DueDate | date: 'EEE, d '}}de{{item.DueDate | date: ' MMM '}} del {{item.DueDate | date: ' yyyy'}}
             </span>
             <!--
             <div class="list-item clearfix">

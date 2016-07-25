@@ -41,20 +41,68 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
                 });
         };
 
-        $scope.getItems = function () {
+        $scope.getItems = function (filter) {
             agendaService
-                .getTaskItems($scope.id)
+                .getTaskItems($scope.id, filter)
                 .then(function(response){
-                    $scope.taskItem = response.data.Content;
-                    $scope.filters = {};
-                    $scope.filters.today = response.data.TodayCount;
-                    $scope.filters.week = response.data.WeekCount;
-                    $scope.filters.services = response.data.CategoryCounts;
+                    if(!filter) {
+                        $scope.total = response.data.Content.length;
+                    }
+                    $scope.handleResponse(response);
+                    $scope.updateFilters(response);
                 });
         };
 
-        $scope.getItems();
+        $scope.getTodayItems = function () {
+            var filter = { params: {fromDate: new Date(), toDate: new Date()}};
+            $scope.getItems(filter);
+        };
 
+        $scope.getWeekItems = function () {
+            var curr = new Date;
+            var first = curr.getDate() - curr.getDay();
+            var last = first + 6;
+
+            var firstDay = new Date(curr.setDate(first));
+            var lastDay = new Date(curr.setDate(last));
+            var filter = { params: { fromDate: firstDay, toDate: lastDay}};
+            $scope.getItems(filter);
+        };
+
+        $scope.getServiceItems = function (serviceId) {
+            var params = { params: { ServiceTypeId: serviceId }};
+            $scope.getItems(params);
+        };
+
+        $scope.handleResponse = function (response){
+            $scope.taskItem = response.data.Content;
+        };
+
+        $scope.updateFilters = function (response){
+            $scope.filters = {};
+            $scope.filters.today = response.data.TodayCount;
+            $scope.filters.week = response.data.WeekCount;
+            $scope.filters.services = response.data.CategoryCounts;
+        };
+
+        $scope.doFilter = function (filter, param) {
+            var resultFilter = $scope.availableFilters[filter];
+            if(!resultFilter) { return; }
+            if(!param) {
+                $scope.selectedFilter = filter;
+            } else {
+                $scope.selectedFilter = param;
+            }
+            resultFilter(param);
+        };
+
+        $scope.completeTask = function (task) {
+            agendaService
+                .completeTask($scope.id, task.Id)
+                .then(function () {
+                    task.Status = 1;
+                });
+        };
 
         supplierService
             .getServices()
@@ -82,7 +130,17 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
                     $scope.editTask = false;
                     $scope.getItems();
                 })
-        }
+        };
+
+        $scope.selectedFilter = 'all';
+        $scope.availableFilters = {
+            'all':$scope.getItems,
+            'today':$scope.getTodayItems,
+            'week':$scope.getWeekItems,
+            'service': $scope.getServiceItems
+        };
+
+        $scope.getItems();
     }];
 
 app.directive('myAgenda', function () {
