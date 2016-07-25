@@ -36,6 +36,7 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
                 .createTaskItems($scope.id,$scope.newTask)
                 .then(function () {
                     $scope.newTask = {};
+                    $scope.selectedFilter = 'all';
                     $scope.addTask = !$scope.addTask;
                     $scope.getItems()
                 });
@@ -116,8 +117,6 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
                 .then(function () {
                     $scope.getItems();
                 })
-
-
         };
 
         $scope.update = function(id, task) {
