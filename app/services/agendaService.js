@@ -5,6 +5,7 @@ app.factory('agendaService', ['$http', 'ngAuthSettings',function ($http, ngAuthS
 
     var agendaServiceFactory = {};
 
+
     var _createTaskItems = function (eventId , task) {
         return $http.post(serviceBase + 'api/Events/' + eventId + '/TaskItems', task);
     };
@@ -26,11 +27,18 @@ app.factory('agendaService', ['$http', 'ngAuthSettings',function ($http, ngAuthS
         return $http.post(serviceBase + 'api/Events/' + eventId + '/TaskItems/' + id + '/Completed', {});
     };
 
+    var _getItemTask = function (eventId , id, taskId) {
+        return $http.get(serviceBase + 'api/Events/' + eventId + '/TaskItems/' + id, taskId);
+    };
+
+
     agendaServiceFactory.createTaskItems = _createTaskItems;
     agendaServiceFactory.getTaskItems = _getTaskItems;
     agendaServiceFactory.deletTaskItems = _deleteTaskItems;
     agendaServiceFactory.putTaskItems = _putTaskItems;
-    agendaServiceFactory.completeTask = _completeTask;
+    agendaServiceFactory.completeTask = _completeTask
+    agendaServiceFactory.getItemTask = _getItemTask;
+
 
     return agendaServiceFactory;
 }]);

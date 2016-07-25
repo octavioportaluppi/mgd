@@ -8,6 +8,8 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
         $scope.taskItem = [];
         $scope.addTask = false;
         $scope.editTask = false;
+        $scope.showTask = false;
+        $scope.itemTask = {};
 
         $scope.datepicker = {
             opened: false
@@ -129,6 +131,19 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
                 .putTaskItems($scope.id,id, task)
                 .then(function () {
                     $scope.editTask = false;
+                    $scope.getItems();
+                })
+        };
+
+        $scope.getOneTask = function(id, itemTask) {
+
+            itemTask.ServiceTypeId = itemTask.ServiceType.Id;
+
+            agendaService
+                .getItemTask($scope.id,id, itemTask)
+                .then(function () {
+                    $scope.itemTask = itemTask;
+                    $scope.showTask = false;
                     $scope.getItems();
                 })
         };

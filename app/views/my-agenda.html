@@ -136,13 +136,15 @@
             <div class="checkbox-item" ng-click="completeTask(item)">
                 <i class="fa fa-check"></i>
             </div>
-            <span class="checkbox-label">
+            <div ng-click="getOneTask(item.Id, item)">
+            <span class="checkbox-label" >
                 <input type="checkbox">
                 {{item.Title}}
             </span>
             <span class="pull-right">
                 {{item.DueDate | date: 'EEE, d '}}de{{item.DueDate | date: ' MMM '}} del {{item.DueDate | date: ' yyyy'}}
             </span>
+            </div>
             <!--
             <div class="list-item clearfix">
                 <div ng-hide="editTask == !editTask">
@@ -232,6 +234,24 @@
             </div>
             -->
         </div>
+    </div>
+    <div ng-if="itemTask.Id > 0 ">
+    <div class="col-md-4">
+        <div class="container-fluid panel">
+            <h4 class="index-title">
+                <i class="icon {{itemTask.ServiceType.Name | icon}}"></i>
+                {{itemTask.ServiceType.Name}}
 
+            </h4>
+        </div>
+        </div>
+        <div class="col-md-4 container-fluid panel sub-title">
+            <h4 style="text-align: center" class="address">
+                {{itemTask.Title | firstLetter}}</h4>
+            <p class="task-date">
+                <i class="fa fa-calendar-o"></i>
+                Vence el   {{itemTask.DueDate | date: 'EEE, d '}}de{{itemTask.DueDate | date: ' MMM de yyyy'}}</p>
+            <p class="modal-header">{{itemTask.Notes}}</p>
+        </div>
     </div>
 </div>
