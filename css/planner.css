@@ -272,7 +272,7 @@
 
 .task {
     background-color: #d4b5d9;
-    padding: 0 10px;
+    padding: 8px 10px 5px 10px;
     border-radius: 3px;
     margin: 0 0 15px;
     cursor: pointer;
@@ -282,22 +282,24 @@
     background-color: #8c3e96;
 }
 
-.task .checkbox-item {
-    width: 17px;
-    height: 17px;
+.task .checkbox-item,
+.task-detail .checkbox-item{
+    width: 19px;
+    height: 19px;
     padding: 0 0 0 2px;
-    position: absolute;
     background: #FFF;
+    border: 1px #797A7D solid;
     border-radius: 3px;
     color: #aed136;
-    top: 8px;
 }
 
-.task .checkbox-item i {
+.task .checkbox-item i,
+.task-detail .checkbox-item i{
     display: none;
 }
 
-.task.completed .checkbox-item i {
+.task.completed .checkbox-item i,
+.task-detail.completed .checkbox-item i{
     display: inline;
 }
 
@@ -305,13 +307,29 @@
     color: #FFFFFF;
     margin: 0 0 0 10px;
     font-size: 1.5rem;
-    line-height: 35px;
 }
 
-.task span.checkbox-label {
+.task span.checkbox-label,
+.task-detail span.checkbox-label{
     text-transform: uppercase;
 }
 
-.task.completed span.checkbox-label {
+.task.completed span.checkbox-label,
+.task-detail.completed span.checkbox-label{
     text-decoration: line-through;
+}
+
+.task-detail {
+    background: #FFF;
+    color: #818181; !important;
+    padding: 35px 20px 30px 20px;
+}
+
+.task-detail .checkbox-item {
+    margin: 2px 0 0 0;
+}
+
+.task-detail span {
+    margin: 0 0 0 10px;
+    font-size: 2rem;
 }

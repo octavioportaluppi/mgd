@@ -81,6 +81,8 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
 
         $scope.handleResponse = function (response){
             $scope.taskItem = response.data.Content;
+            if($scope.taskItem.length > 0)
+                $scope.getOneTask($scope.taskItem[0]);
         };
 
         $scope.updateFilters = function (response){
@@ -104,8 +106,16 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
         $scope.completeTask = function (task) {
             agendaService
                 .completeTask($scope.id, task.Id)
-                .then(function () {
-                    task.Status = 1;
+                .then(function (response) {
+                    if(task.Id === $scope.taskItemSelected.Id) {
+                        $scope.taskItemSelected.Status = response.data;
+                    }
+                    var elem = $scope.taskItem.find(function (item){
+                        return item.Id === task.Id;
+                    });
+                    if(elem) {
+                        elem.Status = response.data;
+                    }
                 });
         };
 
@@ -135,16 +145,20 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
                 })
         };
 
-        $scope.getOneTask = function(id, itemTask) {
+        $scope.selectTaskItem = function(taskItem) {
+            $scope.taskItem.forEach(function (item) {item.selected = false;});
+            taskItem.selected = true;
+        };
+
+        $scope.getOneTask = function(itemTask) {
+
+            $scope.selectTaskItem(itemTask);
 
             itemTask.ServiceTypeId = itemTask.ServiceType.Id;
-
             agendaService
-                .getItemTask($scope.id,id, itemTask)
-                .then(function () {
-                    $scope.itemTask = itemTask;
-                    $scope.showTask = false;
-                    $scope.getItems();
+                .getItemTask($scope.id, itemTask.Id, itemTask)
+                .then(function (response) {
+                    $scope.taskItemSelected = response.data;
                 })
         };
 

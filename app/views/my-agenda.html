@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3" style="min-height: 500px">
         <div class="row">
             <div class="col-md-12 calendar-title">
                 <span>Tareas</span>
@@ -41,7 +41,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-5" style="background-color: #FAF5FB; min-height: 400px;">
+    <div class="col-md-5" style="background-color: #FAF5FB; min-height: 500px;">
         <div class="col-md-12" style="margin: 20px 0 10px 0;">
             <div class="row">
                 <button
@@ -129,22 +129,19 @@
             </form>
         </div>
         <div
-            class="col-md-12 task clearfix"
+            class="col-md-12 clearfix task"
             ng-repeat="item in taskItem"
             ng-class="{'selected': item.selected, 'completed': item.Status === 1}"
-            ng-click="item.selected = !item.selected;">
-            <div class="checkbox-item" ng-click="completeTask(item)">
+            ng-click="getOneTask(item)">
+            <div class="checkbox-item pull-left" ng-click="completeTask(item)">
                 <i class="fa fa-check"></i>
             </div>
-            <div ng-click="getOneTask(item.Id, item)">
-            <span class="checkbox-label" >
-                <input type="checkbox">
+            <span class="checkbox-label">
                 {{item.Title}}
             </span>
             <span class="pull-right">
                 {{item.DueDate | date: 'EEE, d '}}de{{item.DueDate | date: ' MMM '}} del {{item.DueDate | date: ' yyyy'}}
             </span>
-            </div>
             <!--
             <div class="list-item clearfix">
                 <div ng-hide="editTask == !editTask">
@@ -235,23 +232,42 @@
             -->
         </div>
     </div>
-    <div ng-if="itemTask.Id > 0 ">
     <div class="col-md-4">
-        <div class="container-fluid panel">
-            <h4 class="index-title">
-                <i class="icon {{itemTask.ServiceType.Name | icon}}"></i>
-                {{itemTask.ServiceType.Name}}
-
-            </h4>
-        </div>
-        </div>
-        <div class="col-md-4 container-fluid panel sub-title">
-            <h4 style="text-align: center" class="address">
-                {{itemTask.Title | firstLetter}}</h4>
-            <p class="task-date">
-                <i class="fa fa-calendar-o"></i>
-                Vence el   {{itemTask.DueDate | date: 'EEE, d '}}de{{itemTask.DueDate | date: ' MMM de yyyy'}}</p>
-            <p class="modal-header">{{itemTask.Notes}}</p>
+        <div class="row">
+            <div class="col-md-12 task-detail clearfix"
+                 ng-class="{'completed': taskItemSelected.Status === 1}">
+                <div class="checkbox-item pull-left" style="cursor:pointer;" ng-click="completeTask(taskItemSelected)">
+                    <i class="fa fa-check"></i>
+                </div>
+                <span class="checkbox-label">
+                    {{taskItemSelected.Title | firstLetter}}
+                </span>
+                <div class="pull-right" style="font-size: 2rem; cursor: pointer">
+                    <i class="fa fa-pencil" style="margin-right: 5px;"></i>
+                    <i class="fa fa-trash" ng-click="taskItemSelected.delete = true;"></i>
+                </div>
+            </div>
+            <div class="col-md-12 clearfix" uib-collapse="!taskItemSelected.delete">
+                <p class="pull-left" style="margin: 15px 0 0 0">Esta seguro de eliminar la tarea?</p>
+                <button class="btn btn-defasult btn-edit pull-right" ng-click="taskItemSelected.delete = false;" style="margin: 10px 0 0 0">No</button>
+                <button
+                        class="btn btn-defasult btn-edit btn-submit pull-right" ng-click="deleteItem(taskItemSelected.Id)">Si</button>
+            </div>
+            <div class="col-md-12" style="background: #ececec; padding: 20px 35px; min-height: 500px">
+                <div class="row">
+                    <div class="col-md-12" style="padding: 10px; background-color: #FFF; border-radius: 3px; border: 1px #818181 solid;">
+                        <i class="icon {{taskItemSelected.ServiceType.Name | icon}}"></i>
+                        <span style="color: #818181;">{{taskItemSelected.ServiceType.Name}}</span>
+                    </div>
+                    <div class="col-md-12" style="margin: 10px 0 0 0; padding: 10px; background-color: #FFF; border-radius: 3px; border: 1px #818181 solid;">
+                        <i class="icon glyphicon glyphicon-calendar" style="color: #818181; font-size: 1.9rem;"></i>
+                        <span style="color: #818181;">Vence el {{taskItemSelected.DueDate | date: 'EEE, d '}}de{{taskItemSelected.DueDate | date: ' MMM '}} del {{taskItemSelected.DueDate | date: ' yyyy'}}</span>
+                    </div>
+                    <div class="col-md-12" style="margin: 10px 0 0 0; background-color: #DBDDDF; padding: 10px; border-radius: 3px; border: 1px #818181 solid; min-height: 200px">
+                        <span style="color: #818181;">{{taskItemSelected.Notes}}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -24,7 +24,7 @@ app.factory('agendaService', ['$http', 'ngAuthSettings',function ($http, ngAuthS
     };
 
     var _completeTask = function (eventId, id) {
-        return $http.post(serviceBase + 'api/Events/' + eventId + '/TaskItems/' + id + '/Completed', {});
+        return $http.put(serviceBase + 'api/Events/' + eventId + '/TaskItems/' + id + '/toggle', {});
     };
 
     var _getItemTask = function (eventId , id, taskId) {
@@ -36,7 +36,7 @@ app.factory('agendaService', ['$http', 'ngAuthSettings',function ($http, ngAuthS
     agendaServiceFactory.getTaskItems = _getTaskItems;
     agendaServiceFactory.deletTaskItems = _deleteTaskItems;
     agendaServiceFactory.putTaskItems = _putTaskItems;
-    agendaServiceFactory.completeTask = _completeTask
+    agendaServiceFactory.completeTask = _completeTask;
     agendaServiceFactory.getItemTask = _getItemTask;
 
 
