@@ -83,6 +83,8 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
             $scope.taskItem = response.data.Content;
             if($scope.taskItem.length > 0)
                 $scope.getOneTask($scope.taskItem[0]);
+            else
+                $scope.taskItemSelected = undefined;
         };
 
         $scope.updateFilters = function (response){
@@ -133,16 +135,27 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
                 })
         };
 
-        $scope.update = function(id, task) {
+        $scope.update = function(form) {
+
+            if(!form.$valid) {
+                return;
+            }
+
+            var task = $scope.taskItemSelected;
 
             task.ServiceTypeId = task.ServiceType.Id;
 
             agendaService
-                .putTaskItems($scope.id,id, task)
+                .putTaskItems($scope.id, task.Id, task)
                 .then(function () {
                     $scope.editTask = false;
                     $scope.getItems();
                 })
+        };
+
+        $scope.edit = function () {
+            $scope.taskItemSelected.DueDate = new Date($scope.taskItemSelected.DueDate);
+            $scope.taskItemSelected.edit = true;
         };
 
         $scope.selectTaskItem = function(taskItem) {

@@ -142,98 +142,10 @@
             <span class="pull-right">
                 {{item.DueDate | date: 'EEE, d '}}de{{item.DueDate | date: ' MMM '}} del {{item.DueDate | date: ' yyyy'}}
             </span>
-            <!--
-            <div class="list-item clearfix">
-                <div ng-hide="editTask == !editTask">
-                    <div class="col-md-6">
-                        <div class="ligth-description">{{item.ServiceType.Name}} {{item.DueDate | date:"MM/dd/yyyy"}}
-                        </div>
-                        <button ng-click="deleteItem(item.Id)" class="btn btn-primary btn-sm">Borrar</button>
-                        <button ng-click="editTask = !editTask" class="btn btn-primary btn-sm">Editar</button>
-                    </div>
-                    <form name="form" ng-show="editTask" novalidate="novalidate">
-                        <div class="input-group">
-                            <input
-                                    class="form-control"
-                                    type="text"
-                                    name="tarea"
-                                    placeholder="Agregar Tarea"
-                                    required="required"
-                                    ng-model="item.Title"
-                                    ng-class="{'invalid':(form.tarea.$error.required || form.tarea.$error.pattern) && (form.$submitted || form.tarea.$touched)}"/>
-                            <div class="dashboard-error" ng-show="form.$submitted || form.tarea.$touched">
-                                <div ng-show="form.tarea.$error.required">Agregar una Tarea.</div>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <select class="form-control"
-                                    required="required"
-                                    name="service"
-                                    ng-model="item.ServiceType"
-                                    ng-options="service as service.Name for service in serviceTypes track by service.Id"
-                                    ng-class="{'invalid':form.service.$error.required && (form.$submitted || form.service.$touched)}">
-                            </select>
-                        </div>
-                        <div class="error" ng-show="form.$submitted || form.service.$touched">
-                            <div ng-show="form.service.$error.required">Selecciona un servicio.</div>
-                        </div>
-                        <div class="input-group">
-                            <input
-                                    class="form-control"
-                                    type="text"
-                                    uib-datepicker-popup="dd/MM/yyyy"
-                                    ng-model="item.DueDate"
-                                    name="date"
-                                    is-open="datepicker.opened"
-                                    datepicker-options="dateOptions"
-                                    close-text="Cerrar"
-                                    clear-text="Borrar"
-                                    current-text="Hoy"
-                                    alt-input-formats="altInputFormats"
-                                    placeholder="DD/MM/YYYY"
-                                    required="required"
-                                    popup-placement="top-right"
-                                    ng-class="{'invalid':(form.date.$error.required || form.date.$error.pattern) && (form.$submitted || form.date.$touched)}"/>
-                            <div class="input-group-btn">
-                                <button class="btn btn-default btn-input" type="button"
-                                        ng-click="datepicker.opened = !datepicker.opened">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </button>
-                            </div>
-                            <div class="error" ng-show="form.$submitted || form.date.$touched">
-                                <div ng-show="form.date.$error.required">Selecciona una fecha</div>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label>Agregar una nota</label>
-            <textarea
-                    class="form-control dashTextarea "
-                    name="textTareaDescription"
-                    required="required"
-                    type="text"
-                    placeholder="Nota"
-                    ng-model="item.Notes"
-                    rows="10"
-                    cols="50"
-                    ng-class="{'invalid':form.textTareaDescription.$error.required && (form.$submitted || form.textTareaDescription.$touched)}">
-                     </textarea>
-                            <div class="dashboard-error" ng-show="form.$submitted || form.textTareaDescription.$touched">
-                                <div ng-show="form.textTareaDescription.$error.required">Agregar una Nota.</div>
-                            </div>
-                        </div>
-
-                        <div class="signup-field">
-                            <button ng-click="update(item.Id, item)" class="btn btn-default pull-right">Guardar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            -->
         </div>
     </div>
     <div class="col-md-4">
-        <div class="row">
+        <div class="row" ng-if="taskItemSelected && !taskItemSelected.edit">
             <div class="col-md-12 task-detail clearfix"
                  ng-class="{'completed': taskItemSelected.Status === 1}">
                 <div class="checkbox-item pull-left" style="cursor:pointer;" ng-click="completeTask(taskItemSelected)">
@@ -242,31 +154,111 @@
                 <span class="checkbox-label">
                     {{taskItemSelected.Title | firstLetter}}
                 </span>
-                <div class="pull-right" style="font-size: 2rem; cursor: pointer">
-                    <i class="fa fa-pencil" style="margin-right: 5px;"></i>
+                <div class="pull-right task-detail-actions">
+                    <i class="fa fa-pencil" ng-click="edit()"></i>
                     <i class="fa fa-trash" ng-click="taskItemSelected.delete = true;"></i>
                 </div>
             </div>
-            <div class="col-md-12 clearfix" uib-collapse="!taskItemSelected.delete">
-                <p class="pull-left" style="margin: 15px 0 0 0">Esta seguro de eliminar la tarea?</p>
-                <button class="btn btn-defasult btn-edit pull-right" ng-click="taskItemSelected.delete = false;" style="margin: 10px 0 0 0">No</button>
+            <div class="col-md-12 task-delete clearfix" uib-collapse="!taskItemSelected.delete">
+                <p class="pull-left task-delete-label">Esta seguro de eliminar la tarea?</p>
+                <button class="btn btn-defasult btn-edit pull-right" ng-click="taskItemSelected.delete = false;">No</button>
                 <button
                         class="btn btn-defasult btn-edit btn-submit pull-right" ng-click="deleteItem(taskItemSelected.Id)">Si</button>
             </div>
-            <div class="col-md-12" style="background: #ececec; padding: 20px 35px; min-height: 500px">
+            <div class="col-md-12 task-info">
                 <div class="row">
-                    <div class="col-md-12" style="padding: 10px; background-color: #FFF; border-radius: 3px; border: 1px #818181 solid;">
+                    <div class="col-md-12 task-info-header">
                         <i class="icon {{taskItemSelected.ServiceType.Name | icon}}"></i>
-                        <span style="color: #818181;">{{taskItemSelected.ServiceType.Name}}</span>
+                        <span>{{taskItemSelected.ServiceType.Name}}</span>
                     </div>
-                    <div class="col-md-12" style="margin: 10px 0 0 0; padding: 10px; background-color: #FFF; border-radius: 3px; border: 1px #818181 solid;">
-                        <i class="icon glyphicon glyphicon-calendar" style="color: #818181; font-size: 1.9rem;"></i>
-                        <span style="color: #818181;">Vence el {{taskItemSelected.DueDate | date: 'EEE, d '}}de{{taskItemSelected.DueDate | date: ' MMM '}} del {{taskItemSelected.DueDate | date: ' yyyy'}}</span>
+                    <div class="col-md-12 task-info-header">
+                        <i class="icon glyphicon glyphicon-calendar"></i>
+                        <span>Vence el {{taskItemSelected.DueDate | date: 'EEE, d '}}de{{taskItemSelected.DueDate | date: ' MMM '}} del {{taskItemSelected.DueDate | date: ' yyyy'}}</span>
                     </div>
-                    <div class="col-md-12" style="margin: 10px 0 0 0; background-color: #DBDDDF; padding: 10px; border-radius: 3px; border: 1px #818181 solid; min-height: 200px">
-                        <span style="color: #818181;">{{taskItemSelected.Notes}}</span>
+                    <div class="col-md-12 task-info-notes">
+                        <span>{{taskItemSelected.Notes}}</span>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div ng-if="taskItemSelected.edit" class="row">
+            <div class="col-md-12 task-form" style="background: #ececec; padding: 30px 15px;">
+                <form name="dataUpdate" novalidate="novalidate">
+                    <div class="input-group col-md-12">
+                        <input
+                                class="form-control"
+                                type="text"
+                                name="tarea"
+                                placeholder="Nombre de la tarea"
+                                required="required"
+                                ng-model="taskItemSelected.Title"
+                                ng-class="{'invalid':(dataUpdate.tarea.$error.required || dataUpdate.tarea.$error.pattern) && (dataUpdate.$submitted || dataUpdate.tarea.$touched)}">
+                        <div class="dashboard-error" ng-show="dataUpdate.$submitted || dataUpdate.tarea.$touched">
+                            <div ng-show="dataUpdate.tarea.$error.required">Dinos el nombre de la tarea.</div>
+                        </div>
+                    </div>
+                    <div class="input-group col-md-12">
+                        <select class="form-control"
+                                name="service"
+                                ng-model="taskItemSelected.ServiceType"
+                                required="required"
+                                ng-class="{'invalid':dataUpdate.service.$error.required && (dataUpdate.$submitted || dataUpdate.service.$touched)}"
+                                ng-options="service as service.Name for service in serviceTypes track by service.Id">
+                        </select>
+                        <div class="dashboard-error" ng-show="dataUpdate.$submitted || dataUpdate.service.$touched">
+                            <div ng-show="dataUpdate.service.$error.required">Selecciona un servicio.</div>
+                        </div>
+                    </div>
+                    <div class="input-group col-md-12">
+                        <input
+                                class="form-control"
+                                type="text"
+                                uib-datepicker-popup="dd/MM/yyyy"
+                                ng-model="taskItemSelected.DueDate"
+                                name="date"
+                                is-open="datepicker.opened"
+                                datepicker-options="dateOptions"
+                                close-text="Cerrar"
+                                clear-text="Borrar"
+                                current-text="Hoy"
+                                alt-input-formats="altInputFormats"
+                                placeholder="DD/MM/YYYY"
+                                required="required"
+                                popup-placement="top-right"
+                                ng-class="{'invalid':(dataUpdate.date.$error.required || dataUpdate.date.$error.pattern) && (dataUpdate.$submitted || dataUpdate.date.$touched)}"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default btn-input" type="button"
+                                    ng-click="datepicker.opened = !datepicker.opened">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dashboard-error" ng-show="dataUpdate.$submitted || dataUpdate.date.$touched">
+                        <div ng-show="dataUpdate.date.$error.required">Selecciona una fecha</div>
+                    </div>
+
+                    <div class="input-group col-md-12">
+                        <textarea
+                            class="form-control dashTextarea "
+                            name="textTareaDescription"
+                            required="required"
+                            type="text"
+                            placeholder="Agregue una nota"
+                            ng-model="taskItemSelected.Notes"
+                            rows="10"
+                            cols="50"
+                            ng-class="{'invalid':dataUpdate.textTareaDescription.$error.required && (dataUpdate.$submitted || dataUpdate.textTareaDescription.$touched)}">
+                        </textarea>
+                        <div class="dashboard-error" ng-show="dataUpdate.$submitted || dataUpdate.textTareaDescription.$touched">
+                            <div ng-show="dataUpdate.textTareaDescription.$error.required">Agregar una Nota.</div>
+                        </div>
+                    </div>
+
+                    <div class="input-group col-md-12">
+                        <button ng-click="getOneTask(taskItemSelected)" style="margin: 10px 0" class="btn btn-default pull-right">Cancelar</button>
+                        <button ng-click="update(dataUpdate)" class="btn btn-default btn-submit pull-left">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

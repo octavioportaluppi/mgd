@@ -333,3 +333,45 @@
     margin: 0 0 0 10px;
     font-size: 2rem;
 }
+
+.task-detail .task-detail-actions {
+    font-size: 2rem;
+    cursor: pointer
+}
+
+.task-detail .task-detail-actions i:first-child {
+    margin-right: 5px;
+}
+
+.task-delete .task-delete-label {
+    margin: 15px 0 0 0;
+}
+
+.task-delete .btn-edit {
+    margin: 10px 0;
+}
+
+.task-info {
+    background: #ececec;
+    padding: 20px 35px;
+    min-height: 500px
+}
+
+.task-info .task-info-header,
+.task-info .task-info-notes {
+    padding: 10px;
+    margin: 0 0 10px 0;
+    background-color: #FFF;
+    border-radius: 3px;
+    border: 1px #818181 solid;
+    color: #818181;
+}
+
+.task-info .task-info-header .glyphicon {
+    font-size: 1.9rem;
+}
+
+.task-info .task-info-notes {
+    background-color: #DBDDDF;
+    min-height: 200px
+}
