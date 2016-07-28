@@ -216,3 +216,19 @@
 .panel-body li:hover {
 	background: #cecece;
 }
+
+.list-item .btn-fav {
+	padding: 10px;
+	background: #ECECEC;
+	border-radius: 3px;
+	color: #818181;
+}
+
+.list-item .btn-fav:hover,
+.list-item .btn-fav.subscribed{
+	color: #ee3470;
+}
+
+.list-item .btn-fav.subscribed:hover {
+	color: #818181;
+}

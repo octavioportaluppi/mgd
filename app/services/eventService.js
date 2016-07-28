@@ -80,6 +80,12 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
         return $http.get(serviceBase + 'api/events/' + eventId + '/suppliers');
     };
 
+    var _subscribeSupplier = function (eventId, supplierId) {
+        var params = { params: { isFavourite: true } };
+
+        return $http.post(serviceBase + 'api/events/' + eventId + '/suppliers/' + supplierId, {}, params);
+    };
+
     eventServiceFactory.createBudgetItem = _createBudgetItem;
     eventServiceFactory.deleteBudget = _deleteBudget;
     eventServiceFactory.getBudgets = _getBudgets;
@@ -96,6 +102,7 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
     eventServiceFactory.deleteGuestGroup = _deleteGuestGroup;
 
     eventServiceFactory.getSuppliers = _getSuppliers;
+    eventServiceFactory.subscribeSupplier = _subscribeSupplier;
 
     return eventServiceFactory;
 }]);

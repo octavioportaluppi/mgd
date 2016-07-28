@@ -41,10 +41,10 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/suppliers.html"
     });
 
-    /*$routeProvider.when("/suppliers/:supplierId",{
+    $routeProvider.when("/suppliers/:supplierId",{
         controller: "suppliersController",
         templateUrl: "/app/views/supplier-detail.html"
-    });*/
+    });
 
     $routeProvider.when("/dashboard", {
         controller: "dashboardSupplierController",
