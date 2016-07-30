@@ -81,9 +81,17 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
     };
 
     var _subscribeSupplier = function (eventId, supplierId) {
-        var params = { params: { isFavourite: true } };
-
+        var params = { params: { isFavourite: false } };
         return $http.post(serviceBase + 'api/events/' + eventId + '/suppliers/' + supplierId, {}, params);
+    };
+
+    var _unsubscribeSupplier = function (eventId, supplierId) {
+        return $http.delete(serviceBase + 'api/events/' + eventId + '/suppliers/' + supplierId, {});
+    };
+
+    var _tackSupplier = function (eventId, supplierId, isTacked) {
+        var params = { params: { isFavourite: isTacked } };
+        return $http.put(serviceBase + 'api/events/' + eventId + '/suppliers/' + supplierId, {}, params);
     };
 
     eventServiceFactory.createBudgetItem = _createBudgetItem;
@@ -103,6 +111,8 @@ app.factory('eventService', ['$http', 'ngAuthSettings',function ($http, ngAuthSe
 
     eventServiceFactory.getSuppliers = _getSuppliers;
     eventServiceFactory.subscribeSupplier = _subscribeSupplier;
+    eventServiceFactory.unsubscribeSupplier = _unsubscribeSupplier;
+    eventServiceFactory.tackSupplier = _tackSupplier;
 
     return eventServiceFactory;
 }]);

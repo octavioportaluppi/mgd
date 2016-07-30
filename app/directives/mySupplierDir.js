@@ -65,12 +65,36 @@ var controller = ['$scope', 'eventService', 'supplierService', 'ngAuthSettings',
                 });
         };
 
+        $scope.unsubscribe = function (supplierId) {
+            eventService
+                .unsubscribeSupplier($scope.id, supplierId)
+                .then(function () {
+                    $scope.getSuppliers();
+                });
+        };
+
         $scope.isSubscribed = function (supplierId) {
             var result = $scope.suppliers.find(function (supplier) {
                 return supplier.Id === supplierId;
-            })
+            });
 
             return typeof result != 'undefined';
+        };
+
+        $scope.tackSupplier = function (supplierId) {
+            eventService
+                .tackSupplier($scope.id, supplierId, !$scope.isTacked(supplierId))
+                .then(function () {
+                    $scope.getSuppliers();
+                })
+        };
+
+        $scope.isTacked = function (supplierId) {
+            var result = $scope.suppliers.find(function (supplier) {
+                return supplier.Id === supplierId;
+            });
+
+            return typeof result != 'undefined' && result.IsFavourite;
         };
 }];
 

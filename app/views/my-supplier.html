@@ -34,8 +34,21 @@
                             </div>
                             <div class="col-md-4">
                                 <button class="btn btn-fav pull-right"
-                                        ng-click="subscribe(supplier.Id)"
-                                        ng-class="{'subscribed':isSubscribed(supplier.Id)}">
+                                        style="margin:0 0 0 10px; padding:10px 13px 10px 16px;"
+                                        ng-class="{'subscribed':isTacked(supplier.Id)}"
+                                        ng-click="tackSupplier(supplier.Id)">
+                                    <i class="fa fa-thumb-tack"></i>
+                                </button>
+                                <button class="btn btn-fav pull-right"
+                                        style="margin:0 0 0 10px; padding:10px 10px 10px 13px;"
+                                        ng-if="!isSubscribed(supplier.Id)"
+                                        ng-click="subscribe(supplier.Id)">
+                                    <i class="fa fa-heart"></i>
+                                </button>
+                                <button class="btn btn-fav pull-right subscribed"
+                                        style="margin:0 0 0 10px; padding:10px 10px 10px 13px;"
+                                        ng-if="isSubscribed(supplier.Id)"
+                                        ng-click="unsubscribe(supplier.Id)">
                                     <i class="fa fa-heart"></i>
                                 </button>
                             </div>
@@ -88,8 +101,12 @@
             </div>
 
             <div class="col-md-12">
+                <div ng-if="availableSuppliers.length === 0" style="text-align: center; padding: 40px 0;">
+                    <span class="empty-suppliers-title">No existen proveedores para el servicio seleccionado</span>
+                </div>
                 <div
                         ng-repeat="supplier in availableSuppliers | filter: availableFilter"
+                        ng-if="availableSuppliers.length > 0"
                         class="list-item clearfix row"
                         infinite-scroll='nextPage()'
                         infinite-scroll-disabled='loading'
@@ -110,8 +127,13 @@
                             </div>
                             <div class="col-md-4">
                                 <button class="btn btn-fav pull-right"
-                                        ng-click="subscribe(supplier.Id)"
-                                        ng-class="{'subscribed':isSubscribed(supplier.Id)}">
+                                        ng-if="!isSubscribed(supplier.Id)"
+                                        ng-click="subscribe(supplier.Id)">
+                                    <i class="fa fa-heart"></i>
+                                </button>
+                                <button class="btn btn-fav pull-right subscribed"
+                                        ng-if="isSubscribed(supplier.Id)"
+                                        ng-click="unsubscribe(supplier.Id)">
                                     <i class="fa fa-heart"></i>
                                 </button>
                             </div>
