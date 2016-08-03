@@ -16,6 +16,16 @@ var controller = ['$scope', 'eventService', 'supplierService', 'ngAuthSettings',
 
         $scope.getSuppliers();
 
+        $scope.getPremiumSuppliers = function () {
+            supplierService
+                .getPremiumSuppliers()
+                .then(function (response) {
+                    $scope.premiumSuppliers = response.data;
+                })
+        };
+
+        $scope.getPremiumSuppliers();
+
         $scope.addNewSupplier = function () {
             supplierService
                 .getServices()
@@ -75,6 +85,7 @@ var controller = ['$scope', 'eventService', 'supplierService', 'ngAuthSettings',
 
         $scope.isSubscribed = function (supplierId) {
             var result = $scope.suppliers.find(function (supplier) {
+
                 return supplier.Id === supplierId;
             });
 

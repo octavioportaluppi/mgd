@@ -148,7 +148,7 @@ app.factory('supplierService',
     };
 
     var _getPremiumSuppliers = function () {
-        return $http.get(serviceBase + 'api/suppliers/premium', {params: {max: 10}});
+        return $http.get(serviceBase + 'api/suppliers/premium', {params: {count: 10}});
     };
 
     supplierServiceFactory.getDashboard = _getDashboard;

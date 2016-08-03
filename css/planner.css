@@ -396,3 +396,12 @@
     color: #818181;
     width: 100%;
 }
+
+.list-item .premium-service {
+    background-color: #8c3e96;
+    padding: 5px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin: 3px;
+    display: block;
+}

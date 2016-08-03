@@ -1,91 +1,92 @@
-<div class="row">
+<div class="row" style="background-color: #F4F4F4;">
     <div class="col-md-7 planner-suppliers">
-        <div class="col-md-12" ng-if="!addNew">
-            <div class="col-md-6">
-                <span>Favoritos</span>
-                <p>Busca tus proveedores favoritos</p>
-            </div>
-            <div class="col-md-6 clearfix">
-                <input type="text" class="pull-right" placeholder="Buscar" ng-model="suppliersFilter">
-                <i class="fa fa-search" style="    position: absolute;
-    top: 7px;
-    left: 100%;
-    margin-left: -40px;
-    color: #818181;"></i>
-            </div>
+        <div class="row">
+            <div class="col-md-12" ng-if="!addNew">
+                <div class="col-md-6">
+                    <span>Favoritos</span>
+                    <p>Busca tus proveedores favoritos</p>
+                </div>
+                <div class="col-md-6 clearfix">
+                    <input type="text" class="pull-right" placeholder="Buscar" ng-model="suppliersFilter">
+                    <i class="fa fa-search" style="    position: absolute;
+        top: 7px;
+        left: 100%;
+        margin-left: -40px;
+        color: #818181;"></i>
+                </div>
 
-            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div
+                        ng-repeat="supplier in suppliers | filter: suppliersFilter"
+                        class="list-item clearfix">
+                        <div class="col-md-4">
+                            <a href="#/suppliers/{{supplier.Id}}">
+                                <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
+                                <img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
+                            </a>
+                        </div>
+                        <div class="col-md-8 clearfix">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
+                                    <span class="ligth-description">{{supplier.City.Name}}</span>
+                                    <span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
+                                    <span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-fav pull-right"
+                                            style="margin:0 0 0 10px; padding:10px 13px 10px 16px;"
+                                            ng-class="{'subscribed':isTacked(supplier.Id)}"
+                                            ng-click="tackSupplier(supplier.Id)">
+                                        <i class="fa fa-thumb-tack"></i>
+                                    </button>
+                                    <button class="btn btn-fav pull-right"
+                                            style="margin:0 0 0 10px; padding:10px 10px 10px 13px;"
+                                            ng-if="!isSubscribed(supplier.Id)"
+                                            ng-click="subscribe(supplier.Id)">
+                                        <i class="fa fa-heart"></i>
+                                    </button>
+                                    <button class="btn btn-fav pull-right subscribed"
+                                            style="margin:0 0 0 10px; padding:10px 10px 10px 13px;"
+                                            ng-if="isSubscribed(supplier.Id)"
+                                            ng-click="unsubscribe(supplier.Id)">
+                                        <i class="fa fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <p>{{supplier.Description}}</p>
+                            </div>
+                            <div class="divider col-md-12"></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>Rango de precio: $$$$</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-12 register-panel" ng-if="addNew && showServices">
+                <div class="col-md-12">
+                    <span>Agregar un nuevo proveedor</span>
+                    <p>Elije el tipo de servicio</p>
+                </div>
                 <div
-                    ng-repeat="supplier in suppliers | filter: suppliersFilter"
-                    class="list-item clearfix">
-                    <div class="col-md-4">
-                        <a href="#/suppliers/{{supplier.Id}}">
-                            <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
-                            <img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
-                        </a>
-                    </div>
-                    <div class="col-md-8 clearfix">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
-                                <span class="ligth-description">{{supplier.City.Name}}</span>
-                                <span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
-                                <span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
-                            </div>
-                            <div class="col-md-4">
-                                <button class="btn btn-fav pull-right"
-                                        style="margin:0 0 0 10px; padding:10px 13px 10px 16px;"
-                                        ng-class="{'subscribed':isTacked(supplier.Id)}"
-                                        ng-click="tackSupplier(supplier.Id)">
-                                    <i class="fa fa-thumb-tack"></i>
-                                </button>
-                                <button class="btn btn-fav pull-right"
-                                        style="margin:0 0 0 10px; padding:10px 10px 10px 13px;"
-                                        ng-if="!isSubscribed(supplier.Id)"
-                                        ng-click="subscribe(supplier.Id)">
-                                    <i class="fa fa-heart"></i>
-                                </button>
-                                <button class="btn btn-fav pull-right subscribed"
-                                        style="margin:0 0 0 10px; padding:10px 10px 10px 13px;"
-                                        ng-if="isSubscribed(supplier.Id)"
-                                        ng-click="unsubscribe(supplier.Id)">
-                                    <i class="fa fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <p>{{supplier.Description}}</p>
-                        </div>
-                        <div class="divider col-md-12"></div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>Rango de precio: $$$$</p>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
-                            </div>
-                        </div>
+                    class="col-md-4"
+                    ng-repeat="item in services"
+                    ng-click="getSuppliersByService(item.Id)">
+                    <div style="background-color: #C0C0C0; border-radius: 3px; padding: 10px 7px; cursor: pointer;">
+                        <span class="{{item.Name | icon }}"></span>
+                        {{item.Name}}
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="col-md-12 register-panel" ng-if="addNew && showServices">
-            <div class="col-md-12">
-                <span>Agregar un nuevo proveedor</span>
-                <p>Elije el tipo de servicio</p>
-            </div>
-            <div
-                class="col-md-4"
-                ng-repeat="item in services"
-                ng-click="getSuppliersByService(item.Id)">
-                <div style="background-color: #C0C0C0; border-radius: 3px; padding: 10px 7px; cursor: pointer;">
-                    <span class="{{item.Name | icon }}"></span>
-                    {{item.Name}}
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12" ng-if="addNew && showSuppliers">
+            <div class="col-md-12" ng-if="addNew && showSuppliers">
 
             <div class="col-md-6">
                 <span>Favoritos</span>
@@ -155,16 +156,54 @@
             </div>
 
         </div>
+        </div>
     </div>
     <div class="col-md-5" style="background-color: #ECECEC; padding: 25px 0;">
         <div class="col-md-12">
             <button
-                    ng-click="addNewSupplier()"
-                    style="width: 100%;"
-                    class="btn btn-defasult btn-submit btn-task">Agregar proveedor</button>
+                ng-click="addNewSupplier()"
+                style="width: 100%;"
+                class="btn btn-defasult btn-submit btn-task">Agregar proveedor</button>
         </div>
-        <div>
+        <div class="col-md-12">
             <p>Recomendaciones</p>
+        </div>
+        <div class="col-md-10">
+            <div
+                ng-repeat="supplier in premiumSuppliers"
+                ng-if="premiumSuppliers.length > 0"
+                class="list-item clearfix row">
+                <div class="col-md-8">
+                    <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
+                    <span class="ligth-description">{{supplier.City.Name}}</span>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-fav pull-right"
+                            ng-if="!isSubscribed(supplier.Id)"
+                            ng-click="subscribe(supplier.Id)">
+                        <i class="fa fa-heart"></i>
+                    </button>
+                    <button class="btn btn-fav pull-right subscribed"
+                            ng-if="isSubscribed(supplier.Id)"
+                            ng-click="unsubscribe(supplier.Id)">
+                        <i class="fa fa-heart"></i>
+                    </button>
+                </div>
+                <div class="col-md-6" ng-repeat="service in supplier.ServiceTypes">
+                    <span class="premium-service">
+                        <i class="{{service.Name | icon}}"></i>
+                        {{service.Name}}
+                    </span>
+                </div>
+                <div class="col-md-12 clearfix">
+                    <div class="col-md-6">
+                        <p>Rango de precio: $$$$</p>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
