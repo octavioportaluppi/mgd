@@ -189,12 +189,20 @@
                         <i class="fa fa-heart"></i>
                     </button>
                 </div>
+                <div class="col-md-12">
+                    <span class="premium-service" ng-repeat="service in supplier.ServiceTypes">
+                        <i class="{{service.Name | icon}}"></i>
+                        {{service.Name}}
+                    </span>
+                </div>
+                <!--
                 <div class="col-md-6" ng-repeat="service in supplier.ServiceTypes">
                     <span class="premium-service">
                         <i class="{{service.Name | icon}}"></i>
                         {{service.Name}}
                     </span>
                 </div>
+                -->
                 <div class="col-md-12 clearfix">
                     <div class="col-md-6">
                         <p>Rango de precio: $$$$</p>

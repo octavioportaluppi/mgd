@@ -403,5 +403,9 @@
     border-radius: 3px;
     color: #FFFFFF;
     margin: 3px;
-    display: block;
+    display: inline-block;
+}
+
+.list-item .premium-service i {
+    font-size: 1.5rem;
 }
