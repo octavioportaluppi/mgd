@@ -19,13 +19,13 @@
                     <div
                         ng-repeat="supplier in suppliers | filter: suppliersFilter"
                         class="list-item clearfix">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <a href="#/suppliers/{{supplier.Id}}">
                                 <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
                                 <img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
                             </a>
                         </div>
-                        <div class="col-md-8 clearfix">
+                        <div class="col-md-9 clearfix">
                             <div class="row">
                                 <div class="col-md-8">
                                     <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
@@ -55,16 +55,13 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <p>{{supplier.Description}}</p>
+                                <div class="row">
+                                    <p>{{supplier.Description}}</p>
+                                </div>
                             </div>
                             <div class="divider col-md-12"></div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p>Rango de precio: $$$$</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
-                                </div>
+                            <div class="col-md-12">
+                                <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
                             </div>
                         </div>
                     </div>
@@ -112,13 +109,13 @@
                         infinite-scroll='nextPage()'
                         infinite-scroll-disabled='loading'
                         infinite-scroll-distance='1000'>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <a href="#/suppliers/{{supplier.Id}}">
                             <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
                             <img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
                         </a>
                     </div>
-                    <div class="col-md-8 clearfix">
+                    <div class="col-md-9 clearfix">
                         <div class="row">
                             <div class="col-md-8">
                                 <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
@@ -140,16 +137,13 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <p>{{supplier.Description}}</p>
+                            <div class="row">
+                                <p>{{supplier.Description}}</p>
+                            </div>
                         </div>
                         <div class="divider col-md-12"></div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p>Rango de precio: $$$$</p>
-                            </div>
-                            <div class="col-md-6">
-                                <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
-                            </div>
+                        <div class="col-md-12">
+                            <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
                         </div>
                     </div>
                 </div>
@@ -159,14 +153,14 @@
         </div>
     </div>
     <div class="col-md-5" style="background-color: #ECECEC; padding: 25px 0;">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <button
                 ng-click="addNewSupplier()"
                 style="width: 100%;"
                 class="btn btn-defasult btn-submit btn-task">Agregar proveedor</button>
         </div>
         <div class="col-md-12">
-            <p>Recomendaciones</p>
+            <span style="text-transform: uppercase; color: #818181;">Recomendaciones</span>
         </div>
         <div class="col-md-10">
             <div
@@ -195,21 +189,8 @@
                         {{service.Name}}
                     </span>
                 </div>
-                <!--
-                <div class="col-md-6" ng-repeat="service in supplier.ServiceTypes">
-                    <span class="premium-service">
-                        <i class="{{service.Name | icon}}"></i>
-                        {{service.Name}}
-                    </span>
-                </div>
-                -->
                 <div class="col-md-12 clearfix">
-                    <div class="col-md-6">
-                        <p>Rango de precio: $$$$</p>
-                    </div>
-                    <div class="col-md-6">
-                        <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
-                    </div>
+                    <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
                 </div>
             </div>
         </div>
