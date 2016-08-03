@@ -15,27 +15,20 @@
 			infinite-scroll='nextPage()'
 			infinite-scroll-disabled='loading'
 			infinite-scroll-distance='1'>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<a href="#/suppliers/{{supplier.Id}}">
 					<img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
 					<img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
 				</a>
 			</div>
-			<div class="col-md-8">
+			<div class="col-md-9">
 				<a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
 				<span class="ligth-description">{{supplier.City.Name}}</span>
 				<span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
 				<span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
 				<p>{{supplier.Description}}</p>
 				<div class="divider"></div>
-				<div class="row">
-					<div class="col-md-6">
-						<p>Rango de precio: $$$$</p>
-					</div>
-					<div class="col-md-6">
-						<a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
-					</div>
-				</div>
+				<a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
 			</div>
 		</div>
 	</div>
