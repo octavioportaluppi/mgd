@@ -232,6 +232,13 @@
     color: #818181;
 }
 
+.calendar-filter .divider,
+.calendar-filter .divider:hover {
+    background: #d4b5d9;
+    cursor: auto;
+    padding: 0;
+}
+
 .calendar-filter li {
     padding: 10px 40px 10px 80px;
     font-size: 1.4rem;
