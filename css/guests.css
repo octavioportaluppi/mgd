@@ -34,29 +34,34 @@
     background-color: #FFF;
     border-radius: 3px;
     padding: 8px 10px;
-    margin: 0 0 12px 0;
+    margin: 0 10px;
+    flex-grow: 1;
+    height: 35px
+}
+
+.guest-group .group-id,
+.guest-group .group-action {
+    float: left;
+    display: inline;
+    border-radius: 3px;
+    color: #FFF;
+    text-align: center;
+    line-height: 35px;
+    width: 35px;
+    height: 35px;
+    margin: 0 0 10px 0;
 }
 
 .guest-group .group-id {
-    padding: 7px 0;
-}
-
-.guest-group .group-id span{
     background-color: #aed136;
-    border-radius: 3px;
-    padding: 10px 10px;
-    color: #FFF;
 }
 
 .guest-group .group-action{
-    padding: 0 0 0 5px;
+    background-color: #cecece;
 }
 
 .guest-group .group-action i {
-    background-color: #cecece;
-    padding: 10px;
-    border-radius: 3px;
-    color: #FFF;
+    padding: 8px 0 0 0;
 }
 
 .guest-group .guest {
@@ -126,6 +131,11 @@
     border-radius: 3px;
     background: #FFF;
     padding: 5px 0;
+}
+
+.guests .guest-group-form-edit {
+    height: 85px;
+    margin: 0 10px 10px 10px;
 }
 
 .guests .guest-group-form-edit input[type=text],

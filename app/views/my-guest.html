@@ -163,68 +163,75 @@
         </div>
         <!-- Listado de mesas -->
         <div class="col-md-12 guest-group" ng-repeat="guestgroup in guestGroups">
-            <div class="col-md-2 group-id middle">
-                <span>{{guestgroup.GuestsCount}}</span>
-            </div>
-            <div class="col-md-8 group-name" ng-if="!guestgroup.edit">
-                <span>{{guestgroup.Name}}</span>
-                <i class="fa fa-pencil pull-right" ng-click="guestgroup.edit = true;"></i>
-            </div>
-            <div class="col-md-8 group-name guest-group-form-edit" ng-if="guestgroup.edit">
-                <form name="updateGuestGroupForm" ng-submit="updateGuestGroup(updateGuestGroupForm, guestgroup)">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <input
-                                type="text"
-                                name="name"
-                                ng-model="guestgroup.Name"
-                                required="required"
-                                placeholder="Nombre de la mesa"
-                                ng-class="{'invalid':updateGuestGroupForm.name.$error.required && (updateGuestGroupForm.$submitted || updateGuestGroupForm.name.$touched)}"/>
-                            <div class="dashboard-error" ng-show="updateGuestGroupForm.$submitted || updateGuestGroupForm.name.$touched">
-                                <div ng-show="updateGuestGroupForm.name.$error.required">Dinos el nombre de la mesa.</div>
+            <div class="col-md-12">
+                <div class="row" style="display: flex">
+                    <span class="group-id">{{guestgroup.GuestsCount}}</span>
+                    <span class="group-name" ng-if="!guestgroup.edit">
+                        <span>{{guestgroup.Name}}</span>
+                        <i class="fa fa-pencil pull-right" ng-click="guestgroup.edit = true;"></i>
+                    </span>
+
+                    <div style="flex-grow: 1; height: 85px;" class="group-name guest-group-form-edit" ng-if="guestgroup.edit">
+                        <form name="updateGuestGroupForm" ng-submit="updateGuestGroup(updateGuestGroupForm, guestgroup)">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <input
+                                            type="text"
+                                            name="name"
+                                            ng-model="guestgroup.Name"
+                                            required="required"
+                                            placeholder="Nombre de la mesa"
+                                            ng-class="{'invalid':updateGuestGroupForm.name.$error.required && (updateGuestGroupForm.$submitted || updateGuestGroupForm.name.$touched)}"/>
+                                    <div class="dashboard-error" ng-show="updateGuestGroupForm.$submitted || updateGuestGroupForm.name.$touched">
+                                        <div ng-show="updateGuestGroupForm.name.$error.required">Dinos el nombre de la mesa.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <i class="fa fa-trash pull-right" ng-if="!guestgroup.IsDefault" ng-click="guestgroup.delete = true;"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
-                            <i class="fa fa-trash pull-right" ng-if="!guestgroup.IsDefault" ng-click="guestgroup.delete = true;"></i>
-                        </div>
+                            <div class="row" ng-if="!guestgroup.delete">
+                                <div class="col-md-2 col-md-offset-8">
+                                    <button class="btn btn-defasult btn-submit btn-edit pull-right">
+                                        <i class="fa fa-check pull-right"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-defasult btn-edit pull-right" ng-click="getGuests();$event.preventDefault();">
+                                        <i class="fa fa-times pull-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="guestgroup.delete">
+                                <div class="col-md-8" style="padding-top: 15px;">
+                                    <p style="font-weight: 600;">Está seguro de eliminar esta mesa?</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-defasult btn-submit btn-edit pull-right" ng-click="deleteGuestGroup(guestgroup.Id);$event.preventDefault();">
+                                        <i class="fa fa-check pull-right"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-defasult btn-edit pull-right" ng-click="guestgroup.delte = false;$event.preventDefault();">
+                                        <i class="fa fa-times pull-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row" ng-if="!guestgroup.delete">
-                        <div class="col-md-2 col-md-offset-8">
-                            <button class="btn btn-defasult btn-submit btn-edit pull-right">
-                                <i class="fa fa-check pull-right"></i>
-                            </button>
-                        </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-defasult btn-edit pull-right" ng-click="getGuests();$event.preventDefault();">
-                                <i class="fa fa-times pull-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row" ng-if="guestgroup.delete">
-                        <div class="col-md-8" style="padding-top: 15px;">
-                            <p style="font-weight: 600;">Está seguro de eliminar esta mesa?</p>
-                        </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-defasult btn-submit btn-edit pull-right" ng-click="deleteGuestGroup(guestgroup.Id);$event.preventDefault();">
-                                <i class="fa fa-check pull-right"></i>
-                            </button>
-                        </div>
-                        <div class="col-md-2">
-                            <button class="btn btn-defasult btn-edit pull-right" ng-click="guestgroup.delte = false;$event.preventDefault();">
-                                <i class="fa fa-times pull-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+
+                    <span
+                        class="group-action"
+                        ng-click="guestgroup.collapsed = !guestgroup.collapsed;">
+                        <i class="fa fa-chevron-right" ng-if="!guestgroup.collapsed"></i>
+                        <i class="fa fa-chevron-down" ng-if="guestgroup.collapsed"></i>
+                    </span>
+                </div>
             </div>
-            <div class="col-md-2 group-action middle" ng-click="guestgroup.collapsed = !guestgroup.collapsed;">
-                <i class="fa fa-chevron-right" ng-if="!guestgroup.collapsed"></i>
-                <i class="fa fa-chevron-down" ng-if="guestgroup.collapsed"></i>
-            </div>
-            <div uib-collapse="!guestgroup.collapsed">
-                <div class="col-md-12" ng-repeat="guest in guestgroup.guests">
-                    <div class="col-md-12 guest">
+
+            <div uib-collapse="!guestgroup.collapsed" class="col-md-12">
+                <div class="row" ng-repeat="guest in guestgroup.guests">
+                    <div class="row guest">
                         <span>{{guest.FirstName}} {{guest.LastName}}</span>
                     </div>
                 </div>
@@ -232,7 +239,7 @@
         </div>
         <!-- Formulaario de mesas -->
         <div class="col-md-12">
-            <div class="col-md-12 guest-group-form">
+            <div class="row guest-group-form">
                 <form name="newGuestGroupForm" ng-submit="createGuestGroup(newGuestGroupForm)">
                     <div class="col-md-11">
                         <input
