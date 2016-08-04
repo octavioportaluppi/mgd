@@ -3,7 +3,6 @@ app.controller('dashboardSupplierController',
 	['$scope', 'supplierService', 'ngAuthSettings', 'stateService', 'authService', '$location',
 		function ($scope, supplierService, ngAuthSettings, stateService, authService, $location) {
 
-
 	$scope.supplier = {};
     $scope.chart = 0;
 	$scope.dashboard = '';
@@ -98,22 +97,20 @@ app.controller('dashboardSupplierController',
 	$scope.reload = function () {
 		$scope.editProfile = !$scope.editProfile;
 		$scope.getDashboard();
-	}
+	};
 
 	$scope.saveSupplierProfile = function (form, callback){
-		if(form.$valid ) {
-				$scope.updateProfile(callback);
-			} else {
-		   $scope.editProfile;
+		if(!form.$valid) {
+			return;
 		}
+		$scope.updateProfile(callback);
 	};
 
 	$scope.saveSupplierAboutMe = function (form,callback){
-		if(form.$valid) {
-			$scope.updateDetails(callback)
-		}else{
-			$scope.editAboutMe;
+		if(!form.$valid) {
+			return;
 		}
+		$scope.updateDetails(callback)
 	};
 
 	$scope.updateServices = function (){
@@ -159,7 +156,6 @@ app.controller('dashboardSupplierController',
 			return it.Id === itemId;
 		})
 	};
-
 
 	//check logged
 	if(!authService

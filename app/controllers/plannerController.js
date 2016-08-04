@@ -1,7 +1,7 @@
 'use strict';
 app.controller('plannerController',
-	['$scope', 'plannerService', 'stateService', 'supplierService',
-		function ($scope, plannerService, stateService, supplierService) {
+	['$scope', 'plannerService', 'stateService', 'supplierService', 'authService', '$location',
+		function ($scope, plannerService, stateService, supplierService, authService, $location) {
 
 	$scope.formCollapsed = true;
 
@@ -27,12 +27,6 @@ app.controller('plannerController',
 		}
 		return Object.keys($scope.pastEvents);
 	};
-
-	supplierService
-		.getEvents()
-		.then(function (response){
-			$scope.eventTypes = response.data;
-	});
 
 	$scope.getCities = function() {
 		stateService
@@ -68,6 +62,19 @@ app.controller('plannerController',
 			})
 	};
 
-	$scope.getEvents();
+	//check logged
+	if(!authService
+		.authentication.isAuth || authService
+		.authentication.userType !== 'planner') {
+		$location.path('/login-planner');
+	} else {
+		$scope.getEvents();
+
+		supplierService
+			.getEvents()
+			.then(function (response){
+				$scope.eventTypes = response.data;
+			});
+	}
 
 }]);
