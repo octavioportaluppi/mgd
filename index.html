@@ -53,11 +53,14 @@
 				</li>
 			</ul>
 			<ul class="main-menu">
-				<!--<li><a href="/#">Mi Evento</a></li>-->
-				<!--<li><a href="/#">Organizador</a></li>-->
-				<!--<li><a href="/#">Contacto</a></li>-->
-				<li class="enterprise"><a href="#/dashboard">Empresas</a></li>
+				<li ng-hide="authentication.isAuth && authentication.userType == 'supplier'"
+					class="enterprise">
+					<a href="#/dashboard">Empresas</a>
+				</li>
+				<li><a href="#" class="disabled">Contacto</a></li>
+				<li><a href="#" class="disabled">Blog</a></li>
 				<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a></li>
+				<li><a href="#/planner" ng-class="{'active': isActive('/planner')}">Mis Eventos</a></li>
 			</ul>
 			<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
 				<span class="icon-bar"></span>
@@ -66,10 +69,15 @@
 			</button>
 		</nav>
 		<ul class="responsive-menu" uib-collapse="isCollapsed">
-			<li><a href="/#">Mi Evento</a></li>
-			<li><a href="/#">Organizador</a></li>
-			<li><a href="#/suppliers">Proveedores</a></li>
-			<li><a href="/#">Contacto</a></li>
+			<li><a href="#/planner" ng-class="{'active': isActive('/planner')}">Mis Eventos</a></li>
+			<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a></li>
+			<li><a href="#" class="disabled">Blog</a></li>
+			<li><a href="#" class="disabled">Contacto</a></li>
+			<li ng-hide="authentication.isAuth && authentication.userType == 'supplier'"
+				class="enterprise">
+				<a href="#/dashboard">Empresas</a>
+			</li>
+
 			<li ng-hide="authentication.isAuth" class="active">
 				<a href="" ng-click="signup()">REGÍSTRATE</a>
 			</li>
@@ -140,24 +148,18 @@
 	<script src="app/services/eventService.js?v=2"></script>
 	<script src="app/services/agendaService.js?v=2"></script>
 
-
 	<!-- Controllers -->
 	<script src="app/controllers/indexController.js?v=2"></script>
 	<script src="app/controllers/homeController.js?v=2"></script>
 	<script src="app/controllers/loginController.js?v=2"></script>
 	<script src="app/controllers/signupController.js?v=2"></script>
 	<script src="app/controllers/signupPlannerController.js?v=2"></script>
-	<script src="app/controllers/suscriptionController.js?v=2"></script>
 	<script src="app/controllers/eventsController.js?v=2"></script>
 	<script src="app/controllers/suppliersController.js?v=2"></script>
 	<script src="app/controllers/dashboardSupplierController.js?v=2"></script>
-	<script src="app/controllers/profileController.js?v=2"></script>
 	<script src="app/controllers/plannerController.js?v=2"></script>
-	<script src="app/controllers/tasksController.js?v=2"></script>
-	<script src="app/controllers/budgetController.js?v=2"></script>
-	<script src="app/controllers/guestsController.js?v=2"></script>
-	<script src="app/controllers/vendorsController.js?v=2"></script>
 	<script src="app/controllers/eventDetailController.js?v=2"></script>
+	<script src="app/controllers/forgotPasswordController.js?v=2"></script>
 
 	<!-- Directives -->
 	<script src="app/directives/mySupplierListDir.js?v=2"></script>

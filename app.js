@@ -72,6 +72,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/event-detail.html"
     });
 
+    $routeProvider.when("/forgot-password",{
+        controller: "forgotPasswordController",
+        templateUrl: "/app/views/forgot-password.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });

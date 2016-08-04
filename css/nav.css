@@ -53,10 +53,17 @@ body {
     background: none;
 }
 
+.main-nav .main-menu a.disabled {
+    color: #cecece;
+    background: none;
+    cursor: not-allowed;
+}
+
 .main-nav .main-menu .enterprise a{
-    background: #858;
+    border: 2px #858 solid;
+    background: #FFF;
     padding: 10px;
-    color: #FFF;
+    color: #858;
 }
 
 .main-nav .floating-menu .active {
@@ -85,8 +92,21 @@ body {
     background-color: #aed136;
 }
 
+.responsive-menu .enterprise a{
+    border: 2px #858 solid;
+    background: #FFF;
+    padding: 10px;
+    color: #858;
+}
+
 .responsive-menu li.active a {
     color: #FFF;
+}
+
+.responsive-menu a.disabled {
+    color: #cecece;
+    background: none;
+    cursor: not-allowed;
 }
 
 .main-nav .main-menu a,
