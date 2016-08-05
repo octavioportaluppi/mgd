@@ -77,6 +77,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/forgot-password.html"
     });
 
+    $routeProvider.when("/activate",{
+        controller: "activateController",
+        templateUrl: "/app/views/activate.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });
