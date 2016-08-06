@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('supplierAccountController',
-	['$scope', '$location', 'accountService',
+	['$scope', '$location', 'accountService', 'authService',
 		function ($scope, $location, accountService) {
 
 	$scope.isActive = function(currentLocation) {

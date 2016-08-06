@@ -1,7 +1,7 @@
 'use strict';
 app.controller('eventDetailController',
-	['$scope', 'plannerService','$routeParams',
-		function ($scope, plannerService, $routeParams) {
+	['$scope', 'plannerService','$routeParams', '$location',
+		function ($scope, plannerService, $routeParams, $location) {
 
 		$scope.eventId = $routeParams.eventId;
 
@@ -20,5 +20,9 @@ app.controller('eventDetailController',
 
 		$scope.isActive = function (detail){
 			return $scope.currentDetail === detail;
-		}
+		};
+
+		$scope.isUrlActive = function (detail){
+			return $location.path() == detail;
+		};
 }]);

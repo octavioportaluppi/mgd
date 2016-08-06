@@ -77,4 +77,8 @@ app.controller('plannerController',
 			});
 	}
 
+	$scope.isActive = function(currentLocation) {
+		return $location.path() == currentLocation;
+	};
+
 }]);

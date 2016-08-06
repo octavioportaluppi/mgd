@@ -92,21 +92,19 @@ ul > li {
     display: inline-block;
     text-align: center;
     background: #cecece;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .supplier .menu-item.active,
-.supplier .menu-item:hover {
+.supplier .menu-item:hover,
+.supplier .menu-item.odd:hover {
     background: #aed136;
+    color: #FFF;
 }
 
 .supplier .menu-item.odd {
     background: #c0c0c0;
-}
-
-.supplier .menu-item.odd:hover {
-    background: #aed136;
 }
 
 .supplier .menu-item a {

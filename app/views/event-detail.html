@@ -1,9 +1,7 @@
 <div>
     <ul class="planner-nav col-md-12">
-        <li class="active col-md-3"><a>mis eventos</a></li>
-        <li class="col-md-3"><a>mis proveedores</a></li>
-        <li class="col-md-3 odd"><a>acceso proveedores</a></li>
-        <li class="col-md-3"><a>mi cuenta</a></li>
+        <li class="active col-md-6" ng-class="{'active': isUrlActive('/planner')}"><a href="#/planner">mis eventos</a></li>
+        <li class="col-md-6"><a href="#/planner/account">mi cuenta</a></li>
     </ul>
     <div class="col-md-12" style="background-image: url('../img/mi_gran_dia_{{event.EventType.Name | background}}.jpg');background-position: center;
     background-size: cover; min-height: 450px;">

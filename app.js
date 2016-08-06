@@ -42,6 +42,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/supplier-account.html"
     });
 
+    $routeProvider.when("/planner/account", {
+        controller: "supplierAccountController",
+        templateUrl: "/app/views/planner-account.html"
+    });
+
     $routeProvider.when("/suppliers", {
         templateUrl: "/app/views/suppliers.html"
     });
@@ -70,7 +75,6 @@ app.config(function($routeProvider) {
         controller: "welcomeController",
         templateUrl: "/app/views/signup-welcome.html"
     });
-
 
     $routeProvider.when("/events/:eventId/detail",{
         controller: "eventDetailController",
