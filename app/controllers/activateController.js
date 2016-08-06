@@ -1,6 +1,6 @@
 ﻿'use strict';
 app.controller('activateController',
-    ['$scope', '$routeParams','accountService', function ($scope, $routeParams, accountService) {
+    ['$scope', '$routeParams','accountService', '$location', function ($scope, $routeParams, accountService, $location) {
 
         $scope.activate = {};
 
@@ -15,7 +15,7 @@ app.controller('activateController',
                 .activatePassword($scope.activate)
                 .then(
                     function() {
-                        $scope.sent = true;
+                        $location.path('/password-changed')
                     }
             )
         };
@@ -24,7 +24,6 @@ app.controller('activateController',
             if($scope.activate.Password === ''){
                 return true;
             }
-
             return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$')
                 .test($scope.activate.Password);
         };

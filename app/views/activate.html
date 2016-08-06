@@ -1,11 +1,7 @@
 <div class="pattern">
     <div class="container forgot-password" style="background-color: #ECECEC">
-        <div class="col-md-8 col-md-offset-2" ng-if="!sent">
+        <div class="col-md-8 col-md-offset-2">
             <h1>Ingresa tu nueva contraseña</h1>
-        </div>
-        <div class="col-md-8 col-md-offset-2" ng-if="sent">
-            <h1>Activado!</h1>
-            <p>Ingresa nuevamente con tu nueva contraseña.</p>
         </div>
         <div class="col-md-8 col-md-offset-2">
             <form
@@ -24,7 +20,6 @@
                                 type="password"
                                 placeholder="Contraseña"
                                 ng-model="activate.Password"
-                                ng-disabled="sent"
                                 ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/>
                             <div class="error" ng-show="data.$submitted || data.password.$touched">
                                 <div ng-show="data.password.$error.required">Elije una contraseña.</div>
@@ -43,7 +38,6 @@
                                 type="password"
                                 placeholder="Confirmar contraseña"
                                 ng-model="activate.ConfirmPassword"
-                                ng-disabled="sent"
                                 ng-class="{'invalid':(data.passwordConfirm.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.passwordConfirm.$touched)}"
                                 compare-to="activate.Password"/>
                             <div class="error" ng-show="data.$submitted || data.passwordConfirm.$touched">
@@ -54,8 +48,7 @@
                     </div>
                     <div class="col-md-12 col-md-offset-0">
                         <button
-                            class="btn btn-default btn-submit next pull-right"
-                            ng-disabled="sent">Enviar</button>
+                            class="btn btn-default btn-submit next pull-right">Enviar</button>
                     </div>
                 </div>
             </form>

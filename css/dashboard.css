@@ -101,6 +101,14 @@ ul > li {
     background: #aed136;
 }
 
+.supplier .menu-item.odd {
+    background: #c0c0c0;
+}
+
+.supplier .menu-item.odd:hover {
+    background: #aed136;
+}
+
 .supplier .menu-item a {
     font-size: 1em;
     color: #fff;

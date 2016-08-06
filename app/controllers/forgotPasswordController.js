@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('forgotPasswordController', ['$scope', 'accountService', function ($scope, accountService) {
+app.controller('forgotPasswordController', ['$scope', 'accountService', '$location', function ($scope, accountService, $location) {
 
     $scope.account = {};
 
@@ -10,7 +10,7 @@ app.controller('forgotPasswordController', ['$scope', 'accountService', function
         accountService
             .forgotPassword($scope.account.email)
             .then(function () {
-                $scope.sent = true;
+                $location.path('/password-confirmation')
             });
     }
 

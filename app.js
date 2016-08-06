@@ -37,6 +37,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/signup-supplier.html"
     });
 
+    $routeProvider.when("/supplier/account", {
+        controller: "supplierAccountController",
+        templateUrl: "/app/views/supplier-account.html"
+    });
+
     $routeProvider.when("/suppliers", {
         templateUrl: "/app/views/suppliers.html"
     });
@@ -75,6 +80,14 @@ app.config(function($routeProvider) {
     $routeProvider.when("/forgot-password",{
         controller: "forgotPasswordController",
         templateUrl: "/app/views/forgot-password.html"
+    });
+
+    $routeProvider.when("/password-confirmation",{
+        templateUrl: "/app/views/password-confirmation.html"
+    });
+
+    $routeProvider.when("/password-changed",{
+        templateUrl: "/app/views/password-changed.html"
     });
 
     $routeProvider.when("/activate",{

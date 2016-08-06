@@ -188,5 +188,10 @@ app.controller('dashboardSupplierController',
 		$scope.getDashboard();
 
 	}
+
+	$scope.isActive = function(currentLocation) {
+		return $location.path() == currentLocation;
+	};
+
 }]);
 

@@ -14,10 +14,15 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
     var _activatePassword = function (activate) {
         return $http
             .post(serviceBase + 'api/account/resetpassword', activate);
-    }
+    };
+
+    var _changePassword = function (account) {
+        return $http.post(serviceBase + 'api/account/changepassword', account);
+    };
 
     accountServiceFactory.forgotPassword = _forgotPassword;
     accountServiceFactory.activatePassword = _activatePassword;
+    accountServiceFactory.changePassword = _changePassword;
 
     return accountServiceFactory;
 }]);
