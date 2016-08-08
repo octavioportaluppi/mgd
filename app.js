@@ -90,13 +90,27 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/password-confirmation.html"
     });
 
+    $routeProvider.when("/email-confirmation",{
+        controller: "emailConfirmController",
+        templateUrl: "/app/views/email-confirmation.html"
+    });
+
+    $routeProvider.when("/email-confirmation-success",{
+        templateUrl: "/app/views/email-confirmation-ok.html"
+    });
+
     $routeProvider.when("/password-changed",{
         templateUrl: "/app/views/password-changed.html"
     });
 
-    $routeProvider.when("/activate",{
+    $routeProvider.when("/reset-password",{
         controller: "activateController",
         templateUrl: "/app/views/activate.html"
+    });
+
+    $routeProvider.when("/upgrade",{
+        controller: "subscriptionController",
+        templateUrl: "/app/views/upgrade.html"
     });
 
     $routeProvider.otherwise({ redirectTo: "/" });

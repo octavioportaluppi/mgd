@@ -1,0 +1,39 @@
+<div class="pattern">
+    <div class="container forgot-password" style="background-color: #ECECEC">
+        <div class="col-md-8 col-md-offset-2">
+            <h1>Ingresa tu e-mail</h1>
+            <p>Te enviaremos un mail para que puedas recupar tu contraseña.</p>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <form
+                class="form-horizontal main"
+                name="data"
+                form-step-validity="form-step-validity"
+                novalidate
+                ng-submit="send(data)">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-0">
+                        <div class="form-group signup-field">
+                            <input
+                                    class="form-control"
+                                    name="mail"
+                                    required=""
+                                    type="email"
+                                    placeholder="Mail"
+                                    ng-model="account.email"
+                                    ng-class="{'invalid':(data.mail.$error.required || data.mail.$error.email) && (data.$submitted || data.mail.$touched)}"/>
+                            <div class="error" ng-show="data.$submitted || data.mail.$touched">
+                                <div ng-show="data.mail.$error.required">Dinos tu mail.</div>
+                                <div ng-show="data.mail.$error.email">El mail que ingresaste no es correcto.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-md-offset-0">
+                        <button
+                            class="btn btn-default btn-submit next pull-right">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
