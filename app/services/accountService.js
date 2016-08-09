@@ -27,7 +27,7 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
     accountServiceFactory.forgotPassword = _forgotPassword;
     accountServiceFactory.activatePassword = _activatePassword;
     accountServiceFactory.changePassword = _changePassword;
-    accountServiceFactory.confirmMail = _confirmMail;
+    accountServiceFactory.confirmEmail = _confirmMail;
 
     return accountServiceFactory;
 }]);
