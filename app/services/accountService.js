@@ -20,9 +20,14 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
         return $http.post(serviceBase + 'api/account/changepassword', account);
     };
 
+    var _confirmMail = function (code) {
+        return $http.post(serviceBase + 'api/account/confirmmail', {code: code});
+    }
+
     accountServiceFactory.forgotPassword = _forgotPassword;
     accountServiceFactory.activatePassword = _activatePassword;
     accountServiceFactory.changePassword = _changePassword;
+    accountServiceFactory.confirmMail = _confirmMail;
 
     return accountServiceFactory;
 }]);

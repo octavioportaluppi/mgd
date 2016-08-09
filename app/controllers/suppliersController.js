@@ -10,11 +10,13 @@ app.controller('suppliersController',
             $scope.active = 0;
             $scope.slides = [];
 
+            $scope.votes = [];
 
             supplierService
                 .getSuppliersById($routeParams.supplierId)
                 .then(function (res) {
                     $scope.supplier = res.data;
+                    $scope.loadVotes();
                     if ($scope.supplier.LogoId > 0)
                         $scope.supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + $scope.supplier.LogoId + '/Image';
                     var id = 0;
@@ -28,4 +30,17 @@ app.controller('suppliersController',
                             $scope.slides.push(elem)
                         });
                 });
+
+            $scope.loadVotes = function () {
+                for(var i=0; i < 5; i++) {
+                    var vote = {};
+                    vote.filled = $scope.supplier.Rating > i;
+                    $scope.votes.push(vote)
+                }
+            };
+
+            $scope.vote = function () {
+
+            }
+
         }]);

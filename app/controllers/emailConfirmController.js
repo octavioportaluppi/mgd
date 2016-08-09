@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('emailConfirmController', ['$scope', 'accountService', '$location', function ($scope, accountService, $location) {
+app.controller('emailConfirmController', ['$scope', 'accountService', '$location', function ($scope, accountService, $location, $routeParams) {
 
     $scope.account = {};
 
@@ -7,12 +7,11 @@ app.controller('emailConfirmController', ['$scope', 'accountService', '$location
         if(!form.$valid) {
             return;
         }
-        /*accountService
-            .confirmEmail($scope.account.email)
+        accountService
+            .confirmEmail($routeParams.hash)
             .then(function () {
-            */
-        $location.path('/email-confirmation-success');
-            /*});*/
+                $location.path('/email-confirmation-success');
+            });
     }
 
 }]);

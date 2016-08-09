@@ -35,17 +35,18 @@ ul > li {
     margin: 5px 0;
 }
 
-.frame .social {
+.supplier .social {
     text-align: center;
 }
 
-.frame .social a {
+.supplier .social a {
     color: #818181;
     font-size: 2.3rem;
     text-align: center;
+    display: block;
 }
 
-.frame .social a:hover {
+.supplier .social a:hover {
     color: #CECECE;
     font-size: 2.7rem;
     -webkit-transition: font-size 10ms;
