@@ -75,7 +75,7 @@
                     required="required"
                     type="text"
                     placeholder="HH:MM"
-                    ng-model="supplier.OpeningHours.HoursTo"
+                    ng-model="supplier.OpeningHours.HoursFrom"
                     ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
                     ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
             <div class="dashboard-error" ng-show="data.$submitted || data.hoursTo.$touched">
@@ -102,7 +102,7 @@
                     required="required"
                     type="text"
                     placeholder="HH:MM"
-                    ng-model="supplier.OpeningHours.HoursFrom"
+                    ng-model="supplier.OpeningHours.HoursTo"
                     ng-class="{'invalid':(data.hoursFrom.$error.required || data.hoursFrom.$error.pattern) && (data.$submitted || data.hoursFrom.$touched)}"
                     ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
             <div class="dashboard-error" ng-show="data.$submitted || data.hoursFrom.$touched">

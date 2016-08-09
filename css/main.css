@@ -390,7 +390,17 @@ h1.promt {
   border-radius: 5px;
   text-align: center;
   border: solid 1px #cecece;
-  padding: 20px; }
+  padding: 20px;
+  width: 300px;
+  display: inline-block;
+  margin: 15px;
+  cursor: pointer;
+}
+
+.account.selected {
+  background: #D0B1D5;
+}
+
   .account h2 {
     font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
     font-weight: 700;

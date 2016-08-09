@@ -91,7 +91,10 @@ app.controller('dashboardSupplierController',
 		var cityId = $scope.supplier.City.Id;
 		$scope.supplier.CityId = cityId;
         supplierService
-			.updateSupplierProfile($scope.supplier,$scope.reload);
+			.updateSupplierProfile($scope.supplier,
+				function () {
+					$scope.reload()
+				});
 	};
 
 	$scope.reload = function () {

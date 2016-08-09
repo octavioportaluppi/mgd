@@ -6,3 +6,26 @@
     margin: 0 0 10px;
     color: #ee3470;
 }
+
+.supplier .votes {
+    direction: rtl;
+}
+
+.supplier .vote {
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.supplier .vote.filled {
+    background-color: #aed136;
+}
+
+.supplier .vote:hover {
+    color: #aed136;
+}
+
+.supplier .vote:hover:before,
+.supplier .vote:hover ~ .vote:before {
+    color: #aed136;
+}

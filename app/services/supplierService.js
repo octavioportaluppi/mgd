@@ -59,23 +59,18 @@ app.factory('supplierService',
 
     //britez
     var updateSupplierProfile = function(details, callback){
-        $http.put(serviceBase + 'api/suppliers', details).then(function (){
+        var promise = $http.put(serviceBase + 'api/suppliers', details);
+        promise.then(function (){
             if(details.profilePic) {
                 if(details.LogoId){
                     authService.deletePicture(details.LogoId)
                         .then(function (){
                             authService
-                                .uploadLogo(details.profilePic, true)
-                                .then(function (){
-                                    callback();
-                            });
+                                .uploadLogo(details.profilePic, true);
                         })
                 } else {
                     authService
-                        .uploadLogo(details.profilePic, true)
-                        .then(function (){
-                            callback();
-                        });
+                        .uploadLogo(details.profilePic, true);
                 }
             }
             if(details.photos && details.photos.length > 0) {
@@ -83,7 +78,10 @@ app.factory('supplierService',
                     authService.uploadLogo(photo, false);
                 })
             }
+            if (typeof callback !== 'undefined')
+                callback();
         });
+        return promise;
     };
 
     var updateSuppliersService = function (services) {

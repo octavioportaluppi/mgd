@@ -17,7 +17,35 @@ app.factory('dateService', [function () {
         return _days;
     };
 
+    var _isOpen = function (openingHours) {
+        var today = new Date();
+        var openDay = _isBetweenDays(today.getDay(), openingHours.DayFrom, openingHours.DayTo);
+        var openingHour = openingHours.HoursFrom.split(':')[0];
+        var openingMinute = openingHours.HoursFrom.split(':')[1];
+        var closingHour = openingHours.HoursTo.split(':')[0];
+        var closingMinute = openingHours.HoursTo.split(':')[1];
+        var openHour = _isBetweenHours(
+            today.getHours(), today.getMinutes(),
+            openingHour, openingMinute,
+            closingHour, closingMinute);
+        return openDay && openHour;
+    };
+
+    var _isBetweenDays = function(currentDay, fromDay, toDay) {
+        return fromDay <= currentDay && toDay >= currentDay;
+    };
+
+    var _isBetweenHours = function(currentHours, currentMinutes, fromHours, fromMinutes, toHours, toMinutes) {
+        var greaterThanFrom = currentHours >= fromHours && currentMinutes >= fromMinutes;
+        var lowerThanTo = currentHours <= toHours && currentMinutes <= toMinutes;
+
+        return greaterThanFrom && lowerThanTo;
+    };
+
+
+
     dateServiceFactory.getDays = _getDays;
+    dateServiceFactory.isOpen = _isOpen;
 
     return dateServiceFactory;
 }]);

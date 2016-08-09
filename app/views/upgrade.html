@@ -1,24 +1,28 @@
+<div class="supplier">
+    <div ng-class="{'active': isActive('/dashboard')}" class="col-xs-6 col-md-4 menu-item"><a>Mi Perfil</a></div>
+    <div class="col-xs-6 col-md-4 menu-item odd">
+        <a href="#/supplier/account">Mi Cuenta</a>
+    </div>
+    <div class="col-xs-6 col-md-4 menu-item active">
+        <a href="#/upgrade">Upgrade</a>
+    </div>
+</div>
 <div class="container main">
     <div class="row">
         <div class="col-lg-12 text-center">
             <h1 class="promt">¿Qué tipo de suscripción deseas?</h1>
         </div>
     </div>
-    <div class="row register-panel">
-        <div
-            class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0"
-            ng-repeat="suscription in suscriptionType">
-            <div class="account">
-                <h2>{{suscription.name}}</h2>
-                <img class="icon" src="img/star.png" ng-repeat="rating in getRating(suscription.stars) track by $index"/>
-                <ul>
-                    <li ng-class="{{suscription.feature1}} ? 'check' : 'uncheck'">Lorem ipsum dolor sit amen</li>
-                    <li ng-class="{{suscription.feature2}} ? 'check' : 'uncheck'">Lorem ipsum dolor sit amen</li>
-                    <li ng-class="{{suscription.feature3}} ? 'check' : 'uncheck'">Lorem ipsum dolor sit amen</li>
-                    <li ng-class="{{suscription.feature4}} ? 'check' : 'uncheck'">Lorem ipsum dolor sit amen</li>
-                    <li ng-class="{{suscription.feature5}} ? 'check' : 'uncheck'">Lorem ipsum dolor sit amen</li>
-                </ul>
-            </div>
+
+    <div style="text-align: center;">
+        <div class="account"
+             ng-click="changeSubscription(subscription.Id)"
+             ng-class="{'selected':subscription.Id === currentSubscription.Id}"
+             ng-repeat="subscription in subscriptions">
+            <h2>{{subscription.Name}}</h2>
+            <img class="icon" src="img/star.png" ng-repeat="star in subscription.stars"/>
+            <p>{{subscription.Description}}</p>
+            <h3>$ {{subscription.MonthlyFee}}</h3>
         </div>
     </div>
 </div>

@@ -5,16 +5,41 @@
     </div>
     <div class="col-md-4">
         <h1 class="index-title">{{supplier.Name}}</h1>
+        <button class="btn btn-default btn-submit"
+                ng-disabled="true">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            Enviar Mensaje
+        </button>
     </div>
     <div class="col-md-4">
         <p class="address">{{supplier.Address | firstLetter }}</p>
         <p class="address">{{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</p>
         <p style="cursor: pointer;">
+            <span style="color: #aed136" ng-if="isOpen()">Open now</span>
+            <span ng-if="!isOpen()">Lalala</span>
+        </p>
+        <p class="votes">
             <i
-                class="fa vote"
-                ng-class="{'fa-star': vote.filled, 'fa-star-o': !vote.filled}"
-                ng-repeat="vote in votes"
-                ng-click="vote()"></i>
+                class="fa fa-star vote"
+                ng-class="{'filled': supplier.Rating > 4}"
+                ng-click="vote(4)"></i>
+            <i
+                class="fa fa-star vote"
+                ng-class="{'filled': supplier.Rating > 3}"
+                ng-click="vote(3)"></i>
+            <i
+                class="fa fa-star vote"
+                ng-class="{'filled': supplier.Rating > 2}"
+                ng-click="vote(2)"></i>
+            <i
+                class="fa fa-star vote"
+                ng-class="{'filled': supplier.Rating > 1}"
+                ng-click="vote(1)"></i>
+            <i
+                class="fa fa-star vote"
+                ng-class="{'filled': supplier.Rating > 0}"
+                ng-click="vote(0)"></i>
+            <span class="pull-left">Rating</span>
         </p>
     </div>
     <div class="col-md-2 social">

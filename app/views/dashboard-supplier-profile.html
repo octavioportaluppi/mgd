@@ -82,7 +82,7 @@
             </div>
         </div>
         <div class="signup-field">
-            <button ng-click="saveSupplierProfile(data)" class="btn btn-default btn-submit pull-left"
+            <button ng-click="saveSupplierProfile(data, closeProfile)" class="btn btn-default btn-submit pull-left"
                     ng-class="[{'invalid':!data.$valid && data.$submitted}]"
             >Guardar</button>
             <button ng-click="getDashboard() ; saveSupplierProfile(data)" class="btn btn-default pull-right">Cancelar</button>
