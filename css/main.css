@@ -298,7 +298,8 @@ footer {
 .img-planner {
   background-image: url("../img/mi_gran_dia_cumpleanos.jpg");
   width: 100%;
-  margin-left: -15px; }
+  /*margin-left: -15px;*/
+}
 
 .login-caption {
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;

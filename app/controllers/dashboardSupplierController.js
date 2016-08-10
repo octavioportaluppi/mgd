@@ -40,6 +40,8 @@ app.controller('dashboardSupplierController',
 				$scope.supplier.TwitterUrl = res.TwitterUrl;
 				$scope.supplier.State = res.State;
 				$scope.supplier.OpeningHours = res.OpeningHours;
+				$scope.supplier.OpeningHours.DayFromValue = {id: $scope.supplier.OpeningHours.DayFrom};
+				$scope.supplier.OpeningHours.DayToValue = {id: $scope.supplier.OpeningHours.DayTo};
 				$scope.supplier.LogoId = res.LogoId;
 				$scope.supplier.Pictures = res.Pictures
 					.filter(function (pic) {
@@ -113,6 +115,10 @@ app.controller('dashboardSupplierController',
 		if(!form.$valid) {
 			return;
 		}
+		$scope.supplier.StateId = $scope.supplier.State.Id;
+		$scope.supplier.CityId = $scope.supplier.City.Id;
+		$scope.supplier.OpeningHours.DayFrom = $scope.supplier.OpeningHours.DayFromValue.id;
+		$scope.supplier.OpeningHours.DayTo = $scope.supplier.OpeningHours.DayToValue.id;
 		$scope.updateDetails(callback)
 	};
 
@@ -133,7 +139,7 @@ app.controller('dashboardSupplierController',
 
 	$scope.getCities = function() {
 		stateService
-			.getCities($scope.supplier.StateId)
+			.getCities($scope.supplier.State.Id)
 			.then(function (response){
 				$scope.cities = response.data;
 			});

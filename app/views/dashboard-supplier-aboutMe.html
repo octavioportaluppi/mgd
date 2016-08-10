@@ -18,11 +18,10 @@
             <div class="form-group signup-field">
                 <select class="form-control" name="state"
                         ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}"
-                        ng-model="supplier.StateId"
                         required="required"
-                        ng-change="getCities()">
-                    <option value="" disabled="disabled" selected="selected" class="placeholder">POBLACIÓN</option>
-                    <option ng-repeat="state in states" value="{{state.Id}}">{{state.Name}}</option>
+                        ng-model="supplier.State"
+                        ng-change="getCities()"
+                        ng-options="state as state.Name for state in states track by state.Id">
                 </select>
                 <div class="error" ng-show="data.$submitted || data.state.$touched">
                     <div ng-show="data.state.$error.required">Dinos la población a la que perteneces.</div>
@@ -32,10 +31,14 @@
     <div class="signup-field">
             <label>Ciudad</label>
             <div class="form-group signup-field">
-                <select class="form-control" required="" ng-model="supplier.CityId" name="city"
-                        ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}">
-                    <option value="" disabled="disabled" selected="selected" class="placeholder">CIUDAD</option>
-                    <option value="{{city.Id}}" ng-repeat="city in cities">{{city.Name}}</option>
+                <select
+                    class="form-control"
+                    required=""
+                    ng-model="supplier.City"
+                    ng-init="getCities()"
+                    name="city"
+                    ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}"
+                    ng-options="city as city.Name for city in cities track by city.Id">
                 </select>
                 <div class="error" ng-show="data.$submitted || data.city.$touched">
                     <div ng-show="data.city.$error.required">Dinos la ciudad a la que perteneces.</div>
@@ -45,13 +48,13 @@
     <div class="signup-field">
         <label>Telefono</label>
         <input
-                class="form-control"
-                name="inputPhone"
-                required="required"
-                type="text"
-                placeholder="Telefono"
-                ng-model="supplier.Phone"
-                ng-class="{'invalid':data.inputPhone.$error.required && (data.$submitted || data.inputPhone.$touched)}"/>
+            class="form-control"
+            name="inputPhone"
+            required="required"
+            type="text"
+            placeholder="Telefono"
+            ng-model="supplier.Phone"
+            ng-class="{'invalid':data.inputPhone.$error.required && (data.$submitted || data.inputPhone.$touched)}"/>
         <div class="dashboard-error" ng-show="data.$submitted || data.inputPhone.$touched">
             <div ng-show="data.inputPhone.$error.required">Agregar un telefono.</div>
         </div>
@@ -60,24 +63,24 @@
         <label class="col-md-12">Horario apertura</label>
         <div class="col-md-7">
             <select
-                    class="form-control"
-                    required=""
-                    ng-model="supplier.OpeningHours.DayFrom"
-                    name="dayFrom"
-                    ng-class="{'invalid':data.dayFrom.$error.required && (data.$submitted || data.dayFrom.$touched)}">
-                <option selected="selected" value="{{day.id}}" ng-repeat="day in getDays()">{{day.name}}</option>
+                class="form-control"
+                required=""
+                ng-model="supplier.OpeningHours.DayFromValue"
+                name="dayFrom"
+                ng-class="{'invalid':data.dayFrom.$error.required && (data.$submitted || data.dayFrom.$touched)}"
+                ng-options="day as day.name for day in getDays() track by day.id">
             </select>
         </div>
         <div class="col-md-5">
             <input
-                    class="form-control"
-                    name="hoursTo"
-                    required="required"
-                    type="text"
-                    placeholder="HH:MM"
-                    ng-model="supplier.OpeningHours.HoursFrom"
-                    ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
-                    ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
+                class="form-control"
+                name="hoursTo"
+                required="required"
+                type="text"
+                placeholder="HH:MM"
+                ng-model="supplier.OpeningHours.HoursFrom"
+                ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
+                ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
             <div class="dashboard-error" ng-show="data.$submitted || data.hoursTo.$touched">
                 <div ng-show="data.hoursTo.$error.required">Agregar un Horario.</div>
             </div>
@@ -89,10 +92,10 @@
             <select
                     class="form-control"
                     required=""
-                    ng-model="supplier.OpeningHours.DayTo"
+                    ng-model="supplier.OpeningHours.DayToValue"
                     name="dayTo"
-                    ng-class="{'invalid':data.dayTo.$error.required && (data.$submitted || data.dayTo.$touched)}">
-                <option selected="selected" value="{{day.id}}" ng-repeat="day in getDays()">{{day.name}}</option>
+                    ng-class="{'invalid':data.dayTo.$error.required && (data.$submitted || data.dayTo.$touched)}"
+                    ng-options="day as day.name for day in getDays() track by day.id">
             </select>
         </div>
         <div class="col-md-5">

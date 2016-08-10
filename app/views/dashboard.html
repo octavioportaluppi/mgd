@@ -1,21 +1,21 @@
 <div class="supplier">
-    <div ng-class="{'active': isActive('/dashboard')}" class="col-xs-6 col-md-4 menu-item"><a>Mi Perfil</a></div>
-    <div class="col-xs-6 col-md-4 menu-item odd">
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item active"><a>Mi Perfil</a></div>
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item odd">
         <a href="#/supplier/account">Mi Cuenta</a>
     </div>
-    <div class="col-xs-6 col-md-4 menu-item">
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item">
         <a href="#/upgrade">Upgrade</a>
     </div>
     <div class="container gray-bg">
-        <div class="col-lg-9 col-md-9 col-sm-12">
+        <div class="col-md-9 col-sm-12 col-xs-12">
             <div class="frame header clearfix">
                 <div ng-show="!editProfile">
-                    <div class="col-xs-3">
+                    <div class="col-md-3 col-sm-4 col-xs-12">
                         <img class="avatar img-circle" src="img/photo-placeholder.jpg" ng-if="!supplier.pic"/>
                         <img class="avatar img-circle" src="{{supplier.pic}}" ng-if="supplier.pic"/>
                     </div>
-                    <div class="col-xs-9">
-                        <div class="col-xs-11">
+                    <div class="col-md-9 col-sm-8 col-xs-12">
+                        <div class="col-md-11 col-sm-11 col-xs-10">
                             <h1 class="index-title">{{supplier.Name}}</h1>
                             <p class="since">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p>
                             <button  ng-show="!editProfile" ng-click="editProfile = !editProfile" class="btn btn-default btn-submit" >
@@ -23,7 +23,7 @@
                                 Editar
                             </button>
                         </div>
-                        <div class="col-xs-1 social">
+                        <div class="col-md-1 col-sm-1 col-xs-2 social pull-right">
                             <a ng-href="{{supplier.FacebookUrl}}"
                                ng-if="supplier.FacebookUrl">
                                 <i class="fa fa-facebook-square" aria-hidden="true"></i>
@@ -42,11 +42,13 @@
                 <ng-include ng-show="editProfile" src="'/app/views/dashboard-supplier-profile.html'"></ng-include>
             </div>
             <div class="clearfix">
-                <div class="col-xs-10"><h2 class="sub-title">SOBRE MI</h2></div>
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <h2 class="sub-title">SOBRE MI</h2>
+                </div>
                 <button
                     ng-show="!editAboutMe"
                     ng-click="editAboutMe = !editAboutMe"
-                    class="btn btn-default btn-submit">
+                    class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     Editar
                 </button>
@@ -54,7 +56,7 @@
             <!-- Edit about ME !--->
             <div class="frame clearfix">
                 <div ng-if="!editAboutMe">
-                    <div class="col-md-5">
+                    <div class="col-md-5 col-sm-5 col-xs-12">
                         <div class="info-group">
                             <p class="address">{{supplier.Address | firstLetter }}</p>
                             <p class="address">{{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</p>
@@ -69,30 +71,30 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-7 col-xs-12">
                         <p>{{supplier.Description}}</p>
                     </div>
                 </div>
                 <ng-include ng-if="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
             </div>
             <div class="clearfix">
-                <div class=" col-xs-10">
+                <div class="col-md-10 col-sm-10 col-xs-12">
                     <h2 class="sub-title">SERVICIOS</h2>
                 </div>
                 <button
-                    class="btn btn-default btn-submit"
+                    class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12"
                     ng-show="!editServices"
                     ng-click="editServices = !editServices">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     Editar</button>
             </div>
             <div class="register-panel frame clearfix">
-                <div class="col-md-12 text-center"
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center"
                      ng-if="dashboard.ServiceTypes.length === 0 && !editServices">
                     <h1>No has seleccionado algún servicio</h1>
                 </div>
                 <div ng-if="editServices">
-                    <div class="col-md-6"
+                    <div class="col-md-6 col-sm-6 col-xs-12"
                          ng-repeat="item in serviceTypes">
                         <label class="btn btn-default"  ng-class="{'active': haveItem(item.Id)}">
                             <input
@@ -103,13 +105,13 @@
                             {{item.Name}}
                         </label>
                     </div>
-                    <div class="signup-field col-md-12">
+                    <div class="signup-field col-md-12 col-sm-12 col-xs-12">
                         <button ng-click="updateServices()" class="btn btn-default btn-submit pull-left" >Guardar</button>
                         <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
                     </div>
                 </div>
                 <div ng-if="!editServices">
-                    <div class="col-md-6"
+                    <div class="col-md-6 col-sm-6 col-xs-12"
                          ng-repeat="item in dashboard.ServiceTypes">
                         <label class="btn btn-default active">
                             <span class="{{item.Name | icon}}"></span>
@@ -119,11 +121,11 @@
                 </div>
             </div>
             <div class="clearfix">
-                <div class=" col-xs-10">
+                <div class="col-md-10 col-sm-10 col-xs-12">
                     <h2 class="sub-title">DETALLES</h2>
                 </div>
                 <button
-                        class="btn btn-default btn-submit"
+                        class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12"
                         ng-show="!editAnswers"
                         ng-click="editAnswers = !editAnswers">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -131,7 +133,7 @@
             </div>
             <div class="register-panel frame clearfix">
                 <div
-                    class="col-md-12"
+                    class="col-md-12 col-sm-12 col-xs-12"
                     ng-repeat="answer in answers"
                     ng-if="!editAnswers">
                     <p>{{answer.Question.Text}}</p>
@@ -155,28 +157,28 @@
                             <div ng-show="questionsForm[answer.Question.Id].$error.required">Esta pregunta es obligatoria.</div>
                         </div>
                     </div>
-                    <div class="signup-field col-md-12">
+                    <div class="signup-field col-md-12 col-sm-12 col-xs-12">
                         <button ng-click="updateQuestions(questionsForm)" class="btn btn-default btn-submit pull-left" >Guardar</button>
                         <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
                     </div>
                 </form>
             </div>
             <div class="clearfix">
-                <div class=" col-xs-10">
+                <div class="col-md-10 col-sm-10 col-xs-12">
                     <h2 class="sub-title">MIS FOTOS</h2>
                 </div>
             </div>
             <div class="register-panel clearfix">
-                <div class="col-md-3" ng-repeat="pic in supplier.Pictures">
+                <div class="col-md-3 col-sm-3 col-xs-12" ng-repeat="pic in supplier.Pictures" style="text-align: center;">
                     <img
-                            ng-show="pic"
-                            src="{{pic}}"
-                            class="default-image"/>
+                        ng-show="pic"
+                        src="{{pic}}"
+                        class="default-image"/>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-3 col-md-3 col-sm-12">
+        <div class="col-md-3 col-sm-12 col-xs-12">
             <div class="frame text-center header"><h1>AD</h1></div>
             <div class="frame text-center header"><span>Perfil {{chart*100}}% completado</span>
                 <progress-arc complete="chart" stroke-width="15" size="100" stroke="#8c3e96"></progress-arc>

@@ -3,9 +3,14 @@ app.controller('indexController', ['$scope', '$location', 'authService', functio
 
 	$scope.plannerCollapsed = true;
   	$scope.suppliersCollapsed = true;
+    $scope.isCollapsed = true;
 
     $scope.logOut = function () {
         authService.logOut();
+        $location.path('/');
+    };
+
+    $scope.goHome = function () {
         $location.path('/');
     };
 

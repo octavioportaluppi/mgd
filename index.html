@@ -80,16 +80,16 @@
 			</li>
 
 			<li ng-hide="authentication.isAuth" class="active">
-				<a href="" ng-click="signup()">REGÍSTRATE</a>
-			</li>
-			<li ng-hide="authentication.isAuth" class="active">
 				<a href="#/login-supplier">Log-In</a>
 			</li>
-			<li ng-hide="!authentication.isAuth" class="active">
-				<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+			<li ng-hide="authentication.isAuth" class="active">
+				<a href="" ng-click="signup()">REGÍSTRATE</a>
 			</li>
 			<li ng-hide="!authentication.isAuth" class="active">
 				<a href="#/dashboard">Hola, {{authentication.Email}}</a>
+			</li>
+			<li ng-hide="!authentication.isAuth" class="active">
+				<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
 			</li>
 		</ul>
 		<div ng-view=""></div>

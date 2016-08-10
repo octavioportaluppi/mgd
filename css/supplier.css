@@ -17,10 +17,7 @@
     font-size: 2rem;
 }
 
-.supplier .vote.filled {
-    background-color: #aed136;
-}
-
+.supplier .vote.filled,
 .supplier .vote:hover {
     color: #aed136;
 }

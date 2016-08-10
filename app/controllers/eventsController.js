@@ -12,6 +12,14 @@ app.controller(
             $scope.page = 1;
             $scope.filter = {name:'EventTypeId', value: $routeParams.eventId};
 
+            supplierService
+                .getEvents()
+                .then(function (response){
+                    $scope.event = response
+                        .data
+                        .find(function (event){ return event.Id == $routeParams.eventId});
+                });
+
             $scope.getSuppliers = function (){
                 $scope.loading = true;
                 supplierService
