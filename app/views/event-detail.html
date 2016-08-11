@@ -1,11 +1,11 @@
 <div>
-    <ul class="planner-nav col-md-12">
-        <li class="active col-md-6" ng-class="{'active': isUrlActive('/planner')}"><a href="#/planner">mis eventos</a></li>
-        <li class="col-md-6"><a href="#/planner/account">mi cuenta</a></li>
+    <ul class="planner-nav col-md-12 col-sm-12 col-xs-12">
+        <li class="active col-md-6 col-sm-6 col-xs-6"><a href="#/planner">mis eventos</a></li>
+        <li class="col-md-6 col-md-6 col-sm-6 col-xs-6"><a href="#/planner/account">mi cuenta</a></li>
     </ul>
-    <div class="col-md-12" style="background-image: url('../img/mi_gran_dia_{{event.EventType.Name | background}}.jpg');background-position: center;
+    <div class="col-md-12 col-sm-12 col-xs-12" style="background-image: url('../img/mi_gran_dia_{{event.EventType.Name | background}}.jpg');background-position: center;
     background-size: cover; min-height: 450px;">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3">
             <h1 class="carousel-caption"
                     style="font-size: 4rem; padding: 60px 0">Faltan <b style="color: #aed136">{{event.RemainingDays}}</b> dias para tu proximo evento:</h1>
         </div>

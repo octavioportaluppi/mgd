@@ -15,7 +15,7 @@
 						required=""
 						type="text"
 						placeholder="Nombre"
-						ng-model="planner.Name"
+						ng-model="planner.FirstName"
 						ng-class="{'invalid':data.plannerName.$error.required && (data.$submitted || data.plannerName.$touched)}"/>
 				<div class="error" ng-show="data.$submitted || data.plannerName.$touched">
 					<div ng-show="data.plannerName.$error.required">Dinos tu nombre.</div>
@@ -30,7 +30,7 @@
 						required=""
 						type="text"
 						placeholder="Apellido"
-						ng-model="supplier.LastName"
+						ng-model="planner.LastName"
 						ng-class="{'invalid':data.plannerLastName.$error.required && (data.$submitted || data.plannerLastName.$touched)}"/>
 				<div class="error" ng-show="data.$submitted || data.plannerLastName.$touched">
 					<div ng-show="data.plannerLastName.$error.required">Dinos tu apellido.</div>
