@@ -1,5 +1,5 @@
 ﻿'use strict';
-app.controller('subscriptionController', ['$scope', 'accountService', function ($scope, accountService) {
+app.controller('subscriptionController', ['$scope', 'accountService', '$location', function ($scope, accountService, $location) {
 
     $scope.load = function () {
         accountService
@@ -30,7 +30,7 @@ app.controller('subscriptionController', ['$scope', 'accountService', function (
         accountService
             .updateSubscription(subscriptionId)
             .then(function (){
-                $scope.load();
+                $location.path('subscription-success')
             })
     };
 

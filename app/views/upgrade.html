@@ -18,13 +18,18 @@
 
     <div style="text-align: center;">
         <div class="account"
-             ng-click="changeSubscription(subscription.Id)"
              ng-class="{'selected':subscription.Id === currentSubscription.Id}"
              ng-repeat="subscription in subscriptions">
             <h2>{{subscription.Name}}</h2>
             <img class="icon" src="img/star.png" ng-repeat="star in subscription.stars"/>
             <p>{{subscription.Description}}</p>
             <h3>$ {{subscription.MonthlyFee}}</h3>
+            <button
+                ng-show="subscription.Id !== currentSubscription.Id"
+                ng-click="changeSubscription(subscription.Id)"
+                class="btn btn-default btn-submit col-md-12 col-sm-12 col-xs-12">
+                Solicitar
+            </button>
         </div>
     </div>
 </div>

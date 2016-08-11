@@ -395,7 +395,6 @@ h1.promt {
   width: 300px;
   display: inline-block;
   margin: 15px;
-  cursor: pointer;
 }
 
 .account.selected {

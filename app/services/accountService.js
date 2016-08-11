@@ -33,7 +33,7 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
     };
 
     var _updateSubscription = function (subscriptionId) {
-        return $http.put(serviceBase + 'api/suppliers/subscriptiontype',{Id: subscriptionId});
+        return $http.put(serviceBase + 'api/suppliers/subscriptiontype',{SubscriptionTypeId: subscriptionId});
     };
 
     accountServiceFactory.forgotPassword = _forgotPassword;

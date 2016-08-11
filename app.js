@@ -113,6 +113,10 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/upgrade.html"
     });
 
+    $routeProvider.when('/subscription-success', {
+        templateUrl: "/app/views/subscription-success.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });
