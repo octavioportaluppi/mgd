@@ -4,7 +4,7 @@ app.controller('activateController',
 
         $scope.activate = {};
 
-        $scope.activate = function (form) {
+        $scope.activateAccount = function (form) {
             if(!form.$valid) {
                 return false;
             }
