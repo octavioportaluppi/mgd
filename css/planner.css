@@ -15,7 +15,8 @@
 }
 
 .planner-nav li.odd,
-.event-menu li.odd {
+.event-menu li.odd,
+.event-menu-responsive li.odd {
     background: #c0c0c0;
 }
 
@@ -26,6 +27,8 @@
 .planner-nav .active,
 .event-menu li.active,
 .event-menu li:hover,
+.event-menu-responsive li.active,
+.event-menu-responsive li:hover,
 .planner-nav li:hover{
     background: #aed136;
     color: #FFF;
@@ -85,6 +88,41 @@
     margin:0;
     padding: 0;
     text-align: center;
+    display: inline;
+}
+
+.event-menu-responsive {
+    display: none;
+    list-style: none;
+    margin:0;
+    padding: 0;
+    text-align: center;
+}
+
+@media only screen and (min-width: 320px) {
+    .event-menu {
+        display: none;
+    }
+
+    .event-menu-responsive {
+        display: inline;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .event-menu {
+        display: inline;
+    }
+
+    .event-menu-responsive {
+        display: none;
+    }
+}
+
+.event-menu-responsive li {
+    padding: 20px;
+    background: #cecece;
+    text-transform: uppercase;
 }
 
 .event-menu li {

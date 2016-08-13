@@ -1,10 +1,10 @@
 <div class="row">
-    <div class="col-md-3" style="min-height: 500px">
+    <div class="col-md-3 col-sm-12 col-xs-12" style="min-height: 500px">
         <div class="row">
-            <div class="col-md-12 calendar-title">
+            <div class="col-md-12 col-sm-12 col-xs-12 calendar-title">
                 <span>Tareas</span>
             </div>
-            <ul class="col-md-12 calendar-filter">
+            <ul class="col-md-12 col-sm-12 col-xs-12 calendar-filter">
                 <li
                     class="clearfix"
                     ng-class="{'selected': selectedFilter === 'all'}"
@@ -42,8 +42,8 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-5" style="background-color: #FAF5FB; min-height: 500px;">
-        <div class="col-md-12" style="margin: 20px 0 10px 0;">
+    <div class="col-md-5 col-sm-12 col-xs-12" style="background-color: #FAF5FB; min-height: 500px;">
+        <div class="col-md-12 col-sm-12 col-xs-12" style="margin: 20px 0 10px 0;">
             <div class="row">
                 <button
                     ng-click="addTask = !addTask"
@@ -51,7 +51,7 @@
                     class="btn btn-defasult btn-submit btn-task">Agregar Tarea</button>
             </div>
         </div>
-        <div class="col-md-12 task-form" uib-collapse="!addTask">
+        <div class="col-md-12 col-sm-12 col-xs-12 task-form" uib-collapse="!addTask">
             <form name="data" novalidate="novalidate">
                 <div class="input-group col-md-12">
                     <input
@@ -130,7 +130,7 @@
             </form>
         </div>
         <div
-            class="col-md-12 clearfix task"
+            class="col-md-12 col-sm-12 col-xs-12 clearfix task"
             ng-repeat="item in taskItem"
             ng-class="{'selected': item.selected, 'completed': item.Status === 1}"
             ng-click="getOneTask(item)">
@@ -145,9 +145,9 @@
             </span>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-12 col-xs-12">
         <div class="row" ng-if="taskItemSelected && !taskItemSelected.edit">
-            <div class="col-md-12 task-detail clearfix"
+            <div class="col-md-12 col-sm-12 col-xs-12 task-detail clearfix"
                  ng-class="{'completed': taskItemSelected.Status === 1}">
                 <div class="checkbox-item pull-left" style="cursor:pointer;" ng-click="completeTask(taskItemSelected)">
                     <i class="fa fa-check"></i>
@@ -160,32 +160,32 @@
                     <i class="fa fa-trash" ng-click="taskItemSelected.delete = true;"></i>
                 </div>
             </div>
-            <div class="col-md-12 task-delete clearfix" uib-collapse="!taskItemSelected.delete">
-                <p class="pull-left task-delete-label">Esta seguro de eliminar la tarea?</p>
+            <div class="col-md-12 col-sm-12 col-xs-12 task-delete clearfix" uib-collapse="!taskItemSelected.delete">
+                <p class="pull-left col-sm-12 col-xs-12 task-delete-label">Esta seguro de eliminar la tarea?</p>
                 <button class="btn btn-defasult btn-edit pull-right" ng-click="taskItemSelected.delete = false;">No</button>
                 <button
                         class="btn btn-defasult btn-edit btn-submit pull-right" ng-click="deleteItem(taskItemSelected.Id)">Si</button>
             </div>
-            <div class="col-md-12 task-info">
+            <div class="col-md-12 col-sm-12 col-xs-12 task-info">
                 <div class="row">
-                    <div class="col-md-12 task-info-header">
+                    <div class="col-md-12 col-sm-12 col-xs-12 task-info-header">
                         <i class="icon {{taskItemSelected.ServiceType.Name | icon}}"></i>
                         <span>{{taskItemSelected.ServiceType.Name}}</span>
                     </div>
-                    <div class="col-md-12 task-info-header">
+                    <div class="col-md-12 col-sm-12 col-xs-12 task-info-header">
                         <i class="icon glyphicon glyphicon-calendar"></i>
                         <span>Vence el {{taskItemSelected.DueDate | date: 'EEE, d '}}de{{taskItemSelected.DueDate | date: ' MMM '}} del {{taskItemSelected.DueDate | date: ' yyyy'}}</span>
                     </div>
-                    <div class="col-md-12 task-info-notes">
+                    <div class="col-md-12 col-sm-12 col-xs-12 task-info-notes">
                         <span>{{taskItemSelected.Notes}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div ng-if="taskItemSelected.edit" class="row">
-            <div class="col-md-12 task-form" style="background: #ececec; padding: 30px 15px;">
+            <div class="col-md-12 col-sm-12 col-xs-12 task-form" style="background: #ececec; padding: 30px 15px;">
                 <form name="dataUpdate" novalidate="novalidate">
-                    <div class="input-group col-md-12">
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
                         <input
                                 class="form-control"
                                 type="text"
@@ -198,7 +198,7 @@
                             <div ng-show="dataUpdate.tarea.$error.required">Dinos el nombre de la tarea.</div>
                         </div>
                     </div>
-                    <div class="input-group col-md-12">
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
                         <select class="form-control"
                                 name="service"
                                 ng-model="taskItemSelected.ServiceType"
@@ -210,7 +210,7 @@
                             <div ng-show="dataUpdate.service.$error.required">Selecciona un servicio.</div>
                         </div>
                     </div>
-                    <div class="input-group col-md-12">
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
                         <input
                                 class="form-control"
                                 type="text"
@@ -238,7 +238,7 @@
                         <div ng-show="dataUpdate.date.$error.required">Selecciona una fecha</div>
                     </div>
 
-                    <div class="input-group col-md-12">
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
                         <textarea
                             class="form-control dashTextarea "
                             name="textTareaDescription"
@@ -255,7 +255,7 @@
                         </div>
                     </div>
 
-                    <div class="input-group col-md-12">
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
                         <button ng-click="getOneTask(taskItemSelected)" style="margin: 10px 0" class="btn btn-default pull-right">Cancelar</button>
                         <button ng-click="update(dataUpdate)" class="btn btn-default btn-submit pull-left">Guardar</button>
                     </div>
