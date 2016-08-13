@@ -21,6 +21,27 @@ app.controller('plannerController',
 		});
 	};
 
+	$scope.showEdit = function(event) {
+		event.edit = true;
+		event.Date = new Date(event.Date);
+	};
+
+	$scope.updateEvent = function(form, event) {
+		if (!form.$valid) {
+			return;
+		}
+
+		event.EventTypeId = event.EventType.Id;
+		event.StateId = event.State.Id;
+		event.CityId = event.City.Id;
+
+		plannerService
+			.updateEvent(event)
+			.then(function () {
+				$scope.getEvents();
+			})
+	};
+
 	$scope.getPastEventKeys = function () {
 		if(!$scope.pastEvents) {
 			return;
@@ -28,9 +49,9 @@ app.controller('plannerController',
 		return Object.keys($scope.pastEvents);
 	};
 
-	$scope.getCities = function() {
+	$scope.getCities = function(stateId) {
 		stateService
-			.getCities($scope.event.StateId)
+			.getCities(stateId)
 			.then(function (response){
 				$scope.cities = response.data;
 			});

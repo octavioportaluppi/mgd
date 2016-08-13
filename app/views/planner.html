@@ -58,7 +58,7 @@
                                 ng-class="{'invalid':eventForm.state.$error.required && (eventForm.$submitted || eventForm.state.$touched)}"
                                 ng-model="event.StateId"
                                 required="required"
-                                ng-change="getCities()">
+                                ng-change="getCities(event.StateId)">
                             <option value="" disabled="disabled" selected="selected" class="placeholder">POBLACIÓN</option>
                             <option ng-repeat="state in states" value="{{state.Id}}">{{state.Name}}</option>
                         </select>
@@ -140,36 +140,164 @@
     <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="list-item clearfix"
             ng-repeat="event in events">
-            <div class="col-md-6 col-sm-6 col-xs-12 row">
-                <a href="#/events/{{event.Id}}/detail">{{event.Title}}</a>
-                <span class="ligth-description">{{event.City.Name}}, {{event.State.Name}}</span>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12 row event-buttons pull-right">
-                <button class="btn btn-defasult btn-submit pull-right" ng-click="event.delete = !event.delete;"><i class="fa fa-trash"></i></button>
-                <a class="btn btn-defasult btn-more-info pull-right" href="#/events/{{event.Id}}/detail">MAS INFORMACION</a>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12 row delete-form" uib-collapse="!event.delete">
-                <p>¿Esta seguro de eliminar este evento?</p>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <button class="btn btn-defasult btn-submit" ng-click="delete(event)">
-                        Borrar
-                        <i class="fa fa-trash"></i>
-                    </button>
+            <div ng-if="!event.edit">
+                <div class="col-md-6 col-sm-6 col-xs-12 row">
+                    <a href="#/events/{{event.Id}}/detail">{{event.Title}}</a>
+                    <span class="ligth-description">{{event.City.Name}}, {{event.State.Name}}</span>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <button class="btn btn-defasult" ng-click="event.delete = !event.delete">Cancelar</button>
+                <div class="col-md-6 col-sm-6 col-xs-12 row event-buttons pull-right">
+                    <button class="btn btn-defasult btn-submit pull-right" ng-click="showEdit(event)"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-defasult btn-submit pull-right" ng-click="event.delete = !event.delete;"><i class="fa fa-trash"></i></button>
+                    <a class="btn btn-defasult btn-more-info pull-right" href="#/events/{{event.Id}}/detail">MAS INFORMACION</a>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 row delete-form" uib-collapse="!event.delete">
+                    <p>¿Esta seguro de eliminar este evento?</p>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <button class="btn btn-defasult btn-submit" ng-click="delete(event)">
+                            Borrar
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <button class="btn btn-defasult" ng-click="event.delete = !event.delete">Cancelar</button>
+                    </div>
+                </div>
+                <div class="divider col-md-12 col-sm-12 col-xs-12"></div>
+                <div class="col-md-6 col-sm-6 col-xs-6 row">
+                    <p class="ligth-description">Fecha: {{event.Date | date: 'dd MMMM, yyyy hh:mm a'}}</p>
+                    <p class="ligth-description">Invitados: {{event.GuestsCount}}</p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
+                    <p class="ligth-description">Limite de presupuesto: {{event.Budget}} MXN</p>
+                    <p class="ligth-description">Presupuesto gastado: {{event.Budget - event.AvailableBudget}} MXN</p>
+                    <p class="ligth-description">Proveedores guardados: {{event.SuppliersCount}}</p>
                 </div>
             </div>
-            <div class="divider col-md-12 col-sm-12 col-xs-12"></div>
-            <div class="col-md-6 col-sm-6 col-xs-6 row">
-                <p class="ligth-description">Fecha: {{event.Date | date: 'dd MMMM, yyyy hh:mm a'}}</p>
-                <!--<p class="ligth-description">Locacion: Salon de eventos Versalles</p>-->
-                <p class="ligth-description">Invitados: {{event.GuestsCount}}</p>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
-                <p class="ligth-description">Limite de presupuesto: {{event.Budget}} MXN</p>
-                <p class="ligth-description">Presupuesto gastado: {{event.Budget - event.AvailableBudget}} MXN</p>
-                <p class="ligth-description">Proveedores guardados: {{event.SuppliersCount}}</p>
+            <div ng-if="event.edit">
+                <form class="form-horizontal" name="eventForm" form-step-validity="form-step-validity" novalidate>
+                    <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
+                        <div class="form-group signup-error">
+                            <div class="error">
+                                <div ng-show="errorMessage">{{errorMessage.data.ModelState[''][1]}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                        <div class="form-group signup-field">
+                            <input
+                                class="form-control"
+                                name="eventName"
+                                required=""
+                                type="text"
+                                placeholder="Nombre del evento"
+                                ng-model="event.Title"
+                                ng-class="{'invalid':eventForm.eventName.$error.required && (eventForm.$submitted || eventForm.eventName.$touched)}"/>
+                            <div class="error" ng-show="eventForm.$submitted || eventForm.eventName.$touched">
+                                <div ng-show="eventForm.eventName.$error.required">Dinos tu el nombre del evento.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                        <div class="form-group signup-field">
+                            <select
+                                    class="form-control"
+                                    name="eventTypeId"
+                                    required=""
+                                    ng-model="event.EventType"
+                                    ng-class="{'invalid':eventForm.eventTypeId.$error.required && (eventForm.$submitted || eventForm.eventTypeId.$touched)}"
+                                    ng-options="eventType as eventType.Name for eventType in eventTypes track by eventType.Id">
+                            </select>
+                            <div class="error" ng-show="eventForm.$submitted || eventForm.eventTypeId.$touched">
+                                <div ng-show="eventForm.eventTypeId.$error.required">Selecciona un tipo de evento.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                        <div class="form-group signup-field">
+                            <select class="form-control" name="state"
+                                    ng-class="{'invalid':eventForm.state.$error.required && (eventForm.$submitted || eventForm.state.$touched)}"
+                                    ng-model="event.State"
+                                    required="required"
+                                    ng-change="getCities(event.State.Id)"
+                                    ng-options="state as state.Name for state in states track by state.Id">
+                            </select>
+                            <div class="error" ng-show="eventForm.$submitted || eventForm.state.$touched">
+                                <div ng-show="eventForm.state.$error.required">Dinos la población del evento.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                        <div class="form-group signup-field">
+                            <select class="form-control" required="" ng-model="event.City" name="city"
+                                    ng-class="{'invalid':eventForm.city.$error.required && (eventForm.$submitted || eventForm.city.$touched)}"
+                                    ng-options="city as city.Name for city in cities track by city.Id"
+                                    ng-init="getCities(event.State.Id)">
+                            </select>
+                            <div class="error" ng-show="eventForm.$submitted || eventForm.city.$touched">
+                                <div ng-show="eventForm.city.$error.required">Dinos la ciudad del evento.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                        <div class="form-group signup-field">
+                            <div class="input-group">
+                                <input
+                                        class="form-control"
+                                        type="text"
+                                        uib-datepicker-popup="dd/MM/yyyy"
+                                        ng-model="event.Date"
+                                        name="date"
+                                        is-open="datepicker.opened"
+                                        datepicker-options="dateOptions"
+                                        close-text="Cerrar"
+                                        clear-text="Borrar"
+                                        current-text="Hoy"
+                                        alt-input-formats="altInputFormats"
+                                        placeholder="DD/MM/AAAA"
+                                        required="required"
+                                        popup-placement="top-right"
+                                        ng-class="{'invalid':eventForm.date.$error.required && (eventForm.$submitted || eventForm.date.$touched)}"
+                                        dropdown-append-to-body="dropdown-append-to-body"/>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default btn-input" type="button" ng-click="datepicker.opened = !datepicker.opened">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="error" ng-show="eventForm.$submitted || eventForm.date.$touched">
+                                <div ng-show="eventForm.date.$error.required">Dinos la fecha del evento.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
+                        <div class="form-group signup-field">
+                            <input
+                                    class="form-control"
+                                    type="text"
+                                    ng-model="event.Budget"
+                                    name="budget"
+                                    placeholder="Presupuesto"
+                                    required="required"
+                                    ng-class="{'invalid':eventForm.budget.$error.required && (eventForm.$submitted || eventForm.budget.$touched)}"/>
+                            <div class="error" ng-show="eventForm.$submitted || eventForm.budget.$touched">
+                                <div ng-show="eventForm.budget.$error.required">Dinos la fecha del evento.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
+                        <div class="form-group signup-field pull-left">
+                            <button
+                                    class="btn btn-default btn-submit next"
+                                    ng-class="[{'invalid':!eventForm.$valid && eventForm.$submitted}]"
+                                    ng-click="updateEvent(eventForm, event)">Guardar</button>
+                        </div>
+                        <div class="form-group signup-field pull-right">
+                            <button
+                                    class="btn btn-default next"
+                                    ng-click="getEvents()">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
 

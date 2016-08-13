@@ -20,17 +20,7 @@ app.factory('plannerService', ['$http', '$q', 'ngAuthSettings', function ($http,
     };
 
     var _updateEvent = function (event) {
-
-        var deferred = $q.defer();
-        
-        $http.put(serviceBase + 'api/events', event).success(function (res) {
-            deferred.resolve(res);
-        }).error(function (err, status) {
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
-
+        return $http.put(serviceBase + 'api/events/' + event.Id, event);
     };
 
     var _delete = function (event) {

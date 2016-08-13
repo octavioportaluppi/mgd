@@ -58,8 +58,12 @@
     font-size: 14px;
 }
 
-.planner-list .event-buttons .btn-submit {
+.planner-list .event-buttons .btn-submit{
     margin: 0;
+}
+
+.planner-list .event-buttons .btn-submit:first-child {
+    margin: 0 0 0 5px;
 }
 
 .planner-list .event-form {

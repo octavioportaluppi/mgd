@@ -20,8 +20,8 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
         return $http.post(serviceBase + 'api/account/changepassword', account);
     };
 
-    var _confirmMail = function (code) {
-        return $http.post(serviceBase + 'api/account/confirmmail', {code: code});
+    var _confirmMail = function (code, userid) {
+        return $http.post(serviceBase + 'api/account/confirmmail', {code: code, userid: userid});
     };
 
     var _getSubscriptionTypes = function() {
