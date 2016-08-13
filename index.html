@@ -70,8 +70,8 @@
 			</button>
 		</nav>
 		<ul class="responsive-menu" uib-collapse="isCollapsed">
-			<li><a href="#/planner" ng-class="{'active': isActive('/planner')}">Mis Eventos</a></li>
-			<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a></li>
+			<li ng-class="{'active': isActive('/planner')}"><a href="#/planner">Mis Eventos</a></li>
+			<li ng-class="{'active': isActive('/suppliers')}"><a href="#/suppliers">Proveedores</a></li>
 			<li><a href="#" class="disabled">Blog</a></li>
 			<li><a href="#" class="disabled">Contacto</a></li>
 			<li ng-hide="authentication.isAuth && authentication.userType == 'supplier'"
@@ -85,9 +85,12 @@
 			<li ng-hide="authentication.isAuth" class="active">
 				<a href="" ng-click="signup()">REGÍSTRATE</a>
 			</li>
+
 			<li ng-hide="!authentication.isAuth" class="active">
-				<a href="#/dashboard">Hola, {{authentication.Email}}</a>
+				<a href="#/planner" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
+				<a href="#/dashboard" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
 			</li>
+
 			<li ng-hide="!authentication.isAuth" class="active">
 				<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
 			</li>
