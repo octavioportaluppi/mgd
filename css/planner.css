@@ -442,6 +442,43 @@
     color: #818181;
 }
 
+.planner-suppliers .btn-fav {
+    margin:0 0 0 10px;
+}
+
+.planner-suppliers .fa-search {
+    position: absolute;
+    top: 7px;
+    left: 100%;
+    margin-left: -40px;
+    color: #818181;
+}
+
+@media only screen and (min-width: 320px) {
+    .planner-suppliers {
+        padding: 40px 0;
+    }
+    .planner-suppliers .btn-fav {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        display: inline-block;
+        text-align: center;
+        margin:0 0 10px 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .planner-suppliers {
+        padding: 40px 0;
+    }
+
+    .planner-suppliers .btn-fav {
+        margin:0 0 10px 10px;
+    }
+}
+
+
 .planner-suppliers span {
     text-transform: uppercase;
     font-size: 1.5rem;
