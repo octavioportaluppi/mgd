@@ -42,43 +42,28 @@
             <label>Facebook:</label>
             <input
                 type="text"
-                required=""
                 ng-model="supplier.FacebookUrl"
                 class="form-control"
                 name="inputFacebookUrl"
-                placeholder="Facebook"
-                ng-class="{'invalid':data.inputFacebookUrl.$error.required && (data.$submitted || data.inputFacebookUrl.$touched)}"/>
-            <div class="dashboard-error" ng-show="data.$submitted || data.inputFacebookUrl.$touched">
-                <div ng-show="data.inputFacebookUrl.$error.required">Agregue una Url</div>
-            </div>
+                placeholder="Facebook"/>
         </div>
         <div class="signup-field">
             <label>Twitter:</label>
             <input
                 type="text"
-                required=""
                 ng-model="supplier.TwitterUrl"
                 class="form-control"
                 name="inputTwitterUrl"
-                placeholder="Twitter"
-                ng-class="{'invalid':data.inputTwitterUrl.$error.required && (data.$submitted || data.inputTwitterUrl.$touched)}"/>
-            <div class="dashboard-error" ng-show="data.$submitted || data.inputTwitterUrl.$touched">
-                <div ng-show="data.inputTwitterUrl.$error.required">Agregue una Url</div>
-            </div>
+                placeholder="Twitter"/>
         </div>
         <div class="signup-field">
             <label>Instagram:</label>
             <input
                 type="text"
-                required=""
                 ng-model="supplier.InstagramUrl"
                 class="form-control"
                 name="inputInstagramUrl"
-                placeholder="Instagram"
-                ng-class="{'invalid':data.inputInstagramUrl.$error.required && (data.$submitted || data.inputInstagramUrl.$touched)}"/>
-            <div class="dashboard-error" ng-show="data.$submitted || data.inputInstagramUrl.$touched">
-                <div ng-show="data.inputInstagramUrl.$error.required">Agregue una Url</div>
-            </div>
+                placeholder="Instagram"/>
         </div>
         <div class="signup-field">
             <button ng-click="saveSupplierProfile(data, closeProfile)" class="btn btn-default btn-submit pull-left"

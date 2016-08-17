@@ -17,7 +17,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
 			<div class="form-group signup-field">
 				<input 
 					class="form-control"
@@ -30,23 +30,6 @@
 				<div class="error" ng-show="data.$submitted || data.supplierName.$touched">
       				<div ng-show="data.supplierName.$error.required">Dinos el nombre del proveedor.</div>
     			</div>
-			</div>
-		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-			<div class="form-group signup-field">
-				<input
-						class="form-control"
-						name="email"
-						required="required"
-						type="email"
-						placeholder="Email"
-						ng-model="registration.Email"
-						ng-disabled="authentication.isAuth"
-						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
-				<div class="error" ng-show="data.$submitted || data.email.$touched">
-					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
-					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
-				</div>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
@@ -84,6 +67,23 @@
       				<div ng-show="data.passwordConfirm.$error.required">Confirma la contraseña.</div>
       				<div ng-show="data.passwordConfirm.$error.compareTo">Las contraseñas no coinciden.</div>
     			</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="email"
+						required="required"
+						type="email"
+						placeholder="Email"
+						ng-model="registration.Email"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.email.$touched">
+					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
+					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
+				</div>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
@@ -190,10 +190,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
 			<div class="form-group signup-field">
 				<textarea class="form-control" required="" ng-model="supplier.Description" name="description"
-						  placeholder="Descripción"
+						  placeholder="Este es el texto por el cual atraerás a potenciales clientes"
 						ng-class="{'invalid':data.description.$error.required && (data.$submitted || data.description.$touched)}">
 				</textarea>
 				<div class="error" ng-show="data.$submitted || data.description.$touched">

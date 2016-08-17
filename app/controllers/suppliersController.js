@@ -1,11 +1,13 @@
 ﻿'use strict';
 app.controller('suppliersController',
-    ['$scope', 'supplierService', '$routeParams', 'ngAuthSettings', 'dateService',
-        function ($scope, supplierService, $routeParams, ngAuthSettings, dateService) {
+    ['$scope', 'supplierService', '$routeParams', 'ngAuthSettings', 'dateService', 'authService',
+        function ($scope, supplierService, $routeParams, ngAuthSettings, dateService, authService) {
             $scope.supplier = {};
             $scope.isSupplier = false;
             $scope.myInterval = 3000;
             $scope.noWrapSlides = false;
+
+            $scope.authentication = authService.authentication;
 
             $scope.active = 0;
             $scope.slides = [];

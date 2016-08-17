@@ -48,12 +48,11 @@ ul > li {
 
 .supplier .social a:hover {
     color: #CECECE;
-    font-size: 2.7rem;
-    -webkit-transition: font-size 10ms;
-    -moz-transition: font-size 10ms;
-    -ms-transition: font-size 10ms;
-    -o-transition: font-size 10ms;
-    transition: font-size 10ms;
+    -webkit-transition: color 10ms;
+    -moz-transition: color 10ms;
+    -ms-transition: color 10ms;
+    -o-transition: color 10ms;
+    transition: color 10ms;
 }
 
 .frame .form-group label {

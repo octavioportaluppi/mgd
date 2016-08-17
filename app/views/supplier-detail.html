@@ -16,29 +16,28 @@
         <p class="address">{{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</p>
         <p style="cursor: pointer;">
             <span style="color: #aed136" ng-if="isOpen()">Open now</span>
-            <span ng-if="!isOpen()">Lalala</span>
         </p>
-        <p class="votes">
+        <p class="votes" ng-if="authentication.isAuth">
             <i
                 class="fa fa-star vote"
                 ng-class="{'filled': supplier.Rating > 4}"
-                ng-click="vote(4)"></i>
+                ng-click="vote(5)"></i>
             <i
                 class="fa fa-star vote"
                 ng-class="{'filled': supplier.Rating > 3}"
-                ng-click="vote(3)"></i>
+                ng-click="vote(4)"></i>
             <i
                 class="fa fa-star vote"
                 ng-class="{'filled': supplier.Rating > 2}"
-                ng-click="vote(2)"></i>
+                ng-click="vote(3)"></i>
             <i
                 class="fa fa-star vote"
                 ng-class="{'filled': supplier.Rating > 1}"
-                ng-click="vote(1)"></i>
+                ng-click="vote(2)"></i>
             <i
                 class="fa fa-star vote"
                 ng-class="{'filled': supplier.Rating > 0}"
-                ng-click="vote(0)"></i>
+                ng-click="vote(1)"></i>
             <span class="pull-left">Rating</span>
         </p>
     </div>
