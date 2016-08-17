@@ -24,7 +24,7 @@ app.controller('supplierAccountController',
 		if($scope.account.NewPassword === ''){
 			return true;
 		}
-		return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$')
+		return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*.])(?=.*[0-9])(?=.*[a-z]).{8,}$')
 			.test($scope.account.NewPassword);
 	};
 
