@@ -454,6 +454,28 @@
     color: #818181;
 }
 
+.planner-suppliers .supplier-title,
+.premium-suppliers .supplier-title {
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 600;
+    color: #818181;
+    font-size: 1.5rem;
+}
+
+.premium-suppliers {
+    background-color: #ECECEC;
+    padding: 25px 0;
+}
+
+.premium-suppliers .btn-task {
+    margin-bottom: 20px;
+}
+
+.premium-suppliers .list-item:first-child {
+    margin-top: 3px;
+}
+
 .planner-suppliers .btn-fav {
     margin:0 0 0 10px;
 }

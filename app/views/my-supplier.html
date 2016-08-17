@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12" ng-if="!addNew">
                 <div class="col-md-6 col-sm-6 col-xs-6">
-                    <span>Favoritos</span>
+                    <span class="supplier-title">Favoritos</span>
                     <p>Busca tus proveedores favoritos</p>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6 clearfix">
@@ -79,7 +79,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12" ng-if="addNew && showSuppliers">
 
                 <div class="col-md-6 col-sm-6 col-xs-6">
-                    <span>Favoritos</span>
+                    <span class="supplier-title">Favoritos</span>
                     <p>Asocia un proveedor a tu evento!</p>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6 clearfix">
@@ -141,7 +141,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-5 col-sm-5 col-xs-12" style="background-color: #ECECEC; padding: 25px 0;">
+    <div class="col-md-5 col-sm-5 col-xs-12 premium-suppliers">
         <div class="col-md-10 col-sm-12 col-xs-12">
             <button
                 ng-click="addNewSupplier()"
@@ -149,7 +149,7 @@
                 class="btn btn-defasult btn-submit btn-task">Agregar proveedor</button>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <span style="text-transform: uppercase; color: #818181;">Recomendaciones</span>
+            <span class="supplier-title">Recomendaciones</span>
         </div>
         <div class="col-md-10 col-sm-12 col-xs-12">
             <div
