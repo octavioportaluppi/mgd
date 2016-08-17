@@ -141,9 +141,12 @@
 .event-menu li {
     display: inline;
     float: left;
-    padding: 20px;
     background: #cecece;
     text-transform: uppercase;
+    height: 105px;
+    width: 120px;
+    text-align: center;
+    padding: 20px 0 0 0;
 }
 
 .event-menu .icon{
