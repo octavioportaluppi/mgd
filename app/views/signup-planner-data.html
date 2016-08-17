@@ -41,23 +41,6 @@
 			<div class="form-group signup-field">
 				<input
 						class="form-control"
-						name="email"
-						required="required"
-						type="email"
-						placeholder="Email"
-						ng-model="registration.Email"
-						ng-disabled="authentication.isAuth"
-						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
-				<div class="error" ng-show="data.$submitted || data.email.$touched">
-					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
-					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-			<div class="form-group signup-field">
-				<input
-						class="form-control"
 						name="password"
 						required="required"
 						type="password"
@@ -93,6 +76,54 @@
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
 			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="email"
+						required="required"
+						type="email"
+						placeholder="Email"
+						ng-model="registration.Email"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.email.$touched">
+					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
+					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<div class="input-group">
+					<input
+							class="form-control"
+							type="text"
+							uib-datepicker-popup="dd/MM/yyyy"
+							ng-model="planner.Birthdate"
+							name="birthdate"
+							is-open="datepicker.opened"
+							datepicker-options="dateOptions"
+							close-text="Cerrar"
+							clear-text="Borrar"
+							current-text="Hoy"
+							alt-input-formats="altInputFormats"
+							placeholder="DD/MM/AAAA"
+							required="required"
+							popup-placement="top-right"
+							ng-class="{'invalid':(data.birthdate.$error.required || data.birthdate.$error.compareTo) && (data.$submitted || data.birthdate.$touched)}"
+							dropdown-append-to-body="dropdown-append-to-body"/>
+					<div class="input-group-btn">
+						<button class="btn btn-default btn-input" type="button" ng-click="openDatePicker()">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</button>
+					</div>
+				</div>
+				<div class="error" ng-show="data.$submitted || data.birthdate.$touched">
+					<div ng-show="data.birthdate.$error.required">Dinos tu fecha de nacimiento.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
 				<select class="form-control" name="state"
 						ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}"
 						ng-model="planner.StateId"
@@ -118,38 +149,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-			<div class="form-group signup-field">
-				<div class="input-group">
-					<input
-						class="form-control"
-						type="text"
-						uib-datepicker-popup="dd/MM/yyyy"
-						ng-model="planner.Birthdate"
-						name="birthdate"
-						is-open="datepicker.opened"
-						datepicker-options="dateOptions"
-						close-text="Cerrar"
-						clear-text="Borrar"
-						current-text="Hoy"
-						alt-input-formats="altInputFormats"
-						placeholder="DD/MM/AAAA"
-						required="required"
-						popup-placement="top-right"
-						ng-class="{'invalid':(data.birthdate.$error.required || data.birthdate.$error.compareTo) && (data.$submitted || data.birthdate.$touched)}"
-						dropdown-append-to-body="dropdown-append-to-body"/>
-					<div class="input-group-btn">
-						<button class="btn btn-default btn-input" type="button" ng-click="openDatePicker()">
-							<span class="glyphicon glyphicon-calendar"></span>
-						</button>
-					</div>
-				</div>
-				<div class="error" ng-show="data.$submitted || data.birthdate.$touched">
-					<div ng-show="data.birthdate.$error.required">Dinos tu fecha de nacimiento.</div>
-				</div>
-			</div>
-		</div>
-
 	</div>
 	<div class="container text-center">
 		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-3">
