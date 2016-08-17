@@ -63,6 +63,11 @@
 
 .planner-list .event-buttons .btn-submit{
     margin: 0;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    padding: 0;
+    letter-spacing: 0;
 }
 
 .planner-list .event-buttons .btn-submit:first-child {
