@@ -123,7 +123,7 @@ app.controller('signupController', [
             return true;
         }
 
-        return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$')
+        return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*.])(?=.*[0-9])(?=.*[a-z]).{8,}$')
             .test($scope.registration.Password);
     };
 
