@@ -74,6 +74,10 @@
     border-top: 1px solid rgb(192, 192, 192);
 }
 
+.planner-list .form-horizontal .btn-default {
+    margin: 10px 0 0 0;
+}
+
 .planner-list .delete-form {
     text-align: center;
     padding: 10px 0 0 0;

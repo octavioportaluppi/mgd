@@ -190,7 +190,7 @@
                                 required=""
                                 type="text"
                                 placeholder="Nombre del evento"
-                                ng-model="event.Title"
+                                ng-model="editEvent.Title"
                                 ng-class="{'invalid':eventForm.eventName.$error.required && (eventForm.$submitted || eventForm.eventName.$touched)}"/>
                             <div class="error" ng-show="eventForm.$submitted || eventForm.eventName.$touched">
                                 <div ng-show="eventForm.eventName.$error.required">Dinos tu el nombre del evento.</div>
@@ -203,7 +203,7 @@
                                     class="form-control"
                                     name="eventTypeId"
                                     required=""
-                                    ng-model="event.EventType"
+                                    ng-model="editEvent.EventType"
                                     ng-class="{'invalid':eventForm.eventTypeId.$error.required && (eventForm.$submitted || eventForm.eventTypeId.$touched)}"
                                     ng-options="eventType as eventType.Name for eventType in eventTypes track by eventType.Id">
                             </select>
@@ -216,7 +216,7 @@
                         <div class="form-group signup-field">
                             <select class="form-control" name="state"
                                     ng-class="{'invalid':eventForm.state.$error.required && (eventForm.$submitted || eventForm.state.$touched)}"
-                                    ng-model="event.State"
+                                    ng-model="editEvent.State"
                                     required="required"
                                     ng-change="getCities(event.State.Id)"
                                     ng-options="state as state.Name for state in states track by state.Id">
@@ -228,7 +228,7 @@
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-0">
                         <div class="form-group signup-field">
-                            <select class="form-control" required="" ng-model="event.City" name="city"
+                            <select class="form-control" required="" ng-model="editEvent.City" name="city"
                                     ng-class="{'invalid':eventForm.city.$error.required && (eventForm.$submitted || eventForm.city.$touched)}"
                                     ng-options="city as city.Name for city in cities track by city.Id"
                                     ng-init="getCities(event.State.Id)">
@@ -245,7 +245,7 @@
                                         class="form-control"
                                         type="text"
                                         uib-datepicker-popup="dd/MM/yyyy"
-                                        ng-model="event.Date"
+                                        ng-model="editEvent.Date"
                                         name="date"
                                         is-open="datepicker.opened"
                                         datepicker-options="dateOptions"
@@ -274,7 +274,7 @@
                             <input
                                     class="form-control"
                                     type="text"
-                                    ng-model="event.Budget"
+                                    ng-model="editEvent.Budget"
                                     name="budget"
                                     placeholder="Presupuesto"
                                     required="required"
@@ -289,12 +289,12 @@
                             <button
                                     class="btn btn-default btn-submit next"
                                     ng-class="[{'invalid':!eventForm.$valid && eventForm.$submitted}]"
-                                    ng-click="updateEvent(eventForm, event)">Guardar</button>
+                                    ng-click="updateEvent(eventForm)">Guardar</button>
                         </div>
                         <div class="form-group signup-field pull-right">
                             <button
                                     class="btn btn-default next"
-                                    ng-click="getEvents()">Cancelar</button>
+                                    ng-click="cancelEdit(event)">Cancelar</button>
                         </div>
                     </div>
                 </form>

@@ -24,13 +24,20 @@ app.controller('plannerController',
 	$scope.showEdit = function(event) {
 		event.edit = true;
 		event.Date = new Date(event.Date);
+		$scope.editEvent = angular.copy(event);
 	};
 
-	$scope.updateEvent = function(form, event) {
+	$scope.cancelEdit = function(event) {
+		event.edit = false;
+		$scope.editEvent = {};
+	};
+
+	$scope.updateEvent = function(form) {
 		if (!form.$valid) {
 			return;
 		}
 
+		var event = $scope.editEvent;
 		event.EventTypeId = event.EventType.Id;
 		event.StateId = event.State.Id;
 		event.CityId = event.City.Id;
