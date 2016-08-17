@@ -134,7 +134,7 @@
             ng-repeat="item in taskItem"
             ng-class="{'selected': item.selected, 'completed': item.Status === 1}"
             ng-click="getOneTask(item)">
-            <div class="checkbox-item pull-left" ng-click="completeTask(item)">
+            <div class="checkbox-item pull-left" ng-click="completeTask(item)" uib-tooltip="Marcar esta tarea como completada" tooltip-popup-delay="1000">
                 <i class="fa fa-check"></i>
             </div>
             <span class="checkbox-label">
@@ -149,7 +149,7 @@
         <div class="row" ng-if="taskItemSelected && !taskItemSelected.edit">
             <div class="col-md-12 col-sm-12 col-xs-12 task-detail clearfix"
                  ng-class="{'completed': taskItemSelected.Status === 1}">
-                <div class="checkbox-item pull-left" style="cursor:pointer;" ng-click="completeTask(taskItemSelected)">
+                <div class="checkbox-item pull-left" style="cursor:pointer;" ng-click="completeTask(taskItemSelected)" uib-tooltip="Marcar esta tarea como completada" tooltip-popup-delay="1000">
                     <i class="fa fa-check"></i>
                 </div>
                 <span class="checkbox-label">
