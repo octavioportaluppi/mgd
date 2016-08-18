@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-cloak="">
 	<div class="row">
 		<div class="carousel-image img-panel-full img-panel-full-register">
 			<div class="carousel-caption">
@@ -8,7 +8,7 @@
 		</div>
 	</div>
 </div>
-<form class="form-horizontal main" name="data" form-step-validity="form-step-validity" novalidate>
+<form class="form-horizontal main" name="data" form-step-validity="form-step-validity" novalidate ng-cloak="">
 	<div class="container">
 		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
 			<div class="form-group signup-error">
