@@ -33,7 +33,7 @@
             </div>
 
             <div ng-if="guest.edit">
-                <form name="guestUpdateForm" ng-submit="updateGuest(guestUpdateForm, guest)">
+                <form name="guestUpdateForm">
                     <div class="col-md-5 col-sm-5 col-xs-5">
                         <input
                             type="text"
@@ -79,7 +79,7 @@
                     </div>
                     <div ng-if="!guest.delete">
                         <div class="col-md-3 col-md-offset-6 col-sm-3 col-sm-offset-6 col-xs-3 col-xs-offset-6">
-                            <button class="btn btn-defasult btn-submit btn-edit pull-right">Aceptar</button>
+                            <button class="btn btn-defasult btn-submit btn-edit pull-right" ng-click="updateGuest(guestUpdateForm, guest)">Aceptar</button>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <button class="btn btn-defasult btn-edit pull-right" ng-click="getGuests()">Cancelar</button>
@@ -172,7 +172,7 @@
                     </span>
 
                     <div style="flex-grow: 1; height: 85px;" class="group-name guest-group-form-edit" ng-if="guestgroup.edit">
-                        <form name="updateGuestGroupForm" ng-submit="updateGuestGroup(updateGuestGroupForm, guestgroup)">
+                        <form name="updateGuestGroupForm">
                             <div class="row">
                                 <div class="col-md-10 col-sm-10 col-xs-10">
                                     <input
@@ -192,7 +192,7 @@
                             </div>
                             <div class="row" ng-if="!guestgroup.delete">
                                 <div class="col-md-2 col-md-offset-8 col-sm-2 col-sm-offset-8 col-xs-2 col-xs-offset-8">
-                                    <button class="btn btn-defasult btn-submit btn-edit pull-right">
+                                    <button class="btn btn-defasult btn-submit btn-edit pull-right" ng-click="updateGuestGroup(updateGuestGroupForm, guestgroup)">
                                         <i class="fa fa-check pull-right"></i>
                                     </button>
                                 </div>
@@ -212,7 +212,7 @@
                                     </button>
                                 </div>
                                 <div class="col-md-2 col-sm-2 col-xs-2">
-                                    <button class="btn btn-defasult btn-edit pull-right" ng-click="guestgroup.delte = false;$event.preventDefault();">
+                                    <button class="btn btn-defasult btn-edit pull-right" ng-click="guestgroup.delete = false;$event.preventDefault();">
                                         <i class="fa fa-times pull-right"></i>
                                     </button>
                                 </div>
