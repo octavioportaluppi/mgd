@@ -57,7 +57,8 @@
 			<ul class="main-menu">
 				<li ng-hide="authentication.isAuth && authentication.userType == 'supplier'"
 					class="enterprise">
-					<a href="#/dashboard">Empresas</a>
+					<a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
+					<a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
 				</li>
 				<li><a href="#" class="disabled">Contacto</a></li>
 				<li><a href="#" class="disabled">Blog</a></li>
@@ -77,7 +78,8 @@
 			<li><a href="#" class="disabled">Contacto</a></li>
 			<li ng-hide="authentication.isAuth && authentication.userType == 'supplier'"
 				class="enterprise">
-				<a href="#/dashboard">Empresas</a>
+				<a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
+				<a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
 			</li>
 
 			<li ng-hide="authentication.isAuth" class="active">
