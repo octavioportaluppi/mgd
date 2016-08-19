@@ -10,6 +10,7 @@ app.controller('activateController',
             }
 
             $scope.activate.code = $routeParams.hash;
+            $scope.activate.email = $routeParams.email;
 
             accountService
                 .activatePassword($scope.activate)
