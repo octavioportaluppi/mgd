@@ -13,7 +13,6 @@ app.controller('signupPlannerController', [
     $scope.altInputFormats = ['M!-d!-yyyy'];
 
     $scope.dateOptions = {
-        appendToBody: true,
         placement: 'top-right',
         formatYear: 'yy',
         maxDate: new Date(),
