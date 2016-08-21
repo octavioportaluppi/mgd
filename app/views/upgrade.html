@@ -21,7 +21,7 @@
              ng-class="{'selected':subscription.Id === currentSubscription.Id}"
              ng-repeat="subscription in subscriptions">
             <h2>{{subscription.Name}}</h2>
-            <img class="icon" src="img/star.png" ng-repeat="star in subscription.stars"/>
+            <img class="icon" src="img/star.png" ng-repeat="star in getNumber(subscription.Stars) track by $index"/>
             <p>{{subscription.Description}}</p>
             <h3>$ {{subscription.MonthlyFee}}</h3>
             <button

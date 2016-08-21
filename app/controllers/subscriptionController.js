@@ -6,12 +6,6 @@ app.controller('subscriptionController', ['$scope', 'accountService', '$location
             .getSubscriptionTypes()
             .then(function (response) {
                 $scope.subscriptions = response.data;
-                $scope.subscriptions.forEach(function (subscription) {
-                    subscription.stars = [];
-                    for(var i=1;i <= subscription.Id; i++) {
-                        subscription.stars.push({});
-                    }
-                });
             });
 
         accountService
@@ -22,6 +16,10 @@ app.controller('subscriptionController', ['$scope', 'accountService', '$location
     };
 
     $scope.load();
+
+    $scope.getNumber = function (number) {
+        return new Array(number);
+    };
 
     $scope.changeSubscription = function(subscriptionId){
         if ($scope.currentSubscription.Id == subscriptionId) {
