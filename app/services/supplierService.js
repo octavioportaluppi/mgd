@@ -131,6 +131,10 @@ app.factory('supplierService',
         return $http.get(serviceBase + 'api/suppliers/answers');
     };
 
+    var getAnswersById = function (supplierId) {
+        return $http.get(serviceBase + 'api/suppliers/'+supplierId+'/answers');
+    };
+
     var getQuestions = function (serviceId) {
       return $http
           .get(serviceBase + 'api/servicetypes/' + serviceId + '/questions');
@@ -165,6 +169,7 @@ app.factory('supplierService',
     supplierServiceFactory.updateSupplierProfile = updateSupplierProfile;
     supplierServiceFactory.getQuestions = getQuestions;
     supplierServiceFactory.getAnswers = getAnswers;
+    supplierServiceFactory.getAnswersById = getAnswersById;
     supplierServiceFactory.saveQuestions = saveQuestions;
     supplierServiceFactory.getSuppliersById = getSuppliersById;
     supplierServiceFactory.vote = _vote;

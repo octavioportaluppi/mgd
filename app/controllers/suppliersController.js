@@ -33,6 +33,12 @@ app.controller('suppliersController',
                                     $scope.slides.push(elem)
                             });
                     });
+
+                supplierService
+                    .getAnswersById($routeParams.supplierId)
+                    .then(function (response) {
+                       $scope.answers = response.data;
+                    });
             };
 
             $scope.load();

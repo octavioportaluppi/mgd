@@ -26,3 +26,11 @@
 .supplier .vote:hover ~ .vote:before {
     color: #aed136;
 }
+
+.supplier .supplier-footer {
+    padding: 40px 20px 20px 20px;
+}
+
+.supplier .supplier-footer label {
+    font-size: 1.4rem;
+}
