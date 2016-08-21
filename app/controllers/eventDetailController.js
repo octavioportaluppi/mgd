@@ -9,6 +9,7 @@ app.controller('eventDetailController',
 			.getEvent($routeParams.eventId)
 			.then(function (response){
 				$scope.event = response.data;
+				$scope.event.enabled = $scope.event.RemainingDays >= 0;
 			});
 
 		//britez

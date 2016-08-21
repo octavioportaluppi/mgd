@@ -32,17 +32,17 @@
                                 <div class="col-md-4 col-sm-4 col-xs-4">
                                     <button class="btn btn-fav pull-right"
                                             ng-class="{'subscribed':isTacked(supplier.Id)}"
-                                            ng-click="tackSupplier(supplier.Id)">
+                                            ng-click="event.enabled && tackSupplier(supplier.Id)">
                                         <i class="fa fa-thumb-tack"></i>
                                     </button>
                                     <button class="btn btn-fav pull-right"
                                             ng-if="!isSubscribed(supplier.Id)"
-                                            ng-click="subscribe(supplier.Id)">
+                                            ng-click="event.enabled && subscribe(supplier.Id)">
                                         <i class="fa fa-heart"></i>
                                     </button>
                                     <button class="btn btn-fav pull-right subscribed"
                                             ng-if="isSubscribed(supplier.Id)"
-                                            ng-click="unsubscribe(supplier.Id)">
+                                            ng-click="event.enabled && unsubscribe(supplier.Id)">
                                         <i class="fa fa-heart"></i>
                                     </button>
                                 </div>
@@ -142,7 +142,7 @@
         </div>
     </div>
     <div class="col-md-5 col-sm-5 col-xs-12 premium-suppliers">
-        <div class="col-md-10 col-sm-12 col-xs-12">
+        <div class="col-md-10 col-sm-12 col-xs-12" ng-if="event.enabled">
             <button
                 ng-click="addNewSupplier()"
                 style="width: 100%;"
@@ -163,12 +163,12 @@
                 <div class="col-md-4 col-sm-4 col-xs-4">
                     <button class="btn btn-fav pull-right"
                             ng-if="!isSubscribed(supplier.Id)"
-                            ng-click="subscribe(supplier.Id)">
+                            ng-click="event.enabled && subscribe(supplier.Id)">
                         <i class="fa fa-heart"></i>
                     </button>
                     <button class="btn btn-fav pull-right subscribed"
                             ng-if="isSubscribed(supplier.Id)"
-                            ng-click="unsubscribe(supplier.Id)">
+                            ng-click="event.enabled && unsubscribe(supplier.Id)">
                         <i class="fa fa-heart"></i>
                     </button>
                 </div>
