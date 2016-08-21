@@ -19,13 +19,13 @@
                 <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
                     <div class="form-group signup-field">
                         <input
-                                class="form-control"
-                                name="plannerName"
-                                required=""
-                                type="text"
-                                placeholder="Nombre"
-                                ng-model="planner.FirstName"
-                                ng-class="{'invalid':data.plannerName.$error.required && (data.$submitted || data.plannerName.$touched)}"/>
+                            class="form-control"
+                            name="plannerName"
+                            required=""
+                            type="text"
+                            placeholder="Nombre"
+                            ng-model="planner.FirstName"
+                            ng-class="{'invalid':data.plannerName.$error.required && (data.$submitted || data.plannerName.$touched)}"/>
                         <div class="error" ng-show="data.$submitted || data.plannerName.$touched">
                             <div ng-show="data.plannerName.$error.required">Dinos tu nombre.</div>
                         </div>
@@ -34,13 +34,13 @@
                 <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
                     <div class="form-group signup-field">
                         <input
-                                class="form-control"
-                                name="plannerLastName"
-                                required=""
-                                type="text"
-                                placeholder="Apellido"
-                                ng-model="planner.LastName"
-                                ng-class="{'invalid':data.plannerLastName.$error.required && (data.$submitted || data.plannerLastName.$touched)}"/>
+                            class="form-control"
+                            name="plannerLastName"
+                            required=""
+                            type="text"
+                            placeholder="Apellido"
+                            ng-model="planner.LastName"
+                            ng-class="{'invalid':data.plannerLastName.$error.required && (data.$submitted || data.plannerLastName.$touched)}"/>
                         <div class="error" ng-show="data.$submitted || data.plannerLastName.$touched">
                             <div ng-show="data.plannerLastName.$error.required">Dinos tu apellido.</div>
                         </div>
@@ -50,11 +50,10 @@
                     <div class="form-group signup-field">
                         <select class="form-control" name="state"
                                 ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}"
-                                ng-model="planner.StateId"
+                                ng-model="planner.State"
                                 required="required"
-                                ng-change="getCities()">
-                            <option value="" disabled="disabled" selected="selected" class="placeholder">POBLACIÓN</option>
-                            <option ng-repeat="state in states" value="{{state.Id}}">{{state.Name}}</option>
+                                ng-change="getCities()"
+                                ng-options="state as state.Name for state in states track by state.Id">
                         </select>
                         <div class="error" ng-show="data.$submitted || data.state.$touched">
                             <div ng-show="data.state.$error.required">Dinos la población a la que perteneces.</div>
@@ -63,10 +62,10 @@
                 </div>
                 <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
                     <div class="form-group signup-field">
-                        <select class="form-control" required="" ng-model="planner.CityId" name="city"
-                                ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}">
-                            <option value="" disabled="disabled" selected="selected" class="placeholder">CIUDAD</option>
-                            <option value="{{city.Id}}" ng-repeat="city in cities">{{city.Name}}</option>
+                        <select class="form-control" required="" ng-model="planner.City" name="city"
+                                ng-init="getCities()"
+                                ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}"
+                                ng-options="city as city.Name for city in cities track by city.Id">
                         </select>
                         <div class="error" ng-show="data.$submitted || data.city.$touched">
                             <div ng-show="data.city.$error.required">Dinos la ciudad a la que perteneces.</div>

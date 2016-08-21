@@ -1,5 +1,7 @@
 ﻿'use strict';
-app.controller('loginController', ['$scope', '$interval', '$location', 'authService', 'ngAuthSettings', 'supplierService', function ($scope, $interval, $location, authService, ngAuthSettings, supplierService) {
+app.controller('loginController',
+    ['$scope', '$interval', '$location', 'authService', 'ngAuthSettings', 'accountService',
+        function ($scope, $interval, $location, authService, ngAuthSettings, accountService) {
 
     $scope.loginData = {
         Email: "",
@@ -13,10 +15,23 @@ app.controller('loginController', ['$scope', '$interval', '$location', 'authServ
             .login($scope.loginData, 'supplier')
             .then(
             function () {
-                $location.path('/dashboard');
+                $scope.checkAccount('Supplier', '/dashboard');
             },
             function (err) {
                 $scope.message = err.error_description;
+            });
+    };
+
+    $scope.checkAccount = function(accountType, state) {
+        accountService
+            .accountInfo()
+            .then(function (response) {
+                if(response.data.Role === accountType) {
+                    $location.path(state);
+                } else {
+                    authService.logOut();
+                    $scope.message = 'La cuenta ingresada no corresponde al tipo de servicio.'
+                }
             });
     };
 
@@ -25,7 +40,7 @@ app.controller('loginController', ['$scope', '$interval', '$location', 'authServ
             .login($scope.loginData, 'planner')
             .then(
             function () {
-                $location.path('/planner');
+                $scope.checkAccount('Planner', '/planner');
             },
             function (err) {
                 $scope.message = err.error_description;

@@ -6,6 +6,10 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
 
     var accountServiceFactory = {};
 
+    var _accountInfo = function () {
+      return $http.get(serviceBase + 'api/account/userinfo');
+    };
+
     var _forgotPassword = function (email) {
         return $http
             .post(serviceBase + 'api/account/forgotpassword', {email: email});
@@ -36,6 +40,7 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
         return $http.put(serviceBase + 'api/suppliers/subscriptiontype',{SubscriptionTypeId: subscriptionId});
     };
 
+    accountServiceFactory.accountInfo = _accountInfo;
     accountServiceFactory.forgotPassword = _forgotPassword;
     accountServiceFactory.activatePassword = _activatePassword;
     accountServiceFactory.changePassword = _changePassword;
