@@ -63,21 +63,12 @@
             </a>
         </div>
     </div>
-    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" ng-if="supplier.Pictures.length > 0" ng-cloak="">
-        <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-            <div class="carousel-image" style="background-image:url('{{slide.img}}')">
-            </div>
+    <uib-carousel active="active" ng-if="supplier.Pictures.length > 0" ng-cloak="">
+        <uib-slide ng-repeat="slide in slides track by $index" index="$index">
+            <div class="carousel-image" style="background-image:url('{{slide.img}}')"></div>
         </uib-slide>
     </uib-carousel>
     <div class="container" ng-cloak="">
-        <div class="img-pad">
-            <div class="col-md-3" ng-repeat="pic in slides">
-                <img
-                    ng-show="pic"
-                    src="{{pic.img}}"
-                    class="default-image"/>
-            </div>
-        </div>
         <div class="col-md-6 supplier-footer">
             <p>{{supplier.Description}}</p>
         </div>

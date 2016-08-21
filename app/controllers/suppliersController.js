@@ -4,7 +4,7 @@ app.controller('suppliersController',
         function ($scope, supplierService, $routeParams, ngAuthSettings, dateService, authService) {
             $scope.supplier = {};
             $scope.isSupplier = false;
-            $scope.myInterval = 3000;
+            $scope.myInterval = 1000;
             $scope.noWrapSlides = false;
 
             $scope.authentication = authService.authentication;
