@@ -4,7 +4,6 @@ app.controller('dashboardSupplierController',
 		function ($scope, supplierService, ngAuthSettings, stateService, authService, $location) {
 
 	$scope.supplier = {};
-    $scope.chart = 0;
 	$scope.dashboard = '';
 
 	$scope.days = [
@@ -51,7 +50,15 @@ app.controller('dashboardSupplierController',
 					return ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image';
 				});
 				$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image';
-				$scope.chart = getProgress();
+				supplierService
+					.getAnswers()
+					.then(function (response){
+						$scope.answers = response.data;
+						$scope.questions = [];
+						$scope.answers.forEach(function (answer){
+							$scope.questions[answer.Id] = answer;
+						});
+					});
 		});
 	};
     
@@ -176,16 +183,6 @@ app.controller('dashboardSupplierController',
 			.getServices()
 			.then(function (response) {
 				$scope.serviceTypes = response.data
-			});
-
-		supplierService
-			.getAnswers()
-			.then(function (response){
-				$scope.answers = response.data;
-				$scope.questions = [];
-				$scope.answers.forEach(function (answer){
-					$scope.questions[answer.Id] = answer;
-				});
 			});
 
 		stateService
