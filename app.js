@@ -47,6 +47,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/planner-account.html"
     });
 
+    $routeProvider.when("/planner/data", {
+        controller: "plannerDataController",
+        templateUrl: "/app/views/planner-data.html"
+    });
+
     $routeProvider.when("/suppliers", {
         templateUrl: "/app/views/suppliers.html"
     });
