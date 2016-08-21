@@ -107,7 +107,8 @@ app.directive('myBudget', function() {
     return {
         restrict: 'E',
         scope: {
-            id: '='
+            id: '=',
+            event: '='
         },
         templateUrl: '/app/views/my-budget.html',
         controller: budgetController

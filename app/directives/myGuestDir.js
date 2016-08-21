@@ -114,7 +114,8 @@ app.directive('myGuest', function() {
     return {
         restrict: 'E',
         scope: {
-            id: '='
+            id: '=',
+            event: '='
         },
         templateUrl: '/app/views/my-guest.html',
         controller: guestController

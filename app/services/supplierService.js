@@ -149,8 +149,8 @@ app.factory('supplierService',
         return $http.get(serviceBase + 'api/eventtypes');
     };
 
-    var _getPremiumSuppliers = function () {
-        return $http.get(serviceBase + 'api/suppliers/premium', {params: {count: 10}});
+    var _getPremiumSuppliers = function (eventTypeId) {
+        return $http.get(serviceBase + 'api/suppliers/premium', {params: {count: 10, EventTypeId: eventTypeId}});
     };
 
     var _vote = function (supplierId, vote) {

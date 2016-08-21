@@ -1,6 +1,6 @@
 'use strict';
 
-var controller = ['$scope', 'eventService', 'supplierService', 'ngAuthSettings',
+var mySupplierController = ['$scope', 'eventService', 'supplierService', 'ngAuthSettings',
     function ($scope, eventService, supplierService, ngAuthSettings){
 
         $scope.getSuppliers = function () {
@@ -11,20 +11,19 @@ var controller = ['$scope', 'eventService', 'supplierService', 'ngAuthSettings',
                     $scope.addNew = false;
                     $scope.showServices = true;
                     $scope.showSuppliers = false;
+                    $scope.getPremiumSuppliers($scope.event.EventType.Id);
                 });
         };
 
         $scope.getSuppliers();
 
-        $scope.getPremiumSuppliers = function () {
+        $scope.getPremiumSuppliers = function (eventTypeId) {
             supplierService
-                .getPremiumSuppliers()
+                .getPremiumSuppliers(eventTypeId)
                 .then(function (response) {
                     $scope.premiumSuppliers = response.data;
                 })
         };
-
-        $scope.getPremiumSuppliers();
 
         $scope.addNewSupplier = function () {
             supplierService
@@ -113,9 +112,10 @@ app.directive('mySupplier', function() {
     return {
         restrict: 'E',
         scope: {
-            id: '='
+            id: '=',
+            event: '='
         },
         templateUrl: '/app/views/my-supplier.html',
-        controller: controller
+        controller: mySupplierController
     };
 });

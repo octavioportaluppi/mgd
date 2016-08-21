@@ -70,8 +70,8 @@ margin-left: -250px;">
         PROVEEDORES</li>
 </ul>
 <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #FFF; min-height: 200px">
-    <my-agenda ng-show="isActive('agenda')" id="eventId"></my-agenda>
-    <my-budget ng-show="isActive('presupuesto')" id="eventId"></my-budget>
-    <my-guest ng-show="isActive('invitados')" id="eventId"></my-guest>
-    <my-supplier ng-show="isActive('proveedores')" id="eventId"></my-supplier>
+    <my-agenda ng-show="isActive('agenda')" id="eventId" event="event"></my-agenda>
+    <my-budget ng-show="isActive('presupuesto')" id="eventId" event="event"></my-budget>
+    <my-guest ng-show="isActive('invitados')" id="eventId" event="event"></my-guest>
+    <my-supplier ng-show="isActive('proveedores')" id="eventId" event="event"></my-supplier>
 </div>

@@ -190,7 +190,8 @@ app.directive('myAgenda', function () {
     return {
         restrict: 'E',
         scope: {
-            id: '='
+            id: '=',
+            event: '='
         },
         templateUrl: '/app/views/my-agenda.html',
         controller: controllerAgenda
