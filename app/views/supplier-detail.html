@@ -6,11 +6,12 @@
         </div>
         <div class="col-md-4">
             <h1 class="index-title">{{supplier.Name}}</h1>
-            <button class="btn btn-default btn-submit"
-                    ng-disabled="true">
-                <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                Enviar Mensaje
-            </button>
+            <div class="service-container">
+                <span class="premium-service" ng-repeat="service in supplier.ServiceTypes">
+                    <i class="{{service.Name | icon}}"></i>
+                    {{service.Name}}
+                </span>
+            </div>
         </div>
         <div class="col-md-4">
             <p class="address">{{supplier.Address | firstLetter }}</p>
@@ -41,6 +42,11 @@
                     ng-click="vote(1)"></i>
                 <span class="pull-left">Rating</span>
             </p>
+            <button class="btn btn-default btn-submit"
+                    ng-disabled="true">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                Enviar Mensaje
+            </button>
         </div>
         <div class="col-md-2 social">
             <a ng-href="{{supplier.FacebookUrl}}"

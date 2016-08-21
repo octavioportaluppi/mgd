@@ -34,3 +34,20 @@
 .supplier .supplier-footer label {
     font-size: 1.4rem;
 }
+
+.supplier .service-container {
+    padding: 10px 0;
+}
+
+.supplier .premium-service {
+    background-color: #8c3e96;
+    padding: 5px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin: 3px;
+    display: inline-block;
+}
+
+.supplier .premium-service i {
+    font-size: 1.5rem;
+}
