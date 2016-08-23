@@ -184,125 +184,32 @@
                 </div>
                 <div class="col-md-12" ng-if="editPics">
                     <div style="text-align: center;" class="pull-left">
-                        <img class="default-image"
-                             src="img/photo-placeholder.jpg"
-                             ng-if="!supplier.Pictures[0]"
-                             ngf-select
-                             ng-model="supplier.newPic[0]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
-
-                        <img class="default-image"
-                             ng-src="{{supplier.Pictures[0].src}}"
-                             ngf-select
-                             accept="image/*"
-                             ng-if="supplier.Pictures[0].src && !supplier.newPic[0]"
-                             ng-model="supplier.newPic[0]"
-                             ngf-max-size="2MB"/>
-
-                        <img ng-if="supplier.newPic[0]"
-                             ngf-thumbnail="supplier.newPic[0]"
-                             class="default-image pull-left"
-                             ngf-select
-                             ng-model="supplier.newPic[0]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
+                        <div ng-repeat="pic in getNumber(supplier.MaxPics) track by $index" class="pull-left">
 
                         <img class="default-image"
                              src="img/photo-placeholder.jpg"
-                             ng-if="!supplier.Pictures[1]"
+                             ng-if="!supplier.Pictures[$index] && !supplier.newPic[$index]"
                              ngf-select
-                             ng-model="supplier.newPic[1]"
+                             ng-model="supplier.newPic[$index]"
                              accept="image/*"
                              ngf-max-size="2MB"/>
 
                         <img class="default-image"
-                             ng-src="{{supplier.Pictures[1].src}}"
+                             ng-src="{{supplier.Pictures[$index].src}}"
                              ngf-select
                              accept="image/*"
-                             ng-if="supplier.Pictures[1] && !supplier.newPic[1]"
-                             ng-model="supplier.newPic[1]"
+                             ng-if="supplier.Pictures[$index].src && !supplier.newPic[$index]"
+                             ng-model="supplier.newPic[$index]"
                              ngf-max-size="2MB"/>
 
-                        <img ng-if="supplier.newPic[1]"
-                             ngf-thumbnail="supplier.newPic[1]"
+                        <img ng-if="supplier.newPic[$index]"
+                             ngf-thumbnail="supplier.newPic[$index]"
                              class="default-image pull-left"
                              ngf-select
-                             ng-model="supplier.newPic[1]"
+                             ng-model="supplier.newPic[$index]"
                              accept="image/*"
                              ngf-max-size="2MB"/>
-
-                        <img class="default-image"
-                             ng-src="img/photo-placeholder.jpg"
-                             ng-if="!supplier.Pictures[2]"
-                             ngf-select
-                             ng-model="supplier.newPic[2]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
-
-                        <img class="default-image"
-                             ng-src="{{supplier.Pictures[2].src}}"
-                             ngf-select
-                             accept="image/*"
-                             ng-if="supplier.Pictures[2] && !supplier.newPic[2]"
-                             ng-model="supplier.newPic[2]"
-                             ngf-max-size="2MB"/>
-
-                        <img ng-if="supplier.newPic[2]"
-                             ngf-thumbnail="supplier.newPic[2]"
-                             class="default-image pull-left"
-                             ngf-select
-                             ng-model="supplier.newPic[2]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
-
-                        <img class="default-image"
-                             src="img/photo-placeholder.jpg"
-                             ng-if="!supplier.Pictures[3]"
-                             ngf-select
-                             ng-model="supplier.newPic[3]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
-
-                        <img class="default-image"
-                             ng-src="{{supplier.Pictures[3].src}}"
-                             ngf-select
-                             accept="image/*"
-                             ng-if="supplier.Pictures[3] && !supplier.newPic[3]"
-                             ng-model="supplier.newPic[3]"
-                             ngf-max-size="2MB"/>
-
-                        <img ng-if="supplier.newPic[3]"
-                             ngf-thumbnail="supplier.newPic[3]"
-                             class="default-image pull-left"
-                             ngf-select
-                             ng-model="supplier.newPic[3]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
-
-                        <img class="default-image"
-                             ng-src="img/photo-placeholder.jpg"
-                             ng-if="!supplier.Pictures[4]"
-                             ngf-select
-                             ng-model="supplier.newPic[4]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
-
-                        <img class="default-image"
-                             ng-src="{{supplier.Pictures[4].src}}"
-                             ngf-select
-                             accept="image/*"
-                             ng-if="supplier.Pictures[4] && !supplier.newPic[4]"
-                             ng-model="supplier.newPic[4]"
-                             ngf-max-size="2MB"/>
-
-                        <img ng-if="supplier.newPic[4]"
-                             ngf-thumbnail="supplier.newPic[4]"
-                             class="default-image pull-left"
-                             ngf-select
-                             ng-model="supplier.newPic[4]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
+                        </div>
                     </div>
                     <div class="signup-field col-md-12 col-sm-12 col-xs-12">
                         <button ng-click="updatePics()" class="btn btn-default btn-submit pull-left" >Guardar</button>

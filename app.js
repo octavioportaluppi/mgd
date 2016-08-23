@@ -105,6 +105,7 @@ app.config(function($routeProvider) {
     });
 
     $routeProvider.when("/password-changed",{
+        controller: "activateController",
         templateUrl: "/app/views/password-changed.html"
     });
 

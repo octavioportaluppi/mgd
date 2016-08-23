@@ -42,6 +42,7 @@ app.controller('dashboardSupplierController',
 				$scope.supplier.OpeningHours.DayFromValue = {id: $scope.supplier.OpeningHours.DayFrom};
 				$scope.supplier.OpeningHours.DayToValue = {id: $scope.supplier.OpeningHours.DayTo};
 				$scope.supplier.LogoId = res.LogoId;
+				$scope.supplier.MaxPics = res.SubscriptionType.MaxPicturesAllowed;
 				$scope.supplier.Pictures = res.Pictures
 					.filter(function (pic) {
 						return !pic.IsLogo;
@@ -210,9 +211,10 @@ app.controller('dashboardSupplierController',
 			return;
 		}
 
-		for(var i=0; i<=4; i++){
+		for(var i=0; i<$scope.supplier.MaxPics; i++){
 			if($scope.supplier.newPic[i] !== undefined){
-				toBeDeleted.push($scope.supplier.Pictures[i].id);
+				if($scope.supplier.Pictures[i])
+					toBeDeleted.push($scope.supplier.Pictures[i].id);
 				toBeCreated.push($scope.supplier.newPic[i]);
 			}
 		}
@@ -223,6 +225,10 @@ app.controller('dashboardSupplierController',
 				$scope.reload();
 			});
 		//llamo al servicio para hacer el update
+	};
+
+	$scope.getNumber = function (number) {
+		return new Array(number);
 	};
 
 }]);
