@@ -1,0 +1,35 @@
+<div class="supplier" ng-cloak="">
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item">
+        <a href="#/dashboard">Mi Perfil</a>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item odd">
+        <a href="#/supplier/account">Mi Cuenta</a>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item active">
+        <a href="#/upgrade">Upgrade</a>
+    </div>
+</div>
+<div class="container main" ng-cloak="">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h1 class="promt">¿Qué tipo de suscripción deseas?</h1>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <div class="account"
+             ng-class="{'selected':subscription.Id === currentSubscription.Id}"
+             ng-repeat="subscription in subscriptions">
+            <h2>{{subscription.Name}}</h2>
+            <img class="icon" src="img/star.png" ng-repeat="star in getNumber(subscription.Stars) track by $index"/>
+            <p>{{subscription.Description}}</p>
+            <h3>$ {{subscription.MonthlyFee}}</h3>
+            <button
+                ng-show="subscription.Id !== currentSubscription.Id"
+                ng-click="changeSubscription(subscription.Id)"
+                class="btn btn-default btn-submit col-md-12 col-sm-12 col-xs-12">
+                Solicitar
+            </button>
+        </div>
+    </div>
+</div>

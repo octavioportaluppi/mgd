@@ -1,17 +1,12 @@
 ﻿'use strict';
-app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http, $q, ngAuthSettings) {
+app.factory('supplierService',
+    ['$http', '$q', 'ngAuthSettings', 'authService', function ($http, $q, ngAuthSettings, authService) {
 
     var serviceBase = ngAuthSettings.apiServiceBaseUri;
     var supplierServiceFactory = {};
 
-    var _eventTypes = {};
-
-    var _serviceTypes = {};
-
     var _suppliers = [];
     
-    var _cities = [];
-
     var _getDashboard = function () {
         var deferred = $q.defer();
 
@@ -22,49 +17,22 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
         });
 
         return deferred.promise;        
-    }
-
-    var _getServices = function () {
-
-        var deferred = $q.defer();
-        $http.get(serviceBase + 'api/servicetypes').success(function (res) {
-            _serviceTypes = res;
-            deferred.resolve(res);
-        }).error(function (err, status) {
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
-
     };
 
-    var _getCities = function () {
-
-        var deferred = $q.defer();
-        $http.get(serviceBase + 'api/cities').success(function (res) {
-            _cities = res;
-            deferred.resolve(res);
-        }).error(function (err, status) {
-            deferred.reject(err);
-        });
-
-        return deferred.promise;
-
+    var _getServices = function () {
+        return $http.get(serviceBase + 'api/servicetypes');
     };
 
     var _getEventServices = function (event) {
-        //console.log(event);
         var deferred = $q.defer();
-        $http.get(serviceBase + 'api/eventtypes/'+event+'/servicetypes').success(function (res) {
-            //console.log(res);
+        $http.get(serviceBase + 'api/eventtypes/'+event+'/servicetypes')
+            .success(function (res) {
             deferred.resolve(res);
         }).error(function (err, status) {
             console.log('error');
             deferred.reject(err);
         });
-
         return deferred.promise;
-
     };
 
     var _getSuppliers = function () {
@@ -90,9 +58,30 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     };
 
     //britez
-    var updateSupplierProfile = function(details){
-        return $http
-            .put(serviceBase + 'api/suppliers', details)
+    var updateSupplierProfile = function(details, callback){
+        var promise = $http.put(serviceBase + 'api/suppliers', details);
+        promise.then(function (){
+            if(details.profilePic) {
+                if(details.LogoId){
+                    authService.deletePicture(details.LogoId)
+                        .then(function (){
+                            authService
+                                .uploadLogo(details.profilePic, true);
+                        })
+                } else {
+                    authService
+                        .uploadLogo(details.profilePic, true);
+                }
+            }
+            if(details.photos && details.photos.length > 0) {
+                details.photos.forEach(function(photo){
+                    authService.uploadLogo(photo, false);
+                })
+            }
+            if (typeof callback !== 'undefined')
+                callback();
+        });
+        return promise;
     };
 
     var updateSuppliersService = function (services) {
@@ -100,24 +89,50 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
             .put(serviceBase + 'api/suppliers/servicetypes', services)
     };
 
-    var getSuppliersByEvent = function (eventId, max, offset) {
-        return $http
-            .get(serviceBase + 'api/eventtypes/' + eventId + '/suppliers',
-                {
-                    params: {
-                        size: max, offset: offset
-                    }
-                });
-    };
-
-    var getAllSuppliers = function (max, offset) {
+    var getSuppliersByEvent = function (eventId, max, page) {
         return $http
             .get(serviceBase + 'api/suppliers',
                 {
                     params: {
-                        size: max, offset: offset
+                        size: max, page: page, EventTypeId: eventId
                     }
                 });
+    };
+
+    var getAllSuppliers = function (max, page, filter, query, cityId) {
+
+        var params = createFilters(max, page, filter, query, cityId);
+
+        return $http
+            .get(serviceBase + 'api/suppliers',
+                { params: params });
+    };
+
+    var getSuppliersById = function(id){
+        return $http
+            .get(serviceBase + 'api/suppliers/' + id)
+    };
+
+    var createFilters = function(max, page, filter, query, cityId){
+        var params = {};
+        params.size = max;
+        params.page = page;
+        if(filter)
+            params[filter.name] = filter.value;
+        if(query)
+            params.Query = query;
+        if(cityId)
+            params.CityId = cityId;
+        params.OrderSeed = 1;
+        return params;
+    };
+
+    var getAnswers = function () {
+        return $http.get(serviceBase + 'api/suppliers/answers');
+    };
+
+    var getAnswersById = function (supplierId) {
+        return $http.get(serviceBase + 'api/suppliers/'+supplierId+'/answers');
     };
 
     var getQuestions = function (serviceId) {
@@ -134,9 +149,15 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
         return $http.get(serviceBase + 'api/eventtypes');
     };
 
+    var _getPremiumSuppliers = function (eventTypeId) {
+        return $http.get(serviceBase + 'api/suppliers/premium', {params: {count: 10, EventTypeId: eventTypeId}});
+    };
+
+    var _vote = function (supplierId, vote) {
+        return $http.put(serviceBase + 'api/suppliers/' + supplierId + '/votes', {Rating: vote});
+    };
+
     supplierServiceFactory.getDashboard = _getDashboard;
-    supplierServiceFactory.eventTypes = _eventTypes;
-    supplierServiceFactory.serviceTypes = _serviceTypes;
     supplierServiceFactory.getEvents = _getEvents;
     supplierServiceFactory.getServices = _getServices;    
     supplierServiceFactory.getEventServices = _getEventServices; 
@@ -144,11 +165,16 @@ app.factory('supplierService', ['$http', '$q', 'ngAuthSettings', function ($http
     supplierServiceFactory.suppliers = _suppliers;   
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
-    supplierServiceFactory.getCities = _getCities;
     supplierServiceFactory.updateSuppliersService = updateSuppliersService;
     supplierServiceFactory.updateSupplierProfile = updateSupplierProfile;
     supplierServiceFactory.getQuestions = getQuestions;
+    supplierServiceFactory.getAnswers = getAnswers;
+    supplierServiceFactory.getAnswersById = getAnswersById;
     supplierServiceFactory.saveQuestions = saveQuestions;
+    supplierServiceFactory.getSuppliersById = getSuppliersById;
+    supplierServiceFactory.vote = _vote;
+
+    supplierServiceFactory.getPremiumSuppliers = _getPremiumSuppliers;
 
     return supplierServiceFactory;
 }]);

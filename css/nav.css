@@ -7,7 +7,7 @@ body {
     background: #FFF;
     padding: 30px;
     position: fixed;
-    z-index: 1;
+    z-index: 4;
     top: 0;
     width: 100%;
 }
@@ -53,6 +53,19 @@ body {
     background: none;
 }
 
+.main-nav .main-menu a.disabled {
+    color: #cecece;
+    background: none;
+    cursor: not-allowed;
+}
+
+.main-nav .main-menu .enterprise a{
+    border: 2px #858 solid;
+    background: #FFF;
+    padding: 10px;
+    color: #858;
+}
+
 .main-nav .floating-menu .active {
     background-color: #aed136;
     font-weight: 600;
@@ -79,8 +92,21 @@ body {
     background-color: #aed136;
 }
 
+.responsive-menu .enterprise a{
+    border: 2px #858 solid;
+    background: #FFF;
+    padding: 10px;
+    color: #858;
+}
+
 .responsive-menu li.active a {
     color: #FFF;
+}
+
+.responsive-menu a.disabled {
+    color: #cecece;
+    background: none;
+    cursor: not-allowed;
 }
 
 .main-nav .main-menu a,

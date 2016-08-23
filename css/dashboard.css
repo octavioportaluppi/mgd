@@ -5,3 +5,125 @@ ul > li {
 .dashTextarea{
     resize: none ;
 }
+
+.supplier .frame {
+    border: #cecece solid 1px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 20px;
+}
+
+.supplier .frame.header {
+    margin-top: 20px;
+    border-radius: 5px 5px 0  0;
+}
+
+.supplier .avatar {
+    width: 100%;
+    max-width: 250px;
+}
+
+.supplier .index-title {
+    margin: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 29px;
+}
+
+.supplier .since {
+    font-size: 10px;
+    margin: 5px 0;
+}
+
+.supplier .social {
+    text-align: center;
+}
+
+.supplier .social a {
+    color: #818181;
+    font-size: 2.3rem;
+    text-align: center;
+    display: block;
+}
+
+.supplier .social a:hover {
+    color: #CECECE;
+    -webkit-transition: color 10ms;
+    -moz-transition: color 10ms;
+    -ms-transition: color 10ms;
+    -o-transition: color 10ms;
+    transition: color 10ms;
+}
+
+.frame .form-group label {
+    color: #818181;
+    font-size: 1.4rem;
+}
+
+.frame .form-group input, .frame .form-group textarea {
+    border: 1px #cecece solid;
+}
+
+.frame .form-control.invalid {
+    border: 1px #ee3470 solid !important;
+}
+
+.supplier .sub-title {
+    padding: 5px 0 0 0;
+    font-size: 25px;
+    font-weight: bold ;
+    color: #818181;
+    text-transform: uppercase;
+}
+
+.supplier .btn-default {
+    font-size: 1em;
+    margin: 15px 0;
+}
+
+.btn-save {
+    background: #ee3470;
+    color: #fff;
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.supplier .menu-item {
+    display: inline-block;
+    text-align: center;
+    background: #cecece;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.supplier .menu-item.active,
+.supplier .menu-item:hover,
+.supplier .menu-item.odd:hover {
+    background: #aed136;
+    color: #FFF;
+}
+
+.supplier .menu-item.odd {
+    background: #c0c0c0;
+}
+
+.supplier .menu-item a {
+    font-size: 1em;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.supplier .info-group {
+    margin: 0 0 20px 0;
+}
+
+.dashboard-error {
+    color:#ee3470;
+}
+
+.supplier .default-image {
+    width: 150px;
+    height: 150px;
+    border: none;
+}

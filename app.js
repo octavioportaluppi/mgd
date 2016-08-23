@@ -6,7 +6,9 @@
         'ui.bootstrap',
         'flow',
         'angular-progress-arc',
-        'angular-loading-bar']);
+        'angular-loading-bar',
+        'ngFileUpload',
+        'infinite-scroll']);
 
 app.config(function($routeProvider) {
 
@@ -26,7 +28,7 @@ app.config(function($routeProvider) {
     });
 
     $routeProvider.when("/signup-planner", {
-        controller: "signupController",
+        controller: "signupPlannerController",
         templateUrl: "/app/views/signup-planner.html"
     });
 
@@ -35,9 +37,28 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/signup-supplier.html"
     });
 
+    $routeProvider.when("/supplier/account", {
+        controller: "supplierAccountController",
+        templateUrl: "/app/views/supplier-account.html"
+    });
+
+    $routeProvider.when("/planner/account", {
+        controller: "supplierAccountController",
+        templateUrl: "/app/views/planner-account.html"
+    });
+
+    $routeProvider.when("/planner/data", {
+        controller: "plannerDataController",
+        templateUrl: "/app/views/planner-data.html"
+    });
+
     $routeProvider.when("/suppliers", {
-        controller: "suppliersController",
         templateUrl: "/app/views/suppliers.html"
+    });
+
+    $routeProvider.when("/suppliers/:supplierId",{
+        controller: "suppliersController",
+        templateUrl: "/app/views/supplier-detail.html"
     });
 
     $routeProvider.when("/dashboard", {
@@ -48,16 +69,58 @@ app.config(function($routeProvider) {
     $routeProvider.when("/planner", {
         controller: "plannerController",
         templateUrl: "/app/views/planner.html"
-    });    
+    });
 
     $routeProvider.when("/events/:eventId", {
         controller: "eventsController",
         templateUrl: "/app/views/events.html"
-    });    
+    });
 
     $routeProvider.when("/welcome", {
         controller: "welcomeController",
         templateUrl: "/app/views/signup-welcome.html"
+    });
+
+    $routeProvider.when("/events/:eventId/detail",{
+        controller: "eventDetailController",
+        templateUrl: "/app/views/event-detail.html"
+    });
+
+    $routeProvider.when("/forgot-password",{
+        controller: "forgotPasswordController",
+        templateUrl: "/app/views/forgot-password.html"
+    });
+
+    $routeProvider.when("/password-confirmation",{
+        templateUrl: "/app/views/password-confirmation.html"
+    });
+
+    $routeProvider.when("/email-confirmation",{
+        controller: "emailConfirmController",
+        templateUrl: "/app/views/email-confirmation.html"
+    });
+
+    $routeProvider.when("/email-confirmation-success",{
+        templateUrl: "/app/views/email-confirmation-ok.html"
+    });
+
+    $routeProvider.when("/password-changed",{
+        controller: "activateController",
+        templateUrl: "/app/views/password-changed.html"
+    });
+
+    $routeProvider.when("/reset-password",{
+        controller: "activateController",
+        templateUrl: "/app/views/activate.html"
+    });
+
+    $routeProvider.when("/upgrade",{
+        controller: "subscriptionController",
+        templateUrl: "/app/views/upgrade.html"
+    });
+
+    $routeProvider.when('/subscription-success', {
+        templateUrl: "/app/views/subscription-success.html"
     });
 
     $routeProvider.otherwise({ redirectTo: "/" });
@@ -130,34 +193,13 @@ app.filter('tel', function () {
         source = source.toLowerCase();
 
         var values = [
-            {
-                id:'á',
-                replace: 'a'
-            },
-            {
-                id:'é',
-                replace: 'e'
-            },
-            {
-                id:'í',
-                replace: 'i'
-            },
-            {
-                id:'ó',
-                replace: 'o'
-            },
-            {
-                id:'ú',
-                replace: 'u'
-            },
-            {
-                id:'ñ',
-                replace: 'n'
-            },
-            {
-                id:' ',
-                replace: '-'
-            }
+            { id:'á', replace: 'a' },
+            { id:'é', replace: 'e' },
+            { id:'í', replace: 'i' },
+            { id:'ó', replace: 'o' },
+            { id:'ú', replace: 'u' },
+            { id:'ñ', replace: 'n' },
+            { id:' ', replace: '-' }
         ];
 
         values.forEach(function(value){
@@ -165,6 +207,76 @@ app.filter('tel', function () {
         });
 
         return 'icon-' + source;
+    };
+})
+
+.filter('background', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        source = source.toLowerCase();
+
+        var values = [
+            { id:'á', replace: 'a' },
+            { id:'é', replace: 'e' },
+            { id:'í', replace: 'i' },
+            { id:'ó', replace: 'o' },
+            { id:'ú', replace: 'u' },
+            { id:'ñ', replace: 'n' },
+            { id:' ', replace: '-' }
+        ];
+
+        values.forEach(function(value){
+            source = source.split(value.id).join(value.replace);
+        });
+
+        return source;
+    };
+})
+
+.filter('day', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        var values = [
+            { id: 0, name: 'Domingo' },
+            { id: 1, name: 'Lunes' },
+            { id: 2, name: 'Martes' },
+            { id: 3, name: 'Miercoles' },
+            { id: 4, name: 'Jueves' },
+            { id: 5, name: 'Viernes' },
+            { id: 6, name: 'Sabado' }
+        ];
+
+        var result = values.find(function (it){return it.id == source});
+        if (!result){
+            return source;
+        }
+        return result.name;
+    };
+})
+
+.filter('filterKey', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        var values = [
+            { id: 'CityFilter', key: 'Estado' },
+            { id: 'EventTypeFilter', key: 'Tipo de Evento' },
+            { id: 'ServiceTypeFilter', key: 'Tipo de Servicio' }
+        ];
+
+        var result = values.find(function (it){return it.id == source});
+        if (!result){
+            return source;
+        }
+        return result.key;
     };
 })
 
@@ -186,26 +298,6 @@ app.constant('ngAuthSettings', {
 app.config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
-
-app.directive("compareTo", function() {
-    return {
-      require: "ngModel",
-      scope: {
-        otherModelValue: "=compareTo"
-      },
-      link: function(scope, element, attributes, ngModel) {
-
-        ngModel.$validators.compareTo = function(modelValue) {
-          return modelValue == scope.otherModelValue;
-        };
-
-        scope.$watch("otherModelValue", function() {
-          ngModel.$validate();
-        });
-      }
-    };
-  }
-);
 
 app.run(['authService', function(authService) {
     authService.fillAuthData();

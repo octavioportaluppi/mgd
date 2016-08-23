@@ -1,10 +1,11 @@
 ﻿'use strict';
 app.controller('signupController', [
-    '$scope', '$location', '$timeout', 'authService', 'supplierService', 'stateService', 'dateService',
-    function ($scope, $location, $timeout, authService, supplierService, stateService, dateService) {
+    '$scope', '$location', '$timeout', 'authService', 'supplierService', 'stateService', 'dateService', 'Upload',
+    function ($scope, $location, $timeout, authService, supplierService, stateService, dateService, Upload) {
 
     $scope.registration = {};
     $scope.supplier = {};
+    $scope.supplier.photos = [];
     $scope.supplierEvents = [];
 
     $scope.stepsSupplier = [
@@ -43,7 +44,6 @@ app.controller('signupController', [
                     .login($scope.registration, 'supplier')
                     .then(function() {
                         $scope.authentication = authService.authentication;
-                        $scope.supplier.OpeningHours = {DayFrom: 0, DayTo: 6, HoursFrom: '12:00', HoursTo:'23:00'};
                         authService
                             .saveSupplier($scope.supplier)
                             .then(function (){
@@ -123,7 +123,7 @@ app.controller('signupController', [
             return true;
         }
 
-        return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$')
+        return new RegExp('^(?=.*[A-Z])(?=.*[!@#$&*.])(?=.*[0-9])(?=.*[a-z]).{8,}$')
             .test($scope.registration.Password);
     };
 

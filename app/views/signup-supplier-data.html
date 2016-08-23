@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-cloak="">
 	<div class="row">
 		<div class="carousel-image img-panel-full img-panel-full-register">
 			<div class="carousel-caption">
@@ -8,7 +8,7 @@
 		</div>
 	</div>
 </div>
-<form class="form-horizontal main" name="data" form-step-validity="form-step-validity" novalidate>
+<form class="form-horizontal main" name="data" form-step-validity="form-step-validity" novalidate ng-cloak="">
 	<div class="container">
 		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
 			<div class="form-group signup-error">
@@ -17,7 +17,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
 			<div class="form-group signup-field">
 				<input 
 					class="form-control"
@@ -30,23 +30,6 @@
 				<div class="error" ng-show="data.$submitted || data.supplierName.$touched">
       				<div ng-show="data.supplierName.$error.required">Dinos el nombre del proveedor.</div>
     			</div>
-			</div>
-		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-			<div class="form-group signup-field">
-				<input
-						class="form-control"
-						name="email"
-						required="required"
-						type="email"
-						placeholder="Email"
-						ng-model="registration.Email"
-						ng-disabled="authentication.isAuth"
-						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
-				<div class="error" ng-show="data.$submitted || data.email.$touched">
-					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
-					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
-				</div>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
@@ -84,6 +67,23 @@
       				<div ng-show="data.passwordConfirm.$error.required">Confirma la contraseña.</div>
       				<div ng-show="data.passwordConfirm.$error.compareTo">Las contraseñas no coinciden.</div>
     			</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="email"
+						required="required"
+						type="email"
+						placeholder="Email"
+						ng-model="registration.Email"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.email.$touched">
+					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
+					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
+				</div>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
@@ -190,10 +190,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
 			<div class="form-group signup-field">
 				<textarea class="form-control" required="" ng-model="supplier.Description" name="description"
-						  placeholder="Descripción"
+						  placeholder="Este es el texto por el cual atraerás a potenciales clientes"
 						ng-class="{'invalid':data.description.$error.required && (data.$submitted || data.description.$touched)}">
 				</textarea>
 				<div class="error" ng-show="data.$submitted || data.description.$touched">
@@ -203,32 +203,107 @@
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 clearfix">
 			<label class="default-image-title">Sube tu logotipo</label>
-			<div class="default-image pull-left"></div>
+			<div
+				class="default-image pull-left"
+				ngf-select
+				ng-model="supplier.profilePic"
+			 	accept="image/*"
+				ng-show="!supplier.profilePic"
+				ngf-max-size="2MB"></div>
+			<img
+				ng-show="supplier.profilePic"
+				ngf-thumbnail="supplier.profilePic"
+				class="default-image pull-left"
+				ngf-select
+				ng-model="supplier.profilePic"
+				accept="image/*"
+				ngf-max-size="2MB">
 			<div class="default-image-caption pull-left">
 				<span>600px x 600px</span>
 				<span>.jpg, .png</span>
-				<button
-					class="btn btn-default btn-submit"
-					ng-click="">Buscar</button>
 			</div>
 		</div>
 		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0 clearfix">
 			<label class="default-image-title">Sube imágenes</label>
-			<div class="col-md-3">
-				<div class="default-image"></div>
+			<div class="default-image"
+				 ngf-select
+				 ng-model="supplier.photos[0]"
+				 accept="image/*"
+				 ng-show="!supplier.photos[0]"
+				 ngf-max-size="2MB">
 			</div>
-			<div class="col-md-3">
-				<div class="default-image"></div>
+			<img
+				ng-show="supplier.photos[0]"
+				ngf-thumbnail="supplier.photos[0]"
+				class="default-image"
+				ngf-select
+				ng-model="supplier.photos[0]"
+				accept="image/*"
+				ngf-max-size="2MB" />
+
+			<div class="default-image"
+				 ngf-select
+				 ng-model="supplier.photos[1]"
+				 accept="image/*"
+				 ng-show="!supplier.photos[1]"
+				 ngf-max-size="2MB">
 			</div>
-			<div class="col-md-3">
-				<div class="default-image"></div>
+			<img
+				ng-show="supplier.photos[1]"
+				ngf-thumbnail="supplier.photos[1]"
+				class="default-image"
+				ngf-select
+				ng-model="supplier.photos[1]"
+				accept="image/*"
+				ngf-max-size="2MB" />
+
+			<div class="default-image"
+				 ngf-select
+				 ng-model="supplier.photos[2]"
+				 accept="image/*"
+				 ng-show="!supplier.photos[2]"
+				 ngf-max-size="2MB">
 			</div>
-			<div class="col-md-3">
-				<div class="default-image"></div>
+			<img
+				ng-show="supplier.photos[2]"
+				ngf-thumbnail="supplier.photos[2]"
+				class="default-image"
+				ngf-select
+				ng-model="supplier.photos[2]"
+				accept="image/*"
+				ngf-max-size="2MB" />
+
+			<div class="default-image"
+				 ngf-select
+				 ng-model="supplier.photos[3]"
+				 accept="image/*"
+				 ng-show="!supplier.photos[3]"
+				 ngf-max-size="2MB">
 			</div>
-			<button
-				class="btn btn-default btn-submit pull-right"
-				ng-click="">Buscar</button>
+			<img
+				ng-show="supplier.photos[3]"
+				ngf-thumbnail="supplier.photos[3]"
+				class="default-image"
+				ngf-select
+				ng-model="supplier.photos[3]"
+				accept="image/*"
+				ngf-max-size="2MB" />
+
+			<div class="default-image"
+				 ngf-select
+				 ng-model="supplier.photos[4]"
+				 accept="image/*"
+				 ng-show="!supplier.photos[4]"
+				 ngf-max-size="2MB">
+			</div>
+			<img
+					ng-show="supplier.photos[4]"
+					ngf-thumbnail="supplier.photos[4]"
+					class="default-image"
+					ngf-select
+					ng-model="supplier.photos[4]"
+					accept="image/*"
+					ngf-max-size="2MB" />
 		</div>
 	</div>
 	<div class="container text-center">
@@ -241,11 +316,6 @@
 				ng-class="[{'invalid':!data.$valid && data.$submitted}]"
 				ng-hide="$isLast()"
 				ng-click="saveSupplierData(data, $nextStep)">Siguiente</button>
-		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
-			<button
-					class="btn btn-default btn-submit next"
-					ng-click="$nextStep()">Skip</button>
 		</div>
 	</div>
 </form>

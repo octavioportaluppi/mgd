@@ -1,0 +1,266 @@
+<div class="row" style="background-color: #F4F4F4" ng-cloak="">
+    <!-- Invitados -->
+    <div class="col-md-7 col-sm-12 col-xs-12 guests" style="background-color: #ECECEC;">
+        <div class="col-md-5 col-sm-5 col-xs-5 guests-title">
+            <span>Invitados</span>
+        </div>
+        <div class="col-md-2 col-sm-2 col-xs-2 guests-title middle">
+            <span>RSVP</span>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-4 guests-title middle">
+            <span>MESA</span>
+        </div>
+        <div cass="col-md-1 col-sm-1 col-xs-1"></div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p>Agrega invitados y edita su status</p>
+        </div>
+        <!-- Listado de invitados -->
+        <div class="col-md-12 col-sm-12 col-xs-12 guest" ng-repeat="guest in guests">
+            <div ng-if="!guest.edit">
+                <div class="col-md-5 col-sm-5 col-xs-5">
+                    <span>{{guest.FirstName}} {{guest.LastName}}</span>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 middle">
+                    <i class="fa fa-check" ng-if="guest.IsConfirmed"></i>
+                    <i class="fa fa-times" ng-if="!guest.IsConfirmed"></i>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 middle">
+                    <span>{{guest.Group.Name}}</span>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1" ng-if="event.enabled">
+                    <i class="fa fa-pencil pull-right" ng-click="guest.edit = !guest.edit; guest.OldGroupId = guest.Group.Id;"></i>
+                </div>
+            </div>
+
+            <div ng-if="guest.edit && event.enabled">
+                <form name="guestUpdateForm">
+                    <div class="col-md-5 col-sm-5 col-xs-5">
+                        <input
+                            type="text"
+                            name="name"
+                            required="required"
+                            ng-model="guest.FirstName"
+                            placeholder="Nombre"
+                            ng-class="{'invalid':guestUpdateForm.name.$error.required && (guestUpdateForm.$submitted || guestUpdateForm.name.$touched)}"/>
+                        <input
+                            type="text"
+                            name="lastName"
+                            required="required"
+                            ng-model="guest.LastName"
+                            placeholder="Apellido"
+                            ng-class="{'invalid':guestUpdateForm.lastName.$error.required && (guestUpdateForm.$submitted || guestUpdateForm.lastName.$touched)}"/>
+                        <div class="dashboard-error" ng-show="guestUpdateForm.$submitted || guestUpdateForm.name.$touched">
+                            <div ng-show="guestUpdateForm.name.$error.required">Agregue el nombre del invitado.</div>
+                        </div>
+                        <div class="dashboard-error" ng-show="guestUpdateForm.$submitted || guestUpdateForm.lastName.$touched">
+                            <div ng-show="guestUpdateForm.lastName.$error.required">Agregue el apellido del invitado.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2 middle guest-opt">
+                        <i class="fa fa-check" ng-class="{'disabled': !guest.IsConfirmed}"
+                           ng-click="guest.IsConfirmed = true;"></i>
+                        <i class="fa fa-times" ng-class="{'disabled': guest.IsConfirmed}"
+                           ng-click="guest.IsConfirmed = false;"></i>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-2 middle">
+                        <select
+                            name="groupGuestId"
+                            required="required"
+                            ng-model="guest.Group"
+                            ng-class="{'invalid':guestUpdateForm.groupGuestId.$error.required && (guestUpdateForm.$submitted || guestUpdateForm.groupGuestId.$touched)}"
+                            ng-options="item as item.Name for item in guestGroups track by item.Id">
+                        </select>
+                        <div class="dashboard-error" ng-show="guestUpdateForm.$submitted || guestUpdateForm.groupGuestId.$touched">
+                            <div ng-show="guestUpdateForm.groupGuestId.$error.required">Seleccione la mesa del invitado.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1">
+                        <i class="fa fa-trash pull-right" ng-click="guest.delete = true;"></i>
+                    </div>
+                    <div ng-if="!guest.delete && event.enabled">
+                        <div class="col-md-3 col-md-offset-6 col-sm-3 col-sm-offset-6 col-xs-3 col-xs-offset-6">
+                            <button class="btn btn-defasult btn-submit btn-edit pull-right" ng-click="updateGuest(guestUpdateForm, guest)">Aceptar</button>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <button class="btn btn-defasult btn-edit pull-right" ng-click="getGuests()">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+                <div ng-if="guest.delete && event.enabled">
+                    <div class="col-md-9 col-sm-9 col-xs-9" style="padding-top: 15px;">
+                        <p style="font-weight: 600;">Está seguro de eliminar este invitado?</p>
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <button class="btn btn-defasult btn-edit pull-right" ng-click="guest.delete = false;">No</button>
+                        <button
+                            class="btn btn-defasult btn-edit btn-submit pull-right"
+                            ng-click="deleteGuest(guest.Group.Id, guest.Id)">Si</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Form -->
+        <div class="col-md-12 col-sm-12 col-xs-12 guest" ng-if="event.enabled">
+            <form name="newGuestForm" novalidate ng-submit="createGuest(newGuestForm)">
+                <div class="col-md-5 col-sm-5 col-xs-5">
+                    <input
+                        type="text"
+                        name="name"
+                        required="required"
+                        ng-model="newGuest.FirstName"
+                        placeholder="Nombre"
+                        ng-class="{'invalid':newGuestForm.name.$error.required && (newGuestForm.$submitted || newGuestForm.name.$touched)}"/>
+                    <input
+                        type="text"
+                        name="lastName"
+                        required="required"
+                        ng-model="newGuest.LastName"
+                        placeholder="Apellido"
+                        ng-class="{'invalid':newGuestForm.lastName.$error.required && (newGuestForm.$submitted || newGuestForm.lastName.$touched)}"/>
+                    <div class="dashboard-error" ng-show="newGuestForm.$submitted || newGuestForm.name.$touched">
+                        <div ng-show="newGuestForm.name.$error.required">Agregue el nombre del invitado.</div>
+                    </div>
+                    <div class="dashboard-error" ng-show="newGuestForm.$submitted || newGuestForm.lastName.$touched">
+                        <div ng-show="newGuestForm.lastName.$error.required">Agregue el apellido del invitado.</div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-2 middle guest-opt">
+                    <i class="fa fa-check" ng-class="{'disabled': !newGuest.isConfirmed}"
+                       ng-click="newGuest.isConfirmed = true;"></i>
+                    <i class="fa fa-times" ng-class="{'disabled': newGuest.isConfirmed}"
+                       ng-click="newGuest.isConfirmed = false;"></i>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-4 middle">
+                    <select
+                        name="groupGuestId"
+                        ng-model="newGuest.GroupGuestId"
+                        required="required"
+                        ng-class="{'invalid':newGuestForm.groupGuestId.$error.required && (newGuestForm.$submitted || newGuestForm.groupGuestId.$touched)}">
+                        <option value="">Seleccionar mesa</option>
+                        <option value="{{guestgroup.Id}}" ng-repeat="guestgroup in guestGroups">{{guestgroup.Name}}</option>
+                    </select>
+                    <div class="dashboard-error" ng-show="newGuestForm.$submitted || newGuestForm.groupGuestId.$touched">
+                        <div ng-show="newGuestForm.groupGuestId.$error.required">Seleccione la mesa del invitado.</div>
+                    </div>
+                </div>
+                <div class="col-md-1 col-sm-1 col-xs-1">
+                    <button
+                            class="btn btn-defasult btn-submit btn-guest-add">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Mesas -->
+    <div class="col-md-5 col-sm-12 col-xs-12 guests" style="background-color: #F4F4F4;">
+        <div class="col-md-12 col-sm-12 col-xs-12 guests-title">
+            <span>Mesas</span>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p>Abre para ver los invitados en cada mesa</p>
+        </div>
+        <!-- Listado de mesas -->
+        <div class="col-md-12 col-sm-12 col-xs-12 guest-group" ng-repeat="guestgroup in guestGroups">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row" style="display: flex">
+                    <span class="group-id">{{guestgroup.GuestsCount}}</span>
+                    <span class="group-name" ng-if="!guestgroup.edit && event.enabled">
+                        <span>{{guestgroup.Name}}</span>
+                        <i class="fa fa-pencil pull-right" ng-click="guestgroup.edit = true;"></i>
+                    </span>
+
+                    <div style="flex-grow: 1; height: 85px;" class="group-name guest-group-form-edit" ng-if="guestgroup.edit && event.enabled">
+                        <form name="updateGuestGroupForm">
+                            <div class="row">
+                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        ng-model="guestgroup.Name"
+                                        required="required"
+                                        placeholder="Nombre de la mesa"
+                                        ng-class="{'invalid':updateGuestGroupForm.name.$error.required && (updateGuestGroupForm.$submitted || updateGuestGroupForm.name.$touched)}"/>
+                                    <div class="dashboard-error" ng-show="updateGuestGroupForm.$submitted || updateGuestGroupForm.name.$touched">
+                                        <div ng-show="updateGuestGroupForm.name.$error.required">Dinos el nombre de la mesa.</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <i class="fa fa-trash pull-right" ng-if="!guestgroup.IsDefault" ng-click="guestgroup.delete = true;"></i>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="!guestgroup.delete">
+                                <div class="col-md-2 col-md-offset-8 col-sm-2 col-sm-offset-8 col-xs-2 col-xs-offset-8">
+                                    <button class="btn btn-defasult btn-submit btn-edit pull-right" ng-click="updateGuestGroup(updateGuestGroupForm, guestgroup)">
+                                        <i class="fa fa-check pull-right"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <button class="btn btn-defasult btn-edit pull-right" ng-click="getGuests();$event.preventDefault();">
+                                        <i class="fa fa-times pull-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="guestgroup.delete">
+                                <div class="col-md-8 col-sm-2 col-xs-2" style="padding-top: 15px;">
+                                    <p style="font-weight: 600;">Está seguro de eliminar esta mesa?</p>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <button class="btn btn-defasult btn-submit btn-edit pull-right" ng-click="deleteGuestGroup(guestgroup.Id);$event.preventDefault();">
+                                        <i class="fa fa-check pull-right"></i>
+                                    </button>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+                                    <button class="btn btn-defasult btn-edit pull-right" ng-click="guestgroup.delete = false;$event.preventDefault();">
+                                        <i class="fa fa-times pull-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <span
+                        class="group-action"
+                        ng-click="guestgroup.collapsed = !guestgroup.collapsed;">
+                        <i class="fa fa-chevron-right" ng-if="!guestgroup.collapsed"></i>
+                        <i class="fa fa-chevron-down" ng-if="guestgroup.collapsed"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div uib-collapse="!guestgroup.collapsed" class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row" ng-repeat="guest in guestgroup.guests">
+                    <div class="row guest">
+                        <span>{{guest.FirstName}} {{guest.LastName}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Formulaario de mesas -->
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="row guest-group-form" ng-if="event.enabled">
+                <form name="newGuestGroupForm" ng-submit="createGuestGroup(newGuestGroupForm)">
+                    <div class="col-md-11 col-sm-11 col-xs-11">
+                        <input
+                            type="text"
+                            name="name"
+                            ng-model="newGuestGroup.Name"
+                            required="required"
+                            placeholder="Nombre de la mesa"
+                            ng-class="{'invalid':newGuestGroupForm.name.$error.required && (newGuestGroupForm.$submitted || newGuestGroupForm.name.$touched)}"/>
+                        <div class="dashboard-error" ng-show="newGuestGroupForm.$submitted || newGuestGroupForm.name.$touched">
+                            <div ng-show="newGuestGroupForm.name.$error.required">Dinos el nombre de la mesa.</div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-sm-1 col-xs-1 row">
+                        <button
+                            class="btn btn-defasult btn-submit btn-guest-add">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

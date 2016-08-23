@@ -1,0 +1,77 @@
+<ul class="planner-nav col-md-12 col-sm-12 col-xs-12" ng-cloak="">
+    <li class="active col-md-6 col-sm-6 col-xs-6"><a href="#/planner">mis eventos</a></li>
+    <li class="col-md-6 col-md-6 col-sm-6 col-xs-6"><a href="#/planner/account">mi cuenta</a></li>
+</ul>
+<div class="col-md-12 col-sm-12 col-xs-12" style="background-image: url('../img/mi_gran_dia_{{event.EventType.Name | background}}.jpg');background-position: center; background-size: cover; min-height: 450px;">
+    <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12" style="text-align: center;">
+        <h1 class="carousel-caption"
+            ng-if="event.RemainingDays >= 0"
+                style="font-size: 4rem; padding: 60px 0">Faltan <b style="color: #aed136">{{event.RemainingDays}}</b> dias para tu proximo evento:</h1>
+        <p class="carousel-caption"
+            ng-if="event.RemainingDays < 0"
+            style="text-align: center; font-size: 4rem; padding: 60px 0">Este evento finalizó el <b style="color: #aed136">{{event.Date | date: 'dd/MM/yyyy'}}</b></p>
+    </div>
+    <div class="col-md-6 col-md-offset-3 col-xs-12" style="text-align: center">
+        <p style="    color: #FFF;
+font-size: 2rem;
+font-weight: normal;
+letter-spacing: 10px;
+text-transform: uppercase;
+padding: 20px 0;">{{event.Title}}</p>
+    </div>
+    <div class="col-md-6 col-md-offset-3" style="    position: absolute;
+top: 100%;
+margin-top: -105px;
+left: 50%;
+margin-left: -250px;">
+
+        <ul class="event-menu">
+            <li ng-class="{'active':isActive('agenda')}"
+                    ng-click="goDetail('agenda')">
+                <i class="icon icon-agenda"></i>
+                agenda
+            </li>
+            <li ng-class="{'active':isActive('presupuesto'), 'odd': true}"
+                ng-click="goDetail('presupuesto')">
+                <i class="icon icon-presupuesto"></i>
+                presupuesto
+            </li>
+            <li ng-class="{'active':isActive('invitados')}"
+                ng-click="goDetail('invitados')">
+                <i class="icon icon-invitados"></i>
+                invitados
+            </li>
+            <li ng-class="{'active':isActive('proveedores'), 'odd': true}"
+                ng-click="goDetail('proveedores')">
+                <i class="icon icon-proveedores"></i>
+                proveedores
+            </li>
+        </ul>
+    </div>
+</div>
+<ul class="event-menu-responsive col-md-12 col-xs-12 col-sm-12">
+    <li
+        ng-class="{'active':isActive('agenda')}"
+        ng-click="goDetail('agenda')">
+        <i class="icon icon-agenda"></i>
+            AGENDA</li>
+    <li ng-class="{'active':isActive('presupuesto'), 'odd': true}"
+        ng-click="goDetail('presupuesto')">
+        <i class="icon icon-presupuesto"></i>
+        PRESUPUESTO</li>
+    <li ng-class="{'active':isActive('invitados')}"
+        ng-click="goDetail('invitados')">
+        <i class="icon icon-invitados"></i>
+        INVITADOS</li>
+    <li
+        ng-class="{'active':isActive('proveedores'), 'odd': true}"
+        ng-click="goDetail('proveedores')">
+        <i class="icon icon-proveedores"></i>
+        PROVEEDORES</li>
+</ul>
+<div class="col-md-12 col-sm-12 col-xs-12" style="background-color: #FFF; min-height: 200px">
+    <my-agenda ng-show="isActive('agenda')" id="eventId" event="event"></my-agenda>
+    <my-budget ng-show="isActive('presupuesto')" id="eventId" event="event"></my-budget>
+    <my-guest ng-show="isActive('invitados')" id="eventId" event="event"></my-guest>
+    <my-supplier ng-show="isActive('proveedores')" id="eventId" event="event"></my-supplier>
+</div>

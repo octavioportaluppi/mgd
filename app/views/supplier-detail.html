@@ -1,0 +1,82 @@
+<div class="supplier">
+    <div class="container" style="padding: 60px 0 40px 0" ng-cloak="">
+        <div class="col-md-2">
+            <img class="avatar img-circle" src="img/photo-placeholder.jpg" ng-if="supplier.LogoId < 0"/>
+            <img class="avatar img-circle" src="{{supplier.LogoUrl}}" ng-if="supplier.LogoId > 0"/>
+        </div>
+        <div class="col-md-4">
+            <h1 class="index-title">{{supplier.Name}}</h1>
+            <div class="service-container">
+                <span class="premium-service" ng-repeat="service in supplier.ServiceTypes">
+                    <i class="{{service.Name | icon}}"></i>
+                    {{service.Name}}
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <p class="address">{{supplier.Address | firstLetter }}</p>
+            <p class="address">{{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</p>
+            <p style="cursor: pointer;">
+                <span style="color: #aed136" ng-if="isOpen()">Open now</span>
+            </p>
+            <p class="votes" ng-if="authentication.isAuth">
+                <i
+                    class="fa fa-star vote"
+                    ng-class="{'filled': supplier.Rating > 4}"
+                    ng-click="vote(5)"></i>
+                <i
+                    class="fa fa-star vote"
+                    ng-class="{'filled': supplier.Rating > 3}"
+                    ng-click="vote(4)"></i>
+                <i
+                    class="fa fa-star vote"
+                    ng-class="{'filled': supplier.Rating > 2}"
+                    ng-click="vote(3)"></i>
+                <i
+                    class="fa fa-star vote"
+                    ng-class="{'filled': supplier.Rating > 1}"
+                    ng-click="vote(2)"></i>
+                <i
+                    class="fa fa-star vote"
+                    ng-class="{'filled': supplier.Rating > 0}"
+                    ng-click="vote(1)"></i>
+                <span class="pull-left">Rating</span>
+            </p>
+            <button class="btn btn-default btn-submit"
+                    ng-disabled="true">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                Enviar Mensaje
+            </button>
+        </div>
+        <div class="col-md-2 social">
+            <a ng-href="{{supplier.FacebookUrl}}"
+               ng-if="supplier.FacebookUrl">
+                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+            </a>
+            <a ng-href="{{supplier.TwitterUrl}}"
+               ng-if="supplier.TwitterUrl">
+                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            </a>
+            <a ng-href="{{supplier.InstagramUrl}}"
+               ng-if="supplier.InstagramUrl">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    <uib-carousel active="active" ng-if="supplier.Pictures.length > 0" ng-cloak="">
+        <uib-slide ng-repeat="slide in slides track by $index" index="$index">
+            <div class="carousel-image" style="background-image:url('{{slide.img}}')"></div>
+        </uib-slide>
+    </uib-carousel>
+    <div class="container" ng-cloak="">
+        <div class="col-md-6 supplier-footer">
+            <p>{{supplier.Description}}</p>
+        </div>
+        <div class="col-md-6 supplier-footer">
+            <div ng-repeat="answer in answers">
+                <label>{{answer.Question.Text}}</label>
+                <p>{{answer.Text}}</p>
+            </div>
+        </div>
+    </div>
+</div>

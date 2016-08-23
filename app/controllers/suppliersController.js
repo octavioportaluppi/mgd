@@ -1,58 +1,61 @@
 ﻿'use strict';
-app.controller('suppliersController', ['$scope', '$http', '$q', 'supplierService', function ($scope, $http, $q, supplierService) {
-    /*
-    $scope.events = '';
-	$scope.eventsServices = [];
-	supplierService.getSuppliers();
-	$scope.suppliers = supplierService.suppliers;
+app.controller('suppliersController',
+    ['$scope', 'supplierService', '$routeParams', 'ngAuthSettings', 'dateService', 'authService',
+        function ($scope, supplierService, $routeParams, ngAuthSettings, dateService, authService) {
+            $scope.supplier = {};
+            $scope.isSupplier = false;
+            $scope.myInterval = 1000;
+            $scope.noWrapSlides = false;
 
-	console.log($scope.suppliers);
-    */
+            $scope.authentication = authService.authentication;
 
-    $scope.size = 5;
-    $scope.offset = 0;
+            $scope.active = 0;
+            $scope.slides = [];
 
-    $scope.nextPage = function(){
-        $scope.offset = $scope.offset + $scope.size;
-        $scope.getSuppliers();
-    };
+            $scope.votes = [];
 
-    $scope.isCurrentPage = function(pageNumber){
-        return $scope.offset == pageNumber;
-    };
+            $scope.load = function () {
+                supplierService
+                    .getSuppliersById($routeParams.supplierId)
+                    .then(function (res) {
+                        $scope.supplier = res.data;
+                        if ($scope.supplier.LogoId > 0)
+                            $scope.supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + $scope.supplier.LogoId + '/Image';
+                        var id = 0;
+                        res.data.Pictures
+                            .forEach(function (pic) {
+                                var elem = {
+                                    img: ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + pic.Id + '/Image',
+                                    id: id++
+                                };
 
-    $scope.goPage = function(pageNumber){
-        $scope.offset = pageNumber;
-        $scope.getSuppliers();
-    };
+                                if(!pic.IsLogo)
+                                    $scope.slides.push(elem)
+                            });
+                    });
 
-    $scope.getSuppliers = function (){
-        supplierService
-            .getAllSuppliers(
-                $scope.size,
-                $scope.offset)
-            .success(function (response){
-                $scope.suppliers = response;
-            })
-    };
+                supplierService
+                    .getAnswersById($routeParams.supplierId)
+                    .then(function (response) {
+                       $scope.answers = response.data;
+                    });
+            };
 
-    $scope.getSuppliers();
+            $scope.load();
 
-    /*
-	angular.element(document).ready(function() {
-		supplierService.getEvents().then(function(data) {
-			$scope.events = data;
-			for (var i = 0; i < $scope.events.length; i++) {
-				//$scope.eventsServices = [];
-				supplierService.getEventServices($scope.events[i].Id).then(function(services) {
-					var temp = {'services': services};
-					$scope.eventsServices.push(temp);
-				}, function() {
-					console.log('error');
-				});
-			};
-		}, function() {
-			console.log('error');
-		});
-    });*/
-}]);
+            $scope.vote = function (vote) {
+                supplierService
+                    .vote($routeParams.supplierId, vote)
+                    .then(function () {
+                        $scope.load();
+                    });
+            };
+
+            $scope.isOpen = function () {
+                if (!$scope.supplier.OpeningHours) {
+                    return false;
+                }
+                return dateService.isOpen($scope.supplier.OpeningHours);
+            };
+
+        }]);

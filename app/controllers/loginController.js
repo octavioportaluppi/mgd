@@ -1,40 +1,50 @@
 ﻿'use strict';
-app.controller('loginController', ['$scope', '$interval', '$location', 'authService', 'ngAuthSettings', 'supplierService', function ($scope, $interval, $location, authService, ngAuthSettings, supplierService) {
+app.controller('loginController',
+    ['$scope', '$interval', '$location', 'authService', 'ngAuthSettings', 'accountService',
+        function ($scope, $interval, $location, authService, ngAuthSettings, accountService) {
 
     $scope.loginData = {
         Email: "",
-        Password: "",
+        Password: ""
     };
 
     $scope.message = "";
 
-    $scope.login = function (userType) {
-        console.log(userType);
-        authService.login($scope.loginData, userType).then(function (response) {
-            supplierService.getDashboard().then(function(res){
-                if (userType == 'planner') {
-                    authService.logOut();
-                    $scope.message = 'Tu cuenta es de Organizador, por favor inicia sesión <a href="/login-planner">aquí</a>';  
+    $scope.loginSupplier = function () {
+        authService
+            .login($scope.loginData, 'supplier')
+            .then(
+            function () {
+                $scope.checkAccount('Supplier', '/dashboard');
+            },
+            function (err) {
+                $scope.message = err.error_description;
+            });
+    };
+
+    $scope.checkAccount = function(accountType, state) {
+        accountService
+            .accountInfo()
+            .then(function (response) {
+                if(response.data.Role === accountType) {
+                    $location.path(state);
                 } else {
-                    $location.path('/'); 
-                }
-            }, function(err) {
-                if (userType == 'supplier') {
                     authService.logOut();
-                    $scope.message = 'Tu cuenta es de Proveedor, por favor inicia sesión <a href="/login-supplier">aquí</a>';  
-                } else {
-                    $location.path('/');         
+                    $scope.message = 'La cuenta ingresada no corresponde al tipo de servicio.'
                 }
             });
-                
+    };
 
-
-            $location.path('/');
-
-        },
-         function (err) {
-             $scope.message = err.error_description;
-         });
+    $scope.loginPlanner = function () {
+        authService
+            .login($scope.loginData, 'planner')
+            .then(
+            function () {
+                $scope.checkAccount('Planner', '/planner');
+            },
+            function (err) {
+                $scope.message = err.error_description;
+            });
     };
 
     $scope.authExternalProvider = function (provider) {

@@ -13,8 +13,13 @@ app.factory('stateService', ['$http', 'ngAuthSettings', function ($http, ngAuthS
         return $http.get(serviceBase + 'api/States/' + stateId + '/Cities');
     };
 
+    var _getAllCities = function () {
+        return $http.get(serviceBase + 'api/cities');
+    };
+
     stateServiceFactory.getStates = _getStates;
     stateServiceFactory.getCities = _getCities;
+    stateServiceFactory.getAllCities = _getAllCities;
 
     return stateServiceFactory;
 }]);

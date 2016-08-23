@@ -1,15 +1,35 @@
 .list-header {
-	margin: 40px 0; 
-	padding: 20px; 
+	margin: 100px 0 30px 0;
+	padding: 20px;
 	background: #cecece; 
 	border-radius: 5px;
 }
 
-.list-header h4, .list-item h4 {
+.list-header a,
+.list-header h4,
+.list-item a,
+.list-item h4{
 	padding: 5px 0 0 0; 
 	font-weight: 600; 
 	color: #818181;
 	text-transform: uppercase;
+	display: block;
+	font-size: 2rem;
+}
+
+.list-header h4 {
+	display: inline;
+	float: left;
+}
+
+.list-header .span-header {
+	padding: 5px 10px;
+	color: #FFF;
+	background: #818181;
+	border-radius: 5px;
+	margin: 8px;
+	display: inline;
+	float: left;
 }
 
 .list-item {
@@ -29,7 +49,7 @@
 }
 
 .list-item .ligth-description {
-	color: #cecece;
+	color: #777777;
 }
 
 .list-item p {
@@ -44,11 +64,12 @@
 	margin: 5px 0;
 }
 
-.more-info {
+.list-item .more-info {
 	float: right;
 	color: #aed136;
 	cursor: pointer;
 	padding: 10px 0;
+	font-size: 1.3rem;
 }
 
 .list-nav {
@@ -89,4 +110,125 @@
 
 .list-nav li:last-child a {
     width: 80px;
+}
+
+.search {
+	position: fixed;
+	z-index: 1;
+	background: rgba(0,0,0,0.5);
+	padding: 20px 0;
+}
+
+.search input, .search select {
+	background: none;
+	color: rgba(255,255,255,0.3);
+	padding: 5px;
+	border: none;
+	font-size: 1.9rem;
+}
+
+.search select option {
+	padding: 5px;
+	background: rgba(0,0,0,0.5);
+}
+
+.search .btn-search {
+	color: #fff;
+	background: #858;
+	padding: 5px;
+	line-height: 30px;
+}
+
+.search ::-moz-placeholder {
+	color: rgba(255,255,255,0.3);
+}
+.search ::-webkit-input-placeholder {
+	color: rgba(255,255,255,0.3);
+}
+.search :-ms-input-placeholder{
+	color: rgba(255,255,255,0.3);
+}
+
+.search input:focus {
+	border: none;
+}
+
+.filter-list {
+	background: #cecece;
+	border: 1px #cecece solid;
+	border-radius: 4px 4px 0 0;
+	padding: 15px;
+	margin: 20px 0 0 0;
+	font-weight: 600;
+	color: #818181;
+	text-align: center;
+}
+
+.panel-default > .panel-heading {
+	border-radius: 0;
+	border: none;
+	background: #fff;
+	color: #818181;
+}
+
+.panel-group .panel+.panel {
+	margin: 0;
+	border-top: 1px;
+}
+
+.panel-title {
+	font-size: 1.4rem;
+	font-weight: bolder;
+}
+
+.panel-title i {
+	font-size: 1rem;
+	color: #aed136;
+}
+
+.panel-body {
+	padding: 0;
+}
+
+.panel-body ul {
+	margin: 0;
+	list-style: none;
+	padding: 0;
+}
+
+.panel-body li {
+	padding: 5px;
+}
+
+.panel-body li a{
+	color: #818181;
+}
+
+.panel-body span {
+	padding: 2px 4px;
+	color: #818181;
+	background: #cecece;
+	border-radius: 5px;
+	margin: 0 0 0 3px;
+	font-size: 1rem;
+}
+
+.panel-body li:hover {
+	background: #cecece;
+}
+
+.list-item .btn-fav {
+	padding: 10px;
+	background: #ECECEC;
+	border-radius: 3px;
+	color: #818181;
+}
+
+.list-item .btn-fav:hover,
+.list-item .btn-fav.subscribed{
+	color: #ee3470;
+}
+
+.list-item .btn-fav.subscribed:hover {
+	color: #818181;
 }

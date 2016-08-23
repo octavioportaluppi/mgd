@@ -1,64 +1,112 @@
 'use strict';
-app.controller('plannerController', ['$scope', 'plannerService', function ($scope, plannerService) {
-	$scope.message = '';
+app.controller('plannerController',
+	['$scope', 'plannerService', 'stateService', 'supplierService', 'authService', '$location',
+		function ($scope, plannerService, stateService, supplierService, authService, $location) {
 
-    $scope.newEvent = {
-        Title: '',
-        EventTypeId: '',
-        CityId: '',
-        Date: '',
-        Budget: ''
-    };
+	$scope.formCollapsed = true;
 
-	plannerService.getEvents();
-
-	$scope.events = plannerService.events;
-    
-    $scope.eventDatepicker = {
-        opened: false
-    };
-
-    $scope.openEventDatepicker = function() {
-        $scope.eventDatepicker.opened = true;
-    };
-
-    $scope.altInputFormats = ['M!/d!/yyyy'];
-
-    $scope.dateOptions = {
-        appendToBody: true,
-        placement: 'top-right',
-        formatYear: 'yy',
-        startingDay: 1
-    };
-
-    $scope.status = {
-	    isCustomHeaderOpen: false,
-	    isFirstOpen: true,
-	    isFirstDisabled: false
-  	};
-
-  	$scope.oneAtATime = true;
-
-	plannerService.getEvents().then(function(res) {
-		$scope.events = res.data;
-	}, function(err) {
-		$scope.message = err;
-	});
-	
-	$scope.save = function(event) {
-		plannerService.saveEvent(event).then(function(res) {
-			$scope.message = 'Evento guardado';
-			$scope.events.push(event);
-		}, function(err) {
-			$scope.message = err;
+	$scope.getEvents = function() {
+		plannerService.getEvents().then(function (response){
+			$scope.events = response.data.CurrentEvents;
+			$scope.pastEvents = [];
+			response.data.PastEvents.map(
+				function (event){
+					var year = new Date(event.Date).getFullYear();
+					if(!$scope.pastEvents[year]){
+						$scope.pastEvents[year] = [];
+					}
+					$scope.pastEvents[year].push(event)
+				}
+			)
 		});
 	};
 
-	$scope.update = function(event) {
-		plannerService.updateEvent(event).then(function(res) {
-			$scope.message = 'Actualización realizada';
-		}, function(err) {
-			$scope.message = err;
-		});
+	$scope.showEdit = function(event) {
+		event.edit = true;
+		event.Date = new Date(event.Date);
+		$scope.editEvent = angular.copy(event);
 	};
+
+	$scope.cancelEdit = function(event) {
+		event.edit = false;
+		$scope.editEvent = {};
+	};
+
+	$scope.updateEvent = function(form) {
+		if (!form.$valid) {
+			return;
+		}
+
+		var event = $scope.editEvent;
+		event.EventTypeId = event.EventType.Id;
+		event.StateId = event.State.Id;
+		event.CityId = event.City.Id;
+
+		plannerService
+			.updateEvent(event)
+			.then(function () {
+				$scope.getEvents();
+			})
+	};
+
+	$scope.getPastEventKeys = function () {
+		if(!$scope.pastEvents) {
+			return;
+		}
+		return Object.keys($scope.pastEvents);
+	};
+
+	$scope.getCities = function(stateId) {
+		stateService
+			.getCities(stateId)
+			.then(function (response){
+				$scope.cities = response.data;
+			});
+	};
+
+	stateService
+		.getStates()
+		.then(function (response) {
+			$scope.states = response.data;
+		});
+
+	$scope.saveEvent = function(form){
+		if(!form.$valid) {
+			return;
+		}
+		plannerService
+			.saveEvent($scope.event)
+			.then(function (){
+				$scope.formCollapsed = true;
+				$scope.getEvents();
+			});
+	};
+
+	$scope.delete = function (event){
+		plannerService
+			.deleteEvent(event)
+			.then(function (){
+				$scope.getEvents();
+			})
+	};
+
+	//check logged
+	if(!authService
+		.authentication.isAuth || authService
+		.authentication.userType !== 'planner') {
+		$location.path('/login-planner');
+	} else {
+		$scope.getEvents();
+
+		supplierService
+			.getEvents()
+			.then(function (response){
+				$scope.eventTypes = response.data;
+			});
+	}
+
+	$scope.isActive = function(currentLocation) {
+		return $location.path() == currentLocation;
+	};
+
 }]);

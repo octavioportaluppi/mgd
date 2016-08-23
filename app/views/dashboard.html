@@ -1,102 +1,118 @@
-<div class="container-fluid gray-bg">
-    <div class="container supplier">
-        <div class="row">
-            <div class="col-lg-9 col-sm-12">
-                <div class="container-fluid">
-                    <div class="row frame">
-                        <div class="col-xs-4"><img class="avatar img-circle" src="img/loverde_avatar.jpg"/></div>
-                        <div class="col-xs-4"><h1 editable-text="supplier.Name">{{supplier.Name}}</h1>
-                            <p>Nombre</p>
-                            <div ng-if="dashboard.ServiceTypes !=0" ng-repeat="service in services"
-                                 ng-controller="dashboardSupplierController">
-                                <div class="service-type">{{serviceItems[service].name}}</div>
-                            </div>
-                            <p class="description">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p></div>
-                        <div class="col-xs-4"><h3><a ng-href="{{supplier.FacebookUrl}}"
-                                                     editable-text="supplier.FacebookUrl">{{supplier.FacebookUrl}}</a>
-                        </h3>
-                            <p>Facebook</p>
-                            <h3><a ng-href="{{supplier.TwitterUrl}}" editable-text="supplier.TwitterUrl">{{supplier.TwitterUrl}}</a>
-                            </h3>
-                            <p>Twitter</p>
-                            <h3><a ng-href="{{supplier.InstagramUrl}}" editable-text="supplier.InstagramUrl">{{supplier.InstagramUrl}}</a>
-                            </h3>
-                            <p>Instagram</p></div>
-                        <div class="col-xs">
-                            <button class="btn btn-default btn-submit">Editar</button>
+<div class="supplier" ng-cloak="">
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item active"><a>Mi Perfil</a></div>
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item odd">
+        <a href="#/supplier/account">Mi Cuenta</a>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-12 menu-item">
+        <a href="#/upgrade">Upgrade</a>
+    </div>
+    <div class="container gray-bg">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="frame header clearfix">
+                <div ng-show="!editProfile">
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <img class="avatar img-circle" src="img/photo-placeholder.jpg" ng-if="!supplier.pic"/>
+                        <img class="avatar img-circle" ng-src="{{supplier.pic}}" ng-if="supplier.pic"/>
+                    </div>
+                    <div class="col-md-9 col-sm-8 col-xs-12">
+                        <div class="col-md-11 col-sm-11 col-xs-10">
+                            <h1 class="index-title">{{supplier.Name}}</h1>
+                            <p class="since">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p>
+                            <button  ng-show="!editProfile" ng-click="editProfile = !editProfile" class="btn btn-default btn-submit" >
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                Editar
+                            </button>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-2 social pull-right">
+                            <a ng-href="{{supplier.FacebookUrl}}"
+                               ng-if="supplier.FacebookUrl">
+                                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            </a>
+                            <a ng-href="{{supplier.TwitterUrl}}"
+                               ng-if="supplier.TwitterUrl">
+                                <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                            </a>
+                            <a ng-href="{{supplier.InstagramUrl}}"
+                               ng-if="supplier.InstagramUrl">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-6 col-md-3 menu-item"><a>Mi Perfil</a></div>
-                        <div class="col-xs-6 col-md-3 menu-item"><a>Mis Visitas</a></div>
-                        <div class="col-xs-6 col-md-3 menu-item"><a>Favoritos</a></div>
-                        <div class="col-xs-6 col-md-3 menu-item"><a>Upgrade</a></div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-xs-10"><h2>SOBRE MI</h2></div>
-                        <div class="col-xs">
-
-                            <button   ng-show="!editAbout"  ng-click="editAboutMe = !editAboutMe" class="btn btn-default btn-submit" >Editar</button>
-                            <button ng-click="updateDetails()"  ng-show="editAboutMe"class="btn btn-default btn-submit" >Guardar</button>
-                        <!-- Edit about ME !--->
-
-                        <ng-include  ng-show="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
-                     </div>
                 </div>
-                <div class="row frame" ng-show="!editAboutMe">
-                    <div class="col-xs-5">
-                        <h2 class="address" editable-text="supplier.Address">
-                        {{supplier.Address | firstLetter }}</h2>
-                        <h2 class="address" editable-text="supplier.Address">
-                            {{supplier.City.Name | firstLetter}} </h2>
-                        <p>Dirección</p>
-                        <h1 class="phone" editable-text="supplier.Phone">{{supplier.Phone | tel}}</h1>
-                        <p>Teléfono</p>
-                        <!--<h3 class="price-range">$$$</h3>
-                        <p>Rango de precios</p>--->
-                        <h3 class="hours">Martes a Domingo<br>9:00 - 23:00 Hrs.</h3>
-                        <p>Horario</p></div>
-                    <div class="col-xs-7"><p class="description" editable-textarea="supplier.Description" e-rows="7"
-                                             e-cols="40">{{supplier.Description |  firstLetter}}</p>
-                        <p>Descripción</p></div>
+                <ng-include ng-show="editProfile" src="'/app/views/dashboard-supplier-profile.html'"></ng-include>
+            </div>
+            <div class="clearfix">
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <h2 class="sub-title">SOBRE MI</h2>
                 </div>
-                <div class="row">
-                    <div class="col-xs-10"><h2>Servicios</h2>
-                        <p>Selecciona los servicios que ofrece tu empresa.</p>
+                <button
+                    ng-show="!editAboutMe"
+                    ng-click="editAboutMe = !editAboutMe"
+                    class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Editar
+                </button>
+            </div>
+            <!-- Edit about ME !--->
+            <div class="frame clearfix">
+                <div ng-if="!editAboutMe">
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                        <div class="info-group">
+                            <p class="address">{{supplier.Address | firstLetter }}</p>
+                            <p class="address">{{supplier.City.Name | firstLetter}}, {{supplier.State.Name | firstLetter}}</p>
+                        </div>
+                        <div class="info-group">
+                            <p class="phone">{{supplier.Phone | tel}}</p>
+                            <p>
+                                {{supplier.OpeningHours.DayFrom | day}} a
+                                {{supplier.OpeningHours.DayTo | day}} de
+                                {{supplier.OpeningHours.HoursTo}}hs a
+                                {{supplier.OpeningHours.HoursFrom}}hs
+                            </p>
+                        </div>
                     </div>
-                    <div class="col-xs-2">
-                        <button
-                                class="btn btn-default btn-submit"
-                                ng-show="!editServices"
-                                ng-click="editServices = !editServices">Editar</button>
-                        <button
-                                class="btn btn-default btn-submit"
-                                ng-show="editServices"
-                                ng-click="updateServices();">Guardar</button>
+                    <div class="col-md-7 col-sm-7 col-xs-12">
+                        <p>{{supplier.Description}}</p>
                     </div>
                 </div>
-                <div class="row register-panel frame">
-                    <div class="col-md-6"
-                        ng-if="editServices"
-                        ng-repeat="item in serviceTypes">
+                <ng-include ng-if="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
+            </div>
+            <div class="clearfix">
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <h2 class="sub-title">SERVICIOS</h2>
+                </div>
+                <button
+                    class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12"
+                    ng-show="!editServices"
+                    ng-click="editServices = !editServices">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Editar</button>
+            </div>
+            <div class="register-panel frame clearfix">
+                <div class="col-md-12 col-sm-12 col-xs-12 text-center"
+                     ng-if="dashboard.ServiceTypes.length === 0 && !editServices">
+                    <h1>No has seleccionado algún servicio</h1>
+                </div>
+                <div ng-if="editServices">
+                    <div class="col-md-6 col-sm-6 col-xs-12"
+                         ng-repeat="item in serviceTypes">
                         <label class="btn btn-default"  ng-class="{'active': haveItem(item.Id)}">
                             <input
-                                type="checkbox"
-                                checklist-model="dashboard.ServiceTypes"
-                                checklist-value="item"/>
+                                    type="checkbox"
+                                    checklist-model="dashboard.ServiceTypes"
+                                    checklist-value="item"/>
                             <span class="{{item.Name | icon}}"></span>
                             {{item.Name}}
                         </label>
-
                     </div>
-                    <div class="col-md-12 text-center"
-                         ng-if="dashboard.ServiceTypes.length === 0 && !editServices">
-                        <h1>No has seleccionado algún servicio</h1>
+                    <div class="signup-field col-md-12 col-sm-12 col-xs-12">
+                        <button ng-click="updateServices()" class="btn btn-default btn-submit pull-left" >Guardar</button>
+                        <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
                     </div>
-                    <div class="col-md-6"
-                         ng-if="!editServices"
-                        ng-repeat="item in dashboard.ServiceTypes">
+                </div>
+                <div ng-if="!editServices">
+                    <div class="col-md-6 col-sm-6 col-xs-12"
+                         ng-repeat="item in dashboard.ServiceTypes">
                         <label class="btn btn-default active">
                             <span class="{{item.Name | icon}}"></span>
                             {{item.Name}}
@@ -104,17 +120,103 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-3 col-sm-12">
-            <div class="row frame text-center"><h1>AD</h1></div>
-            <div class="row frame text-center"><h2>Perfil {{chart*100}}% completado</h2>
-                <progress-arc complete="chart" stroke-width="30" size="200" stroke="#8c3e96"></progress-arc>
+            <div class="clearfix">
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <h2 class="sub-title">DETALLES</h2>
+                </div>
+                <button
+                        class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12"
+                        ng-show="!editAnswers"
+                        ng-click="editAnswers = !editAnswers">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Editar</button>
             </div>
-            <div class="row frame text-center">
-                <div  g-if="message">{{message}}</div>
-                <button class="btn btn-default btn-submit" ng-click="update()">Guardar cambios</button>
+            <div class="register-panel frame clearfix">
+                <div
+                    class="col-md-12 col-sm-12 col-xs-12"
+                    ng-repeat="answer in answers"
+                    ng-if="!editAnswers">
+                    <p>{{answer.Question.Text}}</p>
+                    <p>{{answer.Text}}</p>
+                </div>
+                <form
+                    name="questionsForm"
+                    novalidate="novalidate"
+                    class="form-group"
+                    ng-if="editAnswers">
+                    <div class="signup-field" ng-repeat="answer in answers">
+                        <label>{{answer.Question.Text}}</label>
+                        <input
+                            class="form-control"
+                            name="{{answer.Question.Id}}"
+                            required="required"
+                            type="text"
+                            ng-model="questions[answer.Id].Text"
+                            ng-class="{'invalid':questionsForm[answer.Question.Id].$error.required && (questionsForm.$submitted || questionsForm[answer.Question.Id].$touched)}"/>
+                        <div class="dashboard-error" ng-show="questionsForm.$submitted || questionsForm[answer.Question.Id].$touched">
+                            <div ng-show="questionsForm[answer.Question.Id].$error.required">Esta pregunta es obligatoria.</div>
+                        </div>
+                    </div>
+                    <div class="signup-field col-md-12 col-sm-12 col-xs-12">
+                        <button ng-click="updateQuestions(questionsForm)" class="btn btn-default btn-submit pull-left" >Guardar</button>
+                        <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix">
+                <div class="col-md-10 col-sm-10 col-xs-12">
+                    <h2 class="sub-title">MIS FOTOS</h2>
+                </div>
+                <button
+                        class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12"
+                        ng-show="!editPics"
+                        ng-click="editPics = !editPics">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Editar</button>
+            </div>
+            <div class="register-panel frame clearfix">
+                <div style="text-align: center;" class="pull-left" ng-if="!editPics" ng-cloak="">
+                    <img
+                        ng-repeat="pic in supplier.Pictures"
+                        ng-if="pic.src"
+                        ng-src="{{pic.src}}"
+                        class="default-image"/>
+                </div>
+                <div class="col-md-12" ng-if="editPics">
+                    <div style="text-align: center;" class="pull-left">
+                        <div ng-repeat="pic in getNumber(supplier.MaxPics) track by $index" class="pull-left">
+
+                        <img class="default-image"
+                             src="img/photo-placeholder.jpg"
+                             ng-if="!supplier.Pictures[$index] && !supplier.newPic[$index]"
+                             ngf-select
+                             ng-model="supplier.newPic[$index]"
+                             accept="image/*"
+                             ngf-max-size="2MB"/>
+
+                        <img class="default-image"
+                             ng-src="{{supplier.Pictures[$index].src}}"
+                             ngf-select
+                             accept="image/*"
+                             ng-if="supplier.Pictures[$index].src && !supplier.newPic[$index]"
+                             ng-model="supplier.newPic[$index]"
+                             ngf-max-size="2MB"/>
+
+                        <img ng-if="supplier.newPic[$index]"
+                             ngf-thumbnail="supplier.newPic[$index]"
+                             class="default-image pull-left"
+                             ngf-select
+                             ng-model="supplier.newPic[$index]"
+                             accept="image/*"
+                             ngf-max-size="2MB"/>
+                        </div>
+                    </div>
+                    <div class="signup-field col-md-12 col-sm-12 col-xs-12">
+                        <button ng-click="updatePics()" class="btn btn-default btn-submit pull-left" >Guardar</button>
+                        <button ng-click="reload()" class="btn btn-default pull-right">Cancelar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>

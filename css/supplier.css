@@ -1,0 +1,53 @@
+.img-pad {
+    padding-top: 20px;
+}
+
+.task-date{
+    margin: 0 0 10px;
+    color: #ee3470;
+}
+
+.supplier .votes {
+    direction: rtl;
+}
+
+.supplier .vote {
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.supplier .vote.filled,
+.supplier .vote:hover {
+    color: #aed136;
+}
+
+.supplier .vote:hover:before,
+.supplier .vote:hover ~ .vote:before {
+    color: #aed136;
+}
+
+.supplier .supplier-footer {
+    padding: 40px 20px 20px 20px;
+}
+
+.supplier .supplier-footer label {
+    font-size: 1.4rem;
+}
+
+.supplier .service-container {
+    padding: 10px 0;
+}
+
+.supplier .premium-service {
+    background-color: #8c3e96;
+    padding: 5px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin: 3px;
+    display: inline-block;
+}
+
+.supplier .premium-service i {
+    font-size: 1.5rem;
+}

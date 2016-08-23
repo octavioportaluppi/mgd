@@ -1,0 +1,166 @@
+<form class="form-horizontal main" name="data" form-step-validity="form-step-validity" novalidate ng-cloak="">
+	<div class="container">
+		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
+			<div class="form-group signup-error">
+				<div class="error">
+					<div ng-show="errorMessage">{{errorMessage.data.ModelState[''][1]}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="plannerName"
+						required=""
+						type="text"
+						placeholder="Nombre"
+						ng-model="planner.FirstName"
+						ng-class="{'invalid':data.plannerName.$error.required && (data.$submitted || data.plannerName.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.plannerName.$touched">
+					<div ng-show="data.plannerName.$error.required">Dinos tu nombre.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="plannerLastName"
+						required=""
+						type="text"
+						placeholder="Apellido"
+						ng-model="planner.LastName"
+						ng-class="{'invalid':data.plannerLastName.$error.required && (data.$submitted || data.plannerLastName.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.plannerLastName.$touched">
+					<div ng-show="data.plannerLastName.$error.required">Dinos tu apellido.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="password"
+						required="required"
+						type="password"
+						placeholder="Contraseña"
+						ng-model="registration.Password"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.password.$touched">
+					<div ng-show="data.password.$error.required">Elije una contraseña.</div>
+					<div ng-show="!checkPassword()">
+						Debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="passwordConfirm"
+						required="required"
+						type="password"
+						placeholder="Confirmar contraseña"
+						ng-model="registration.ConfirmPassword"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.passwordConfirm.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.passwordConfirm.$touched)}"
+						compare-to="registration.Password"/>
+				<div class="error" ng-show="data.$submitted || data.passwordConfirm.$touched">
+					<div ng-show="data.passwordConfirm.$error.required">Confirma la contraseña.</div>
+					<div ng-show="data.passwordConfirm.$error.compareTo">Las contraseñas no coinciden.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="email"
+						required="required"
+						type="email"
+						placeholder="Email"
+						ng-model="registration.Email"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.email.$touched">
+					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
+					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<div class="input-group">
+					<input
+							class="form-control"
+							type="text"
+							uib-datepicker-popup="dd/MM/yyyy"
+							ng-model="planner.Birthdate"
+							name="birthdate"
+							is-open="datepicker.opened"
+							datepicker-append-to-body="true"
+							popup-placement="bottom-right"
+							datepicker-options="dateOptions"
+							close-text="Cerrar"
+							clear-text="Borrar"
+							current-text="Hoy"
+							alt-input-formats="altInputFormats"
+							placeholder="Fecha de nacimiento"
+							required="required"
+							popup-placement="top-right"
+							ng-class="{'invalid':(data.birthdate.$error.required || data.birthdate.$error.compareTo) && (data.$submitted || data.birthdate.$touched)}"
+							dropdown-append-to-body="dropdown-append-to-body"/>
+					<div class="input-group-btn">
+						<button class="btn btn-default btn-input" type="button" ng-click="openDatePicker()">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</button>
+					</div>
+				</div>
+				<div class="error" ng-show="data.$submitted || data.birthdate.$touched">
+					<div ng-show="data.birthdate.$error.required">Dinos tu fecha de nacimiento.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<select class="form-control" name="state"
+						ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}"
+						ng-model="planner.StateId"
+						required="required"
+						ng-change="getCities()">
+					<option value="" disabled="disabled" selected="selected" class="placeholder">POBLACIÓN</option>
+					<option ng-repeat="state in states" value="{{state.Id}}">{{state.Name}}</option>
+				</select>
+				<div class="error" ng-show="data.$submitted || data.state.$touched">
+					<div ng-show="data.state.$error.required">Dinos la población a la que perteneces.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+			<div class="form-group signup-field">
+				<select class="form-control" required="" ng-model="planner.CityId" name="city"
+						ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}">
+					<option value="" disabled="disabled" selected="selected" class="placeholder">CIUDAD</option>
+					<option value="{{city.Id}}" ng-repeat="city in cities">{{city.Name}}</option>
+				</select>
+				<div class="error" ng-show="data.$submitted || data.city.$touched">
+					<div ng-show="data.city.$error.required">Dinos la ciudad a la que perteneces.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container text-center">
+		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-3">
+			<button class="btn btn-defasult btn-submit prev" ng-disabled="true">Regresar</button>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+			<button
+					class="btn btn-default btn-submit next"
+					ng-class="[{'invalid':!data.$valid && data.$submitted}]"
+					ng-click="savePlannerData(data, $nextStep)">Siguiente</button>
+		</div>
+	</div>
+</form>

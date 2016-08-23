@@ -1,0 +1,266 @@
+<div class="row" ng-cloak="">
+    <div class="col-md-3 col-sm-12 col-xs-12" style="min-height: 500px">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 calendar-title">
+                <span>Tareas</span>
+            </div>
+            <ul class="col-md-12 col-sm-12 col-xs-12 calendar-filter">
+                <li
+                    class="clearfix"
+                    ng-class="{'selected': selectedFilter === 'all'}"
+                    ng-click="doFilter('all')">
+                    <i class="fa fa-thumb-tack"></i>
+                    Todos
+                    <i class="info-filter pull-right">{{total}}</i>
+                </li>
+                <li
+                    class="clearfix"
+                    ng-class="{'selected': selectedFilter === 'today'}"
+                    ng-click="doFilter('today')">
+                    <i class="fa fa-calendar-o"></i>
+                    Hoy
+                    <i class="info-filter pull-right">{{filters.today}}</i>
+                </li>
+                <li
+                    class="clearfix"
+                    ng-class="{'selected': selectedFilter === 'week'}"
+                    ng-click="doFilter('week')">
+                    <i class="fa fa-calendar"></i>
+                    Semana
+                    <i class="info-filter pull-right">{{filters.week}}</i>
+                </li>
+                <li class="divider"></li>
+                <li
+                    class="clearfix"
+                    ng-repeat="categoryFilter in filters.services"
+                    ng-class="{'selected': selectedFilter === categoryFilter.Id}"
+                    ng-click="doFilter('service', categoryFilter.Id)">
+                    <i class="icon {{categoryFilter.Title | icon}}"></i>
+                    {{categoryFilter.Title}}
+                    <i class="info-filter pull-right">{{categoryFilter.Count}}</i>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-5 col-sm-12 col-xs-12" style="background-color: #FAF5FB; min-height: 500px;">
+        <div class="col-md-12 col-sm-12 col-xs-12" style="margin: 20px 0 10px 0;" ng-if="event.enabled">
+            <div class="row">
+                <button
+                    ng-click="addTask = !addTask"
+                    style="width: 100%;"
+                    class="btn btn-defasult btn-submit btn-task">Agregar Tarea</button>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 task-form" uib-collapse="!addTask">
+            <form name="data" novalidate="novalidate">
+                <div class="input-group col-md-12">
+                    <input
+                            class="form-control"
+                            type="text"
+                            name="tarea"
+                            placeholder="Nombre de la tarea"
+                            required="required"
+                            ng-model="newTask.Title"
+                            ng-class="{'invalid':(data.tarea.$error.required || data.tarea.$error.pattern) && (data.$submitted || data.tarea.$touched)}">
+                    <div class="dashboard-error" ng-show="data.$submitted || data.tarea.$touched">
+                        <div ng-show="data.tarea.$error.required">Dinos el nombre de la tarea.</div>
+                    </div>
+                </div>
+                <div class="input-group col-md-12">
+                    <select class="form-control"
+                            name="service"
+                            ng-model="newTask.ServiceTypeId"
+                            required="required"
+                            ng-class="{'invalid':data.service.$error.required && (data.$submitted || data.service.$touched)}">
+                        <option value="" disabled>Selecciona un tipo de servicio</option>
+                        <option ng-repeat="service in serviceTypes" value="{{service.Id}}">{{service.Name}}</option>
+                    </select>
+                    <div class="dashboard-error" ng-show="data.$submitted || data.service.$touched">
+                        <div ng-show="data.service.$error.required">Selecciona un servicio.</div>
+                    </div>
+                </div>
+                <div class="input-group col-md-12">
+                    <input
+                        class="form-control"
+                        type="text"
+                        uib-datepicker-popup="dd/MM/yyyy"
+                        ng-model="newTask.DueDate"
+                        name="date"
+                        is-open="datepicker.opened"
+                        datepicker-options="dateOptions"
+                        close-text="Cerrar"
+                        clear-text="Borrar"
+                        current-text="Hoy"
+                        alt-input-formats="altInputFormats"
+                        placeholder="DD/MM/YYYY"
+                        required="required"
+                        popup-placement="top-right"
+                        ng-class="{'invalid':(data.date.$error.required || data.date.$error.pattern) && (data.$submitted || data.date.$touched)}"/>
+                    <div class="input-group-btn">
+                        <button class="btn btn-default btn-input" type="button"
+                            ng-click="datepicker.opened = !datepicker.opened">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="dashboard-error" ng-show="data.$submitted || data.date.$touched">
+                    <div ng-show="data.date.$error.required">Selecciona una fecha</div>
+                </div>
+
+                <div class="input-group col-md-12">
+                    <textarea
+                        class="form-control dashTextarea "
+                        name="textTareaDescription"
+                        required="required"
+                        type="text"
+                        placeholder="Agregue una nota"
+                        ng-model="newTask.Notes"
+                        rows="10"
+                        cols="50"
+                        ng-class="{'invalid':data.textTareaDescription.$error.required && (data.$submitted || data.textTareaDescription.$touched)}">
+                     </textarea>
+                    <div class="dashboard-error" ng-show="data.$submitted || data.textTareaDescription.$touched">
+                        <div ng-show="data.textTareaDescription.$error.required">Agregar una Nota.</div>
+                    </div>
+                </div>
+
+                <div class="input-group col-md-12">
+                    <button ng-click="createTask(data)" class="btn btn-default btn-submit pull-right">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <div
+            class="col-md-12 col-sm-12 col-xs-12 clearfix task"
+            ng-repeat="item in taskItem"
+            ng-class="{'selected': item.selected, 'completed': item.Status === 1}"
+            ng-click="getOneTask(item)">
+            <div class="checkbox-item pull-left" ng-click="completeTask(item)" uib-tooltip="Marcar esta tarea como completada" tooltip-popup-delay="1000">
+                <i class="fa fa-check"></i>
+            </div>
+            <span class="checkbox-label">
+                {{item.Title}}
+            </span>
+            <span class="pull-right">
+                {{item.DueDate | date: 'EEE, d '}}de{{item.DueDate | date: ' MMM '}} del {{item.DueDate | date: ' yyyy'}}
+            </span>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+        <div class="row" ng-if="taskItemSelected && !taskItemSelected.edit">
+            <div class="col-md-12 col-sm-12 col-xs-12 task-detail clearfix"
+                 ng-class="{'completed': taskItemSelected.Status === 1}">
+                <div class="checkbox-item pull-left" style="cursor:pointer;" ng-click="completeTask(taskItemSelected)" uib-tooltip="Marcar esta tarea como completada" tooltip-popup-delay="1000">
+                    <i class="fa fa-check"></i>
+                </div>
+                <span class="checkbox-label">
+                    {{taskItemSelected.Title | firstLetter}}
+                </span>
+                <div class="pull-right task-detail-actions">
+                    <i class="fa fa-pencil" ng-click="edit()"></i>
+                    <i class="fa fa-trash" ng-click="taskItemSelected.delete = true;"></i>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 task-delete clearfix" uib-collapse="!taskItemSelected.delete">
+                <p class="pull-left col-sm-12 col-xs-12 task-delete-label">Esta seguro de eliminar la tarea?</p>
+                <button class="btn btn-defasult btn-edit pull-right" ng-click="taskItemSelected.delete = false;">No</button>
+                <button
+                        class="btn btn-defasult btn-edit btn-submit pull-right" ng-click="deleteItem(taskItemSelected.Id)">Si</button>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12 task-info">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 task-info-header">
+                        <i class="icon {{taskItemSelected.ServiceType.Name | icon}}"></i>
+                        <span>{{taskItemSelected.ServiceType.Name}}</span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 task-info-header">
+                        <i class="icon glyphicon glyphicon-calendar"></i>
+                        <span>Vence el {{taskItemSelected.DueDate | date: 'EEE, d '}}de{{taskItemSelected.DueDate | date: ' MMM '}} del {{taskItemSelected.DueDate | date: ' yyyy'}}</span>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 task-info-notes">
+                        <span>{{taskItemSelected.Notes}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="taskItemSelected.edit" class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 task-form" style="background: #ececec; padding: 30px 15px;">
+                <form name="dataUpdate" novalidate="novalidate">
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
+                        <input
+                                class="form-control"
+                                type="text"
+                                name="tarea"
+                                placeholder="Nombre de la tarea"
+                                required="required"
+                                ng-model="taskItemSelected.Title"
+                                ng-class="{'invalid':(dataUpdate.tarea.$error.required || dataUpdate.tarea.$error.pattern) && (dataUpdate.$submitted || dataUpdate.tarea.$touched)}">
+                        <div class="dashboard-error" ng-show="dataUpdate.$submitted || dataUpdate.tarea.$touched">
+                            <div ng-show="dataUpdate.tarea.$error.required">Dinos el nombre de la tarea.</div>
+                        </div>
+                    </div>
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
+                        <select class="form-control"
+                                name="service"
+                                ng-model="taskItemSelected.ServiceType"
+                                required="required"
+                                ng-class="{'invalid':dataUpdate.service.$error.required && (dataUpdate.$submitted || dataUpdate.service.$touched)}"
+                                ng-options="service as service.Name for service in serviceTypes track by service.Id">
+                        </select>
+                        <div class="dashboard-error" ng-show="dataUpdate.$submitted || dataUpdate.service.$touched">
+                            <div ng-show="dataUpdate.service.$error.required">Selecciona un servicio.</div>
+                        </div>
+                    </div>
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
+                        <input
+                                class="form-control"
+                                type="text"
+                                uib-datepicker-popup="dd/MM/yyyy"
+                                ng-model="taskItemSelected.DueDate"
+                                name="date"
+                                is-open="datepicker.opened"
+                                datepicker-options="dateOptions"
+                                close-text="Cerrar"
+                                clear-text="Borrar"
+                                current-text="Hoy"
+                                alt-input-formats="altInputFormats"
+                                placeholder="DD/MM/YYYY"
+                                required="required"
+                                popup-placement="top-right"
+                                ng-class="{'invalid':(dataUpdate.date.$error.required || dataUpdate.date.$error.pattern) && (dataUpdate.$submitted || dataUpdate.date.$touched)}"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default btn-input" type="button"
+                                    ng-click="datepicker.opened = !datepicker.opened">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="dashboard-error" ng-show="dataUpdate.$submitted || dataUpdate.date.$touched">
+                        <div ng-show="dataUpdate.date.$error.required">Selecciona una fecha</div>
+                    </div>
+
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
+                        <textarea
+                            class="form-control dashTextarea "
+                            name="textTareaDescription"
+                            required="required"
+                            type="text"
+                            placeholder="Agregue una nota"
+                            ng-model="taskItemSelected.Notes"
+                            rows="10"
+                            cols="50"
+                            ng-class="{'invalid':dataUpdate.textTareaDescription.$error.required && (dataUpdate.$submitted || dataUpdate.textTareaDescription.$touched)}">
+                        </textarea>
+                        <div class="dashboard-error" ng-show="dataUpdate.$submitted || dataUpdate.textTareaDescription.$touched">
+                            <div ng-show="dataUpdate.textTareaDescription.$error.required">Agregar una Nota.</div>
+                        </div>
+                    </div>
+
+                    <div class="input-group col-md-12 col-sm-12 col-xs-12">
+                        <button ng-click="getOneTask(taskItemSelected)" style="margin: 10px 0" class="btn btn-default pull-right">Cancelar</button>
+                        <button ng-click="update(dataUpdate)" class="btn btn-default btn-submit pull-left">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

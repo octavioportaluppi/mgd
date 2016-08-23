@@ -4,48 +4,81 @@ app.controller(
     [
         '$scope', 
         '$routeParams', 
-        'supplierService', 
-        function ($scope, $routeParams , supplierService) {
+        'supplierService',
+        'ngAuthSettings',
+        function ($scope, $routeParams, supplierService, ngAuthSettings) {
 
-            $scope.offset = 0;
             $scope.size = 5;
-            //$scope.eventName = $routeParams.eventName;
+            $scope.page = 1;
+            $scope.filter = {name:'EventTypeId', value: $routeParams.eventId};
 
-            $scope.getSuppliers = function (){
-                supplierService
-                    .getSuppliersByEvent(
-                        $routeParams.eventId, 
-                        $scope.size,
-                        $scope.offset)
-                    .success(function (response){
-                        $scope.suppliers = response;
-                    })
-            }
-
-            $scope.nextPage = function(){
-                $scope.offset = $scope.offset + $scope.size;
-                $scope.getSuppliers();
-            }
-
-            $scope.isCurrentPage = function(pageNumber){
-                return $scope.offset == pageNumber;
-            }
-
-            $scope.goPage = function(pageNumber){
-                $scope.offset = pageNumber;
-                $scope.getSuppliers();
-            }
-
-            $scope.getSuppliers();
-            
             supplierService
                 .getEvents()
-                .then(function(response){
-                    $scope.event = response.find(function(item){
-                        return item.Id == $routeParams.eventId;
-                    })
+                .then(function (response){
+                    $scope.event = response
+                        .data
+                        .find(function (event){ return event.Id == $routeParams.eventId});
+                });
 
-                })
+            $scope.getSuppliers = function (){
+                $scope.loading = true;
+                supplierService
+                    .getAllSuppliers(
+                    $scope.size,
+                    $scope.page,
+                    $scope.filter)
+                    .success(function (response){
+                        $scope.loading = false;
+                        $scope.totalSuppliers = response.TotalResults;
+                        $scope.filters = response.QueryFilterInfo;
+                        $scope.totalPages = response.TotalPages;
+                        $scope.suppliers = response.Content;
+                        $scope.suppliers.forEach(function(supplier){
+                            if (supplier.LogoId > 0)
+                                supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image';
+                        })
+                    })
+            };
+
+            $scope.getMoreSuppliers = function (){
+                $scope.loading = true;
+                supplierService
+                    .getAllSuppliers(
+                    $scope.size,
+                    $scope.page,
+                    $scope.filter)
+                    .success(function (response){
+                        $scope.loading = false;
+                        $scope.suppliers = $scope.suppliers.concat(response.Content);
+                        $scope.suppliers.forEach(function(supplier) {
+                            if (supplier.LogoId > 0)
+                                supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image';
+                        });
+                    })
+            };
+
+            $scope.getSuppliers();
+
+            $scope.nextPage = function(){
+                if($scope.page == $scope.totalPages){
+                    return;
+                }
+                $scope.page = $scope.page + 1;
+                $scope.getMoreSuppliers();
+            };
+
+            $scope.getFilterNames = function(){
+                if(!$scope.filters)
+                    return;
+                return Object.keys($scope.filters);
+            };
+
+            $scope.doFilter = function(filterKey, filter){
+                $scope.page = 1;
+                $scope.filter = {name: filterKey.replace('Filter', 'Id'), value: filter.Id };
+                $scope.getSuppliers();
+            };
+
         }
     ]
 );
