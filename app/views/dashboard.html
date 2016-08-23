@@ -12,7 +12,7 @@
                 <div ng-show="!editProfile">
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <img class="avatar img-circle" src="img/photo-placeholder.jpg" ng-if="!supplier.pic"/>
-                        <img class="avatar img-circle" src="{{supplier.pic}}" ng-if="supplier.pic"/>
+                        <img class="avatar img-circle" ng-src="{{supplier.pic}}" ng-if="supplier.pic"/>
                     </div>
                     <div class="col-md-9 col-sm-8 col-xs-12">
                         <div class="col-md-11 col-sm-11 col-xs-10">
@@ -175,11 +175,11 @@
                     Editar</button>
             </div>
             <div class="register-panel frame clearfix">
-                <div style="text-align: center;" class="pull-left" ng-if="!editPics">
+                <div style="text-align: center;" class="pull-left" ng-if="!editPics" ng-cloak="">
                     <img
                         ng-repeat="pic in supplier.Pictures"
-                        ng-show="pic"
-                        src="{{pic}}"
+                        ng-if="pic.src"
+                        ng-src="{{pic.src}}"
                         class="default-image"/>
                 </div>
                 <div class="col-md-12" ng-if="editPics">
@@ -193,10 +193,10 @@
                              ngf-max-size="2MB"/>
 
                         <img class="default-image"
-                             src="{{supplier.Pictures[0]}}"
+                             ng-src="{{supplier.Pictures[0].src}}"
                              ngf-select
                              accept="image/*"
-                             ng-if="supplier.Pictures[0] && !supplier.newPic[0]"
+                             ng-if="supplier.Pictures[0].src && !supplier.newPic[0]"
                              ng-model="supplier.newPic[0]"
                              ngf-max-size="2MB"/>
 
@@ -217,7 +217,7 @@
                              ngf-max-size="2MB"/>
 
                         <img class="default-image"
-                             src="{{supplier.Pictures[1]}}"
+                             ng-src="{{supplier.Pictures[1].src}}"
                              ngf-select
                              accept="image/*"
                              ng-if="supplier.Pictures[1] && !supplier.newPic[1]"
@@ -233,7 +233,7 @@
                              ngf-max-size="2MB"/>
 
                         <img class="default-image"
-                             src="img/photo-placeholder.jpg"
+                             ng-src="img/photo-placeholder.jpg"
                              ng-if="!supplier.Pictures[2]"
                              ngf-select
                              ng-model="supplier.newPic[2]"
@@ -241,7 +241,7 @@
                              ngf-max-size="2MB"/>
 
                         <img class="default-image"
-                             src="{{supplier.Pictures[2]}}"
+                             ng-src="{{supplier.Pictures[2].src}}"
                              ngf-select
                              accept="image/*"
                              ng-if="supplier.Pictures[2] && !supplier.newPic[2]"
@@ -265,7 +265,7 @@
                              ngf-max-size="2MB"/>
 
                         <img class="default-image"
-                             src="{{supplier.Pictures[3]}}"
+                             ng-src="{{supplier.Pictures[3].src}}"
                              ngf-select
                              accept="image/*"
                              ng-if="supplier.Pictures[3] && !supplier.newPic[3]"
@@ -281,7 +281,7 @@
                              ngf-max-size="2MB"/>
 
                         <img class="default-image"
-                             src="img/photo-placeholder.jpg"
+                             ng-src="img/photo-placeholder.jpg"
                              ng-if="!supplier.Pictures[4]"
                              ngf-select
                              ng-model="supplier.newPic[4]"
@@ -289,7 +289,7 @@
                              ngf-max-size="2MB"/>
 
                         <img class="default-image"
-                             src="{{supplier.Pictures[4]}}"
+                             ng-src="{{supplier.Pictures[4].src}}"
                              ngf-select
                              accept="image/*"
                              ng-if="supplier.Pictures[4] && !supplier.newPic[4]"
@@ -303,7 +303,6 @@
                              ng-model="supplier.newPic[4]"
                              accept="image/*"
                              ngf-max-size="2MB"/>
-
                     </div>
                     <div class="signup-field col-md-12 col-sm-12 col-xs-12">
                         <button ng-click="updatePics()" class="btn btn-default btn-submit pull-left" >Guardar</button>

@@ -8,7 +8,7 @@
              accept="image/*"
              ngf-max-size="2MB"/>
         <img class="avatar img-circle"
-             src="{{supplier.pic}}"
+             ng-src="{{supplier.pic}}"
              ngf-select
              accept="image/*"
              ng-if="supplier.pic && !supplier.profilePic"

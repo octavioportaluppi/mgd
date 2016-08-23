@@ -47,7 +47,10 @@ app.controller('dashboardSupplierController',
 						return !pic.IsLogo;
 					})
 					.map(function (pic) {
-					return ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image';
+						var result = {};
+						result.src = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image';
+						result.id = pic.Id;
+						return result;
 				});
 				$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image';
 				supplierService
@@ -197,6 +200,29 @@ app.controller('dashboardSupplierController',
 
 	$scope.isActive = function(currentLocation) {
 		return $location.path() == currentLocation;
+	};
+
+	$scope.updatePics = function() {
+		var toBeDeleted = [];
+		var toBeCreated = [];
+
+		if(!$scope.supplier.newPic){
+			return;
+		}
+
+		for(var i=0; i<=4; i++){
+			if($scope.supplier.newPic[i] !== undefined){
+				toBeDeleted.push($scope.supplier.Pictures[i].id);
+				toBeCreated.push($scope.supplier.newPic[i]);
+			}
+		}
+		authService
+			.updatePics(toBeDeleted, toBeCreated)
+			.then(function () {
+				$scope.editPics = false;
+				$scope.reload();
+			});
+		//llamo al servicio para hacer el update
 	};
 
 }]);

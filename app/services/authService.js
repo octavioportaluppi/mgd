@@ -162,6 +162,25 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         return $http.get(serviceBase + 'api/planners/profile');
     };
 
+    var _updatePics = function(toDeletePics, toCreatePics) {
+        var promise = $q.defer();
+        var deletions = [];
+        toDeletePics.forEach(function (it) {
+            deletions.push(_deletePicture(it));
+        });
+        $q
+            .all(deletions)
+            .then(function () {
+                var creations = [];
+                toCreatePics.forEach(function (pic){
+                    creations.push(_uploadLogo(pic, false));
+                });
+                $q.all(creations).then(function () { promise.resolve({'value':'ok'}) })
+            });
+
+        return promise.promise;
+    };
+
     authServiceFactory.saveRegistration = _saveRegistration;
 
     authServiceFactory.getPlanner = _getPlanner;
@@ -181,6 +200,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
 
     authServiceFactory.uploadLogo = _uploadLogo;
     authServiceFactory.deletePicture = _deletePicture;
+    authServiceFactory.updatePics = _updatePics;
 
     return authServiceFactory;
 }]);
