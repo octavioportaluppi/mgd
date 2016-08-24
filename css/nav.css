@@ -48,7 +48,9 @@ body {
     color: #aed136;
 }
 
-.main-nav .main-menu a.active {
+.main-nav .main-menu a.active,
+.main-nav .main-menu li:hover > a
+ {
     color: #ee3470;
     background: none;
 }
@@ -177,4 +179,84 @@ body {
     .responsive-menu.collapse.in {
         display: none;
     }
+
+    .main-nav .main-menu .sub-menu .sub-menu-wrapper {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 40px 0;
+    }
+    .main-nav .main-menu li:hover .sub-menu,
+    .main-nav .main-menu li:hover .arrow-down {
+      display: block;
+    }
+    .main-nav .main-menu .sub-menu {
+      display: none;
+      font-size: 12px
+    }
+}
+@media only screen and (min-width: 1200px) {
+  .main-nav .main-menu .sub-menu {
+    font-size: 14px;
+  }
+}
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #fff;
+  position: absolute;
+  z-index: 99999;
+  margin-top: 60px;
+  margin-left: 20px;
+  display: none;
+}
+.main-nav .main-menu .sub-menu {
+  position: absolute;
+  margin: 0;
+  opacity: 1;
+  z-index: 99998;
+  float: left;
+  left: 0px;
+  width: 100%;
+  max-width: 100%;
+  padding-top: 60px;
+  overflow: auto;
+  text-align: center;
+  padding-left: 0;
+}
+.main-nav .main-menu .sub-menu .sub-menu-wrapper {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 40px 0;
+}
+.main-nav .main-menu .sub-menu .sub-menu-title {
+  font-weight: 600;
+}
+.main-nav .main-menu .sub-menu a {
+  color: #fff;
+}
+.main-nav .main-menu .sub-menu li {
+  margin: 0;
+  padding: 0 0 0 50px;
+  float: left;
+  width: 33%;
+  text-transform: uppercase;
+  border-right: 1px solid #fff;
+  text-align: left;
+}
+.main-nav .main-menu .sub-menu li:last-child {
+  border: none;
+}
+.main-nav .main-menu .sub-menu li ul {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: inline-block;
+}
+.main-nav .main-menu .sub-menu li li {
+  float: none;
+  padding: 0;
+  width: 48%;
+  border: none;
+  margin-top: 20px;
+
 }

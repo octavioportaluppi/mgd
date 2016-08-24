@@ -115,8 +115,8 @@ app.factory('supplierService',
 
     var createFilters = function(max, page, filter, query, cityId){
         var params = {};
-        params.size = max;
-        params.page = page;
+        params.size = max || 5;
+        params.page = page || 1;
         if(filter)
             params[filter.name] = filter.value;
         if(query)

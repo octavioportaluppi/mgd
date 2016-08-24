@@ -54,7 +54,7 @@
 					<a href="#/dashboard" class="active" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
 				</li>
 			</ul>
-			<ul class="main-menu">
+			<ul class="main-menu" ng-controller="navController">
 				<li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
 					class="enterprise">
 					<a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
@@ -65,7 +65,48 @@
 				</li>
 				<li><a href="#" class="disabled">Contacto</a></li>
 				<li><a href="#" class="disabled">Blog</a></li>
-				<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a></li>
+				<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a>
+					<div class="arrow-down"></div>
+					<ul class="sub-menu">
+						<div class="sub-menu-wrapper">
+							<div class="container">
+								<div class="row">
+									<li class="col-md-4">
+										<a href="#" class="sub-menu-title">Tipo de evento</a>
+										<div class="clearfix">
+											<ul>
+												<li ng-repeat="item in navigationItems.EventTypeFilter"><a href="#/suppliers/event/{{ item.Title }}">{{ item.Title }}</a></li>
+												<li><a href="#/suppliers/event">Más...</a></li>
+											</ul>
+										</div>
+									</li>
+									<li class="col-md-4">
+										<a href="#" class="sub-menu-title">Lugar</a>
+										<div class="clearfix">
+											<ul>
+												<li><a href="#/suppliers/city/hermosillo">Hermosillo</a></li>
+												<li><a href="#/suppliers/city/guadalajara">Guadalajara</a></li>
+												<li><a href="#/suppliers/city/cdmx">CDMX</a></li>
+												<li><a href="#/suppliers/city/tijuana">Tijuana</a></li>
+												<li><a href="#/suppliers/city/monterrey">Monterrey</a></li>
+												<li><a href="#/suppliers/city">Más...</a></li>
+											</ul>
+										</div>
+									</li>
+									<li class="col-md-4">
+										<a href="#" class="sub-menu-title">Servicios</a>
+										<div class="clearfix">
+											<ul>
+												<li ng-repeat="item in navigationItems.ServiceTypeFilter"><a href="#/suppliers/service/{{ item.Title }}">{{ item.Title }}</a></li>
+												<li><a href="#/suppliers/service">Más...</a></li>
+											</ul>
+										</div>
+									</li>
+								</div>
+							</div>
+						</div>
+					</ul>
+				</li>
 				<li><a href="#/planner" ng-class="{'active': isActive('/planner')}" ng-if="authentication.userType !== 'supplier'">Mis Eventos</a></li>
 			</ul>
 			<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
@@ -164,6 +205,7 @@
 
 	<!-- Controllers -->
 	<script src="app/controllers/indexController.js?v=2"></script>
+	<script src="app/controllers/navController.js?v=2"></script>
 	<script src="app/controllers/homeController.js?v=2"></script>
 	<script src="app/controllers/loginController.js?v=2"></script>
 	<script src="app/controllers/signupController.js?v=2"></script>
