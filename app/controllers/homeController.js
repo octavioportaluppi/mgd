@@ -13,19 +13,49 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 
 	$scope.active = 0;
 
-	$scope.slides = [{
-		id: 0,
-		img: 'img/mi_gran_dia_conferencia.jpg',
-		text: 'Te ayudamos a organizar tus conferencias'
-	}, {
-		id: 1,
-		img: 'img/mi_gran_dia_cumpleanos.jpg',
-		text: 'Te ayudamos a organizar tus cumpleaños'
-	}, {
-		id: 2,
-		img: 'img/mi_gran_dia_boda.jpg',
-		text: 'Te ayudamos a organizar tu boda'
-	}];
+	$scope.slides = [
+		{
+			id: 0,
+			img: 'img/mi_gran_dia_conferencia.jpg',
+			text: 'Bautizo: Sabemos la importancia de compartir valiosos momentos.'
+		}, 
+		{
+			id: 1,
+			img: 'img/mi_gran_dia_cumpleanos.jpg',
+			text: 'Cumpleaños: ¿Estás listo para planear la mejor fiesta de cumpleaños?'
+		}, 
+		{
+			id: 2,
+			img: 'img/mi_gran_dia_boda.jpg',
+			text: 'Bodas: Te ayudamos a que tu gran día sea inolvidable.'
+		}, 
+		{
+			id: 3,
+			img: 'img/mi_gran_dia_boda.jpg',
+			text: 'Quinceañeras: Aquí tu fiesta de ensueño se hará realidad.'
+		}, 
+		{
+			id: 4,
+			img: 'img/mi_gran_dia_boda.jpg',
+			text: 'Graduaciones: Te acompañamos en tu camino al éxito.'
+		}, 
+		{
+			id: 5,
+			img: 'img/mi_gran_dia_boda.jpg',
+			text: 'Conferencias: Somos tu mano derecha en la organización de tus conferencias.'
+		}, 
+		{
+			id: 6,
+			img: 'img/mi_gran_dia_boda.jpg',
+			text: 'Despedidas: Despide tu soltería de la mejor manera ¡nosotros te ayudamos!'
+		}, 
+		{
+			id: 7,
+			img: 'img/mi_gran_dia_boda.jpg',
+			text: 'Otros: Estamos contigo en la organización de todos tus eventos.'
+		}
+
+	];
 
 	supplierService
 		.getEvents()
