@@ -6,25 +6,6 @@ app.controller('navController', ['$scope', '$location', 'authService', 'supplier
     EventTypeFilter: [],
     ServiceTypeFilter: []
   };
-	$scope.plannerCollapsed = true;
-	$scope.suppliersCollapsed = true;
-  $scope.isCollapsed = true;
-
-  $scope.logOut = function () {
-      authService.logOut();
-      $location.path('/');
-  };
-
-  $scope.goHome = function () {
-      $location.path('/');
-  };
-
-  $scope.authentication = authService.authentication;
-
-	//britez
-	$scope.isActive = function(currentLocation) {
-		return $location.path() == currentLocation;
-	};
 
   $scope.init = function() {
     supplierService
