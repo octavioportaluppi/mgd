@@ -20,4 +20,116 @@
 			<a href="#/events/{{event.Id}}"><h2 class="event-name">{{event.Name}}</h2></a>
 		</div>
 	</div>
+
+	<div class="posts">
+		<div class="content">
+			<h2 class="posts-title">Nuestros proveedores all star</h2>
+			<div class="col-sm-3" ng-repeat="supplier in suppliers">
+				<div class="supplier-item-container">
+					<div class="supplier-item">
+						<a href="#/suppliers/{{supplier.Id}}" class="supplier-item-img">
+								<img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl" class="img-responsive"/>
+								<img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl" class="img-responsive"/>
+								<div class="supplier-item-star-container">
+									<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+								</div>
+						</a>
+						<div class="supplier-item-info-container">
+							<div class="supplier-item-service-type" ng-if="supplier.ServiceTypes[0].Name">
+								{{supplier.ServiceTypes[0].Name}}
+							</div>
+							<div class="supplier-item-info">
+								<h3>{{supplier.Name}}</h3>
+								<p class="supplier-item-info-city">{{supplier.City.Name}}</p>
+								<p class="supplier-item-info-desc">{{supplier.Description | limitTo: 240}}</p>
+							</div>
+						</div>
+					</div>
+					<a href="#/suppliers" class="supplier-item-read-more">
+						Más Información
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ideas">
+		<div class="content">
+			<div class="clearfix">
+				<h2 class="title pull-left">Ideas para tu gran día</h2>
+			</div>
+
+			<div class="col-xs-12">
+				<div class="ideas-item">
+					<div class="ideas-item-img">
+						<img src="img/a7.jpg" alt="" />
+					</div>
+					<div class="ideas-item-info-container">
+						<h3>Ideas para tu próxima sesión de fotos</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris sem, feugiat nec nisi eu, malesuada placerat turpis. Vivamus convallis elit id felis auctor semper.
+						</p>
+						<p class="ideas-item-info-meta">
+							Rodrigo Avila | Hace 1 día
+						</p>
+					</div>
+				</div>
+
+				<div class="ideas-item">
+					<div class="ideas-item-img">
+						<img src="img/a7.jpg" alt="" />
+					</div>
+					<div class="ideas-item-info-container">
+						<h3>Ideas para tu próxima sesión de fotos</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris sem, feugiat nec nisi eu, malesuada placerat turpis. Vivamus convallis elit id felis auctor semper.
+						</p>
+						<p class="ideas-item-info-meta">
+							Rodrigo Avila | Hace 1 día
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="herramientas">
+		<div class="content">
+			<div class="col-xs-12">
+				<h2 class="title">Nuestras herramientas</h2>
+				<p class="sub-title">
+					Contamos con las mejores herramientas para facilitar la organización del evento
+				</p>
+
+				<div class="col-sm-3 herramientas-item">
+					<img src="img/1.png" alt="" />
+					<h3>Agenda</h3>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+				</div>
+				<div class="col-sm-3 herramientas-item">
+					<img src="img/2.png" alt="" />
+					<h3>Presupuesto</h3>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+				</div>
+				<div class="col-sm-3 herramientas-item">
+					<img src="img/3.png" alt="" />
+					<h3>Invitados</h3>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+				</div>
+				<div class="col-sm-3 herramientas-item">
+					<img src="img/4.png" alt="" />
+					<h3>Proveedores</h3>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

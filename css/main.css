@@ -49,6 +49,9 @@ h3.head {
   letter-spacing: 3px;
   font-size: 1em; }
 
+hr {
+  background-color: #fff;
+}
 /** Nav bar */
 
 .logo {
@@ -170,6 +173,9 @@ label.btn.btn-default {
 
 .events {
   padding: 0 80px;
+  overflow: auto;
+  background-color: #fff;
+  padding-bottom: 3vw;
 }
 
 .events div:nth-child(n+2):nth-child(odd):nth-child(-n+7) .event-icon span {
@@ -212,6 +218,182 @@ label.btn.btn-default {
 }
 
 /** END EVENTS */
+
+/** POSTS **/
+.posts {
+  border-top: 1px solid #d1d3d4;
+  background-color: #fff;
+  padding: 30px;
+  overflow: auto;
+}
+.posts .supplier-item {
+  border: 1px solid #d7d7d7;
+  overflow: hidden;
+  height: 425px;
+}
+.posts .supplier-item .supplier-item-img {
+  display: block;
+  height: 218px;
+  overflow: hidden;
+}
+.posts .supplier-item .supplier-item-img img{
+  width: 100%;
+}
+.posts .supplier-item .supplier-item-star-container {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  color: #fff;
+  background: #FCA52E;
+  padding: 10px;
+  font-size: 26px;
+  padding-bottom: 6px;
+  line-height: 1;
+}
+.posts .supplier-item .supplier-item-info-container {
+    position: relative;
+}
+.posts .supplier-item .supplier-item-info-container .supplier-item-service-type {
+  background-color: #222;
+  opacity: .6;
+  color: #fff;
+  position: absolute;
+  top: -50px;
+  padding: 17px;
+  font-size: 16px;
+  width: 100%;
+  line-height: 1;
+}
+.posts .supplier-item .supplier-item-info {
+  padding: 15px;
+  height: 204px;
+}
+.posts .supplier-item .supplier-item-info h3 {
+  color: #72367D;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+}
+.posts .supplier-item .supplier-item-info .supplier-item-info-city {
+  color: #CBCBCB;
+  font-size: 14px;
+}
+.posts .supplier-item .supplier-item-info .supplier-item-info-desc{
+  font-size: 13px;
+  color: #818181;
+}
+.posts .supplier-item-read-more {
+  text-align: center;
+  background-color: #F2F2F2;
+  padding: 16px;
+  line-height: 1;
+  border: 1px solid #d7d7d7;
+  border-top-width: 0;
+  display: block;
+  color: #B2B2B2;
+}
+.posts .posts-title {
+  color: #FCA52E;
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 48px
+}
+/** END POSTS **/
+
+/** IDEAS **/
+.ideas {
+  border-top: 1px solid #d1d3d4;
+  background-color: #fff;
+  padding: 30px;
+  overflow: auto;
+}
+.ideas .title {
+  color: #818181;
+  text-transform: uppercase;
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 48px
+}
+.ideas-item {
+  overflow: auto;
+  border-radius: 12px;
+  height: 202px;
+  margin-bottom: 38px;
+}
+.ideas-item-img{
+  float: left;
+  width: 278px;
+  height: 100%;
+  background-color: red;
+}
+.ideas-item-info-container {
+  padding: 18px 38px;
+  margin-left: 278px;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-left-width: 0;
+  background-color: #F2F2F2;
+  position: relative;
+}
+.ideas-item-info-container h3 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #72367D;
+  margin-top: 0;
+  margin-bottom: 26px
+}
+.ideas-item-info-container p {
+  font-size: 17px;
+  color: #818181;
+}
+p.ideas-item-info-meta {
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+}
+
+.herramientas {
+  border-top: 1px solid #d1d3d4;
+  background-color: #fff;
+  padding: 30px;
+  overflow: auto;
+}
+.herramientas .title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 68px;
+  margin-bottom: 34px;
+  color: #aed136;
+}
+.herramientas .sub-title {
+  text-align: center;
+  font-size: 15px;
+  color: #A6A6A6;
+  margin-bottom: 60px;
+}
+.herramientas-item {
+  text-align: center;
+}
+.herramientas-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  color: #A9A7AC;
+}
+.herramientas-item img {
+  width: 122px;
+}
+.herramientas-item p {
+  font-size: 15px;
+  color: #58595B;
+}
+
 
 .service {
   min-height: 50px;
@@ -792,6 +974,7 @@ nav.navbar.navbar-fixed-top {
 .page-divider {
   text-align: center;
   color: #aed136;
+  background-color: #fff;
 }
 
 .page-divider .caret-icon div {
