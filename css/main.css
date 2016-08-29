@@ -388,7 +388,7 @@ label.btn.btn-default {
   background-color: #F2F2F2;
   position: relative;
 }
-.ideas-item-info-container h3 {
+.ideas-item-info-container h3 a{
   font-size: 20px;
   font-weight: bold;
   color: #72367D;
@@ -1011,8 +1011,8 @@ nav.navbar.navbar-fixed-top {
     font-size: 1.618em;
     text-align: center; }
 
-  .ideas-item-info-container h3 {
-    font-size: 30px;
+  .ideas-item-info-container h3 a{
+    font-size: 28px;
     margin-bottom: 26px
   }
 

@@ -57,66 +57,33 @@
 		<div class="content">
 			<div class="clearfix">
 				<h2 class="title pull-left">Ideas para tu gran día</h2>
-				<a href="#" class="ideas-more-btn pull-right">Ver más ideas</a>
+				<a href="http://blog.migrandia.mx" class="ideas-more-btn pull-right">Ver más ideas</a>
 			</div>
 
 			<div class="col-xs-12">
-				<div class="ideas-item ideas-item-tablet hidden-xs">
+
+				<div class="ideas-item ideas-item-tablet hidden-xs" ng-repeat-start="wpPost in wpPosts">
 					<div class="ideas-item-img">
-						<img src="img/a7.jpg" alt="" />
+						<a href="{{wpPost.link}}"><img src="img/a7.jpg" alt="" /></a>
 					</div>
 					<div class="ideas-item-info-container">
-						<h3>Ideas para tu próxima sesión de fotos</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris sem, feugiat nec nisi eu, malesuada placerat turpis. Vivamus convallis elit id felis auctor semper.
-						</p>
+						<h3><a href="{{wpPost.link}}">{{wpPost.title.rendered}}</a></h3>
+						<p>{{wpPost.plainContent | limitTo: 150}}</p>
 						<p class="ideas-item-info-meta">
-							Rodrigo Avila | Hace 1 día
+							Rodrigo Avila | {{wpPost.date | date}}
 						</p>
 					</div>
 				</div>
 
-				<div class="ideas-item ideas-item-phone visible-xs-block">
+				<div class="ideas-item ideas-item-phone visible-xs-block" ng-repeat-end>
 					<div class="ideas-item-img">
-						<img src="img/a7.jpg" alt="" />
+						<a href="{{wpPost.link}}"><img src="img/a7.jpg" alt="" /></a>
 					</div>
 					<div class="ideas-item-info-container">
-						<h3>Ideas para tu próxima sesión de fotos</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris sem, feugiat nec nisi eu, malesuada placerat turpis. Vivamus convallis elit id felis auctor semper.
-						</p>
+						<h3><a href="{{wpPost.link}}">{{wpPost.title.rendered}}</a></h3>
+						<p>{{wpPost.plainContent | limitTo: 150}}</p>
 						<p class="ideas-item-info-meta">
-							Rodrigo Avila | Hace 1 día
-						</p>
-					</div>
-				</div>
-
-				<div class="ideas-item ideas-item-tablet hidden-xs">
-					<div class="ideas-item-img">
-						<img src="img/a7.jpg" alt="" />
-					</div>
-					<div class="ideas-item-info-container">
-						<h3>Ideas para tu próxima sesión de fotos</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris sem, feugiat nec nisi eu, malesuada placerat turpis. Vivamus convallis elit id felis auctor semper.
-						</p>
-						<p class="ideas-item-info-meta">
-							Rodrigo Avila | Hace 1 día
-						</p>
-					</div>
-				</div>
-
-				<div class="ideas-item ideas-item-phone visible-xs-block">
-					<div class="ideas-item-img">
-						<img src="img/a7.jpg" alt="" />
-					</div>
-					<div class="ideas-item-info-container">
-						<h3>Ideas para tu próxima sesión de fotos</h3>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris sem, feugiat nec nisi eu, malesuada placerat turpis. Vivamus convallis elit id felis auctor semper.
-						</p>
-						<p class="ideas-item-info-meta">
-							Rodrigo Avila | Hace 1 día
+							Rodrigo Avila | {{wpPost.date | date}}
 						</p>
 					</div>
 				</div>

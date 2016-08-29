@@ -3,6 +3,23 @@
   padding-top: 84px;
 }
 
+.contact-header {
+  height: 350px;
+  background-image: url('../img/contacto.png');
+  background-position: center;
+  text-align: center;
+  padding-top: 97px;
+  background-size: 100%;
+}
+
+.contact-header h2 {
+  color: #fff;
+  font-size: 40px;
+  margin-top: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .contact h2 {
   color: #aed136;
   font-size: 38px;
