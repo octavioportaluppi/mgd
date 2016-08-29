@@ -1,0 +1,73 @@
+.contact {
+  background-color: #fff;
+  padding-top: 84px;
+}
+
+.contact h2 {
+  color: #aed136;
+  font-size: 38px;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.contact p {
+  margin-bottom: 22px;
+  color: #818181;
+}
+
+.contact-info {
+  padding-top: 9px;
+}
+.contact-info .phone {
+  float: left;
+  width: 50%;
+}
+.contact-info span {
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+.contact-info p,
+.contact-ok p {
+  font-size: 18px;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  font-size: 20px;
+  padding: 8px 3px 2px 14px;
+  line-height: 1;
+  color: #818181;
+  background-color: #F1F1F1;
+  border: none;
+}
+
+.contact input::-webkit-input-placeholder,
+.contact textarea::-webkit-input-placeholder {
+   color: #BBBDBF;
+}
+.contact input:-moz-placeholder,
+.contact textarea:-moz-placeholder { /* Firefox 18- */
+   color: #BBBDBF;
+}
+.contact input::-moz-placeholder,
+.contact textarea::-moz-placeholder {  /* Firefox 19+ */
+   color: #BBBDBF;
+}
+.contact input:-ms-input-placeholder,
+.contact textarea:-ms-input-placeholder {
+   color: #BBBDBF;
+}
+.contact .submit-container {
+  text-align: right;
+}
+.contact button {
+  background-color: #aed136;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 4px;
+  padding: 7px 48px 4px;
+}

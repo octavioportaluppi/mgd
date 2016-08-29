@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="css/planner.css">
 		<link rel="stylesheet" href="css/supplier.css">
 		<link rel="stylesheet" href="css/guests.css">
+		<link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/forgot-password.css">
 		<link rel="stylesheet" href="third_party/owl-carousel/owl.carousel.css">
 		<link rel="stylesheet" href="third_party/owl-carousel/owl.theme.css">
@@ -65,7 +66,7 @@
 					class="enterprise">
 					<a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
 				</li>
-				<li><a href="#" class="disabled">Contacto</a></li>
+				<li><a href="#/contact">Contacto</a></li>
 				<li><a href="#" class="disabled">Blog</a></li>
 				<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a>
 					<div class="arrow-down"></div>
@@ -121,7 +122,7 @@
 			<li ng-class="{'active': isActive('/planner')}"><a href="#/planner">Mis Eventos</a></li>
 			<li ng-class="{'active': isActive('/suppliers')}"><a href="#/suppliers">Proveedores</a></li>
 			<li><a href="#" class="disabled">Blog</a></li>
-			<li><a href="#" class="disabled">Contacto</a></li>
+			<li><a href="#/contact">Contacto</a></li>
 			<li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
 				class="enterprise">
 				<a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
@@ -204,7 +205,8 @@
 	<script src="app/services/plannerService.js?v=2"></script>
 	<script src="app/services/eventService.js?v=2"></script>
 	<script src="app/services/agendaService.js?v=2"></script>
-    <script src="app/services/accountService.js?v=2"></script>
+  <script src="app/services/accountService.js?v=2"></script>
+	<script src="app/services/contactService.js?v=2"></script>
 
 	<!-- Controllers -->
 	<script src="app/controllers/indexController.js?v=2"></script>
@@ -220,10 +222,11 @@
 	<script src="app/controllers/plannerController.js?v=2"></script>
 	<script src="app/controllers/eventDetailController.js?v=2"></script>
 	<script src="app/controllers/forgotPasswordController.js?v=2"></script>
-    <script src="app/controllers/activateController.js?v=2"></script>
+  <script src="app/controllers/activateController.js?v=2"></script>
 	<script src="app/controllers/emailConfirmController.js?v=2"></script>
 	<script src="app/controllers/subscriptionController.js?v=2"></script>
 	<script src="app/controllers/plannerDataController.js?v=2"></script>
+	<script src="app/controllers/contactController.js?v=2"></script>
 
 	<!-- Directives -->
 	<script src="app/directives/mySupplierListDir.js?v=2"></script>
