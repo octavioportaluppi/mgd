@@ -123,6 +123,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/subscription-success.html"
     });
 
+    $routeProvider.when('/contact', {
+        controller: "contactController",
+        templateUrl: "/app/views/contact.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });
