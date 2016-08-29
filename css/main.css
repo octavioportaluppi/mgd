@@ -226,6 +226,9 @@ label.btn.btn-default {
   padding: 30px;
   overflow: auto;
 }
+.posts .supplier-item-container {
+  margin-bottom: 40px;
+}
 .posts .supplier-item {
   border: 1px solid #d7d7d7;
   overflow: hidden;
@@ -249,6 +252,8 @@ label.btn.btn-default {
   font-size: 26px;
   padding-bottom: 6px;
   line-height: 1;
+  left: 0;
+  margin-left: 15px;
 }
 .posts .supplier-item .supplier-item-info-container {
     position: relative;
@@ -315,38 +320,83 @@ label.btn.btn-default {
   font-size: 26px;
   font-weight: bold;
   margin-top: 24px;
-  margin-bottom: 48px
+  margin-bottom: 64px
 }
+.ideas .ideas-more-btn {
+  background-color: #aed136;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  line-height: 1;
+  display: block;
+  margin: 23px;
+  font-size: 22px;
+}
+
+
+
 .ideas-item {
-  overflow: auto;
+  /*overflow: auto;*/
   border-radius: 12px;
-  height: 202px;
+  /*height: 202px;*/
   margin-bottom: 38px;
 }
-.ideas-item-img{
+.ideas-item-phone {
+  height: 404px;
+  overflow: hidden;
+}
+.ideas-item-tablet {
+  height: 202px;
+  overflow: auto;
+}
+
+.ideas-item-img img {
+  width: 100%;
+}
+
+.ideas-item-phone .ideas-item-img {
+  float: none;
+  width: 100%;
+  height: 202px
+}
+.ideas-item-tablet .ideas-item-img{
   float: left;
   width: 278px;
   height: 100%;
-  background-color: red;
 }
-.ideas-item-info-container {
-  padding: 18px 38px;
+
+.ideas-item-phone .ideas-item-img img {
+  border-radius: 12px 0;
+}
+
+.ideas-item-phone .ideas-item-info-container {
+  margin-left: 0;
+  height: 202px;
+  border-radius: 0  0 12px 12px;
+  border-left-width: 1px;
+}
+.ideas-item-tablet .ideas-item-info-container {
   margin-left: 278px;
   height: 100%;
+  border-radius: 0 12px 12px 0;
+}
+
+.ideas-item-info-container {
+  padding: 18px 38px;
   border: 1px solid #ccc;
   border-left-width: 0;
   background-color: #F2F2F2;
   position: relative;
 }
 .ideas-item-info-container h3 {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   color: #72367D;
   margin-top: 0;
-  margin-bottom: 26px
+  margin-bottom: 16px
 }
 .ideas-item-info-container p {
-  font-size: 17px;
+  font-size: 14px;
   color: #818181;
 }
 p.ideas-item-info-meta {
@@ -960,7 +1010,17 @@ nav.navbar.navbar-fixed-top {
     text-transform: uppercase;
     color: #818181;
     font-size: 1.618em;
-    text-align: center; } }
+    text-align: center; }
+
+  .ideas-item-info-container h3 {
+    font-size: 30px;
+    margin-bottom: 26px
+  }
+
+  .ideas-item-info-container p {
+    font-size: 17px;
+  }
+}
 
 .nav > li > a:hover {
   text-decoration: none;

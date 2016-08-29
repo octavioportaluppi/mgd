@@ -22,9 +22,9 @@
 	</div>
 
 	<div class="posts">
-		<div class="content">
+		<div id="owl-demo" class="content">
 			<h2 class="posts-title">Nuestros proveedores all star</h2>
-			<div class="col-sm-3" ng-repeat="supplier in suppliers">
+			<div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="supplier in suppliers">
 				<div class="supplier-item-container">
 					<div class="supplier-item">
 						<a href="#/suppliers/{{supplier.Id}}" class="supplier-item-img">
@@ -57,10 +57,11 @@
 		<div class="content">
 			<div class="clearfix">
 				<h2 class="title pull-left">Ideas para tu gran día</h2>
+				<a href="#" class="ideas-more-btn pull-right">Ver más ideas</a>
 			</div>
 
 			<div class="col-xs-12">
-				<div class="ideas-item">
+				<div class="ideas-item ideas-item-tablet hidden-xs">
 					<div class="ideas-item-img">
 						<img src="img/a7.jpg" alt="" />
 					</div>
@@ -75,7 +76,7 @@
 					</div>
 				</div>
 
-				<div class="ideas-item">
+				<div class="ideas-item ideas-item-phone visible-xs-block">
 					<div class="ideas-item-img">
 						<img src="img/a7.jpg" alt="" />
 					</div>
@@ -89,6 +90,37 @@
 						</p>
 					</div>
 				</div>
+
+				<div class="ideas-item ideas-item-tablet hidden-xs">
+					<div class="ideas-item-img">
+						<img src="img/a7.jpg" alt="" />
+					</div>
+					<div class="ideas-item-info-container">
+						<h3>Ideas para tu próxima sesión de fotos</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris sem, feugiat nec nisi eu, malesuada placerat turpis. Vivamus convallis elit id felis auctor semper.
+						</p>
+						<p class="ideas-item-info-meta">
+							Rodrigo Avila | Hace 1 día
+						</p>
+					</div>
+				</div>
+
+				<div class="ideas-item ideas-item-phone visible-xs-block">
+					<div class="ideas-item-img">
+						<img src="img/a7.jpg" alt="" />
+					</div>
+					<div class="ideas-item-info-container">
+						<h3>Ideas para tu próxima sesión de fotos</h3>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mauris sem, feugiat nec nisi eu, malesuada placerat turpis. Vivamus convallis elit id felis auctor semper.
+						</p>
+						<p class="ideas-item-info-meta">
+							Rodrigo Avila | Hace 1 día
+						</p>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
