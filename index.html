@@ -37,11 +37,13 @@
 		<nav
 			class="main-nav clearfix"
 			ng-cloak="">
-			<object
-				class="logo"
-				type="image/svg+xml"
-				data="img/mi_gran_dia_logo_svg.svg">
-			</object>
+			<a href="#/">
+				<img
+					class="logo"
+					type="image/svg+xml"
+					src="img/mi_gran_dia_logo_svg.svg">
+				</object>
+			</a>
 			<ul class="floating-menu">
 				<li ng-hide="authentication.isAuth">
 					<a href="#/signup-planner">REGÍSTRATE</a>
@@ -234,4 +236,14 @@
 	<script src="app/directives/myBudgetDir.js?v=2"></script>
 	<script src="app/directives/myGuestDir.js?v=2"></script>
 	<script src="app/directives/mySupplierDir.js?v=2"></script>
+
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 </html>
