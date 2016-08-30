@@ -351,9 +351,8 @@ label.btn.btn-default {
   /*height: 202px;*/
   margin-bottom: 38px;
 }
-.ideas-item-phone {
-  height: 404px;
-  overflow: hidden;
+.ideas-item-phone .ideas-item-info-meta{
+  margin: 8px 0 8px 0;
 }
 .ideas-item-tablet {
   height: 202px;
@@ -376,14 +375,17 @@ label.btn.btn-default {
 }
 
 .ideas-item-phone .ideas-item-img img {
-  border-radius: 12px 0;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
 }
 
 .ideas-item-phone .ideas-item-info-container {
   margin-left: 0;
-  height: 202px;
   border-radius: 0  0 12px 12px;
   border-left-width: 1px;
+}
+.ideas-item-phone .ideas-item-info-container p{
+  padding: 0;
 }
 .ideas-item-tablet .ideas-item-info-container {
   margin-left: 278px;
@@ -964,7 +966,16 @@ nav.navbar.navbar-fixed-top {
   .login-form {
     min-height: 400px; }
   .col-md-2.col-md-offset-1.col-sm-4.col-sm-offset-1, .col-md-3.col-sm-6 {
-    text-align: center; } }
+    text-align: center; } 
+}
+
+@media only screen and (max-width: 620px) {
+    .posts .posts-title {
+      text-align: center;
+      font-size: 22px
+    }
+
+}
 
 @media only screen and (min-width: 768px) {
 
