@@ -121,7 +121,7 @@ body {
 .responsive-menu a {
     color: #818181;
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
 }
 
 .navbar-toggle {

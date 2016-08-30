@@ -974,6 +974,9 @@ nav.navbar.navbar-fixed-top {
       text-align: center;
       font-size: 22px
     }
+    .page-divider span {
+      font-size: 20px !important;
+    }
 
 }
 
