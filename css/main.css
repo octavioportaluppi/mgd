@@ -420,6 +420,23 @@ p.ideas-item-info-meta {
   left: 40px;
 }
 
+.ideas-item-info-social {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 14px 16px;
+  padding: 9px 18px 5px;
+  font-size: 18px;
+  border: 1px solid #D6D6D6;
+  border-radius: 4px;
+  background-color: #DFDFDF;
+}
+.ideas-item-info-social-share {
+  margin-right: 82px;
+  color: #2477B8;
+}
+
 .herramientas {
   border-top: 1px solid #d1d3d4;
   background-color: #fff;
@@ -1024,14 +1041,18 @@ nav.navbar.navbar-fixed-top {
     color: #818181;
     text-align: center; }
 
+  .ideas-item-info-container h3 {
+    padding-right:108px
+  }
+
   .ideas-item-info-container h3 a{
     font-size: 28px;
     margin-bottom: 26px
   }
 
   .ideas-item-info-container p {
-    font-size: 14px;
-    padding: 0 35px;
+    font-size: 16px;
+    padding: 0 4px;
   }
 }
 
