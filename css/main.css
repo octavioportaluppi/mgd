@@ -52,6 +52,9 @@ h3.head {
 hr {
   background-color: #fff;
 }
+.no-padding {
+  padding: 0;
+}
 /** Nav bar */
 
 .logo {
@@ -172,10 +175,13 @@ label.btn.btn-default {
 /** EVENTS */
 
 .events {
-  padding: 0 80px;
+  padding: 42px 80px 0px;;
   overflow: auto;
   background-color: #fff;
-  padding-bottom: 3vw;
+  padding-bottom: 68px;
+}
+.events-item {
+  margin-bottom: 60px;
 }
 
 .events div:nth-child(n+2):nth-child(odd):nth-child(-n+7) .event-icon span {
@@ -195,9 +201,9 @@ label.btn.btn-default {
   color: rgba(10, 10, 10, 0.4);
   text-align: center;
   font-size: 1.618em;
-  margin: 3vw auto;
-  height: 90px;
-  width: 90px;
+  margin: 3vw auto 15px;
+  height: 98px;
+  width: 98px;
 }
 
 .event-icon span {
@@ -210,11 +216,13 @@ label.btn.btn-default {
 }
 
 .event-name {
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #818181;
-  font-size: 1em;
-  font-weight: 600;
+  font-size: 21px;
   text-align: center;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
 }
 
 /** END EVENTS */
@@ -225,6 +233,7 @@ label.btn.btn-default {
   background-color: #fff;
   padding: 30px;
   overflow: auto;
+  padding-bottom: 53px;
 }
 .posts .supplier-item-container {
   margin-bottom: 40px;
@@ -300,10 +309,10 @@ label.btn.btn-default {
 .posts .posts-title {
   color: #FCA52E;
   text-transform: uppercase;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: bold;
-  margin-top: 24px;
-  margin-bottom: 48px
+  margin-top: 28px;
+  margin-bottom: 48px;
 }
 /** END POSTS **/
 
@@ -313,23 +322,24 @@ label.btn.btn-default {
   background-color: #fff;
   padding: 30px;
   overflow: auto;
+  padding-bottom: 47px;
 }
 .ideas .title {
   color: #818181;
   text-transform: uppercase;
-  font-size: 26px;
+  font-size: 25px;
   font-weight: bold;
-  margin-top: 24px;
-  margin-bottom: 64px
+  margin-top: 33px;
+  margin-bottom: 64px;
 }
 .ideas .ideas-more-btn {
   background-color: #aed136;
   color: #fff;
-  padding: 10px;
+  padding: 10px 35px;
   border-radius: 4px;
   line-height: 1;
   display: block;
-  margin: 23px;
+  margin: 30px 0px;
   font-size: 22px;
 }
 
@@ -382,11 +392,14 @@ label.btn.btn-default {
 }
 
 .ideas-item-info-container {
-  padding: 18px 38px;
+  padding: 20px 38px;
   border: 1px solid #ccc;
   border-left-width: 0;
   background-color: #F2F2F2;
   position: relative;
+}
+.ideas-item-info-container h3 {
+  margin: 0 0 30px;
 }
 .ideas-item-info-container h3 a{
   font-size: 20px;
@@ -398,6 +411,7 @@ label.btn.btn-default {
 .ideas-item-info-container p {
   font-size: 14px;
   color: #818181;
+  padding: 0 35px;
 }
 p.ideas-item-info-meta {
   font-size: 14px;
@@ -435,12 +449,13 @@ p.ideas-item-info-meta {
   font-weight: bold;
   margin-top: 30px;
   color: #A9A7AC;
+  margin: 33px 0 10px;
 }
 .herramientas-item img {
   width: 122px;
 }
 .herramientas-item p {
-  font-size: 15px;
+  font-size: 14px;
   color: #58595B;
 }
 
@@ -984,7 +999,6 @@ nav.navbar.navbar-fixed-top {
   .img-panel {
     min-height: 600px; }
   .event-name {
-    text-transform: uppercase;
     color: #818181;
     font-size: 1em;
     text-align: center; }
@@ -1006,9 +1020,8 @@ nav.navbar.navbar-fixed-top {
   .login-form {
     min-height: 600px; }
   .event-name {
-    text-transform: uppercase;
+    font-size: 21px;
     color: #818181;
-    font-size: 1.618em;
     text-align: center; }
 
   .ideas-item-info-container h3 a{
@@ -1017,7 +1030,8 @@ nav.navbar.navbar-fixed-top {
   }
 
   .ideas-item-info-container p {
-    font-size: 17px;
+    font-size: 14px;
+    padding: 0 35px;
   }
 }
 
@@ -1040,13 +1054,13 @@ nav.navbar.navbar-fixed-top {
   margin: 0 auto;
   width: 10px;
   border-style: solid;
-  border-width: 10px 10px 0 10px;
+  border-width: 18px 18px 0 18px;
   border-color: #aed136 transparent transparent transparent;
 }
 
 .page-divider .content{
   background: #aed136;
-  padding: 30px;
+  padding: 51px 0px 39px;
   text-align: center;
   display: block;
 }
@@ -1054,8 +1068,9 @@ nav.navbar.navbar-fixed-top {
 .page-divider span {
   text-transform: uppercase;
   color: #FFF;
-  font-size: 2rem;
+  font-size: 24px;
   letter-spacing: 7px;
+  font-weight: 900;
 }
 
 .container-custom {

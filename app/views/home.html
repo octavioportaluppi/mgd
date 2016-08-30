@@ -13,7 +13,7 @@
 		<div class="caret-icon"><div></div></div>
 	</div>
 	<div class="events">
-		<div class="col-md-3 col-sm-3" ng-repeat="event in getEvents()">
+		<div class="col-md-3 col-sm-3 events-item" ng-repeat="event in getEvents()">
 			<a href="#/events/{{event.Id}}" class="event-icon">
 				<span class="{{event.Name | icon}}"></span>
 			</a>
@@ -41,7 +41,7 @@
 							<div class="supplier-item-info">
 								<h3>{{supplier.Name}}</h3>
 								<p class="supplier-item-info-city">{{supplier.City.Name}}</p>
-								<p class="supplier-item-info-desc">{{supplier.Description | limitTo: 240}}</p>
+								<p class="supplier-item-info-desc">{{supplier.Description | limitTo: 200}}</p>
 							</div>
 						</div>
 					</div>
@@ -60,7 +60,7 @@
 				<a href="http://blog.migrandia.mx" class="ideas-more-btn pull-right">Ver más ideas</a>
 			</div>
 
-			<div class="col-xs-12">
+			<div class="col-xs-12 no-padding">
 
 				<div class="ideas-item ideas-item-tablet hidden-xs" ng-repeat-start="wpPost in wpPosts">
 					<div class="ideas-item-img">

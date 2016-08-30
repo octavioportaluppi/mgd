@@ -43,7 +43,7 @@ body {
 }
 
 .main-nav .floating-menu a {
-    padding: 10px 20px;
+    padding: 10px 14px;
     line-height: 35px;
     color: #aed136;
 }
@@ -62,16 +62,22 @@ body {
 }
 
 .main-nav .main-menu .enterprise a{
-    border: 2px #858 solid;
-    background: #FFF;
-    padding: 10px;
-    color: #858;
+  border: 2px #858 solid;
+  background: #FFF;
+  padding: 8px 16px 3px;
+  color: #858;
+  line-height: 1;
+  margin-right: 71px;
+  margin-left: 32px;
+  border-radius: 4px;
+  letter-spacing: normal;
 }
 
 .main-nav .floating-menu .active {
     background-color: #aed136;
     font-weight: 600;
     color: #fff;
+    padding: 10px 26px;
 }
 
 .main-nav .main-menu {
@@ -79,8 +85,8 @@ body {
 }
 
 .main-nav .main-menu li {
-    margin: 0 20px;
-    padding: 40px 0;
+    margin: 0 32px;
+    padding: 34px 0;
 }
 
 .responsive-menu li {
@@ -115,6 +121,7 @@ body {
 .responsive-menu a {
     color: #818181;
     text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 .navbar-toggle {
@@ -137,7 +144,7 @@ body {
     .main-nav .main-menu {
         display: none;
     }
-    
+
     .main-nav .navbar-toggle {
         display: inline;
         margin: 0 20px 0 0 !important;
@@ -163,9 +170,9 @@ body {
 
     .main-nav .logo { width: 350px; }
 
-    body { padding-top: 150px; }
+    body { padding-top: 141x; }
 
-    .main-nav { height: 150px; }
+    .main-nav { height: 141px; }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -206,7 +213,7 @@ body {
   border-top: 20px solid #fff;
   position: absolute;
   z-index: 99999;
-  margin-top: 60px;
+  margin-top: 56px;
   margin-left: 20px;
   display: none;
 }
@@ -219,7 +226,7 @@ body {
   left: 0px;
   width: 100%;
   max-width: 100%;
-  padding-top: 60px;
+  padding-top: 56px;
   overflow: auto;
   text-align: center;
   padding-left: 0;
