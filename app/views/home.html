@@ -13,11 +13,13 @@
 		<div class="caret-icon"><div></div></div>
 	</div>
 	<div class="events">
-		<div class="col-md-3 col-sm-3 events-item" ng-repeat="event in getEvents()">
-			<a href="#/events/{{event.Id}}" class="event-icon">
-				<img src="img/icons-org/{{event.Name | icon}}.png" />
-			</a>
-			<a href="#/events/{{event.Id}}"><h2 class="event-name">{{event.Name}}</h2></a>
+		<div class="content">
+			<div class="col-md-3 col-sm-3 events-item" ng-repeat="event in getEvents()">
+				<a href="#/events/{{event.Id}}" class="event-icon">
+					<img src="img/icons-org/{{event.Name | icon}}.png" />
+				</a>
+				<a href="#/events/{{event.Id}}"><h2 class="event-name">{{event.Name}}</h2></a>
+			</div>
 		</div>
 	</div>
 

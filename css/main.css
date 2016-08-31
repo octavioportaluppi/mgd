@@ -1145,3 +1145,16 @@ nav.navbar.navbar-fixed-top {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+.ideas .content,
+.posts .content{
+  margin: 0 auto;
+  max-width: 1280px;
+}
+.herramientas .content{
+  margin: 0 auto;
+  max-width: 1380px;
+}
+.events .content{
+  margin: 0 auto;
+  max-width: 1580px;
+}
