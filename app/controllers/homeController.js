@@ -90,7 +90,7 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 									if (supplier.LogoId > 0)
 											supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image';
 							});
-						$scope.suppliers = $scope.suppliers.slice(0,4);
+						$scope.suppliers = $scope.suppliers;
 					});
 	};
 
@@ -98,10 +98,7 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 		wpService
 			.getPosts()
 			.then(function (response) {
-				$scope.wpPosts = response.data;
-				$scope.wpPosts.forEach(function (post) {
-					post.plainContent = String(post.excerpt.rendered).replace(/<[^>]+>/gm, '');
-				});
+				$scope.wpPosts = response;
 			});
 	}
 

@@ -27,8 +27,8 @@
 		<link rel="stylesheet" href="css/guests.css">
 		<link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/forgot-password.css">
-		<link rel="stylesheet" href="third_party/owl-carousel/owl.carousel.css">
-		<link rel="stylesheet" href="third_party/owl-carousel/owl.theme.css">
+		<link rel="stylesheet" href="third_party/OwlCarousel2-develop/src/css/owl.carousel.css">
+		<link rel="stylesheet" href="node_modules/owl.carousel/dist/assets/owl.carousel.min.css" />
 	</head>
 	<body
 		data-ng-app="AngularFunctions"
@@ -169,7 +169,7 @@
 							<li role="presentation"><a href="#">Twitter</a></li>
 						</ul>
 					</div>
-					
+
 				</div>
 			</div>
 		</footer>
@@ -192,7 +192,7 @@
 	<script src="js/angular-locale_es-mx.js"></script>
 	<script src="js/checklist-model.js"></script>
 	<script src="js/vendor/ng-infinite-scroll.min.js"></script>
-	<script src="third_party/owl-carousel/owl.carousel.min.js"></script>
+	<script src="node_modules/owl.carousel/dist/owl.carousel.min.js"></script>
 	<script src="app.js"></script>
 
 	<!-- Services -->
@@ -235,14 +235,5 @@
 	<script src="app/directives/myBudgetDir.js?v=2"></script>
 	<script src="app/directives/myGuestDir.js?v=2"></script>
 	<script src="app/directives/mySupplierDir.js?v=2"></script>
-
-	<!-- Load Facebook SDK for JavaScript -->
-	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
+	<script src="app/directives/owlDir.js?v=2"></script>
 </html>
