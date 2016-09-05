@@ -7,7 +7,7 @@ app.directive('owlCarousel', function () {
             // provide any default options you want
               var defaultOptions = {
                   loop:true,
-                  margin:10,
+                  margin:20,
                   responsiveClass:true,
                   responsive:{
                       0:{

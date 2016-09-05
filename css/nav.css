@@ -1,15 +1,19 @@
 body {
-    padding-top: 150px;
+    padding-top: 140px;
 }
-
-.main-nav {
-    height: 150px;
+.nav-top{
+    height: 140px;
     background: #FFF;
-    padding: 30px;
     position: fixed;
     z-index: 4;
     top: 0;
     width: 100%;
+}
+.main-nav {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1250px;
+  padding:26px 10px;
 }
 
 .main-nav .logo {
@@ -31,7 +35,7 @@ body {
 .main-nav .floating-menu {
     position: absolute;
     top: 0;
-    width: 100%;
+    width: 97%;
     margin-left: -60px;
 
 }
@@ -71,6 +75,7 @@ body {
   margin-left: 32px;
   border-radius: 4px;
   letter-spacing: normal;
+  display: block;
 }
 
 .main-nav .floating-menu .active {
@@ -81,11 +86,12 @@ body {
 }
 
 .main-nav .main-menu {
-    float: right;
+    float: left;
+    margin-left: 69px;
 }
 
 .main-nav .main-menu li {
-    margin: 0 32px;
+    margin: 0 37px;
     padding: 34px 0;
 }
 
@@ -121,7 +127,8 @@ body {
 .responsive-menu a {
     color: #818181;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
+    font-style: 16px;
 }
 
 .navbar-toggle {
@@ -138,7 +145,21 @@ body {
     border-radius: 2px;
     background: #818181;
 }
-
+@media only screen and (max-width: 1180px) {
+  .main-nav .main-menu li{
+    margin: 0 30px;   
+  }
+}
+@media only screen and (max-width: 1130px) {
+  .main-nav .main-menu li{
+    margin: 0 15px;   
+  }
+}
+@media only screen and (max-width: 760px) {
+  .nav-top{
+    height: 102px;
+  }
+}
 @media only screen and (min-width: 320px) {
     .main-nav .floating-menu,
     .main-nav .main-menu {
@@ -150,11 +171,11 @@ body {
         margin: 0 20px 0 0 !important;
     }
 
-    .main-nav .logo { width: 175px; }
+    .main-nav .logo { width: 230px; }
 
     body { padding-top: 100px; }
 
-    .main-nav { height: 100px; }
+    
 }
 
 @media only screen and (min-width: 768px) {
@@ -172,7 +193,7 @@ body {
 
     body { padding-top: 141x; }
 
-    .main-nav { height: 141px; }
+    
 }
 
 @media only screen and (min-width: 1024px) {
@@ -226,7 +247,7 @@ body {
   left: 0px;
   width: 100%;
   max-width: 100%;
-  padding-top: 56px;
+  padding-top: 60px;
   overflow: auto;
   text-align: center;
   padding-left: 0;

@@ -34,91 +34,93 @@
 		data-ng-app="AngularFunctions"
 		flow-prevent-drop
 		ng-controller="indexController">
-		<nav
-			class="main-nav clearfix"
-			ng-cloak="">
-			<a href="#/">
-				<img
-					class="logo"
-					type="image/svg+xml"
-					src="img/mi_gran_dia_logo_svg.svg">
-				</object>
-			</a>
-			<ul class="floating-menu">
-				<li ng-hide="authentication.isAuth">
-					<a href="#/signup-planner">REGÍSTRATE</a>
-				</li>
-				<li ng-hide="authentication.isAuth">
-					<a href="#/login-planner" class="active">Log-In</a>
-				</li>
-				<li ng-hide="!authentication.isAuth">
-					<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
-				</li>
-				<li ng-hide="!authentication.isAuth">
-					<a href="#/planner" class="active" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
-					<a href="#/dashboard" class="active" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
-				</li>
-			</ul>
-			<ul class="main-menu" ng-controller="navController">
-				<li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
-					class="enterprise">
-					<a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
-				</li>
-				<li ng-if="!authentication.isAuth"
-					class="enterprise">
-					<a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
-				</li>
-				<li><a href="#/contact">Contacto</a></li>
-				<li><a href="#/planner" ng-class="{'active': isActive('/planner')}" ng-if="authentication.userType !== 'supplier'">Ideas</a></li>
-				<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a>
-					<div class="arrow-down"></div>
-					<ul class="sub-menu">
-						<div class="sub-menu-wrapper">
-							<div class="container">
-								<div class="row">
-									<li class="col-md-4">
-										<a href="#" class="sub-menu-title">Tipo de evento</a>
-										<div class="clearfix">
-											<ul>
-												<li ng-repeat="item in navigationItems.EventTypeFilter"><a href="#/suppliers/event/{{ item.Title }}">{{ item.Title }}</a></li>
-												<li><a href="#/suppliers/event">Más...</a></li>
-											</ul>
-										</div>
-									</li>
-									<li class="col-md-4">
-										<a href="#" class="sub-menu-title">En Donde?</a>
-										<div class="clearfix">
-											<ul>
-												<li><a href="#/suppliers/city/hermosillo">Hermosillo</a></li>
-												<li><a href="#/suppliers/city/guadalajara">Guadalajara</a></li>
-												<li><a href="#/suppliers/city/cdmx">CDMX</a></li>
-												<li><a href="#/suppliers/city/tijuana">Tijuana</a></li>
-												<li><a href="#/suppliers/city/monterrey">Monterrey</a></li>
-												<li><a href="#/suppliers/city">Más...</a></li>
-											</ul>
-										</div>
-									</li>
-									<li class="col-md-4">
-										<a href="#" class="sub-menu-title">Servicios</a>
-										<div class="clearfix">
-											<ul>
-												<li ng-repeat="item in navigationItems.ServiceTypeFilter"><a href="#/suppliers/service/{{ item.Title }}">{{ item.Title }}</a></li>
-												<li><a href="#/suppliers/service">Más...</a></li>
-											</ul>
-										</div>
-									</li>
+		<div class="nav-top">
+			<nav
+				class="main-nav clearfix"
+				ng-cloak="">
+				<a href="#/">
+					<img
+						class="logo"
+						type="image/svg+xml"
+						src="img/mi_gran_dia_logo_svg.svg">
+					</object>
+				</a>
+				<ul class="floating-menu">
+					<li ng-hide="authentication.isAuth">
+						<a href="#/signup-planner">REGÍSTRATE</a>
+					</li>
+					<li ng-hide="authentication.isAuth">
+						<a href="#/login-planner" class="active">Log-In</a>
+					</li>
+					<li ng-hide="!authentication.isAuth">
+						<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+					</li>
+					<li ng-hide="!authentication.isAuth">
+						<a href="#/planner" class="active" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
+						<a href="#/dashboard" class="active" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
+					</li>
+				</ul>
+				<ul class="main-menu" ng-controller="navController">
+					<li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
+						class="enterprise">
+						<a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
+					</li>
+					<li ng-if="!authentication.isAuth"
+						class="enterprise">
+						<a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
+					</li>
+					<li><a href="#/contact">Contacto</a></li>
+					<li><a href="#/planner" ng-class="{'active': isActive('/planner')}" ng-if="authentication.userType !== 'supplier'">Ideas</a></li>
+					<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a>
+						<div class="arrow-down"></div>
+						<ul class="sub-menu">
+							<div class="sub-menu-wrapper">
+								<div class="container">
+									<div class="row">
+										<li class="col-md-4">
+											<a href="#" class="sub-menu-title">Tipo de evento</a>
+											<div class="clearfix">
+												<ul>
+													<li ng-repeat="item in navigationItems.EventTypeFilter"><a href="#/suppliers/event/{{ item.Title }}">{{ item.Title }}</a></li>
+													<li><a href="#/suppliers/event">Más...</a></li>
+												</ul>
+											</div>
+										</li>
+										<li class="col-md-4">
+											<a href="#" class="sub-menu-title">En Donde?</a>
+											<div class="clearfix">
+												<ul>
+													<li><a href="#/suppliers/city/hermosillo">Hermosillo</a></li>
+													<li><a href="#/suppliers/city/guadalajara">Guadalajara</a></li>
+													<li><a href="#/suppliers/city/cdmx">CDMX</a></li>
+													<li><a href="#/suppliers/city/tijuana">Tijuana</a></li>
+													<li><a href="#/suppliers/city/monterrey">Monterrey</a></li>
+													<li><a href="#/suppliers/city">Más...</a></li>
+												</ul>
+											</div>
+										</li>
+										<li class="col-md-4">
+											<a href="#" class="sub-menu-title">Servicios</a>
+											<div class="clearfix">
+												<ul>
+													<li ng-repeat="item in navigationItems.ServiceTypeFilter"><a href="#/suppliers/service/{{ item.Title }}">{{ item.Title }}</a></li>
+													<li><a href="#/suppliers/service">Más...</a></li>
+												</ul>
+											</div>
+										</li>
+									</div>
 								</div>
 							</div>
-						</div>
-					</ul>
-				</li>
-			</ul>
-			<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</nav>
+						</ul>
+					</li>
+				</ul>
+				<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</nav>
+		</div>
 		<ul class="responsive-menu" uib-collapse="isCollapsed" ng-cloak="">
 			<li ng-class="{'active': isActive('/suppliers')}"><a href="#/suppliers">Proveedores</a></li>
 			<li ng-class="{'active': isActive('/planner')}"><a href="#/planner">Ideas</a></li>

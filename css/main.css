@@ -175,7 +175,7 @@ label.btn.btn-default {
 /** EVENTS */
 
 .events {
-  padding: 42px 80px 0px;;
+  padding: 31px 80px 0px;;
   overflow: auto;
   background-color: #fff;
   padding-bottom: 68px;
@@ -336,7 +336,8 @@ label.btn.btn-default {
   text-transform: uppercase;
   font-size: 24px;
   font-weight: bold;
-  margin-top: 28px;
+  margin-top: 17px;
+  letter-spacing: 2px;
   margin-bottom: 48px;
 }
 /** END POSTS **/
@@ -427,6 +428,7 @@ label.btn.btn-default {
 }
 .ideas-item-info-container h3 {
   margin: 0 0 30px;
+  padding-right: 35px;
 }
 .ideas-item-info-container h3 a{
   font-size: 20px;
@@ -438,13 +440,13 @@ label.btn.btn-default {
 .ideas-item-info-container p {
   font-size: 14px;
   color: #818181;
-  padding: 0 35px;
 }
 p.ideas-item-info-meta {
-  font-size: 14px;
+  font-size: 14px !important;
   position: absolute;
   bottom: 0;
   left: 40px;
+  text-indent: 24px;
 }
 
 .ideas-item-info-social {
@@ -473,9 +475,10 @@ p.ideas-item-info-meta {
 .herramientas .title {
   text-align: center;
   text-transform: uppercase;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
-  margin-top: 68px;
+  margin-top: 67px;
+  letter-spacing: 2px;
   margin-bottom: 34px;
   color: #aed136;
 }
@@ -1133,8 +1136,8 @@ nav.navbar.navbar-fixed-top {
 .page-divider span {
   text-transform: uppercase;
   color: #FFF;
-  font-size: 24px;
-  letter-spacing: 7px;
+  font-size: 22px;
+  letter-spacing: 3px;
   font-weight: 900;
 }
 
@@ -1148,13 +1151,13 @@ nav.navbar.navbar-fixed-top {
 .ideas .content,
 .posts .content{
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 1213px;
 }
 .herramientas .content{
   margin: 0 auto;
-  max-width: 1380px;
+  max-width: 1125px;
 }
 .events .content{
   margin: 0 auto;
-  max-width: 1580px;
+  max-width: 1212px;
 }
