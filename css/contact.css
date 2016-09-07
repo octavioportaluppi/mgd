@@ -1,35 +1,37 @@
 .contact {
   background-color: #fff;
-  padding-top: 84px;
+  padding-top: 72px;
+  padding-bottom: 72px;
 }
 
 .contact-header {
-  height: 350px;
+  height: 395px;
   background-image: url('../img/contacto.png');
   background-position: center;
   text-align: center;
-  padding-top: 97px;
+  padding-top: 134px;
   background-size: 100%;
 }
 
 .contact-header h2 {
   color: #fff;
   font-size: 40px;
-  margin-top: 36px;
+  margin-top: 26px;
   font-weight: bold;
   text-transform: uppercase;
 }
 
 .contact h2 {
   color: #aed136;
-  font-size: 48px;
+  font-size: 37px;
   text-transform: uppercase;
   margin-bottom: 26px;
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
+  letter-spacing: 5px;
 }
 
 .contact p {
-  margin-bottom: 22px;
+  margin-bottom: 26px;
   color: #818181;
 }
 
@@ -40,19 +42,20 @@
 }
 .contact-info .phone {
   float: left;
-  width: 50%;
+  width: 63%;
 }
 .contact-info span {
   display: block;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 19px;
   margin-bottom: 6px;
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
   color: #bbbdbf;
+  letter-spacing: 3px;
 }
 .contact-info p,
 .contact-ok p {
-  font-size: 24px;
+  font-size: 20px;
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
   color: #bbbdbf;
 }
@@ -94,4 +97,14 @@
   font-size: 18px;
   border-radius: 4px;
   padding: 7px 48px 4px;
+}
+.contact-container-left{
+  padding:0 106px;
+}
+.contact-container-right{
+  padding:0 56px;
+}
+.social i{
+  font-style: normal;
+  font-size: 19px;
 }
