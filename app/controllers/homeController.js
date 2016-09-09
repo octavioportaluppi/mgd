@@ -88,7 +88,7 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 							$scope.suppliers = response.Content;
 							$scope.suppliers.forEach(function(supplier){
 									if (supplier.LogoId > 0)
-											supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image';
+											supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image?Thumbnail=False';
 							});
 						$scope.suppliers = $scope.suppliers;
 					});
