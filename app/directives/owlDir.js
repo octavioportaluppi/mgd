@@ -21,7 +21,7 @@ app.directive('owlCarousel', function () {
                           navText:['<','>']
                       },
                       992:{
-                          items:4,
+                          items:5,
                           nav:true,
                           loop:false,
                           navText:['<','>']

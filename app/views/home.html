@@ -18,7 +18,8 @@
 		<div class="content">
 			<div class="col-md-3 col-sm-3 events-item" ng-repeat="event in getEvents()">
 				<a href="#/events/{{event.Id}}" class="event-icon">
-					<img src="img/icons-org/{{event.Name | icon}}.png" />
+					<div class="{{event.Name | lowercase}}" ></div>
+					<!--<img src="img/icons-org/{{event.Name | icon}}.png" />-->
 				</a>
 				<a href="#/events/{{event.Id}}"><h2 class="event-name">{{event.Name}}</h2></a>
 			</div>
@@ -27,7 +28,10 @@
 
 	<div class="posts">
 		<div class="content">
-				<h2 class="posts-title">Nuestros proveedores all star</h2>
+				<div class="clearfix">
+					<h2 class="posts-title pull-left">Nuestros proveedores all star</h2>
+					<a href="http://blog.migrandia.mx" class="proveedores-more-btn pull-right">Ver más</a>
+				</div>
 				<owl-carousel class="owl-carousel">
 					<div owl-carousel-item class="supplier-item-container" ng-repeat="supplier in suppliers">
 						<div class="supplier-item">
@@ -49,9 +53,11 @@
 								</div>
 							</div>
 						</div>
-						<a href="#/suppliers/{{supplier.Id}}" class="supplier-item-read-more">
-							Más Información
-						</a>
+						<div class="supplier-more">
+							<a href="#/suppliers/{{supplier.Id}}" class="supplier-item-read-more">
+								Más Información
+							</a>
+						</div>
 					</div>
 				</owl-carousel>
 			</div>
@@ -67,7 +73,7 @@
 
 			<div class="col-xs-12 no-padding">
 
-				<div class="ideas-item ideas-item-tablet hidden-xs" ng-repeat-start="wpPost in wpPosts">
+				<div class="col-md-6  ideas-item ideas-item-tablet hidden-xs" ng-repeat-start="wpPost in wpPosts">
 					<div class="ideas-item-img">
 						<a href="{{wpPost.link}}"><img src="{{wpPost.media.data.source_url || 'img/a7.jpg'}}" alt="" /></a>
 					</div>
@@ -76,9 +82,7 @@
 						<p>{{wpPost.plainContent | limitTo: 150}}</p>
 						<p class="ideas-item-info-meta">
 							{{wpPost.author.data.name}} | {{wpPost.date | date}}
-						</p>
-						<a target="_blank" href="http://www.facebook.com/share.php?u={{wpPost.link}}&title={{wpPost.title.rendered}}" class="ideas-item-info-social ideas-item-info-social-share"><i class="fa fa-share-alt" aria-hidden="true"></i></a>
-						<a href="#" class="fb-like ideas-item-info-social"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+						</p>						
 					</div>
 				</div>
 
@@ -108,7 +112,9 @@
 				</p>
 
 				<div class="col-sm-3 herramientas-item">
-					<img src="img/1.png" alt="" />
+					<div>
+						<img src="img/icons/iconos-17.png" alt="" />
+					</div>
 					<h3>Agenda</h3>
 					<p>
 						¡No pierdas ninguna cita!<br/>
@@ -116,7 +122,9 @@
 					</p>
 				</div>
 				<div class="col-sm-3 herramientas-item">
-					<img src="img/2.png" alt="" />
+					<div>
+						<img src="img/icons/iconos-18.png" alt="" />
+					</div>
 					<h3>Presupuesto</h3>
 					<p>
 						¡Controla tus gastos!<br/>
@@ -124,7 +132,9 @@
 					</p>
 				</div>
 				<div class="col-sm-3 herramientas-item">
-					<img src="img/3.png" alt="" />
+					<div>
+						<img src="img/icons/iconos-19.png" alt="" />
+					</div>
 					<h3>Invitados</h3>
 					<p>
 						¡Que nadie se quede fuera!<br/>
@@ -132,7 +142,9 @@
 					</p>
 				</div>
 				<div class="col-sm-3 herramientas-item">
-					<img src="img/4.png" alt="" />
+					<div>
+						<img src="img/icons/iconos-20.png" alt="" />
+					</div>
 					<h3>Proveedores</h3>
 					<p>
 						¡Encuentra lo que necesitas!<br/>
