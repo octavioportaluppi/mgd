@@ -149,8 +149,14 @@ app.factory('supplierService',
         return $http.get(serviceBase + 'api/eventtypes');
     };
 
-    var _getPremiumSuppliers = function (eventTypeId) {
-        return $http.get(serviceBase + 'api/suppliers/premium', {params: {count: 10, EventTypeId: eventTypeId}});
+   
+    var _getPremiumSuppliers = function (max, page, filter, query, cityId) {
+
+        var params = createFilters(max, page, filter, query, cityId);
+
+        return $http
+            .get(serviceBase + 'api/suppliers/premium',
+                { params: params });
     };
 
     var _vote = function (supplierId, vote) {

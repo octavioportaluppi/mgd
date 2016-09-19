@@ -74,7 +74,7 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 	$scope.getSuppliers = function (){
 			$scope.loading = true;
 			supplierService
-					.getAllSuppliers(
+					.getPremiumSuppliers(
 					$scope.size,
 					$scope.page,
 					$scope.filter,
@@ -82,10 +82,7 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 					$scope.CityId)
 					.success(function (response){
 							$scope.loading = false;
-							$scope.totalSuppliers = response.TotalResults;
-							$scope.filters = response.QueryFilterInfo;
-							$scope.totalPages = response.TotalPages;
-							$scope.suppliers = response.Content;
+							$scope.suppliers = response;
 							$scope.suppliers.forEach(function(supplier){
 									if (supplier.LogoId > 0)
 											supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image?Thumbnail=False';
