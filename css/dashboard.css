@@ -127,3 +127,130 @@ ul > li {
     height: 150px;
     border: none;
 }
+
+.chat-title{
+    text-align: center;   
+    height: 45px;
+    border-bottom: 1px solid #ececec; 
+    margin-bottom: 10px;
+}
+.white-bg{
+    background-color: #fff;
+    border: 1px solid #ececec; 
+    border-bottom: 0px;    
+}
+
+.search-chat{
+    background-color: #F1F2F2;
+    text-align: center;
+    color: #818181;
+    margin-left: 5px;
+}
+
+.chat-border{
+    padding: 15px !important;
+    border: 1px solid #ececec; 
+}
+
+.chat-spacer{
+    padding: 10px;
+}
+
+.chat-user{
+    padding: 10px;
+    border-top: 1px solid #ececec;
+}
+
+.chat-supplier{
+    padding-top: 5px;
+    padding-bottom: 5px;  
+}
+.chat-supplier:hover{
+    background-color: #F1F2F2;
+}
+.chat-user:hover,.chat-supplier:hover{
+    cursor: pointer;
+}
+.chat-active{
+    background-color: #F1F2F2;
+}
+
+.chat-avatar{
+    width: 30px;
+}
+
+.globe-green{
+    background-color: #AFCF44;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 5px;  
+    margin-bottom: 5px;
+    display: inline-block;
+    color:#FFF;
+    margin-right: 5px;
+    max-width: 95%;
+    word-wrap: break-word;
+    float: left;
+    clear:both;
+}
+
+.globe-purple{
+    background-color: #8B4194;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 5px;  
+    margin-bottom: 5px;
+    display: inline-block;
+    color:#FFF;
+    float: right;
+    clear:both;
+    margin-right: 5px;
+    max-width: 95%;
+    text-align: right;
+    word-wrap: break-word;
+}
+.chat-user{
+    padding-right: 10px;
+}
+.chat-conversation{
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.messages, .chat-conversation{
+    height: 342px;
+    overflow-x: hidden;
+    overflow-y: scroll;    
+}
+
+.chat-container{
+    min-height: 280px;    
+}
+
+.chat-username{
+    color: #58595D;
+    font-weight: bold;
+}
+
+.btn-send{
+    margin-top: 5px;
+    padding: 2px 25px;
+
+    background-color: #ceafd2;
+    color: #fff;
+    float: right;
+    margin-right: 20px;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    
+    margin-bottom: 5px;
+    display: inline-block;
+    clear:both;    
+}
+.form-send{
+    margin-top: 10px;
+}

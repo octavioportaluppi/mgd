@@ -1,190 +1,196 @@
 <!DOCTYPE html>
 <html lang="es_MX">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Mi Gran Día / </title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
-		<link rel="stylesheet" href="css/bootstrap-theme.min.css"><link rel="stylesheet" href="css/fonts/webfonts.css">
-		<link rel="stylesheet" href="css/bootstrap-formhelpers.min.css">
-		<link rel="stylesheet" href="css/fileinput.min.css">
-		<link rel="stylesheet" href="css/angular-datepicker.min.css">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="css/list.css">
-		<link rel="stylesheet" href="css/forms.css">
-		<link rel="stylesheet" href="css/icons.css">
-		<link rel="stylesheet" href="css/spinner.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
-		<link rel="stylesheet" href="css/dashboard.css">
-		<link rel="stylesheet" href="css/nav.css">
-		<link rel="stylesheet" href="css/carrousel.css">
-		<link rel="stylesheet" href="css/planner.css">
-		<link rel="stylesheet" href="css/supplier.css">
-		<link rel="stylesheet" href="css/guests.css">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mi Gran Día / </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css"><link rel="stylesheet" href="css/fonts/webfonts.css">
+        <link rel="stylesheet" href="css/bootstrap-formhelpers.min.css">
+        <link rel="stylesheet" href="css/fileinput.min.css">
+        <link rel="stylesheet" href="css/angular-datepicker.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/list.css">
+        <link rel="stylesheet" href="css/forms.css">
+        <link rel="stylesheet" href="css/icons.css">
+        <link rel="stylesheet" href="css/spinner.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+        <link rel="stylesheet" href="css/dashboard.css">
+        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/carrousel.css">
+        <link rel="stylesheet" href="css/planner.css">
+        <link rel="stylesheet" href="css/supplier.css">
+        <link rel="stylesheet" href="css/guests.css">
         <link rel="stylesheet" href="css/forgot-password.css">
-	</head>
-	<body
-		data-ng-app="AngularFunctions"
-		flow-prevent-drop
-		ng-controller="indexController">
-		<nav
-			class="main-nav clearfix"
-			ng-cloak="">
-			<object
-				class="logo"
-				type="image/svg+xml"
-				data="img/mi_gran_dia_logo_svg.svg">
-			</object>
-			<ul class="floating-menu">
-				<li ng-hide="authentication.isAuth">
-					<a href="#/signup-planner">REGÍSTRATE</a>
-				</li>
-				<li ng-hide="authentication.isAuth">
-					<a href="#/login-planner" class="active">Log-In</a>
-				</li>
-				<li ng-hide="!authentication.isAuth">
-					<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
-				</li>
-				<li ng-hide="!authentication.isAuth">
-					<a href="#/planner" class="active" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
-					<a href="#/dashboard" class="active" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
-				</li>
-			</ul>
-			<ul class="main-menu">
-				<li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
-					class="enterprise">
-					<a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
-				</li>
-				<li ng-if="!authentication.isAuth"
-					class="enterprise">
-					<a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
-				</li>
-				<li><a href="#" class="disabled">Contacto</a></li>
-				<li><a href="#" class="disabled">Blog</a></li>
-				<li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a></li>
-				<li><a href="#/planner" ng-class="{'active': isActive('/planner')}" ng-if="authentication.userType !== 'supplier'">Mis Eventos</a></li>
-			</ul>
-			<button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</nav>
-		<ul class="responsive-menu" uib-collapse="isCollapsed" ng-cloak="">
-			<li ng-class="{'active': isActive('/planner')}"><a href="#/planner">Mis Eventos</a></li>
-			<li ng-class="{'active': isActive('/suppliers')}"><a href="#/suppliers">Proveedores</a></li>
-			<li><a href="#" class="disabled">Blog</a></li>
-			<li><a href="#" class="disabled">Contacto</a></li>
-			<li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
-				class="enterprise">
-				<a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
-			</li>
-			<li ng-if="!authentication.isAuth"
-				class="enterprise">
-				<a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
-			</li>
+    </head>
+    <body
+        data-ng-app="AngularFunctions"
+        flow-prevent-drop
+        ng-controller="indexController">
+        <nav
+            class="main-nav clearfix"
+            ng-cloak="">
+            <object
+                class="logo"
+                type="image/svg+xml"
+                data="img/mi_gran_dia_logo_svg.svg">
+            </object>
+            <ul class="floating-menu">
+                <li ng-hide="authentication.isAuth">
+                    <a href="#/signup-planner">REGÍSTRATE</a>
+                </li>
+                <li ng-hide="authentication.isAuth">
+                    <a href="#/login-planner" class="active">Log-In</a>
+                </li>
+                <li ng-hide="!authentication.isAuth">
+                    <a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+                </li>
+                <li ng-hide="!authentication.isAuth">
+                    <a href="#/planner" class="active" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
+                    <a href="#/dashboard" class="active" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
+                </li>
+            </ul>
+            <ul class="main-menu">
+                <li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
+                    class="enterprise">
+                    <a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
+                </li>
+                <li ng-if="!authentication.isAuth"
+                    class="enterprise">
+                    <a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
+                </li>
+                <li><a href="#" class="disabled">Contacto</a></li>
+                <li><a href="#" class="disabled">Blog</a></li>
+                <li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a></li>
+                <li><a href="#/planner" ng-class="{'active': isActive('/planner')}" ng-if="authentication.userType !== 'supplier'">Mis Eventos</a></li>
+            </ul>
+            <button class="navbar-toggle" type="button" ng-click="isCollapsed = !isCollapsed">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </nav>
+        <ul class="responsive-menu" uib-collapse="isCollapsed" ng-cloak="">
+            <li ng-class="{'active': isActive('/planner')}"><a href="#/planner">Mis Eventos</a></li>
+            <li ng-class="{'active': isActive('/suppliers')}"><a href="#/suppliers">Proveedores</a></li>
+            <li><a href="#" class="disabled">Blog</a></li>
+            <li><a href="#" class="disabled">Contacto</a></li>
+            <li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
+                class="enterprise">
+                <a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
+            </li>
+            <li ng-if="!authentication.isAuth"
+                class="enterprise">
+                <a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
+            </li>
 
-			<li ng-hide="authentication.isAuth" class="active">
-				<a href="#/login-supplier">Log-In</a>
-			</li>
-			<li ng-hide="authentication.isAuth" class="active">
-				<a href="" ng-click="signup()">REGÍSTRATE</a>
-			</li>
+            <li ng-hide="authentication.isAuth" class="active">
+                <a href="#/login-supplier">Log-In</a>
+            </li>
+            <li ng-hide="authentication.isAuth" class="active">
+                <a href="" ng-click="signup()">REGÍSTRATE</a>
+            </li>
 
-			<li ng-hide="!authentication.isAuth" class="active">
-				<a href="#/planner" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
-				<a href="#/dashboard" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
-			</li>
+            <li ng-hide="!authentication.isAuth" class="active">
+                <a href="#/planner" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
+                <a href="#/dashboard" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
+            </li>
 
-			<li ng-hide="!authentication.isAuth" class="active">
-				<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
-			</li>
-		</ul>
-		<div ng-view=""></div>
-		<footer>
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-6">
-						<ul>
-							<li role="presentation"><a href="#Condición Legal">Condición Legal</a></li>
-							<li role="presentation"><a href="#¿Quiénes somos?">¿Quiénes somos?</a></li>
-							<li role="presentation"><a href="#FAQ">FAQ</a></li>
-							<li role="presentation"><a href="#Contacto">Contacto</a></li>
-						</ul>
-					</div>
-					<div class="col-xs-6 text-right">
-						<ul>
-							<li role="presentation"><a href="#">Facebook</a></li>
-							<li role="presentation"><a href="#">Twitter</a></li>
-						</ul>
-					</div>
-					<div class="row">
-						<div class="col-xs-12 text-center">
-							<ul><li><a href="#">Developed by RedTree Marketing</a></li></ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</body>
-	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
-	<script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-	<script src="node_modules/angular-loading-bar/build/loading-bar.min.js"></script>
-	<script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
-	<script src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
-	<script src="bower_components/angular-progress-arc/angular-progress-arc.min.js"></script>
-	<script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
-	<script src="js/angular-local-storage.min.js"></script>
-	<script src="js/angular-multi-step-form.min.js"></script>
-	<script src="js/angular-locale_es-mx.js"></script>
-	<script src="js/checklist-model.js"></script>
-	<script src="js/vendor/ng-infinite-scroll.min.js"></script>
-	<script src="app.js"></script>
+            <li ng-hide="!authentication.isAuth" class="active">
+                <a href="" ng-click="logOut()">CERRAR SESIÓN</a>
+            </li>
+        </ul>
+        <div ng-view=""></div>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ul>
+                            <li role="presentation"><a href="#Condición Legal">Condición Legal</a></li>
+                            <li role="presentation"><a href="#¿Quiénes somos?">¿Quiénes somos?</a></li>
+                            <li role="presentation"><a href="#FAQ">FAQ</a></li>
+                            <li role="presentation"><a href="#Contacto">Contacto</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <ul>
+                            <li role="presentation"><a href="#">Facebook</a></li>
+                            <li role="presentation"><a href="#">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <ul><li><a href="#">Developed by RedTree Marketing</a></li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
 
-	<!-- Services -->
-	<script src="app/services/authInterceptorService.js?v=2"></script>
-	<script src="app/services/authService.js?v=2"></script>
-	<script src="app/services/stateService.js?v=2"></script>
-	<script src="app/services/dateService.js?v=2"></script>
-	<script src="app/services/supplierService.js?v=2"></script>
-	<script src="app/services/plannerService.js?v=2"></script>
-	<script src="app/services/eventService.js?v=2"></script>
-	<script src="app/services/agendaService.js?v=2"></script>
+    <script src="https://cdn.pubnub.com/pubnub-3.7.21.js"></script>   
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>   
+    <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>                                  
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="node_modules/angular-loading-bar/build/loading-bar.min.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>
+    <script src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
+    <script src="bower_components/angular-progress-arc/angular-progress-arc.min.js"></script>
+    <script src="bower_components/ng-flow/dist/ng-flow-standalone.min.js"></script>
+    <script src="js/angular-local-storage.min.js"></script>
+    <script src="js/angular-multi-step-form.min.js"></script>
+    <script src="js/angular-locale_es-mx.js"></script>
+    <script src="js/checklist-model.js"></script>
+    <script src="js/vendor/ng-infinite-scroll.min.js"></script>
+    <script src="app.js"></script>                    
+
+    <!-- Services -->
+    <script src="app/services/authInterceptorService.js?v=2"></script>
+    <script src="app/services/authService.js?v=2"></script>
+    <script src="app/services/stateService.js?v=2"></script>
+    <script src="app/services/dateService.js?v=2"></script>
+    <script src="app/services/supplierService.js?v=2"></script>
+    <script src="app/services/plannerService.js?v=2"></script>
+    <script src="app/services/eventService.js?v=2"></script>
+    <script src="app/services/agendaService.js?v=2"></script>
     <script src="app/services/accountService.js?v=2"></script>
-
-	<!-- Controllers -->
-	<script src="app/controllers/indexController.js?v=2"></script>
-	<script src="app/controllers/homeController.js?v=2"></script>
-	<script src="app/controllers/loginController.js?v=2"></script>
-	<script src="app/controllers/signupController.js?v=2"></script>
-	<script src="app/controllers/signupPlannerController.js?v=2"></script>
-	<script src="app/controllers/eventsController.js?v=2"></script>
-	<script src="app/controllers/suppliersController.js?v=2"></script>
-	<script src="app/controllers/dashboardSupplierController.js?v=2"></script>
-	<script src="app/controllers/supplierAccountController.js?v=2"></script>
-	<script src="app/controllers/plannerController.js?v=2"></script>
-	<script src="app/controllers/eventDetailController.js?v=2"></script>
-	<script src="app/controllers/forgotPasswordController.js?v=2"></script>
+    
+    <!-- Controllers -->
+    <script src="app/controllers/indexController.js?v=2"></script>
+    <script src="app/controllers/homeController.js?v=2"></script>
+    <script src="app/controllers/loginController.js?v=2"></script>
+    <script src="app/controllers/signupController.js?v=2"></script>
+    <script src="app/controllers/signupPlannerController.js?v=2"></script>
+    <script src="app/controllers/eventsController.js?v=2"></script>
+    <script src="app/controllers/suppliersController.js?v=2"></script>
+    <script src="app/controllers/dashboardSupplierController.js?v=2"></script>
+    <script src="app/controllers/supplierAccountController.js?v=2"></script>
+    <script src="app/controllers/plannerController.js?v=2"></script>
+    <script src="app/controllers/eventDetailController.js?v=2"></script>
+    <script src="app/controllers/forgotPasswordController.js?v=2"></script>
     <script src="app/controllers/activateController.js?v=2"></script>
-	<script src="app/controllers/emailConfirmController.js?v=2"></script>
-	<script src="app/controllers/subscriptionController.js?v=2"></script>
-	<script src="app/controllers/plannerDataController.js?v=2"></script>
+    <script src="app/controllers/emailConfirmController.js?v=2"></script>
+    <script src="app/controllers/subscriptionController.js?v=2"></script>
+    <script src="app/controllers/plannerDataController.js?v=2"></script>
+    <script src="app/controllers/chatController.js?v=2"></script>
 
-	<!-- Directives -->
-	<script src="app/directives/mySupplierListDir.js?v=2"></script>
-	<script src="app/directives/compareToDir.js?v=2"></script>
-	<script src="app/directives/myAgendaDir.js?v=2"></script>
-	<script src="app/directives/myBudgetDir.js?v=2"></script>
-	<script src="app/directives/myGuestDir.js?v=2"></script>
-	<script src="app/directives/mySupplierDir.js?v=2"></script>
+    <!-- Directives -->
+    <script src="app/directives/mySupplierListDir.js?v=2"></script>
+    <script src="app/directives/compareToDir.js?v=2"></script>
+    <script src="app/directives/myAgendaDir.js?v=2"></script>
+    <script src="app/directives/myBudgetDir.js?v=2"></script>
+    <script src="app/directives/myGuestDir.js?v=2"></script>
+    <script src="app/directives/mySupplierDir.js?v=2"></script>       
+    <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
+     
 </html>

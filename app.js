@@ -8,7 +8,10 @@
         'angular-progress-arc',
         'angular-loading-bar',
         'ngFileUpload',
-        'infinite-scroll']);
+        'infinite-scroll',
+        "pubnub.angular.service",
+        "luegg.directives"
+    ]);
 
 app.config(function($routeProvider) {
 
@@ -51,6 +54,16 @@ app.config(function($routeProvider) {
         controller: "plannerDataController",
         templateUrl: "/app/views/planner-data.html"
     });
+    
+    $routeProvider.when("/planner/chat", {
+        controller: "chatController",
+        templateUrl: "/app/views/planner-chat.html"
+    });  
+    
+    $routeProvider.when("/supplier/chat", {
+        controller: "chatController",
+        templateUrl: "/app/views/supplier-chat.html"
+    });      
 
     $routeProvider.when("/suppliers", {
         templateUrl: "/app/views/suppliers.html"
@@ -299,6 +312,6 @@ app.config(function($httpProvider) {
     $httpProvider.interceptors.push('authInterceptorService');
 });
 
-app.run(['authService', function(authService) {
-    authService.fillAuthData();
-}]);
+app.run(['authService', function (authService) {
+        authService.fillAuthData();
+    }]);

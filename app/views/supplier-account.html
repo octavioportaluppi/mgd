@@ -1,11 +1,14 @@
 <div class="supplier" ng-cloak="">
-    <div class="col-md-4 col-sm-4 col-xs-12 menu-item odd"><a href="#/dashboard">Mi Perfil</a></div>
-    <div ng-class="{'active': isActive('/supplier/account')}" class="col-md-4 col-sm-4 col-xs-12 menu-item">
+    <div class="col-md-3 col-sm-3 col-xs-12 menu-item odd"><a href="#/dashboard">Mi Perfil</a></div>
+    <div ng-class="{'active': isActive('/supplier/account')}" class="col-md-3 col-sm-3 col-xs-12 menu-item">
         <a href="#/supplier/account">Mi Cuenta</a>
     </div>
-    <div class="col-md-4 col-sm-4 col-xs-12 menu-item">
+    <div class="col-md-3 col-sm-3 col-xs-12 menu-item">
         <a href="#/upgrade">Upgrade</a>
     </div>
+    <div class="col-md-3 col-sm-3 col-xs-12 menu-item odd">
+        <a href="#/supplier/chat">Chat</a>
+    </div>     
     <div class="pattern">
         <div class="container forgot-password" style="background-color: #ECECEC">
             <div class="col-md-8 col-md-offset-2">
@@ -22,13 +25,13 @@
                         <div class="col-md-12 col-md-offset-0">
                             <div class="form-group signup-field">
                                 <input
-                                        class="form-control"
-                                        name="oldPassword"
-                                        required=""
-                                        type="password"
-                                        placeholder="Contraseña actual"
-                                        ng-model="account.OldPassword"
-                                        ng-class="{'invalid':data.oldPassword.$error.required  && (data.$submitted || data.oldPassword.$touched)}"/>
+                                    class="form-control"
+                                    name="oldPassword"
+                                    required=""
+                                    type="password"
+                                    placeholder="Contraseña actual"
+                                    ng-model="account.OldPassword"
+                                    ng-class="{'invalid':data.oldPassword.$error.required && (data.$submitted || data.oldPassword.$touched)}"/>
                                 <div class="error" ng-show="data.$submitted || data.oldPassword.$touched">
                                     <div ng-show="data.oldPassword.$error.required">Dinos tu password actual.</div>
                                 </div>
@@ -37,13 +40,13 @@
                         <div class="col-md-12">
                             <div class="form-group signup-field">
                                 <input
-                                        class="form-control"
-                                        name="password"
-                                        required="required"
-                                        type="password"
-                                        placeholder="Nueva contraseña"
-                                        ng-model="account.NewPassword"
-                                        ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/>
+                                    class="form-control"
+                                    name="password"
+                                    required="required"
+                                    type="password"
+                                    placeholder="Nueva contraseña"
+                                    ng-model="account.NewPassword"
+                                    ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/>
                                 <div class="error" ng-show="data.$submitted || data.password.$touched">
                                     <div ng-show="data.password.$error.required">
                                         Elije una contraseña.
@@ -57,14 +60,14 @@
                         <div class="col-md-12">
                             <div class="form-group signup-field">
                                 <input
-                                        class="form-control"
-                                        name="passwordConfirm"
-                                        required="required"
-                                        type="password"
-                                        placeholder="Confirmar nueva contraseña"
-                                        ng-model="account.ConfirmPassword"
-                                        ng-class="{'invalid':(data.passwordConfirm.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.passwordConfirm.$touched)}"
-                                        compare-to="account.NewPassword"/>
+                                    class="form-control"
+                                    name="passwordConfirm"
+                                    required="required"
+                                    type="password"
+                                    placeholder="Confirmar nueva contraseña"
+                                    ng-model="account.ConfirmPassword"
+                                    ng-class="{'invalid':(data.passwordConfirm.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.passwordConfirm.$touched)}"
+                                    compare-to="account.NewPassword"/>
                                 <div class="error" ng-show="data.$submitted || data.passwordConfirm.$touched">
                                     <div ng-show="data.passwordConfirm.$error.required">Confirma la contraseña.</div>
                                     <div ng-show="data.passwordConfirm.$error.compareTo">Las contraseñas no coinciden.</div>
@@ -73,7 +76,7 @@
                         </div>
                         <div class="col-md-12 col-md-offset-0">
                             <button
-                                    class="btn btn-default btn-submit next pull-right">Cambiar</button>
+                                class="btn btn-default btn-submit next pull-right">Cambiar</button>
                         </div>
                     </div>
                 </form>
