@@ -134,17 +134,17 @@
 				<a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
 			</li>
 
-			<li ng-hide="authentication.isAuth" class="active">
-				<a href="#/login-supplier">Log-In</a>
-			</li>
-			<li ng-hide="authentication.isAuth" class="active">
-				<a href="" ng-click="signup()">REGÍSTRATE</a>
-			</li>
+            <li ng-hide="authentication.isAuth" class="active">
+                <a href="#/login-supplier">Log-In</a>
+            </li>
+            <li ng-hide="authentication.isAuth" class="active">
+                <a href="" ng-click="signup()">REGÍSTRATE</a>
+            </li>
 
-			<li ng-hide="!authentication.isAuth" class="active">
-				<a href="#/planner" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
-				<a href="#/dashboard" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
-			</li>
+            <li ng-hide="!authentication.isAuth" class="active">
+                <a href="#/planner" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
+                <a href="#/dashboard" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
+            </li>
 
 			<li ng-hide="!authentication.isAuth" class="active">
 				<a href="" ng-click="logOut()">CERRAR SESIÓN</a>
@@ -184,10 +184,12 @@
 			</div>
 		</footer>
 	</body>
+        <script src="https://cdn.pubnub.com/pubnub-3.7.21.js"></script>   
 	<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>   
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
@@ -214,7 +216,7 @@
 	<script src="app/services/plannerService.js?v=2"></script>
 	<script src="app/services/eventService.js?v=2"></script>
 	<script src="app/services/agendaService.js?v=2"></script>
-  <script src="app/services/accountService.js?v=2"></script>
+        <script src="app/services/accountService.js?v=2"></script>
 	<script src="app/services/contactService.js?v=2"></script>
 	<script src="app/services/wpService.js?v=2"></script>
 
@@ -232,11 +234,12 @@
 	<script src="app/controllers/plannerController.js?v=2"></script>
 	<script src="app/controllers/eventDetailController.js?v=2"></script>
 	<script src="app/controllers/forgotPasswordController.js?v=2"></script>
-  <script src="app/controllers/activateController.js?v=2"></script>
+        <script src="app/controllers/activateController.js?v=2"></script>
 	<script src="app/controllers/emailConfirmController.js?v=2"></script>
 	<script src="app/controllers/subscriptionController.js?v=2"></script>
 	<script src="app/controllers/plannerDataController.js?v=2"></script>
 	<script src="app/controllers/contactController.js?v=2"></script>
+        <script src="app/controllers/chatController.js?v=2"></script>
 
 	<!-- Directives -->
 	<script src="app/directives/mySupplierListDir.js?v=2"></script>
@@ -246,4 +249,5 @@
 	<script src="app/directives/myGuestDir.js?v=2"></script>
 	<script src="app/directives/mySupplierDir.js?v=2"></script>
 	<script src="app/directives/owlDir.js?v=2"></script>
+        <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
 </html>
