@@ -11,19 +11,19 @@
     </div>
     <!--chat container-->    
     <div class="row white-bg chat-container">
-        <div class="col-xs-1 col-sm-1 col-md-1"></div>
-        <div class="col-xs-4 col-sm-4 col-md-4 chat-border center-block">
+        <div class="col-sm-1 col-md-1"></div>
+        <div class="col-xs-12 col-sm-12 col-md-4 chat-border center-block">
             <div class="chat-title">
                 CHAT MI GRAN DIA   
             </div>
             <input type="text" placeholder="Buscar" class="search-chat form-control" ng-model="user.Username">
             <div class="chat-spacer"></div>
             <div class=" chat-conversation">
-                <div ng-repeat="user in objUsers | filter:user.Username | orderBy:'-Date'" class="row chat-user chat-active">                       
-                    <div class="col-md-1 col-xs-1 col-sm-1">
+                <div ng-repeat="user in objUsers | filter:user.Username | orderBy:'-Date'" ng-class="user.Id == activeRoom.Id?'chat-active':''" class="row chat-user">                       
+                    <div class="col-md-2 col-xs-2 col-sm-2 align-center">
                         <img class="chat-avatar" src="https://thesocietypages.org/socimages/files/2009/05/nopic_192.gif">
                     </div>
-                    <div class="col-md-7 col-xs-7 col-sm-7">
+                    <div class="col-md-6 col-xs-6 col-sm-6">
                         <span class="chat-username">{{user.Username}}</span>
                         <br>
                         <small class="chat-message">{{user.Message}}</small>
@@ -41,7 +41,7 @@
             </div>
 
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 chat-border">
+        <div class="col-xs-12 col-sm-12 col-md-6 chat-border">
             <div class="chat-title"> {{activeRoom.Name}}</div>            
             <section class="messages" id="messages" scroll-glue >
                 <div class="message" ng-repeat="m in messages">

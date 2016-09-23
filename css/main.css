@@ -1246,3 +1246,12 @@ nav.navbar.navbar-fixed-top {
   margin: 0 auto;
   max-width: 1212px;
 }
+
+.margin-40{
+    margin-top:40px;
+}
+
+.align-center{
+     margin: 0 auto;
+     text-align: center;
+}

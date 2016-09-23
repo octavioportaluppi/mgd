@@ -43,6 +43,17 @@ app.controller('chatController',
                                 $scope.init();
                                 $scope.history();
                             });
+                } else {
+                    $scope.planner = true;
+                    authService
+                            .getPlanner()
+                            .then(function (response) {
+                                $scope.loggedUser = response.data;
+                                $scope.uuid = $scope.loggedUser.Id;
+                                $scope.init();
+                                $scope.getPremiumSuppliers();
+
+                            });
                 }
 
                 $scope.init = function () {
@@ -121,8 +132,19 @@ app.controller('chatController',
                                     $scope.getChannelName(activeRoom);
                                     $scope.history();
                                 }
+                                
+                                if ($location.path() == '/planner/chat' || $location.path() == '/supplier/chat') {
+                                } else {
 
+                                    var params = $location.path().split('/');
+                                    supplierService
+                                            .getSupplier(params[3])
+                                            .then(function (response) {
+                                                $scope.changeRoom(response.data);
+                                            });
+                                }
                             });
+
                 };
 
                 $scope.sendMessage = function () {

@@ -60,6 +60,11 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/planner-chat.html"
     });  
     
+    $routeProvider.when("/planner/chat/:supplierId", {
+        controller: "chatController",
+        templateUrl: "/app/views/planner-chat.html"
+    });      
+    
     $routeProvider.when("/supplier/chat", {
         controller: "chatController",
         templateUrl: "/app/views/supplier-chat.html"
