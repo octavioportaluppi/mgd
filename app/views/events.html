@@ -23,6 +23,11 @@
 			</div>
 			<div class="col-md-9 col-xs-8">
 				<a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
+                                <div ng-show="supplier.SubscriptionType.Name=='All Star'" clasS="pull-right">
+                                    <a href="/#/planner/chat/{{supplier.Id}}">
+                                        <img class='supplier-chat' src='/img/chat-icon.png'>
+                                    </a>
+                                </div>
 				<span class="ligth-description">{{supplier.City.Name}}</span>
 				<span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
 				<span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>

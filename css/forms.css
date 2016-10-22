@@ -41,6 +41,12 @@ form .error {
     color: #ee3470;
 }
 
+form .error_contact {
+	position: absolute;
+    padding: 4px 0 0 13px;
+    color: #ee3470;
+}
+
 .signup-error {
     padding: 15px 0;
 }

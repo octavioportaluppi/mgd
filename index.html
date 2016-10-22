@@ -54,11 +54,7 @@
                     </li>                    
                     <li ng-hide="!authentication.isAuth">
                         <a href="" ng-click="logOut()">CERRAR SESIÓN</a>
-                    </li>
-                    <li ng-hide="!authentication.isAuth">
-                        <a class="active" href="#/planner/chat" ng-if="authentication.userType !== 'supplier'">MENSAJES</a>
-                        <a class="active" href="#/supplier/chat" ng-if="authentication.userType === 'supplier'">MENSAJES</a>
-                    </li>                    
+                    </li>                  
                     <li ng-hide="!authentication.isAuth">
                         <a href="#/planner" class="active" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
                         <a href="#/dashboard" class="active" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
@@ -85,8 +81,9 @@
                                             <a href="#" class="sub-menu-title">Tipo de evento</a>
                                             <div class="clearfix">
                                                 <ul>
-                                                    <li ng-repeat="item in navigationItems.EventTypeFilter"><a href="#/suppliers/event/{{ item.Title}}">{{ item.Title}}</a></li>
-                                                    <li><a href="#/suppliers/event">Más...</a></li>
+                                                    <li ng-repeat="item in navigationItems.EventTypeFilter">
+                                                        <a href="#/events/{{ item.Id}}">{{ item.Title}}</a></li>
+                                                    <li><a href="#/suppliers">Más...</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -99,7 +96,7 @@
                                                     <li><a href="#/suppliers/city/cdmx">CDMX</a></li>
                                                     <li><a href="#/suppliers/city/tijuana">Tijuana</a></li>
                                                     <li><a href="#/suppliers/city/monterrey">Monterrey</a></li>
-                                                    <li><a href="#/suppliers/city">Más...</a></li>
+                                                    <li><a href="#/suppliers">Más...</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -108,7 +105,7 @@
                                             <div class="clearfix">
                                                 <ul>
                                                     <li ng-repeat="item in navigationItems.ServiceTypeFilter"><a href="#/suppliers/service/{{ item.Title}}">{{ item.Title}}</a></li>
-                                                    <li><a href="#/suppliers/service">Más...</a></li>
+                                                    <li><a href="#/suppliers">Más...</a></li>
                                                 </ul>
                                             </div>
                                         </li>

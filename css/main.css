@@ -1255,3 +1255,18 @@ nav.navbar.navbar-fixed-top {
      margin: 0 auto;
      text-align: center;
 }
+
+.supplier-chat{
+    left: -20px;
+    position: relative;
+    top: -37px;
+}
+.chat-icon {
+  width: 19px !important;
+  padding-top: 6px;
+}
+
+.chat-icon2 {
+  width: 19px !important;
+  margin-top: -13px;
+}

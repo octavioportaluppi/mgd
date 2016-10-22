@@ -1,67 +1,94 @@
 <div class="contact-header">
-<p><img src="img/mail.png" alt="" /></p>
-<h2>Ponte en contacto<br>con nosotros</h2>
+    <p><img src="img/mail.png" alt="" /></p>
+    <h2>Ponte en contacto<br>con nosotros</h2>
 </div>
 <div class="contact">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 contact-container-left">
-        <h2>Contacto</h2>
-        <div class="clearfix contact-info">
-          <div class="phone">
-            <p>
-              <span>Hermosillo</span>
-              +1-202-555-0107
-            </p>
-            <p>
-              <span>Tijuana</span>
-              +1-202-555-0107
-            </p>
-            <p>
-              <span>Guadalajara</span>
-              +1-202-555-0107
-            </p>
-          </div>
-          <div class="social">
-            <p>
-              <span>Síguenos</span>
-              <i>fb/migrandia</i> <br>
-              <i>ig/migrandia</i> <br>
-              <i>tw/migrandia</i>
-            </p>
-          </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 contact-container-left">
+                <h2>Contacto</h2>
+                <div class="clearfix contact-info">
+                    <div class="phone">
+                        <p>
+                            <span>Hermosillo</span>
+                            +1-202-555-0107
+                        </p>
+                        <p>
+                            <span>Tijuana</span>
+                            +1-202-555-0107
+                        </p>
+                        <p>
+                            <span>Guadalajara</span>
+                            +1-202-555-0107
+                        </p>
+                    </div>
+                    <div class="social">
+                        <p>
+                            <span>Síguenos</span>
+                            <i>fb/migrandia</i> <br>
+                            <i>ig/migrandia</i> <br>
+                            <i>tw/migrandia</i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="contact-container-right">
+                    <h2>Envía un mensaje</h2>
+                    <form novalidate ng-cloak="" name='data' ng-if="!response">
+                        <p>
+                            <label for="contact-name" class="sr-only">Nombre</label>
+                            <input class="form-control" type="text" id="contact-name" name="contactName" placeholder="Nombre" ng-model="name"
+                                   ng-class="{'invalid':data.contactName.$error.required && (data.$submitted || data.contactName.$touched)}"
+                                   required  ng-disabled="loading">                                        
+                            <span class="error_contact" ng-show="data.$submitted || data.contactName.$touched">
+                                <span ng-show="data.contactName.$error.required">Dinos tu nombre.</span>                                    
+                            </span>                            
+                        </p>
+
+                        <p>
+                            <label for="contact-phone" class="sr-only">Teléfono</label>
+                            <input class="form-control" type="tel" required id="contact-phone" name="contactPhone" 
+                                   ng-class="{'invalid':data.contactPhone.$error.required && (data.$submitted || data.contactPhone.$touched)}"
+                                   placeholder="Teléfono" ng-model="phone" 
+                                   ng-disabled="loading">
+                            
+                            <span class="error" ng-show="data.$submitted || data.contactPhone.$touched">
+                                <span ng-show="data.contactPhone.$error.required">Dinos tu teléfono.</span>
+                            </span>               
+                        </p>
+                        <p>
+                            <label for="contact-email" class="sr-only">Email</label>
+                            <input class="form-control" type="email" id="contact-email" name="contactEmail" 
+                                   placeholder="E-mail" ng-model="email" required 
+                                   ng-class="{'invalid':(data.contactEmail.$error.required || data.contactEmail.$error.email) && (data.$submitted || data.contactEmail.$touched)}"
+                                   ng-disabled="loading">                            
+                            <span class="error" ng-show="data.$submitted || data.contactEmail.$touched">
+                                <span ng-show="data.contactEmail.$error.required">Dinos tu email.</span>
+                                <span ng-show="data.contactEmail.$error.email">El correo es incorrecto.</span>
+                            </span>                
+                        </p>
+                        <p>
+                            <label for="contact-message" class="sr-only">Mensaje</label>
+                            <textarea class="form-control" id="contact-message" name="contactMessage" rows="2" cols="40" 
+                                      ng-class="{'invalid':data.contactMessage.$error.required && (data.$submitted || data.contactMessage.$touched)}"
+                                      placeholder="Mensaje" ng-model="message" required ng-disabled="loading"></textarea>
+                            
+                            <span class="error" ng-show="data.$submitted || data.contactMessage.$touched">
+                                <span ng-show="data.contactMessage.$error.required">Dinos tu mensaje.</span>
+                            </span>                
+                        </p>
+                        <p class="submit-container">
+                            <img src="img/spin.svg" alt="loading" width="30" ng-if="loading"> 
+                            <button ng-click='contactSubmit(data)' type="submit" name="button" ng-disabled="loading">Enviar</button>
+                        </p>
+                    </form>
+                    <div class="contact-ok" ng-if="response">
+                        <p>
+                            Gracias por su mensaje!
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <div class="contact-container-right">
-          <h2>Envía un mensaje</h2>
-          <form ng-submit="contactSubmit()" ng-if="!response">
-            <p>
-              <label for="contact-name" class="sr-only">Nombre</label>
-              <input type="text" id="contact-name" name="contact-name" placeholder="Nombre" ng-model="name" required  ng-disabled="loading">
-            </p>
-            <p>
-              <label for="contact-name" class="sr-only">Teléfono</label>
-              <input type="tel" id="contact-phone" name="contact-phone" placeholder="Teléfono" ng-model="phone" ng-disabled="loading">
-            </p>
-            <p>
-              <label for="contact-email" class="sr-only">Email</label>
-              <input type="email" id="contact-email" name="contact-email" placeholder="E-mail" ng-model="email" required ng-disabled="loading">
-            </p>
-            <p>
-              <label for="contact-message" class="sr-only">Mensaje</label>
-              <textarea id="contact-message" name="contact-message" rows="2" cols="40" placeholder="Mensaje" ng-model="message" required ng-disabled="loading"></textarea>
-            </p>
-            <p class="submit-container">
-              <img src="img/spin.svg" alt="loading" width="30" ng-if="loading"> <button type="submit" name="button" ng-disabled="loading">Enviar</button>
-            </p>
-          </form>
-          <div class="contact-ok" ng-if="response">
-            <p>
-              Gracias por su mensaje!
-            </p>
-        </div>
-      </div>
     </div>
-  </div>
-</div>

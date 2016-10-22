@@ -1,7 +1,8 @@
 app.controller('chatController',
-        ['$scope', 'supplierService', 'Pubnub', 'authService', '$location', '$filter',
-            function ($scope, supplierService, Pubnub, authService, $location, $filter) {
+        ['$scope', 'supplierService', 'Pubnub', 'authService', '$location', '$filter', 'localStorageService',
+            function ($scope, supplierService, Pubnub, authService, $location, $filter, localStorageService) {
 
+                $scope.authData = localStorageService.get('authorizationData');
                 $scope.search = "";
                 $scope.rooms = [];
                 $scope.activeRoom = {};
@@ -22,45 +23,49 @@ app.controller('chatController',
 
                 $scope.today = day + "/" + month + "/" + year;
 
-
-                if ($location.path() == '/planner/chat') {
-                    $scope.planner = true;
-                    authService
-                            .getPlanner()
-                            .then(function (response) {
-                                $scope.loggedUser = response.data;
-                                $scope.uuid = $scope.loggedUser.Id;
-                                $scope.init();
-                                $scope.getPremiumSuppliers();
-                            });
-                } else if ($location.path() == '/supplier/chat') {
-                    $scope.planner = false;
-                    supplierService
-                            .getDashboard()
-                            .then(function (res) {
-                                $scope.loggedUser = res;
-                                $scope.uuid = $scope.loggedUser.Id;
-                                $scope.init();
-                                $scope.history();
-                            });
+                if ($scope.authData != null) {
+                    if ($location.path() == '/planner/chat') {
+                        $scope.planner = true;
+                        authService
+                                .getPlanner()
+                                .then(function (response) {
+                                    $scope.loggedUser = response.data;
+                                    $scope.uuid = $scope.loggedUser.Id;
+                                    $scope.init();
+                                    $scope.getPremiumSuppliers();
+                                });
+                    } else if ($location.path() == '/supplier/chat') {
+                        $scope.planner = false;
+                        supplierService
+                                .getDashboard()
+                                .then(function (res) {
+                                    $scope.loggedUser = res;
+                                    $scope.uuid = $scope.loggedUser.Id;
+                                    $scope.init();
+                                    $scope.history();
+                                });
+                    } else {
+                        $scope.planner = true;
+                        authService
+                                .getPlanner()
+                                .then(function (response) {
+                                    $scope.loggedUser = response.data;
+                                    $scope.uuid = $scope.loggedUser.Id;
+                                    $scope.init();
+                                    $scope.getPremiumSuppliers();
+                                });
+                    }
                 } else {
-                    $scope.planner = true;
-                    authService
-                            .getPlanner()
-                            .then(function (response) {
-                                $scope.loggedUser = response.data;
-                                $scope.uuid = $scope.loggedUser.Id;
-                                $scope.init();
-                                $scope.getPremiumSuppliers();
-
-                            });
+                    var params = $location.path().split('/');
+                    window.location = '/#/login-planner?path=' + $location.path()
                 }
+
 
                 $scope.init = function () {
 
                     Pubnub.init({
-                        publish_key: 'pub-c-07158f2c-d6e3-496b-8b90-8ce4f0016092',
-                        subscribe_key: 'sub-c-c1103168-74ba-11e6-86eb-0619f8945a4f',
+                        publish_key: 'pub-c-3e575060-6e2d-4f49-a3fc-f1357464a582',
+                        subscribe_key: 'sub-c-4fe1edee-6dd3-11e6-83fa-0619f8945a4f',
                         uuid: $scope.uuid
                     });
                     Pubnub.where_now({
@@ -132,7 +137,7 @@ app.controller('chatController',
                                     $scope.getChannelName(activeRoom);
                                     $scope.history();
                                 }
-                                
+
                                 if ($location.path() == '/planner/chat' || $location.path() == '/supplier/chat') {
                                 } else {
 

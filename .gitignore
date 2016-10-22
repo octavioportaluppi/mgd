@@ -4,3 +4,4 @@ app/npm-debug.log
 *.iml
 node_modules/.bin/**
 *.log
+/nbproject/private/

@@ -46,6 +46,11 @@
             </div>
             <div class="col-md-9 col-xs-8">
                 <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
+                <div ng-show="supplier.SubscriptionType.Name=='All Star'" clasS="pull-right">
+                    <a href="/#/planner/chat/{{supplier.Id}}">
+                        <img class='supplier-chat' src='/img/chat-icon.png'>
+                    </a>
+                </div>
                 <span class="ligth-description">{{supplier.City.Name}}</span>
                 <span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
                 <span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
@@ -55,7 +60,7 @@
                     <div class="row">
                         <div class="col-md-8 col-sm-8 col-xs-8">
                             <span class="premium-service" ng-repeat="service in supplier.ServiceTypes">
-                                <i class="{{service.Name | icon}}"></i>
+                                <i class="{{service.Name| icon}}"></i>
                                 {{service.Name}}
                             </span>
                         </div>
@@ -75,7 +80,7 @@
             <uib-accordion close-others="true">
                 <uib-accordion-group ng-repeat="filterKey in getFilterNames()">
                     <uib-accordion-heading>
-                        {{filterKey | filterKey}}
+                        {{filterKey| filterKey}}
                         <i class="pull-right glyphicon glyphicon-chevron-right"></i>
                     </uib-accordion-heading>
                     <ul>

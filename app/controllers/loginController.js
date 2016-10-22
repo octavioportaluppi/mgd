@@ -22,11 +22,12 @@ app.controller('loginController',
             });
     };
 
-    $scope.checkAccount = function(accountType, state) {
+    $scope.checkAccount = function(accountType, state) {      
+        console.log(state);
         accountService
             .accountInfo()
-            .then(function (response) {
-                if(response.data.Role === accountType) {
+            .then(function (response) {                
+                if(response.data.Role === accountType) {                    
                     $location.path(state);
                 } else {
                     authService.logOut();
@@ -35,16 +36,21 @@ app.controller('loginController',
             });
     };
 
-    $scope.loginPlanner = function () {
+    $scope.loginPlanner = function () {        
         authService
             .login($scope.loginData, 'planner')
             .then(
-            function () {
-                $scope.checkAccount('Planner', '/planner');
+            function () {                    
+                if($location.$$search.path!==undefined && $location.$$search.path!=''){                              
+                    $scope.checkAccount('Planner', $location.$$search.path);
+                }else{                   
+                    $scope.checkAccount('Planner', '/planner');
+                }
             },
             function (err) {
                 $scope.message = err.error_description;
             });
+            
     };
 
     $scope.authExternalProvider = function (provider) {

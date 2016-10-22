@@ -41,12 +41,11 @@
                     ng-class="{'filled': supplier.Rating > 0}"
                     ng-click="vote(1)"></i>
                 <span class="pull-left">Rating</span>
-            </p>
-            <button class="btn btn-default btn-submit"
-                    ng-disabled="true">
+            </p>            
+            <a ng-show="supplier.SubscriptionType.Name=='All Star'" href='/#/planner/chat/{{supplier.Id}}' class="btn btn-default">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
                 Enviar Mensaje
-            </button>
+            </a>
         </div>
         <div class="col-md-2 social">
             <a ng-href="{{supplier.FacebookUrl}}"

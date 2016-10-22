@@ -13,7 +13,7 @@
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div
-                        ng-repeat="supplier in suppliers | filter: suppliersFilter"
+                        ng-repeat="supplier in suppliers| filter: suppliersFilter"
                         class="list-item clearfix">
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <a href="#/suppliers/{{supplier.Id}}">
@@ -29,12 +29,13 @@
                                     <span class="ligth-description" ng-if="supplier.Phone"> , {{supplier.Address}}</span>
                                     <span class="ligth-description" ng-if="supplier.Phone"> | {{supplier.Phone}}</span>
                                 </div>
-                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                <div class="col-md-4 col-sm-4 col-xs-4">                                  
                                     <button class="btn btn-fav pull-right"
                                             ng-class="{'subscribed':isTacked(supplier.Id)}"
                                             ng-click="event.enabled && tackSupplier(supplier.Id)">
                                         <i class="fa fa-thumb-tack"></i>
-                                    </button>
+                                    </button>                                    
+
                                     <button class="btn btn-fav pull-right"
                                             ng-if="!isSubscribed(supplier.Id)"
                                             ng-click="event.enabled && subscribe(supplier.Id)">
@@ -45,6 +46,10 @@
                                             ng-click="event.enabled && unsubscribe(supplier.Id)">
                                         <i class="fa fa-heart"></i>
                                     </button>
+
+                                    <a ng-show="supplier.SubscriptionType.Name == 'All Star'" class="btn btn-fav pull-right" href="/#/planner/chat/{{supplier.Id}}">
+                                        <img class='chat-icon' src='/img/chat-icon.png'>
+                                    </a>                                      
                                 </div>
                             </div>
                             <div class="col-md-12 col-xs-12 col-sm-12">
@@ -71,7 +76,7 @@
                     ng-repeat="item in services"
                     ng-click="getSuppliersByService(item.Id)">
                     <div style="background-color: #C0C0C0; border-radius: 3px; padding: 10px 7px; cursor: pointer;">
-                        <span class="{{item.Name | icon }}"></span>
+                        <span class="{{item.Name| icon }}"></span>
                         {{item.Name}}
                     </div>
                 </div>
@@ -92,12 +97,12 @@
                         <span class="empty-suppliers-title">No existen proveedores para el servicio seleccionado</span>
                     </div>
                     <div
-                            ng-repeat="supplier in availableSuppliers | filter: availableFilter"
-                            ng-if="availableSuppliers.length > 0"
-                            class="list-item clearfix row"
-                            infinite-scroll='nextPage()'
-                            infinite-scroll-disabled='loading'
-                            infinite-scroll-distance='1000'>
+                        ng-repeat="supplier in availableSuppliers| filter: availableFilter"
+                        ng-if="availableSuppliers.length > 0"
+                        class="list-item clearfix row"
+                        infinite-scroll='nextPage()'
+                        infinite-scroll-disabled='loading'
+                        infinite-scroll-distance='1000'>
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <a href="#/suppliers/{{supplier.Id}}">
                                 <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
@@ -171,10 +176,14 @@
                             ng-click="event.enabled && unsubscribe(supplier.Id)">
                         <i class="fa fa-heart"></i>
                     </button>
+                    
+                    <a class="btn btn-fav pull-right" href="/#/planner/chat/{{supplier.Id}}">
+                        <img class='chat-icon2' src='/img/chat-icon.png'>
+                    </a>                     
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <span class="premium-service" ng-repeat="service in supplier.ServiceTypes">
-                        <i class="{{service.Name | icon}}"></i>
+                        <i class="{{service.Name| icon}}"></i>
                         {{service.Name}}
                     </span>
                 </div>
