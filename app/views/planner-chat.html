@@ -42,7 +42,7 @@
         <div class="col-xs-12 col-sm-12 col-md-5 chat-border">
             <div class="chat-title"> {{activeRoom.Name}}</div>            
             <section  scroll-glue class="messages" id="messages">
-                <div class="message" ng-repeat="m in messages">
+                <div class="message" ng-repeat="m in messages | unique:'date'">
                     <span ng-show="m.hasOwnProperty('sender_uuid') && m.hasOwnProperty('content') && (m.sender_uuid == loggedUser.Id || m.sender_uuid == activeRoom.Id)" ng-class="m.sender_uuid == loggedUser.Id ? 'globe-purple' : 'globe-green'">
                         {{m.content}}
                     </span>                     

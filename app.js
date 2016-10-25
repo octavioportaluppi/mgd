@@ -10,7 +10,8 @@
         'ngFileUpload',
         'infinite-scroll',
         "pubnub.angular.service",
-        "luegg.directives"
+        "luegg.directives",
+        "angular.filter"
     ]);
 
 app.config(function($routeProvider) {
