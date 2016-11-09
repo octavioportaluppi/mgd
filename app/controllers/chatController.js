@@ -77,6 +77,7 @@ app.controller('chatController',
                             //console.log(m);
                         }
                     });
+                    $scope.getUnreadMessagesCount();
                 };
 
                 $scope.subscribe = function (channel, saveMessages) {
@@ -367,4 +368,35 @@ app.controller('chatController',
                     $scope.getChannelName(user);
                     $scope.history(true);
                 };
+
+                $scope.getUnreadMessagesCount = function(){
+                  lastseen = new Date();
+                  var result = 0;
+                  Pubnub.history({
+                      channel: $scope.loggedUser.Id,
+                      callback: function (m) {
+
+                              m[0].reverse();
+                              $.each(m[0], function (i, el) {
+                                      if (el.content !== undefined) {
+                                          if (el.hasOwnProperty('message')) {
+                                              //$scope.objUsers[cont].Date = new Date(el.date);
+                                              //$scope.objUsers[cont].DateFilter = $filter('date')($scope.objUsers[cont].Date, "dd/MM/yyyy");
+                                              if (el.date > lastseen){
+                                                result++;
+
+                                              }
+                                              console.log("paso! "+el.date)
+                                          }
+                                      }
+                              });
+
+                      },
+                      count: 100,
+                      reverse: false
+                  });
+                  return result;
+                };
+
+
             }]);

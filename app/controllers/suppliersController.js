@@ -20,12 +20,12 @@ app.controller('suppliersController',
                     .then(function (res) {
                         $scope.supplier = res.data;
                         if ($scope.supplier.LogoId > 0)
-                            $scope.supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + $scope.supplier.LogoId + '/Image';
+                            $scope.supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + $scope.supplier.LogoId + '/Image?thumbnail=true';
                         var id = 0;
                         res.data.Pictures
                             .forEach(function (pic) {
                                 var elem = {
-                                    img: ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + pic.Id + '/Image',
+                                    img: ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + pic.Id + '/Image?thumbnail=false',
                                     id: id++
                                 };
 

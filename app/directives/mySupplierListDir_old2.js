@@ -1,20 +1,12 @@
 'use strict';
 
-var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService', '$filter', '$location',
-    function ($scope, supplierService, ngAuthSettings, stateService, $filter, $location){
+var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'stateService', '$filter',
+    function ($scope, supplierService, ngAuthSettings, stateService, $filter){
 
     $scope.size = 5;
     $scope.page = 1;
-    //$scope.filter = $scope.filter || undefined;
-
-
-    $scope.filtersSelected = [
-      {name:'EventTypeId', value: $location.$$search.e},
-      {name:'ServiceTypeId', value: $location.$$search.s},
-      {name:'CityId', value: $location.$$search.c}
-    ];
+    $scope.filter = $scope.filter || undefined;
     $scope.query = $scope.query || undefined;
-
 
     $scope.getSuppliers = function (){
         $scope.loading = true;
@@ -22,16 +14,14 @@ var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'st
             .getAllSuppliers(
             $scope.size,
             $scope.page,
-            $scope.filtersSelected,
+            $scope.filter,
             $scope.query,
-            $scope.CityId,
-            $scope.orderSeed)
+            $scope.CityId)
             .success(function (response){
                 $scope.loading = false;
                 $scope.totalSuppliers = response.TotalResults;
                 $scope.filters = response.QueryFilterInfo;
                 $scope.totalPages = response.TotalPages;
-                $scope.orderSeed = response.OrderSeed;
                 $scope.suppliers = response.Content;
                 $scope.suppliers.forEach(function(supplier){
                     if (supplier.LogoId > 0)
@@ -46,10 +36,9 @@ var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'st
             .getAllSuppliers(
             $scope.size,
             $scope.page,
-            $scope.filtersSelected,
+            $scope.filter,
             $scope.query,
-            $scope.CityId,
-            $scope.orderSeed)
+            $scope.CityId)
             .success(function (response){
                 $scope.loading = false;
                 $scope.suppliers = $scope.suppliers.concat(response.Content);
@@ -60,8 +49,7 @@ var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'st
             })
     };
 
-    //$scope.getSuppliers();
-
+    $scope.getSuppliers();
 
     $scope.nextPage = function(){
         if($scope.page == $scope.totalPages){
@@ -85,43 +73,15 @@ var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'st
 
     $scope.doFilter = function(filterKey, filter){
         $scope.page = 1;
-        if (filterKey) //if there is no filter key defined it's because it's an initial load
-        {
-          var currentFilter = $scope.getFilterByName(filterKey.replace('Filter', 'Id'))
-          //$scope.filtersSelected = {name: filterKey.replace('Filter', 'Id'), value: filter.Id };
-          if (currentFilter != null) {
-            currentFilter.value = filter.Id;
-          }
-        }
+        $scope.filter = {name: filterKey.replace('Filter', 'Id'), value: filter.Id };
         $scope.getSuppliers();
     };
 
-    $scope.getFilterByName = function(propertyValue) {
-        var i=0, len=$scope.filtersSelected.length;
-        for (; i<len; i++) {
-            if (collection[i]["Name"] == +propertyValue) {
-                return $scope.filtersSelected[i];
-            }
-        }
-        return null;
-    }
-
-    $scope.clearAllFilters = function() {
-        var i=0, len=$scope.filtersSelected.length;
-        for (; i<len; i++) {
-                $scope.filtersSelected[i] == null;
-        }
-    }
-
     $scope.doQuery = function(){
-        //query string is set in the UI
         $scope.page = 1;
-        $scope.filtersSelected = undefined;
+        $scope.filter = undefined;
         $scope.getSuppliers();
     }
-
-
-    $scope.doFilter();
 }];
 
 app.directive('mySupplierList', function() {

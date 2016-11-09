@@ -51,10 +51,10 @@
                     </li>
                     <li ng-hide="authentication.isAuth">
                         <a href="#/login-planner" class="active">Log-In</a>
-                    </li>                    
+                    </li>
                     <li ng-hide="!authentication.isAuth">
                         <a href="" ng-click="logOut()">CERRAR SESIÓN</a>
-                    </li>                  
+                    </li>
                     <li ng-hide="!authentication.isAuth">
                         <a href="#/planner" class="active" ng-if="authentication.userType !== 'supplier'">Hola, {{authentication.Email}}</a>
                         <a href="#/dashboard" class="active" ng-if="authentication.userType === 'supplier'">Hola, {{authentication.Email}}</a>
@@ -69,8 +69,9 @@
                         class="enterprise">
                         <a href="#/login-supplier" ng-if="authentication.userType != 'supplier'">Empresas</a>
                     </li>
+                    <li><a href="#/planner" ng-class="{'active': isActive('/planner')}" ng-if="authentication.userType !== 'supplier'">Mis Eventos</a></li>
                     <li><a href="#/contact">Contacto</a></li>
-                    <li><a href="#/planner" ng-class="{'active': isActive('/planner')}" ng-if="authentication.userType !== 'supplier'">Ideas</a></li>
+                    <li><a href="http://blog.migrandia.mx">Blog</a></li>
                     <li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a>
                         <div class="arrow-down"></div>
                         <ul class="sub-menu">
@@ -82,21 +83,18 @@
                                             <div class="clearfix">
                                                 <ul>
                                                     <li ng-repeat="item in navigationItems.EventTypeFilter">
-                                                        <a href="#/events/{{ item.Id}}">{{ item.Title}}</a></li>
-                                                    <li><a href="#/suppliers">Más...</a></li>
+                                                        <a href="#/suppliers/browse/event/{{ item.Id}}">{{ item.Name}}</a></li>
+                                                    <li><a href="#/suppliers/browse/all">Más...</a></li>
                                                 </ul>
                                             </div>
                                         </li>
                                         <li class="col-md-4">
-                                            <a href="#" class="sub-menu-title">En Donde?</a>
+                                            <a href="#" class="sub-menu-title">¿En Dónde?</a>
                                             <div class="clearfix">
                                                 <ul>
-                                                    <li><a href="#/suppliers/city/hermosillo">Hermosillo</a></li>
-                                                    <li><a href="#/suppliers/city/guadalajara">Guadalajara</a></li>
-                                                    <li><a href="#/suppliers/city/cdmx">CDMX</a></li>
-                                                    <li><a href="#/suppliers/city/tijuana">Tijuana</a></li>
-                                                    <li><a href="#/suppliers/city/monterrey">Monterrey</a></li>
-                                                    <li><a href="#/suppliers">Más...</a></li>
+                                                  <li ng-repeat="item in navigationItems.CityFilter">
+                                                    <a href="#/suppliers/browse/city/{{ item.Id}}">{{ item.Name}}</a></li>
+                                                    <li><a href="#/suppliers/browse/all">Más...</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -104,8 +102,9 @@
                                             <a href="#" class="sub-menu-title">Servicios</a>
                                             <div class="clearfix">
                                                 <ul>
-                                                    <li ng-repeat="item in navigationItems.ServiceTypeFilter"><a href="#/suppliers/service/{{ item.Title}}">{{ item.Title}}</a></li>
-                                                    <li><a href="#/suppliers">Más...</a></li>
+                                                    <li ng-repeat="item in navigationItems.ServiceTypeFilter">
+                                                      <a href="#/suppliers/browse/service/{{ item.Id}}">{{ item.Name}}</a></li>
+                                                    <li><a href="#/suppliers/browse/all">Más...</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -124,7 +123,7 @@
         </div>
         <ul class="responsive-menu" uib-collapse="isCollapsed" ng-cloak="">
             <li ng-class="{'active': isActive('/suppliers')}"><a href="#/suppliers">Proveedores</a></li>
-            <li ng-class="{'active': isActive('/planner')}"><a href="#/planner">Ideas</a></li>
+            <!--<li ng-class="{'active': isActive('/planner')}"><a href="#/planner">Ideas</a></li>-->
             <li><a href="#/contact">Contacto</a></li>
             <li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
                 class="enterprise">
@@ -185,13 +184,13 @@
             </div>
         </footer>
     </body>
-    <script src="https://cdn.pubnub.com/pubnub-3.7.21.js"></script>   
+    <script src="https://cdn.pubnub.com/pubnub-3.7.21.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
-    <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>   
+    <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
@@ -229,7 +228,7 @@
     <script src="app/controllers/loginController.js?v=2"></script>
     <script src="app/controllers/signupController.js?v=2"></script>
     <script src="app/controllers/signupPlannerController.js?v=2"></script>
-    <script src="app/controllers/eventsController.js?v=2"></script>
+    <script src="app/controllers/SupplierEventTypeController.js?v=2"></script>
     <script src="app/controllers/suppliersController.js?v=2"></script>
     <script src="app/controllers/dashboardSupplierController.js?v=2"></script>
     <script src="app/controllers/supplierAccountController.js?v=2"></script>
@@ -242,6 +241,9 @@
     <script src="app/controllers/plannerDataController.js?v=2"></script>
     <script src="app/controllers/contactController.js?v=2"></script>
     <script src="app/controllers/chatController.js?v=2"></script>
+    <script src="app/controllers/SupplierCityController.js?v=2"></script>
+    <script src="app/controllers/SupplierServiceTypeController.js?v=2"></script>
+    <script src="app/controllers/SupplierAllController.js?v=2"></script>
 
     <!-- Directives -->
     <script src="app/directives/mySupplierListDir.js?v=2"></script>

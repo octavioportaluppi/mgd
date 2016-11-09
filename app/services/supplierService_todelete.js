@@ -6,7 +6,7 @@ app.factory('supplierService',
     var supplierServiceFactory = {};
 
     var _suppliers = [];
-
+    
     var _getDashboard = function () {
         var deferred = $q.defer();
 
@@ -16,7 +16,7 @@ app.factory('supplierService',
             deferred.reject(err);
         });
 
-        return deferred.promise;
+        return deferred.promise;        
     };
 
     var _getServices = function () {
@@ -99,9 +99,9 @@ app.factory('supplierService',
                 });
     };
 
-    var getAllSuppliers = function (max, page, filter, query, orderSeed) {
+    var getAllSuppliers = function (max, page, filter, query, cityId) {
 
-        var params = createFilters(max, page, filter, query, orderSeed);
+        var params = createFilters(max, page, filter, query, cityId);
 
         return $http
             .get(serviceBase + 'api/suppliers',
@@ -113,19 +113,17 @@ app.factory('supplierService',
             .get(serviceBase + 'api/suppliers/' + id)
     };
 
-    var createFilters = function(max, page, filter, query, orderSeed){
+    var createFilters = function(max, page, filter, query, cityId){
         var params = {};
         params.size = max || 5;
         params.page = page || 1;
         if(filter)
-        {
-          for (var i = 0; i<filter.length; i++)
-            params[filter[i].name] = filter[i].value;
-        }
+            params[filter.name] = filter.value;
         if(query)
             params.Query = query;
-
-        params.OrderSeed = orderSeed;
+        if(cityId)
+            params.CityId = cityId;
+        params.OrderSeed = 1;
         return params;
     };
 
@@ -151,7 +149,7 @@ app.factory('supplierService',
         return $http.get(serviceBase + 'api/eventtypes');
     };
 
-
+   
     var _getPremiumSuppliers = function (max, page, filter, query, cityId) {
 
         var params = createFilters(max, page, filter, query, cityId);
@@ -164,25 +162,17 @@ app.factory('supplierService',
     var _vote = function (supplierId, vote) {
         return $http.put(serviceBase + 'api/suppliers/' + supplierId + '/votes', {Rating: vote});
     };
-
+    
     var _getSupplier = function(supplierId){
         return $http.get(serviceBase + 'api/suppliers/' + supplierId);
     };
 
-    var _getLastSeen = function(){
-        return $http.get(serviceBase + 'api/suppliers/lastseen');
-    };
-
-    var _saveLastSeen = function(){
-        return $http.put(serviceBase + 'api/suppliers/lastseen');
-    }
-
     supplierServiceFactory.getDashboard = _getDashboard;
     supplierServiceFactory.getEvents = _getEvents;
-    supplierServiceFactory.getServices = _getServices;
-    supplierServiceFactory.getEventServices = _getEventServices;
-    supplierServiceFactory.getSuppliers = _getSuppliers;
-    supplierServiceFactory.suppliers = _suppliers;
+    supplierServiceFactory.getServices = _getServices;    
+    supplierServiceFactory.getEventServices = _getEventServices; 
+    supplierServiceFactory.getSuppliers = _getSuppliers;   
+    supplierServiceFactory.suppliers = _suppliers;   
     supplierServiceFactory.getSuppliersByEvent = getSuppliersByEvent;
     supplierServiceFactory.getAllSuppliers = getAllSuppliers;
     supplierServiceFactory.updateSuppliersService = updateSuppliersService;
@@ -193,8 +183,6 @@ app.factory('supplierService',
     supplierServiceFactory.saveQuestions = saveQuestions;
     supplierServiceFactory.getSuppliersById = getSuppliersById;
     supplierServiceFactory.vote = _vote;
-    supplierServiceFactory.getLastSeen = _getLastSeen;
-    supplierServiceFactory.saveLastSeen = _saveLastSeen;
 
     supplierServiceFactory.getPremiumSuppliers = _getPremiumSuppliers;
     supplierServiceFactory.getSupplier = _getSupplier;

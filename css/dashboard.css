@@ -38,12 +38,16 @@ ul > li {
 .supplier .social {
     text-align: center;
 }
-
+.social i {
+    font-style: normal;
+    font-size: 19px;
+}
 .supplier .social a {
     color: #818181;
     font-size: 2.3rem;
     text-align: center;
     display: block;
+    margin-bottom: 5px;
 }
 
 .supplier .social a:hover {
@@ -129,15 +133,15 @@ ul > li {
 }
 
 .chat-title{
-    text-align: center;   
+    text-align: center;
     height: 45px;
-    border-bottom: 1px solid #ececec; 
+    border-bottom: 1px solid #ececec;
     margin-bottom: 10px;
 }
 .white-bg{
     background-color: #fff;
-    border: 1px solid #ececec; 
-    border-bottom: 0px;    
+    border: 1px solid #ececec;
+    border-bottom: 0px;
 }
 
 .search-chat{
@@ -147,9 +151,21 @@ ul > li {
     margin-left: 5px;
 }
 
+.chat-message-box{
+    background-color: #F1F2F2;
+    color: #818181;
+    letter-spacing: 2px;
+}
+
 .chat-border{
-    padding: 15px !important;
-    border: 1px solid #ececec; 
+    padding: 30px 15px 0px 15px !important;
+    border: 1px solid #ececec;
+    min-height: 505px;
+    background: #fff;
+}
+
+.chat-border .active-room{
+    font-weight: 600;
 }
 
 .chat-spacer{
@@ -161,9 +177,14 @@ ul > li {
     border-top: 1px solid #ececec;
 }
 
+.available-suppliers{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 418px;
+}
 .chat-supplier{
     padding-top: 5px;
-    padding-bottom: 5px;  
+    padding-bottom: 5px;
 }
 .chat-supplier:hover{
     background-color: #F1F2F2;
@@ -184,7 +205,7 @@ ul > li {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    padding: 5px;  
+    padding: 5px 15px;
     margin-bottom: 5px;
     display: inline-block;
     color:#FFF;
@@ -193,6 +214,7 @@ ul > li {
     word-wrap: break-word;
     float: left;
     clear:both;
+    letter-spacing: 1px;
 }
 
 .globe-purple{
@@ -200,7 +222,7 @@ ul > li {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
-    padding: 5px;  
+    padding: 5px 15px;
     margin-bottom: 5px;
     display: inline-block;
     color:#FFF;
@@ -210,6 +232,7 @@ ul > li {
     max-width: 95%;
     text-align: right;
     word-wrap: break-word;
+    letter-spacing: 1px;
 }
 .chat-user{
     padding-right: 10px;
@@ -219,13 +242,13 @@ ul > li {
     margin-left: -15px;
 }
 .messages, .chat-conversation{
-    height: 342px;
+    height: 364px;
     overflow-x: hidden;
-    overflow-y: scroll;    
+    overflow-y: scroll;
 }
 
 .chat-container{
-    min-height: 280px;    
+    min-height: 565px;
 }
 
 .chat-username{
@@ -234,23 +257,42 @@ ul > li {
 }
 
 .btn-send{
-    margin-top: 5px;
-    padding: 2px 25px;
+    padding: 5px 20px;
 
     background-color: #ceafd2;
     color: #fff;
     float: right;
-    margin-right: 20px;
 
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    
+
     margin-bottom: 5px;
     display: inline-block;
-    clear:both;    
+    clear:both;
 }
 .form-send{
     margin-top: 10px;
 }
+
+.dashboard-service {
+  margin: 0 !important;
+  font-size: 1em;
+background: #cecece;
+color: #818181;
+border-radius: 5px !important;
+text-align: left;
+}
+
+ .dashboard-faq{
+       margin: 0 0 20px 0;
+ }
+
+ .dashboard-faq .dashboard-question {
+   font-weight: 600;
+ }
+
+ .dashboard-faq p{
+       letter-spacing: 1px;
+ }

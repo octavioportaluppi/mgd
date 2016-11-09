@@ -8,7 +8,7 @@
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12 menu-item odd">
         <a href="#/supplier/chat">Chat</a>
-    </div>    
+    </div>
     <div class="container gray-bg">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="frame header clearfix">
@@ -61,12 +61,11 @@
                 <div ng-if="!editAboutMe">
                     <div class="col-md-5 col-sm-5 col-xs-12">
                         <div class="info-group">
-                            <p class="address">{{supplier.Address | firstLetter }}</p>
-                            <p class="address">{{supplier.City.Name | firstLetter}}, {{supplier.State.Name | firstLetter}}</p>
-                        </div>
-                        <div class="info-group">
-                            <p class="phone">{{supplier.Phone | tel}}</p>
+                            <p class="phone"><i class="glyphicon glyphicon-phone"></i> {{supplier.Phone | tel}}</p>
+                            <p class="address"><i class="glyphicon glyphicon-pushpin"></i> {{supplier.Address | firstLetter }}</p>
+                            <p class="address"><i class="glyphicon glyphicon-globe"></i> {{supplier.City.Name | firstLetter}}, {{supplier.State.Name | firstLetter}}</p>
                             <p>
+                              <i class="glyphicon glyphicon-time"></i>
                                 {{supplier.OpeningHours.DayFrom | day}} a
                                 {{supplier.OpeningHours.DayTo | day}} de
                                 {{supplier.OpeningHours.HoursTo}}hs a
@@ -99,7 +98,7 @@
                 <div ng-if="editServices">
                     <div class="col-md-6 col-sm-6 col-xs-12"
                          ng-repeat="item in serviceTypes">
-                        <label class="btn btn-default"  ng-class="{'active': haveItem(item.Id)}">
+                        <label class="btn btn-default dashboard-service"  ng-class="{'active': haveItem(item.Id)}">
                             <input
                                     type="checkbox"
                                     checklist-model="dashboard.ServiceTypes"
@@ -116,7 +115,7 @@
                 <div ng-if="!editServices">
                     <div class="col-md-6 col-sm-6 col-xs-12"
                          ng-repeat="item in dashboard.ServiceTypes">
-                        <label class="btn btn-default active">
+                        <label class="btn btn-default active  dashboard-service">
                             <span class="{{item.Name | icon}}"></span>
                             {{item.Name}}
                         </label>
@@ -125,7 +124,7 @@
             </div>
             <div class="clearfix">
                 <div class="col-md-10 col-sm-10 col-xs-12">
-                    <h2 class="sub-title">DETALLES</h2>
+                    <h2 class="sub-title">PREGUNTAS FRECUENTES</h2>
                 </div>
                 <button
                         class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12"
@@ -136,10 +135,10 @@
             </div>
             <div class="register-panel frame clearfix">
                 <div
-                    class="col-md-12 col-sm-12 col-xs-12"
+                    class="col-md-12 col-sm-12 col-xs-12 dashboard-faq"
                     ng-repeat="answer in answers"
                     ng-if="!editAnswers">
-                    <p>{{answer.Question.Text}}</p>
+                    <p class="dashboard-question">{{answer.Question.Text}}</p>
                     <p>{{answer.Text}}</p>
                 </div>
                 <form
@@ -147,8 +146,8 @@
                     novalidate="novalidate"
                     class="form-group"
                     ng-if="editAnswers">
-                    <div class="signup-field" ng-repeat="answer in answers">
-                        <label>{{answer.Question.Text}}</label>
+                    <div class="signup-field  dashboard-faq" ng-repeat="answer in answers">
+                        <label class="dashboard-question">{{answer.Question.Text}}</label>
                         <input
                             class="form-control"
                             name="{{answer.Question.Id}}"
@@ -189,34 +188,33 @@
                     <div style="text-align: center;" class="pull-left">
                         <div ng-repeat="pic in getNumber(supplier.MaxPics) track by $index" class="pull-left">
 
-                        <img class="default-image"
-                             src="img/photo-placeholder.jpg"
-                             ng-if="!supplier.Pictures[$index] && !supplier.newPic[$index]"
-                             ngf-select
-                             ng-model="supplier.newPic[$index]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
+                          <img class="default-image"
+                               src="img/photo-placeholder.jpg"
+                               ng-if="!supplier.Pictures[$index] && !supplier.newPic[$index]"
+                               ngf-select
+                               ng-model="supplier.newPic[$index]"
+                               accept="image/*"
+                               ngf-max-size="1MB"/>
 
-                        <img class="default-image"
-                             ng-src="{{supplier.Pictures[$index].src}}"
-                             ngf-select
-                             accept="image/*"
-                             ng-if="supplier.Pictures[$index].src && !supplier.newPic[$index]"
-                             ng-model="supplier.newPic[$index]"
-                             ngf-max-size="2MB"/>
-
-                        <img ng-if="supplier.newPic[$index]"
-                             ngf-thumbnail="supplier.newPic[$index]"
-                             class="default-image pull-left"
-                             ngf-select
-                             ng-model="supplier.newPic[$index]"
-                             accept="image/*"
-                             ngf-max-size="2MB"/>
+                          <img class="default-image"
+                               ng-src="{{supplier.Pictures[$index].src}}"
+                               ngf-select
+                               accept="image/*"
+                               ng-if="supplier.Pictures[$index].src && !supplier.newPic[$index]"
+                               ng-model="supplier.newPic[$index]"
+                               ngf-max-size="1MB"/>
+                          <img ng-if="supplier.newPic[$index]"
+                               ngf-thumbnail="supplier.newPic[$index]"
+                               class="default-image pull-left"
+                               ngf-select
+                               ng-model="supplier.newPic[$index]"
+                               accept="image/*"
+                               ngf-max-size="1MB"/>
                         </div>
                     </div>
                     <div class="signup-field col-md-12 col-sm-12 col-xs-12">
                         <button ng-click="updatePics()" class="btn btn-default btn-submit pull-left" >Guardar</button>
-                        <button ng-click="reload()" class="btn btn-default pull-right">Cancelar</button>
+                        <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
                     </div>
                 </div>
             </div>

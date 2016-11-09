@@ -17,11 +17,11 @@
 	<div class="events">
 		<div class="content">
 			<div class="col-md-3 col-sm-3 events-item" ng-repeat="event in getEvents()">
-				<a href="#/events/{{event.Id}}" class="event-icon">
+				<a href="#/suppliers/browse/event/{{event.Id}}" class="event-icon">
 					<div class="{{event.Name | lowercase}}" ></div>
 					<!--<img src="img/icons-org/{{event.Name | icon}}.png" />-->
 				</a>
-				<a href="#/events/{{event.Id}}"><h2 class="event-name">{{event.Name}}</h2></a>
+				<a href="#/suppliers/browse/event/{{event.Id}}"><h2 class="event-name">{{event.Name}}</h2></a>
 			</div>
 		</div>
 	</div>
@@ -36,15 +36,15 @@
 					<div owl-carousel-item class="supplier-item-container" ng-repeat="supplier in suppliers">
 						<div class="supplier-item">
 							<a href="#/suppliers/{{supplier.Id}}" class="supplier-item-img">
-									<img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl" class="img-responsive"/>
+									<img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl" class="img-responsive default-logo"/>
 									<img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl" class="img-responsive"/>
 									<div class="supplier-item-star-container">
 										<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 									</div>
 							</a>
 							<div class="supplier-item-info-container">
-								<div class="supplier-item-service-type" ng-if="supplier.ServiceTypes[0].Name">
-									{{supplier.ServiceTypes[0].Name}}
+								<div class="supplier-item-service-type">
+									{{supplier.ServiceTypes[0].Name}}<span ng-if="!supplier.ServiceTypes[0].Name">&nbsp;</span>
 								</div>
 								<div class="supplier-item-info">
 									<h3>{{supplier.Name}}</h3>
@@ -82,7 +82,7 @@
 						<p>{{wpPost.plainContent | limitTo: 150}}</p>
 						<p class="ideas-item-info-meta">
 							{{wpPost.author.data.name}} | {{wpPost.date | date}}
-						</p>						
+						</p>
 					</div>
 				</div>
 

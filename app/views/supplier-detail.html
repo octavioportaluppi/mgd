@@ -1,6 +1,6 @@
 <div class="supplier">
     <div class="container" style="padding: 60px 0 40px 0" ng-cloak="">
-        <div class="col-md-2">
+        <div class="col-md-2 supplier-pic">
             <img class="avatar img-circle" src="img/photo-placeholder.jpg" ng-if="supplier.LogoId < 0"/>
             <img class="avatar img-circle" src="{{supplier.LogoUrl}}" ng-if="supplier.LogoId > 0"/>
         </div>
@@ -8,14 +8,20 @@
             <h1 class="index-title">{{supplier.Name}}</h1>
             <div class="service-container">
                 <span class="premium-service" ng-repeat="service in supplier.ServiceTypes">
-                    <i class="{{service.Name | icon}}"></i>
-                    {{service.Name}}
+                  <a href='/#/suppliers/browse/service/{{service.Id}}' title='{{service.Name}}'><i class="{{service.Name | icon}}"></i>
+                  {{service.Name}}</a>
                 </span>
             </div>
         </div>
         <div class="col-md-4">
-            <p class="address">{{supplier.Address | firstLetter }}</p>
-            <p class="address">{{supplier.City.Name | firstLetter}},{{supplier.State.Name | firstLetter}}</p>
+            <p class="address"><i class="glyphicon glyphicon-earphone"></i> {{supplier.Phone}}</p>
+            <div class="info">
+              <i class="glyphicon glyphicon-pushpin" style="vertical-align:top;"></i>
+              <div style="display:inline-block;">
+                <p class="address">{{supplier.Address | firstLetter }}</p>
+                <p class="address">{{supplier.City.Name | firstLetter}}, {{supplier.State.Name | firstLetter}}</p>
+              </div>
+            </div>
             <p style="cursor: pointer;">
                 <span style="color: #aed136" ng-if="isOpen()">Open now</span>
             </p>
@@ -41,7 +47,7 @@
                     ng-class="{'filled': supplier.Rating > 0}"
                     ng-click="vote(1)"></i>
                 <span class="pull-left">Rating</span>
-            </p>            
+            </p>
             <a ng-show="supplier.SubscriptionType.Name=='All Star'" href='/#/planner/chat/{{supplier.Id}}' class="btn btn-default">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
                 Enviar Mensaje

@@ -25,6 +25,7 @@ app.controller('dashboardSupplierController',
 		$scope.editServices = false;
 		$scope.editAboutMe = false;
 		$scope.editAnswers = false;
+		$scope.editPics = false;
 		supplierService
 			.getDashboard()
 			.then(function(res) {
@@ -49,11 +50,11 @@ app.controller('dashboardSupplierController',
 					})
 					.map(function (pic) {
 						var result = {};
-						result.src = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image';
+						result.src = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image?thumbnail=true';
 						result.id = pic.Id;
 						return result;
 				});
-				$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image';
+				$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image?thumbnail=true';
 				supplierService
 					.getAnswers()
 					.then(function (response){
@@ -65,7 +66,7 @@ app.controller('dashboardSupplierController',
 					});
 		});
 	};
-    
+
 	function getProgress() {
 		$scope.value = 0;
         if($scope.dashboard.ServiceTypes.length !== 0){
@@ -232,4 +233,3 @@ app.controller('dashboardSupplierController',
 	};
 
 }]);
-

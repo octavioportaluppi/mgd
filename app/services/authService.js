@@ -85,7 +85,7 @@ app.factory('authService', ['$http', '$q', 'localStorageService', 'ngAuthSetting
         var deferred = $q.defer();
 
         $http.post(serviceBase + 'token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-            console.log(response);
+            
             localStorageService.set('authorizationData', { token: response.access_token, Email: loginData.Email, userType: type });
             _authentication.isAuth = true;
             _authentication.Email = loginData.Email;

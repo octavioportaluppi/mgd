@@ -49,7 +49,7 @@ var mySupplierController = ['$scope', 'eventService', 'supplierService', 'ngAuth
                     $scope.availableSuppliers = $scope.availableSuppliers.concat(response.data.Content);
                     $scope.availableSuppliers .forEach(function(supplier) {
                         if (supplier.LogoId > 0)
-                            supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image';
+                            supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image?thumbnail=true';
                     });
                     $scope.totalPages = response.data.TotalPages;
                     $scope.addNew = true;

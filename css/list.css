@@ -1,16 +1,31 @@
 .list-header {
-	margin: 100px 0 30px 0;
-	padding: 20px;
-	background: #cecece; 
-	border-radius: 5px;
+	margin: 20px 0 10px 0;
+
+
+}
+
+.suppliers-header{
+	    background-color: #8B4194;
+}
+
+.events-header{
+	border-radius: 7px;
+	margin-top: 90px;
+	background: url(../img/mi_gran_dia_pattern.png) #ddd;
+	border: 1px solid #ddd;
+}
+}
+
+.events-header .first-line	{
+
 }
 
 .list-header a,
 .list-header h4,
 .list-item a,
 .list-item h4{
-	padding: 5px 0 0 0; 
-	font-weight: 600; 
+	padding: 5px 0 0 0;
+	font-weight: 600;
 	color: #818181;
 	text-transform: uppercase;
 	display: block;
@@ -18,25 +33,34 @@
 }
 
 .list-header h4 {
-	display: inline;
-	float: left;
+color: #fff;
+}
+
+.events-header h4 {
+color: #858;
 }
 
 .list-header .span-header {
-	padding: 5px 10px;
-	color: #FFF;
-	background: #818181;
-	border-radius: 5px;
-	margin: 8px;
-	display: inline;
-	float: left;
+    padding: 5px 10px;
+    color: #FFF;
+    background: #818181;
+    border-radius: 5px;
+    margin: 8px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.list-header i{
+	font-size: 50px;
+  color: #fff;
+	line-height: 70px;
 }
 
 .list-item {
-	background: #ffffff; 
-	border-radius: 5px; 
-	border: 1px #cecece solid; 
-	padding: 15px 0; 
+	background: #ffffff;
+	border-radius: 5px;
+	border: 1px #cecece solid;
+	padding: 15px 0;
 	margin: 20px 0;
 }
 
@@ -73,7 +97,7 @@
 }
 
 .list-nav {
-	padding: 20px 0; 
+	padding: 0;
 	list-style: none;
 	display: inline-block;
 }
@@ -113,18 +137,21 @@
 }
 
 .search {
-	position: fixed;
-	z-index: 1;
-	background: rgba(0,0,0,0.5);
-	padding: 20px 0;
+    z-index: 1;
+    background: url(../img/mi_gran_dia_pattern.png) #efefef;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px 15px 15px;
 }
 
 .search input, .search select {
-	background: none;
-	color: rgba(255,255,255,0.3);
-	padding: 5px;
-	border: none;
-	font-size: 1.9rem;
+	background: #888;
+	    color: #fff;
+	    padding: 5px 7px;
+	    font-size: 1.9rem;
+	    width: 100%;
+	    border-radius: 4px;
+	    border: none;
 }
 
 .search select option {
@@ -134,9 +161,15 @@
 
 .search .btn-search {
 	color: #fff;
-	background: #858;
-	padding: 5px;
-	line-height: 30px;
+	    background: #858;
+	    padding: 5px;
+	    line-height: 26px;
+	    width: 100%;
+}
+
+.search .button-nomargin{
+	margin:0;
+	padding: 0;
 }
 
 .search ::-moz-placeholder {
@@ -154,14 +187,14 @@
 }
 
 .filter-list {
-	background: #cecece;
-	border: 1px #cecece solid;
-	border-radius: 4px 4px 0 0;
-	padding: 15px;
-	margin: 20px 0 0 0;
-	font-weight: 600;
-	color: #818181;
-	text-align: center;
+	background: #eee;
+	 border: 1px #cecece solid;
+	 border-radius: 4px 4px 0 0;
+	 padding: 15px;
+	 margin: 20px 0 0 0;
+	 font-weight: 600;
+	 color: #818181;
+	 text-align: center;
 }
 
 .panel-default > .panel-heading {
@@ -197,7 +230,7 @@
 }
 
 .panel-body li {
-	padding: 5px;
+	padding: 7px 15px;
 }
 
 .panel-body li a{
@@ -205,16 +238,16 @@
 }
 
 .panel-body span {
-	padding: 2px 4px;
+	padding: 4px 7px;
 	color: #818181;
-	background: #cecece;
+	background: #ededed;
 	border-radius: 5px;
-	margin: 0 0 0 3px;
+	margin: 0 0 0 7px;
 	font-size: 1rem;
 }
 
 .panel-body li:hover {
-	background: #cecece;
+	background: #e1e1e1;
 }
 
 .list-item .btn-fav {
@@ -231,4 +264,45 @@
 
 .list-item .btn-fav.subscribed:hover {
 	color: #818181;
+}
+
+.listing-service a {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: normal;
+    text-transform: none;
+    padding: 0px 1px;
+}
+
+.remove-filters {
+	font-weight: normal;
+    color: #fff !important;
+    background: #ee3470;
+    padding: 0px 4px 1px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.remove-filters i {
+	color:#fff !important;
+	font-size: 10px;
+}
+.panel-group .panel{
+	border-radius: 0px !important;
+}
+
+.search form {
+	width:50%;
+}
+
+.list-header .content {
+	text-align: center;
+}
+.pattern-purple {
+	background: url(../img/pattern-full.jpg) repeat;
+}
+
+a.accordion-toggle:focus{
+	outline: none;
+text-decoration: none;
 }

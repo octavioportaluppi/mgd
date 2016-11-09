@@ -1,25 +1,24 @@
 <div class="supplier" ng-cloak="">
-    <div class="col-xs-12 col-sm-3 col-md-3 menu-item odd"><a href="#/planner">Mis eventos</a></div>
-    <div class="col-xs-12 col-sm-3 col-md-3 menu-item">
-        <a href="#/planner/account">Mi Cuenta</a>
-    </div>
-    <div class="col-xs-12 col-sm-3 col-md-3 menu-item odd">
-        <a href="#/planner/data">Mis Datos</a>
-    </div>    
-    <div class="col-xs-12 col-sm-3 col-md-3 menu-item active">
-        <a href="#/planner/chat">Chat</a>
-    </div>
-    <!--chat container-->    
-    <div class="row white-bg chat-container">
-        <div class="col-sm-1 col-md-1"></div>
+  <div class="col-md-3 col-sm-3 col-xs-12 menu-item"><a>Mi Perfil</a></div>
+  <div class="col-md-3 col-sm-3 col-xs-12 menu-item odd">
+      <a href="#/supplier/account">Mi Cuenta</a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 menu-item">
+      <a href="#/upgrade">Upgrade</a>
+  </div>
+  <div class="col-md-3 col-sm-3 col-xs-12 menu-item active">
+      <a href="#/supplier/chat">Chat</a>
+  </div>
+    <!--chat container-->
+    <div class="white-bg chat-container">
         <div class="col-xs-12 col-sm-12 col-md-4 chat-border center-block">
             <div class="chat-title">
-                CHAT MI GRAN DIA   
+                MIS CONVERSACIONES
             </div>
             <input type="text" placeholder="Buscar" class="search-chat form-control" ng-model="user.Username">
             <div class="chat-spacer"></div>
             <div class=" chat-conversation">
-                <div ng-repeat="user in objUsers | filter:user.Username | orderBy:'-Date'" ng-class="user.Id == activeRoom.Id?'chat-active':''" class="row chat-user">                       
+                <div ng-repeat="user in objUsers | filter:user.Username | orderBy:'-Date'" ng-class="user.Id == activeRoom.Id?'chat-active':''" class="row chat-user">
                     <div class="col-md-2 col-xs-2 col-sm-2 align-center">
                         <img class="chat-avatar" src="https://thesocietypages.org/socimages/files/2009/05/nopic_192.gif">
                     </div>
@@ -29,39 +28,38 @@
                         <small class="chat-message">{{user.Message}}</small>
                     </div>
                     <div class="col-md-4 col-xs-4 col-sm-4">
-                        <span ng-show="today == user.DateFilter">                
-                            <small>{{user.Date| date:'HH:mm a'}}</small>
+                        <span ng-show="today == user.DateFilter">
+                            <small>{{user.Date| date:'HH:mm'}}</small>
                         </span>
 
                         <span ng-show="today != user.DateFilter">
-                            <small>{{user.Date| date:'dd/MM/yyyy  HH:mm a'}}</small>
-                        </span>                   
-                    </div>               
-                </div>  
+                            <small>{{user.Date| date:'dd/MM/yyyy  HH:mm'}}</small>
+                        </span>
+                    </div>
+                </div>
             </div>
 
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 chat-border">
-            <div class="chat-title"> {{activeRoom.Name}}</div>            
+        <div class="col-xs-12 col-sm-12 col-md-8 chat-border">
+            <div class="chat-title active-room"> {{activeRoom.Name}}</div>
             <section class="messages" id="messages" scroll-glue >
                 <div class="message" ng-repeat="m in messages | unique:'date'">
                     <span ng-show="m.hasOwnProperty('sender_uuid') && m.hasOwnProperty('content') && (m.sender_uuid == loggedUser.Id || m.sender_uuid == activeRoom.Id)" ng-class="m.sender_uuid == loggedUser.Id ? 'globe-purple' : 'globe-green'">
                         {{m.content}}
-                    </span>                     
-                </div>              
-            </section>            
+                    </span>
+                </div>
+            </section>
 
             <form class="form-send" role="form" ng-submit="sendMessage()">
                 <div class="row">
-                    <div class="col-xs-11 col-sm-11 col-md-11">                
-                        <input ng-model="messageContent" type="text" class="form-control messageContent" placeholder="Escribe un mensaje">                                    
+                    <div class="col-xs-10 col-sm-10 col-md-10">
+                        <input ng-model="messageContent" type="text" class="form-control messageContent chat-message-box" placeholder="Escribe un mensaje">
                     </div>
-                    <div class="col-xs-1 col-sm-1 col-md-1">
-                        <button type="submit" class="btn btn-send">Send</button>
+                    <div class="col-xs-2 col-sm-2 col-md-2">
+                        <button type="submit" class="btn btn-send chat-send">Send</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="col-xs-1 col-sm-1 col-md-1"></div>
-    </div>    
+    </div>
 </div>

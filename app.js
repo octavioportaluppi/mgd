@@ -55,24 +55,20 @@ app.config(function($routeProvider) {
         controller: "plannerDataController",
         templateUrl: "/app/views/planner-data.html"
     });
-    
+
     $routeProvider.when("/planner/chat", {
         controller: "chatController",
         templateUrl: "/app/views/planner-chat.html"
-    });  
-    
+    });
+
     $routeProvider.when("/planner/chat/:supplierId", {
         controller: "chatController",
         templateUrl: "/app/views/planner-chat.html"
-    });      
-    
+    });
+
     $routeProvider.when("/supplier/chat", {
         controller: "chatController",
         templateUrl: "/app/views/supplier-chat.html"
-    });      
-
-    $routeProvider.when("/suppliers", {
-        templateUrl: "/app/views/suppliers.html"
     });
 
     $routeProvider.when("/suppliers/:supplierId",{
@@ -87,12 +83,32 @@ app.config(function($routeProvider) {
 
     $routeProvider.when("/planner", {
         controller: "plannerController",
-        templateUrl: "/app/views/planner.html"
+        templateUrl:  "/app/views/planner.html"
     });
 
-    $routeProvider.when("/events/:eventId", {
-        controller: "eventsController",
-        templateUrl: "/app/views/events.html"
+    $routeProvider.when("/suppliers/browse/all", {
+        controller: "SupplierAllController",
+        templateUrl: "/app/views/suppliers-all.html"
+    });
+
+    $routeProvider.when("/suppliers/browse/event/:eventId", {
+        controller: "SupplierEventTypeController",
+        templateUrl: "/app/views/suppliers-event.html"
+    });
+
+    $routeProvider.when("/suppliers/browse/service/:serviceId", {
+        controller: "SupplierServiceTypeController",
+        templateUrl: "/app/views/suppliers-service.html"
+    });
+
+    $routeProvider.when("/suppliers/browse/state/:stateId", {
+        controller: "SupplierStateeController",
+        templateUrl: "/app/views/suppliers-state.html"
+    });
+
+    $routeProvider.when("/suppliers/browse/city/:cityId", {
+        controller: "SupplierCityController",
+        templateUrl: "/app/views/suppliers-city.html"
     });
 
     $routeProvider.when("/welcome", {
@@ -291,9 +307,10 @@ app.filter('tel', function () {
         }
 
         var values = [
-            { id: 'CityFilter', key: 'Estado' },
             { id: 'EventTypeFilter', key: 'Tipo de Evento' },
-            { id: 'ServiceTypeFilter', key: 'Tipo de Servicio' }
+            { id: 'ServiceTypeFilter', key: 'Tipo de Servicio' },
+            { id: 'CityFilter', key: 'Ciudad' },
+            { id: 'StateFilter', key: 'Estado' }
         ];
 
         var result = values.find(function (it){return it.id == source});
@@ -326,4 +343,3 @@ app.config(function($httpProvider) {
 app.run(['authService', function(authService) {
     authService.fillAuthData();
 }]);
-

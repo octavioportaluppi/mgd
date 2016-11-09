@@ -2,6 +2,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    letter-spacing: 3px;
 }
 
 .planner-nav li {
@@ -47,7 +48,7 @@
 }
 
 .planner-list .list-item p {
-    margin: 0;
+    margin: 5px 0px;
     padding: 0;
 }
 
@@ -75,8 +76,19 @@
 }
 
 .planner-list .event-form {
-    padding: 20px 0 0 0;
-    border-top: 1px solid rgb(192, 192, 192);
+  padding: 20px 20px 2px 20px;
+border-top: 1px solid #ccc;
+}
+
+.planner-list .event-form .calendar-btn{
+
+background-color: #fff;
+}
+
+.planner-list .item-icon{
+  background: #eee;
+    padding: 6px 5px 5px 5px;
+border-radius: 20px;
 }
 
 .planner-list .form-horizontal .btn-default {
@@ -510,6 +522,10 @@
     .planner-suppliers .btn-fav {
         margin:0 0 10px 10px;
     }
+
+    .planner-list {
+    min-height: 600px;
+    }
 }
 
 
@@ -538,4 +554,55 @@
 
 .list-item .premium-service i {
     font-size: 1.5rem;
+}
+
+.uib-datepicker i {
+  font-size: 24px;
+  color: inherit;
+  line-height: inherit;
+}
+
+.no-events {
+  font-size: 16px;
+color: #999;
+margin-top: 27px;
+background: #eee;
+padding: 5px 10px;
+border-radius: 6px;
+text-align: center;
+}
+
+.event-detail-header {
+text-align: center;
+background: url('../img/mi_gran_dia_pattern.png') #ddd;
+min-height: 340px;
+}
+
+.event-detail-header .text h1 {
+  font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
+      font-size: 4rem;
+      margin: 0 0 10px 0;
+      font-weight: 900;
+      text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+.event-detail-header .event-detail-icon i {
+  font-size: 55px;
+background-color: #858;
+border-radius: 80px;
+padding: 17px 10px;
+color: #fff;
+}
+
+.event-detail-header .event-detail-icon {
+  margin:50px 0px 25px;
+}
+
+.event-detail-header .event-detail-caption {
+  margin: 5px 0px 0px;
+font-size: 18px;
+color: #858;
 }

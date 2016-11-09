@@ -17,6 +17,10 @@
     font-size: 2rem;
 }
 
+.supplier .supplier-pic {
+  text-align: center;
+}
+
 .supplier .vote.filled,
 .supplier .vote:hover {
     color: #aed136;
@@ -48,6 +52,27 @@
     display: inline-block;
 }
 
+.supplier .premium-service a {
+  color:#fff;
+  font-size: 13px;
+  letter-spacing: 0px;
+}
+.supplier .premium-service a:hover {
+  color:#fff;
+}
 .supplier .premium-service i {
     font-size: 1.5rem;
+}
+
+.supplier .info {
+  margin-bottom: 3px;
+}
+
+.supplier .info i {
+  vertical-align: top;
+    margin-top: 3px;
+}
+
+.chat-send {
+  width: 100%;
 }

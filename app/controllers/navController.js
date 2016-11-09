@@ -1,5 +1,6 @@
 'use strict';
-app.controller('navController', ['$scope', '$location', 'authService', 'supplierService', function ($scope, $location, authService, supplierService) {
+app.controller('navController', ['$scope', '$location', 'authService', 'supplierService', 'stateService',
+function ($scope, $location, authService, supplierService, stateService) {
 
   $scope.navigationItems = {
     CityFilter: [],
@@ -8,13 +9,24 @@ app.controller('navController', ['$scope', '$location', 'authService', 'supplier
   };
 
   $scope.init = function() {
+
     supplierService
-      .getAllSuppliers()
+      .getEvents()
       .then(function(res) {
-        $scope.navigationItems = res.data.QueryFilterInfo;
-        $scope.navigationItems.EventTypeFilter = res.data.QueryFilterInfo.EventTypeFilter.slice(0, 5);
-        $scope.navigationItems.ServiceTypeFilter = res.data.QueryFilterInfo.ServiceTypeFilter.slice(0, 5);
+        $scope.navigationItems.EventTypeFilter = res.data.slice(0, 5);
       });
+
+      supplierService
+        .getServices()
+        .then(function(res) {
+          $scope.navigationItems.ServiceTypeFilter = res.data.slice(0, 5);
+        });
+
+        stateService
+          .getAllCities()
+          .then(function(res) {
+            $scope.navigationItems.CityFilter = res.data.slice(0, 5);
+        });
   }
 
   $scope.init();

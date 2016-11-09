@@ -1,12 +1,13 @@
 <ul class="planner-nav col-md-12 col-sm-12 col-xs-12" ng-cloak="">
-    <li class="active col-md-3 col-sm-3 col-xs-12" ng-class="{'active': isActive('/planner')}"><a>mis eventos</a></li>
-    <li class="col-md-3 col-sm-3 col-xs-12"><a href="#/planner/account">mi cuenta</a></li>
-    <li class="col-md-3 col-sm-3 col-xs-12 odd"><a href="#/planner/data">mis datos</a></li>
-    <li class="col-md-3 col-sm-3 col-xs-12"><a href="#/planner/chat">chat</a></li>
+    <li class="active col-md-3 col-sm-3 col-xs-12 menu-item" ng-class="{'active': isActive('/planner')}"><a>mis eventos</a></li>
+    <li class="col-md-3 col-sm-3 col-xs-12 menu-item"><a href="#/planner/account">mi cuenta</a></li>
+    <li class="col-md-3 col-sm-3 col-xs-12 odd menu-item"><a href="#/planner/data">mis datos</a></li>
+    <li class="col-md-3 col-sm-3 col-xs-12 menu-item"><a href="#/planner/chat">chat</a></li>
 </ul>
 <div class="container planner-list" ng-cloak="">
-    <div class="list-header clearfix">
-        <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="list-header events-header clearfix">
+        <div class="first-line pattern-purple">
+          <div class="col-md-6 col-sm-6 col-xs-12">
             <h4>Eventos Recientes</h4>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -14,6 +15,7 @@
                 class="btn btn-default btn-submit pull-right"
                 ng-click="formCollapsed = !formCollapsed">CREAR NUEVO EVENTO</button>
         </div>
+      </div>
         <div class="col-md-12 event-form" uib-collapse="formCollapsed">
             <form class="form-horizontal" name="eventForm" form-step-validity="form-step-validity" novalidate>
                 <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
@@ -74,7 +76,7 @@
                                     popup-placement="top-right"
                                     ng-class="{'invalid':eventForm.date.$error.required && (eventForm.$submitted || eventForm.date.$touched)}"
                                     dropdown-append-to-body="dropdown-append-to-body"/>
-                            <div class="input-group-btn">
+                            <div class="input-group-btn calendar-btn">
                                 <button class="btn btn-input" type="button" ng-click="datepicker.opened = !datepicker.opened">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </button>
@@ -139,6 +141,7 @@
         </div>
     </div>
 
+<div ng-if="events.length == 0" class="no-events">No has creado eventos aun. Haz click en "Crear nuevo evento" para comenzar!</div>
     <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="list-item clearfix"
             ng-repeat="event in events">
@@ -150,10 +153,10 @@
                 <div class="col-md-6 col-sm-6 col-xs-12 row event-buttons pull-right">
                     <button class="btn btn-defasult btn-submit pull-right" ng-click="showEdit(event)"><i class="fa fa-pencil"></i></button>
                     <button class="btn btn-defasult btn-submit pull-right" ng-click="event.delete = !event.delete;"><i class="fa fa-trash"></i></button>
-                    <a class="btn btn-defasult btn-more-info pull-right" href="#/events/{{event.Id}}/detail">MAS INFORMACION</a>
+                    <a class="btn btn-defasult btn-more-info pull-right" href="#/events/{{event.Id}}/detail">MAS INFORMACIÓN</a>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12 row delete-form" uib-collapse="!event.delete">
-                    <p>¿Esta seguro de eliminar este evento?</p>
+                    <p>¿Estás seguro de eliminar este evento?</p>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <button class="btn btn-defasult btn-submit" ng-click="delete(event)">
                             Borrar
@@ -166,13 +169,14 @@
                 </div>
                 <div class="divider col-md-12 col-sm-12 col-xs-12"></div>
                 <div class="col-md-6 col-sm-6 col-xs-6 row">
-                    <p class="ligth-description">Fecha: {{event.Date | date: 'dd MMMM, yyyy hh:mm a'}}</p>
-                    <p class="ligth-description">Invitados: {{event.GuestsCount}}</p>
+                    <p class="ligth-description"><i class="glyphicon glyphicon-calendar item-icon"></i> Fecha: {{event.Date | date: 'dd MMMM, yyyy hh:mm a'}}</p>
+                    <p class="ligth-description"><i class="glyphicon glyphicon-user item-icon"></i> Invitados: {{event.GuestsCount}}</p>
+                    <p class="ligth-description"><i class="glyphicon glyphicon-heart item-icon"></i> Proveedores guardados: {{event.SuppliersCount}}</p>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
-                    <p class="ligth-description">Limite de presupuesto: {{event.Budget}} MXN</p>
-                    <p class="ligth-description">Presupuesto gastado: {{event.Budget - event.AvailableBudget}} MXN</p>
-                    <p class="ligth-description">Proveedores guardados: {{event.SuppliersCount}}</p>
+                    <p class="ligth-description"><i class="glyphicon glyphicon-usd item-icon"></i> Límite de presupuesto: {{event.Budget}} MXN</p>
+                    <p class="ligth-description"><i class="glyphicon glyphicon-shopping-cart item-icon"></i> Presupuesto gastado: {{event.Budget - event.AvailableBudget}} MXN</p>
+                    <p class="ligth-description"><i class="glyphicon glyphicon-scale item-icon"></i> Presupuesto disponible: {{event.AvailableBudget}} MXN</p>
                 </div>
             </div>
             <div ng-if="event.edit">
@@ -305,7 +309,7 @@
 
     </div>
 
-    <div class="col-md-4 col-sm-12 col-xs-12">
+    <div class="col-md-4 col-sm-12 col-xs-12" ng-if="pastEvents.length > 0">
         <div class="filter-list clearfix row">
             <span>PASADOS</span>
         </div>

@@ -8,6 +8,7 @@ body {
     z-index: 4;
     top: 0;
     width: 100%;
+    border-bottom: 1px solid #efefef;
 }
 .main-nav {
   position: relative;
@@ -65,17 +66,17 @@ body {
     cursor: not-allowed;
 }
 
-.main-nav .main-menu .enterprise a{
-  border: 2px #858 solid;
-  background: #FFF;
-  padding: 8px 16px 3px;
-  color: #858;
-  line-height: 1;
-  margin-right: 71px;
-  margin-left: 32px;
-  border-radius: 4px;
-  letter-spacing: normal;
-  display: block;
+.main-nav .main-menu .enterprise a {
+    border: 2px #858 solid;
+    background: #FFF;
+    padding: 6px 16px 6px;
+    color: #858;
+    line-height: 18px;
+    margin-right: 71px;
+    margin-left: 32px;
+    border-radius: 4px;
+    letter-spacing: normal;
+    display: block;
 }
 
 .main-nav .floating-menu .active {
@@ -87,11 +88,11 @@ body {
 
 .main-nav .main-menu {
     float: left;
-    margin-left: 69px;
+    margin-left: 20px;
 }
 
 .main-nav .main-menu li {
-    margin: 0 37px;
+    margin: 0 31px;
     padding: 34px 0;
 }
 
@@ -123,12 +124,12 @@ body {
     cursor: not-allowed;
 }
 
-.main-nav .main-menu a,
-.responsive-menu a {
+.main-nav .main-menu a, .responsive-menu a {
     color: #818181;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-style: 16px;
+    line-height: 32px;
 }
 
 .navbar-toggle {
@@ -147,12 +148,12 @@ body {
 }
 @media only screen and (max-width: 1180px) {
   .main-nav .main-menu li{
-    margin: 0 30px;   
+    margin: 0 30px;
   }
 }
 @media only screen and (max-width: 1130px) {
   .main-nav .main-menu li{
-    margin: 0 15px;   
+    margin: 0 15px;
   }
 }
 @media only screen and (max-width: 760px) {
@@ -175,7 +176,7 @@ body {
 
     body { padding-top: 100px; }
 
-    
+
 }
 
 @media only screen and (min-width: 768px) {
@@ -193,7 +194,7 @@ body {
 
     body { padding-top: 141x; }
 
-    
+
 }
 
 @media only screen and (min-width: 1024px) {
@@ -223,34 +224,34 @@ body {
 }
 @media only screen and (min-width: 1200px) {
   .main-nav .main-menu .sub-menu {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 .arrow-down {
-  width: 0;
-  height: 0;
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 20px solid #fff;
-  position: absolute;
-  z-index: 99999;
-  margin-top: 56px;
-  margin-left: 20px;
-  display: none;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #fff;
+    position: absolute;
+    z-index: 99999;
+    margin-top: 48px;
+    margin-left: 30px;
+    display: none;
 }
 .main-nav .main-menu .sub-menu {
-  position: absolute;
-  margin: 0;
-  opacity: 1;
-  z-index: 99998;
-  float: left;
-  left: 0px;
-  width: 100%;
-  max-width: 100%;
-  padding-top: 60px;
-  overflow: auto;
-  text-align: center;
-  padding-left: 0;
+    position: absolute;
+    margin: 0;
+    opacity: 1;
+    z-index: 99998;
+    float: left;
+    left: 0px;
+    width: 100%;
+    max-width: 100%;
+    padding-top: 48px;
+    overflow: auto;
+    text-align: center;
+    padding-left: 0;
 }
 .main-nav .main-menu .sub-menu .sub-menu-wrapper {
   background: rgba(0, 0, 0, 0.8);
@@ -279,12 +280,13 @@ body {
   padding: 0;
   width: 100%;
   display: inline-block;
+  margin-top: 5px;
 }
 .main-nav .main-menu .sub-menu li li {
   float: none;
   padding: 0;
   width: 48%;
   border: none;
-  margin-top: 20px;
+  margin-top: 5px;
 
 }

@@ -31,7 +31,7 @@ body {
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
   /*padding-top: 80px;*/
   margin: 0;
-  background: #ececec; }
+  background: #fcfcfc; }
 
 .gray-bg {
   background: #ececec;
@@ -175,31 +175,32 @@ label.btn.btn-default {
   margin-right: 10px; }
 
 /** EVENTS */
-.events .event-icon div { height: 101px; width: 99px; }
+.events .event-icon div { height: 102px; width: 103px; background-repeat: no-repeat !important; background-position: 1px 1px !important;}
+.events .event-icon div:hover { height: 102px; width: 103px; background-repeat: no-repeat !important; background-position: 0px 0px !important;}
 
 .events .event-icon .bodas{ background: url('../img/icons/iconos-02.png'); }
-.events .event-icon .bodas:hover{width: 102px; background: url('../img/icons/iconos-01.png'); }
+.events .event-icon .bodas:hover{ background: url('../img/icons/iconos-01.png');}
 
 .events .event-icon .cumpleaños{ background: url('../img/icons/iconos-04.png'); }
-.events .event-icon .cumpleaños:hover{width: 102px; background: url('../img/icons/iconos-03.png'); }
+.events .event-icon .cumpleaños:hover{ background: url('../img/icons/iconos-03.png'); }
 
 .events .event-icon .quinceañeras{ background: url('../img/icons/iconos-06.png'); }
-.events .event-icon .quinceañeras:hover{  width: 102px; background: url('../img/icons/iconos-05.png'); }
+.events .event-icon .quinceañeras:hover{  background: url('../img/icons/iconos-05.png'); }
 
 .events .event-icon .graduaciones{ background: url('../img/icons/iconos-07.png'); }
-.events .event-icon .graduaciones:hover{width: 102px; background: url('../img/icons/iconos-08.png'); }
+.events .event-icon .graduaciones:hover{ background: url('../img/icons/iconos-08.png'); }
 
 .events .event-icon .bautizos{ background: url('../img/icons/iconos-10.png'); }
-.events .event-icon .bautizos:hover{width: 102px; background: url('../img/icons/iconos-09.png'); }
+.events .event-icon .bautizos:hover{ background: url('../img/icons/iconos-09.png'); }
 
 .events .event-icon .conferencias{ background: url('../img/icons/iconos-12.png'); }
-.events .event-icon .conferencias:hover{width: 102px; background: url('../img/icons/iconos-11.png'); }
+.events .event-icon .conferencias:hover{ background: url('../img/icons/iconos-11.png'); }
 
 .events .event-icon .showers{ background: url('../img/icons/iconos-14.png'); }
-.events .event-icon .showers:hover{width: 102px; background: url('../img/icons/iconos-13.png'); }
+.events .event-icon .showers:hover{background: url('../img/icons/iconos-13.png'); }
 
 .events .event-icon .otros{ background: url('../img/icons/iconos-16.png'); }
-.events .event-icon .otros:hover{width: 102px; background: url('../img/icons/iconos-15.png'); }
+.events .event-icon .otros:hover{background: url('../img/icons/iconos-15.png'); }
 
 .events {
   padding: 31px 80px 0px;;
@@ -260,7 +261,7 @@ label.btn.btn-default {
 }
 .owl-nav {
   position: absolute;
-  top:123px;  
+  top:123px;
   width: 100%;
 }
 .owl-prev, .owl-next {
@@ -293,10 +294,10 @@ label.btn.btn-default {
 }
 .posts .supplier-item-container {
   margin-bottom: 40px;
-  border : 1px solid #d7d7d7;
+  border : 1px solid #e0e0e0;
 }
 .posts .supplier-item {
-  
+
   overflow: hidden;
   height: 425px;
 }
@@ -307,6 +308,10 @@ label.btn.btn-default {
 }
 .posts .supplier-item .supplier-item-img img{
   width: 100%;
+}
+
+.posts .supplier-item .default-logo {
+      margin-top: -25px;
 }
 .posts .supplier-item .supplier-item-star-container {
   position: absolute;
@@ -357,15 +362,15 @@ label.btn.btn-default {
 
 .posts .supplier-item-read-more {
   text-align: center;
-  background-color: #D4AED6;
-  padding: 5px 0px;
-  margin: 10px 24%;
-  line-height: 1;
-  border-top-width: 0;  
-  display: block;
-  color: #fff;
-  font-size: 11px;
-  border-radius: 3px;
+      background-color: #D4AED6;
+      padding: 7px 0px;
+      margin: 10px 22%;
+      line-height: 1;
+      border-top-width: 0;
+      display: block;
+      color: #fff;
+      font-size: 13px;
+      border-radius: 3px;
 }
 
 .posts .posts-title {
@@ -380,12 +385,12 @@ label.btn.btn-default {
 /** END POSTS **/
 
 /** IDEAS **/
-.ideas {  
+.ideas {
   background-color: #fff;
-  padding: 30px;
+  padding: 0;
   overflow: auto;
-  padding-bottom: 47px;
   background-image: url('../img/ideasbackground.jpg');
+  border: 1px solid #e0e0e0;
 }
 .ideas .title {
   color: #72367D;
@@ -447,7 +452,7 @@ label.btn.btn-default {
   height: 100%;
   display: inline-block;
   background: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #e0e0e0;
   border-right: none;
   padding: 10px 15px;
   border-top-left-radius: 12px;
@@ -476,14 +481,14 @@ label.btn.btn-default {
 }
 
 .ideas-item-info-container {
-  padding: 10px 10px 20px 10px;
-  border: 1px solid #ccc;
+  padding: 10px 10px 20px 13px;
+  border: 1px solid #e0e0e0;
   border-left-width: 0;
   background-color: #fff;
   position: relative;
 }
 .ideas-item-info-container h3 {
-  margin: 0 0 5px;  
+  margin: 0 0 5px;
 }
 .ideas-item-info-container h3 a{
   font-size: 20px;
@@ -499,7 +504,7 @@ label.btn.btn-default {
 p.ideas-item-info-meta {
   font-size: 11px !important;
   position: absolute;
-  bottom: 0;  
+  bottom: 0;
 }
 
 .ideas-item-info-social {
@@ -519,7 +524,7 @@ p.ideas-item-info-meta {
   color: #2477B8;
 }
 
-.herramientas {  
+.herramientas {
   background-color: #fff;
   padding: 30px 30px 70px 30px;
   overflow: auto;
@@ -608,16 +613,18 @@ footer {
   color: #818181;
   background: #E9D8EA;
   padding: 35px 15px 15px 15px;
-  margin: 0; 
+  margin: 0;
 }
 footer .social ul li { display: inline-block; }
-footer .social i.fa { width: 30px; 
-  height: 30px; 
-  border-radius: 30px; 
-  background: #72367D ; 
-  line-height: 30px; 
-  color : #fff; 
-  font-size: 16px; 
+footer .social i.fa { width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background: #72367D ;
+  line-height: 30px;
+  color : #fff;
+  font-size: 16px;
+  padding-left: 3px;
+    padding-top: 1px;
 }
 
   footer ul {
@@ -723,11 +730,8 @@ h1.promt {
   padding: 20px 0; }
 
 .register-panel .btn.btn-default {
-  font-size: 1em;
-  background: #cecece;
-  color: #818181;
-  border-radius: 5px !important;
-  text-align: left; }
+  
+}
 
 .register-panel .col-md-6:hover > .btn-group .btn.btn-default, .register-panel .col-md-4:hover > .btn-group .btn.btn-default {
   background: #8c3e96;
@@ -786,7 +790,8 @@ h1.promt {
 
 .main {
   padding: 30px 0;
-  background: #ececec; }
+  background: #ececec;
+    min-height: 510px;}
 
 .pattern {
   background: url("../img/mi_gran_dia_pattern.png") repeat; }
@@ -1060,7 +1065,7 @@ nav.navbar.navbar-fixed-top {
   .login-form {
     min-height: 400px; }
   .col-md-2.col-md-offset-1.col-sm-4.col-sm-offset-1, .col-md-3.col-sm-6 {
-    text-align: center; } 
+    text-align: center; }
 }
 
 @media only screen and (max-width: 620px) {
@@ -1078,7 +1083,7 @@ nav.navbar.navbar-fixed-top {
       margin: 20px 0;
     }
 
-    .ideas-item-phone .ideas-item-info-container{ 
+    .ideas-item-phone .ideas-item-info-container{
       padding: 12px;
 
      }
@@ -1086,7 +1091,7 @@ nav.navbar.navbar-fixed-top {
     .ideas-item-info-container p{
       font-size: 16px;
      }
-    
+
     p.ideas-item-info-meta {
       font-size: 16px !important;
     }
@@ -1184,7 +1189,7 @@ nav.navbar.navbar-fixed-top {
 
   .ideas-item-info-container p {
     font-size: 13px;
-    padding: 0 4px;
+    padding: 0;
   }
 }
 
@@ -1274,4 +1279,4 @@ nav.navbar.navbar-fixed-top {
 .chatButton {
    height: 42px;
    margin-right: 10px;
-} 
+}
