@@ -2,28 +2,54 @@
 		<div class="content">
       <i class="{{service.Name | icon}}"></i>
 			<h4 class="">Proveedores de {{service.Name}}</h4>
-			<div class="span-header">{{totalSuppliers}} proveedor{{totalSuppliers > 1 ? "es":""}}</div>
+			<div class="span-header" ng-if="totalSuppliers > 0">{{totalSuppliers}} proveedor{{totalSuppliers > 1 ? "es":""}}</div>
 		</div>
 	</div>
   <div class="container" ng-cloak="">
-  <div class="search" ng-cloak="">
-      <div class="clearfix">
-          <form ng-submit="doQuery()" class="pull-right">
-              <div class="col-md-9 col-sm-6 col-xs-12">
-                  <input
-                      placeholder="¿Qué buscas?"
-                      ng-model="query"
-                      class="pull-right">
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-12">
-                  <button class="pull-right btn btn-default btn-search">
-                      Buscar
-                      <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-              </div>
-          </form>
-      </div>
-  </div>
+		<div class="search" ng-cloak="">
+	      <div class="clearfix">
+	          <form ng-submit="doQuery()" class="pull-right">
+	              <div class="col-md-9 col-sm-9 col-xs-10 supplier-search">
+	                  <input
+	                      placeholder="¿Qué buscas?"
+	                      ng-model="query"
+	                      class="pull-right">
+	              </div>
+	              <div class="col-md-3 col-sm-3 col-xs-2 supplier-search-button">
+	                  <button class="pull-right btn btn-default btn-search">
+	                      <span>Buscar</span>
+	                      <i class="fa fa-search" aria-hidden="true"></i>
+	                  </button>
+	              </div>
+	          </form>
+	      </div>
+	  </div>
+	<div class="no-results clearfix row" ng-if="totalSuppliers == 0"><i class="glyphicon glyphicon-flag"></i> No se encontraron proveedores.</div>
+	<div class="col-md-12 filter-responsive" ng-if="totalSuppliers > 0">
+		<div class="filter-list clearfix row" ng-click="isCollapsed = !isCollapsed">
+			<span>Filtrar por:</span>
+		</div>
+		<div div="filter-content" uib-collapse="isCollapsed">
+			<uib-accordion close-others="false">
+				<uib-accordion-group ng-repeat="filterKey in getFilterNames()" is-open="groupStatus.isOpen">
+					<uib-accordion-heading >
+						<div ng-click="toggle()">
+							{{filterKey | filterKey}}
+							<i class="pull-right glyphicon {{groupStatus.isOpen ? 'glyphicon-chevron-down':'glyphicon-chevron-right'}}"></i>
+						</div>
+					</uib-accordion-heading>
+					<ul>
+						<li ng-repeat="filter in filters[filterKey]" class="filter-item" ng-click="doFilter(filterKey, filter)">
+							{{filter.Title}}<span>{{filter.Count}}</span>
+						</li>
+            <li ng-if="currentFilter(filterKey.replace('Filter', 'Id'))">
+              <a title="Quitar filtro" ng-click="clearFilter(filterKey.replace('Filter', 'Id'))" class="remove-filters">{{currentFilter(filterKey.replace('Filter', 'Id'))}} <i class="glyphicon glyphicon-remove"></i></a>
+            </li>
+					</ul>
+				</uib-accordion-group>
+			</uib-accordion>
+		</div>
+	</div>
 	<div class="col-md-9">
 		<div
 			ng-repeat="supplier in suppliers"
@@ -49,13 +75,13 @@
 				<div class="divider"></div>
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-8 col-sm-8 col-xs-8">
+						<div class="col-md-8 col-sm-8 col-xs-12">
                             <span class="premium-service listing-service" ng-repeat="service in supplier.ServiceTypes">
                                 <a href='/#/suppliers/browse/service/{{service.Id}}' title='{{service.Name}}'><i class="{{service.Name | icon}}"></i>
                                 {{service.Name}}</a>
                             </span>
 						</div>
-						<div class="col-md-4 col-xs-4 col-sm-4">
+						<div class="col-md-4 col-xs-12 col-sm-4">
 							<a href="#/suppliers/{{supplier.Id}}" class="pull-right more-info">MAS INFORMACIÓN</a>
 						</div>
 					</div>
@@ -63,20 +89,22 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-3">
+	<div class="col-md-3" ng-if="totalSuppliers > 0">
 		<div class="filter-list clearfix row">
 			<span>Filtrar por:</span>
 		</div>
 		<div div="filter-content">
-			<uib-accordion close-others="true">
+			<uib-accordion close-others="false">
 				<uib-accordion-group ng-repeat="filterKey in getFilterNames()" is-open="groupStatus.isOpen">
-					<uib-accordion-heading>
-						{{filterKey | filterKey}}
-            <i class="pull-right glyphicon {{groupStatus.isOpen ? 'glyphicon-chevron-down':'glyphicon-chevron-right'}}"></i>
+					<uib-accordion-heading >
+						<div ng-click="toggle()">
+							{{filterKey | filterKey}}
+							<i class="pull-right glyphicon {{groupStatus.isOpen ? 'glyphicon-chevron-down':'glyphicon-chevron-right'}}"></i>
+						</div>
 					</uib-accordion-heading>
 					<ul>
-						<li ng-repeat="filter in filters[filterKey]">
-							<a ng-click="doFilter(filterKey, filter)">{{filter.Title}}<span>{{filter.Count}}</span></a>
+						<li ng-repeat="filter in filters[filterKey]" ng-click="doFilter(filterKey, filter)" class="filter-item">
+							{{filter.Title}}<span>{{filter.Count}}</span>
 						</li>
             <li ng-if="currentFilter(filterKey.replace('Filter', 'Id'))">
               <a title="Quitar filtro" ng-click="clearFilter(filterKey.replace('Filter', 'Id'))" class="remove-filters">{{currentFilter(filterKey.replace('Filter', 'Id'))}} <i class="glyphicon glyphicon-remove"></i></a>

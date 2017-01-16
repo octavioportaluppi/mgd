@@ -4,12 +4,26 @@
         <a href="#/supplier/account">Mi Cuenta</a>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12 menu-item">
-        <a href="#/upgrade">Upgrade</a>
+        <a href="#/upgrade">Suscripción</a>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12 menu-item odd">
-        <a href="#/supplier/chat">Chat</a>
+        <a href="#/supplier/chat" ng-if="supplier.SubscriptionType.Name=='All Star'">Chat</a>
+        <a href="#/upgrade" ng-if="supplier.SubscriptionType.Name!='All Star'" title="¡Conviértete en Proveedor All Star!">Chat<span class="supplier-upgrade">¡Solicitar!</span></a>
     </div>
     <div class="container gray-bg">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div ng-if="!supplier.IsActive && showNotification" class="frame header clearfix">
+            <span ng-if="!confirmationSent" class="confirmation-pending">
+            <i class="glyphicon glyphicon-warning-sign"></i> Tu cuenta de email no ha sido confirmada.
+            <button ng-click="sendConfirmationCode()" class="btn btn-default btn-submit" ng-if="!confirmationSent">
+              Reenviar email
+            </button>
+          </span>
+          <span ng-if="confirmationSent" class="confirmation-sent"><i class="glyphicon glyphicon-ok-sign"></i> Email enviado correctamente!
+            <i class="glyphicon glyphicon-remove pull-right" title="Cerrar" ng-click="hideNotification()"></i>
+          </span>
+          </div>
+        </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="frame header clearfix">
                 <div ng-show="!editProfile">
@@ -21,12 +35,16 @@
                         <div class="col-md-11 col-sm-11 col-xs-10">
                             <h1 class="index-title">{{supplier.Name}}</h1>
                             <p class="since">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p>
+                            <p class="since">{{dashboard.ProfileViews | profileViews }} visitas</p>
                             <button  ng-show="!editProfile" ng-click="editProfile = !editProfile" class="btn btn-default btn-submit" >
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                 Editar
                             </button>
                         </div>
                         <div class="col-md-1 col-sm-1 col-xs-2 social pull-right">
+                            <a ng-href="/#/suppliers/{{dashboard.Id}}" target="_blank" title="Visitar mi perfil">
+                              <i class="glyphicon glyphicon-new-window"></i>
+                            </a>
                             <a ng-href="{{supplier.FacebookUrl}}"
                                ng-if="supplier.FacebookUrl">
                                 <i class="fa fa-facebook-square" aria-hidden="true"></i>
@@ -74,7 +92,8 @@
                         </div>
                     </div>
                     <div class="col-md-7 col-sm-7 col-xs-12">
-                        <p>{{supplier.Description}}</p>
+                        <p ng-bind-html="supplier.Description"></p>
+                        <div ta-bind ng-model="supplier.Description.htmlcontent"></div>
                     </div>
                 </div>
                 <ng-include ng-if="editAboutMe" src="'/app/views/dashboard-supplier-aboutMe.html'"></ng-include>
@@ -184,7 +203,8 @@
                         ng-src="{{pic.src}}"
                         class="default-image"/>
                 </div>
-                <div class="col-md-12" ng-if="editPics">
+                <div class="col-md-12" ng-if="editPics" name="uploadImages">
+                  <div class="pics-warning"><i class="glyphicon glyphicon-alert warning"></i> Las imágenes no pueden superar 1MB.</div>
                     <div style="text-align: center;" class="pull-left">
                         <div ng-repeat="pic in getNumber(supplier.MaxPics) track by $index" class="pull-left">
 
@@ -194,26 +214,35 @@
                                ngf-select
                                ng-model="supplier.newPic[$index]"
                                accept="image/*"
+                               name="picA{{$index}}"
+                               ngf-model-invalid="supplier.newPic[$index].invalid"
                                ngf-max-size="1MB"/>
-
                           <img class="default-image"
                                ng-src="{{supplier.Pictures[$index].src}}"
                                ngf-select
                                accept="image/*"
-                               ng-if="supplier.Pictures[$index].src && !supplier.newPic[$index]"
+                               ng-if="supplier.Pictures[$index].src && !supplier.newPic[$index] "
                                ng-model="supplier.newPic[$index]"
+                               ngf-model-invalid="supplier.newPic[$index].invalid"
+                                name="picB{{$index}}"
+                                 ngf-model-invalid="errorFileB$index"
                                ngf-max-size="1MB"/>
                           <img ng-if="supplier.newPic[$index]"
                                ngf-thumbnail="supplier.newPic[$index]"
                                class="default-image pull-left"
                                ngf-select
                                ng-model="supplier.newPic[$index]"
+                               ngf-model-invalid="supplier.newPic[$index].invalid"
                                accept="image/*"
+                               name="picC{{$index}}"
                                ngf-max-size="1MB"/>
+
+                               <div ng-show="supplier.newPic[$index].invalid" class="pic-error" ng-click="supplier.newPic[$index] = null;" ><div class="glyphicon glyphicon-alert warning"></div>La imagen seleccionada es demasiado grande ({{supplier.newPic[$index].invalid.size / 1000000|number:1}}MB). El máximo es 1MB</div>
+
                         </div>
                     </div>
                     <div class="signup-field col-md-12 col-sm-12 col-xs-12">
-                        <button ng-click="updatePics()" class="btn btn-default btn-submit pull-left" >Guardar</button>
+                        <button name="btnSend" ng-disabled="!isAllPicsValid()"  ng-click="updatePics()" class="btn btn-default btn-submit pull-left" >Guardar</button>
                         <button ng-click="getDashboard()" class="btn btn-default pull-right">Cancelar</button>
                     </div>
                 </div>

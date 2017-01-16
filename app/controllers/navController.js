@@ -13,7 +13,7 @@ function ($scope, $location, authService, supplierService, stateService) {
     supplierService
       .getEvents()
       .then(function(res) {
-        $scope.navigationItems.EventTypeFilter = res.data.slice(0, 5);
+        $scope.navigationItems.EventTypeFilter = res.data;
       });
 
       supplierService

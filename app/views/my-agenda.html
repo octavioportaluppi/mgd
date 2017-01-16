@@ -1,5 +1,5 @@
 <div class="row" ng-cloak="">
-    <div class="col-md-3 col-sm-12 col-xs-12" style="min-height: 500px">
+    <div class="col-md-3 col-sm-12 col-xs-12 agenda-cat">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 calendar-title">
                 <span>Tareas</span>
@@ -42,15 +42,15 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-5 col-sm-12 col-xs-12" style="background-color: #FAF5FB; min-height: 500px;">
-        <div class="col-md-12 col-sm-12 col-xs-12" style="margin: 20px 0 10px 0;" ng-if="event.enabled">
-            <div class="row">
-                <button
-                    ng-click="addTask = !addTask"
-                    style="width: 100%;"
-                    class="btn btn-defasult btn-submit btn-task">Agregar Tarea</button>
-            </div>
-        </div>
+    <div class="col-md-5 col-sm-12 col-xs-12 agenda-list">
+      <div class="col-md-12 col-sm-12 col-xs-12" style="margin: 20px 0 10px 0;" ng-show="event.enabled">
+          <div class="row">
+              <button
+                  ng-click="addTask = !addTask"
+                  style="width: 100%;"
+                  class="btn btn-defasult btn-submit btn-task">Agregar Tarea</button>
+          </div>
+      </div>
         <div class="col-md-12 col-sm-12 col-xs-12 task-form" uib-collapse="!addTask">
             <form name="data" novalidate="novalidate">
                 <div class="input-group col-md-12">
@@ -145,7 +145,7 @@
             </span>
         </div>
     </div>
-    <div class="col-md-4 col-sm-12 col-xs-12">
+    <div class="col-md-4 col-sm-12 col-xs-12 agenda-detail">
         <div class="row" ng-if="taskItemSelected && !taskItemSelected.edit">
             <div class="col-md-12 col-sm-12 col-xs-12 task-detail clearfix"
                  ng-class="{'completed': taskItemSelected.Status === 1}">
@@ -161,7 +161,7 @@
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 task-delete clearfix" uib-collapse="!taskItemSelected.delete">
-                <p class="pull-left col-sm-12 col-xs-12 task-delete-label">Esta seguro de eliminar la tarea?</p>
+                <p class="pull-left col-sm-12 col-xs-12 task-delete-label">¿Estás seguro de eliminar la tarea?</p>
                 <button class="btn btn-defasult btn-edit pull-right" ng-click="taskItemSelected.delete = false;">No</button>
                 <button
                         class="btn btn-defasult btn-edit btn-submit pull-right" ng-click="deleteItem(taskItemSelected.Id)">Si</button>

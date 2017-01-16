@@ -1,7 +1,13 @@
 ﻿'use strict';
-app.controller('subscriptionController', ['$scope', 'accountService', '$location', function ($scope, accountService, $location) {
+app.controller('subscriptionController', ['$scope', 'accountService', 'authService', '$location', function ($scope, accountService, authService, $location) {
 
     $scope.load = function () {
+      if(!authService
+    			.authentication.isAuth || authService
+    			.authentication.userType !== 'supplier') {
+            authService.logOut();
+    		$location.path('/login-supplier');
+    	} else {
         accountService
             .getSubscriptionTypes()
             .then(function (response) {
@@ -13,6 +19,7 @@ app.controller('subscriptionController', ['$scope', 'accountService', '$location
             .then(function (response) {
                 $scope.currentSubscription = response.data;
             });
+        }
     };
 
     $scope.load();

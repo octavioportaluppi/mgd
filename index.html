@@ -8,7 +8,9 @@
         <title>Mi Gran Día / </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css"><link rel="stylesheet" href="css/fonts/webfonts.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.4.2/dist/textAngular.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/fonts/webfonts.css">
         <link rel="stylesheet" href="css/bootstrap-formhelpers.min.css">
         <link rel="stylesheet" href="css/fileinput.min.css">
         <link rel="stylesheet" href="css/angular-datepicker.min.css">
@@ -72,7 +74,7 @@
                     <li><a href="#/planner" ng-class="{'active': isActive('/planner')}" ng-if="authentication.userType !== 'supplier'">Mis Eventos</a></li>
                     <li><a href="#/contact">Contacto</a></li>
                     <li><a href="http://blog.migrandia.mx">Blog</a></li>
-                    <li><a href="#/suppliers" ng-class="{'active': isActive('/suppliers')}">Proveedores</a>
+                    <li><a href="#/suppliers/browse/all" ng-class="{'active': isActive('/suppliers')}">Proveedores</a>
                         <div class="arrow-down"></div>
                         <ul class="sub-menu">
                             <div class="sub-menu-wrapper">
@@ -84,7 +86,6 @@
                                                 <ul>
                                                     <li ng-repeat="item in navigationItems.EventTypeFilter">
                                                         <a href="#/suppliers/browse/event/{{ item.Id}}">{{ item.Name}}</a></li>
-                                                    <li><a href="#/suppliers/browse/all">Más...</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -122,9 +123,11 @@
             </nav>
         </div>
         <ul class="responsive-menu" uib-collapse="isCollapsed" ng-cloak="">
-            <li ng-class="{'active': isActive('/suppliers')}"><a href="#/suppliers">Proveedores</a></li>
+            <li><a href="#/suppliers/browse/all">Proveedores</a></li>
             <!--<li ng-class="{'active': isActive('/planner')}"><a href="#/planner">Ideas</a></li>-->
+            <li><a href="http://blog.migrandia.mx">Blog</a></li>
             <li><a href="#/contact">Contacto</a></li>
+            <li><a href="#/planner" ng-if="authentication.userType !== 'supplier'">Mis Eventos</a></li>
             <li ng-if="authentication.isAuth && authentication.userType == 'supplier'"
                 class="enterprise">
                 <a href="#/dashboard" ng-if="authentication.isAuth">Empresas</a>
@@ -135,10 +138,10 @@
             </li>
 
             <li ng-hide="authentication.isAuth" class="active">
-                <a href="#/login-supplier">Log-In</a>
+                <a href="#/login-planner">Log-In</a>
             </li>
             <li ng-hide="authentication.isAuth" class="active">
-                <a href="" ng-click="signup()">REGÍSTRATE</a>
+                <a href="#/signup-planner">REGÍSTRATE</a>
             </li>
 
             <li ng-hide="!authentication.isAuth" class="active">
@@ -189,11 +192,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
     <script src="https://cdn.pubnub.com/sdk/pubnub-angular/pubnub-angular-3.2.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-resource.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.4.2/dist/textAngular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.4.2/dist/textAngular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.4.2/dist/textAngular-rangy.min.js"></script>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="node_modules/angular-loading-bar/build/loading-bar.min.js"></script>
     <script src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script>

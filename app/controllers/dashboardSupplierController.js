@@ -1,7 +1,8 @@
 ﻿'use strict';
 app.controller('dashboardSupplierController',
-	['$scope', 'supplierService', 'ngAuthSettings', 'stateService', 'authService', '$location',
-		function ($scope, supplierService, ngAuthSettings, stateService, authService, $location) {
+	['$scope', 'supplierService', 'ngAuthSettings', 'stateService', 'authService', '$location', 'accountService', 'textAngularManager',
+		function ($scope, supplierService, ngAuthSettings, stateService, authService, $location, accountService, textAngularManager) {
+
 
 	$scope.supplier = {};
 	$scope.dashboard = '';
@@ -39,11 +40,13 @@ app.controller('dashboardSupplierController',
 				$scope.supplier.InstagramUrl = res.InstagramUrl;
 				$scope.supplier.TwitterUrl = res.TwitterUrl;
 				$scope.supplier.State = res.State;
+				$scope.supplier.IsActive = res.IsActive;
 				$scope.supplier.OpeningHours = res.OpeningHours;
 				$scope.supplier.OpeningHours.DayFromValue = {id: $scope.supplier.OpeningHours.DayFrom};
 				$scope.supplier.OpeningHours.DayToValue = {id: $scope.supplier.OpeningHours.DayTo};
 				$scope.supplier.LogoId = res.LogoId;
 				$scope.supplier.MaxPics = res.SubscriptionType.MaxPicturesAllowed;
+				$scope.supplier.SubscriptionType = res.SubscriptionType;
 				$scope.supplier.Pictures = res.Pictures
 					.filter(function (pic) {
 						return !pic.IsLogo;
@@ -96,7 +99,7 @@ app.controller('dashboardSupplierController',
         supplierService
             .updateSupplierProfile($scope.supplier)
             .then(function () {
-				$scope.editAboutMe = !$scope.editAboutMe;
+								$scope.editAboutMe = !$scope.editAboutMe;
                 $scope.getDashboard();
             })
 	};
@@ -182,6 +185,7 @@ app.controller('dashboardSupplierController',
 	if(!authService
 			.authentication.isAuth || authService
 			.authentication.userType !== 'supplier') {
+				authService.logOut();
 		$location.path('/login-supplier');
 	} else {
 		supplierService
@@ -232,4 +236,22 @@ app.controller('dashboardSupplierController',
 		return new Array(number);
 	};
 
+$scope.isAllPicsValid = function(){
+	for (var pic in $scope.supplier.newPic){
+		if ($scope.supplier.newPic[pic].invalid) {
+			return false;
+		}
+	}
+	return true;
+}
+
+$scope.sendConfirmationCode = function(){
+	accountService.sendConfirmationCode();
+	$scope.confirmationSent = true;
+}
+
+$scope.showNotification = true;
+$scope.hideNotification = function(){
+	$scope.showNotification = false;
+}
 }]);

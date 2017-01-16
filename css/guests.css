@@ -1,6 +1,7 @@
 .guests {
     color: #818181;
     padding: 0 15px 40px 15px;
+        min-height: 400px;
 }
 
 .guests .btn-edit {
@@ -106,10 +107,11 @@
 }
 
 .guest select {
-    width: 100%;
-    border: none;
-    background: #fff;
-    padding: 3px;
+  width: 100%;
+      border: none;
+      background: #e5e5e5;
+      padding: 3px;
+      border-radius: 3px;
 }
 
 .btn-guest-add {

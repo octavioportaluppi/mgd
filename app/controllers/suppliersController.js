@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.controller('suppliersController',
-    ['$scope', 'supplierService', '$routeParams', 'ngAuthSettings', 'dateService', 'authService',
-        function ($scope, supplierService, $routeParams, ngAuthSettings, dateService, authService) {
+    ['$scope', 'supplierService', '$routeParams', 'ngAuthSettings', 'dateService', 'authService', 'textAngularManager',
+        function ($scope, supplierService, $routeParams, ngAuthSettings, dateService, authService, textAngularManager) {
             $scope.supplier = {};
             $scope.isSupplier = false;
             $scope.myInterval = 1000;
@@ -17,12 +17,12 @@ app.controller('suppliersController',
             $scope.load = function () {
                 supplierService
                     .getSuppliersById($routeParams.supplierId)
-                    .then(function (res) {
-                        $scope.supplier = res.data;
+                    .success(function (res) {
+                        $scope.supplier = res;
                         if ($scope.supplier.LogoId > 0)
                             $scope.supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + $scope.supplier.LogoId + '/Image?thumbnail=true';
                         var id = 0;
-                        res.data.Pictures
+                        res.Pictures
                             .forEach(function (pic) {
                                 var elem = {
                                     img: ngAuthSettings.apiServiceBaseUri + 'api/Pictures/' + pic.Id + '/Image?thumbnail=false',
@@ -32,7 +32,10 @@ app.controller('suppliersController',
                                 if(!pic.IsLogo)
                                     $scope.slides.push(elem)
                             });
-                    });
+                    }).error(function(){
+                      window.location = '/#/'
+                      return;
+                    })  ;
 
                 supplierService
                     .getAnswersById($routeParams.supplierId)

@@ -1,5 +1,5 @@
 ul > li {
-    cursor: pointer;
+
 }
 
 .dashTextarea{
@@ -15,7 +15,7 @@ ul > li {
 
 .supplier .frame.header {
     margin-top: 20px;
-    border-radius: 5px 5px 0  0;
+    border-radius: 5px;
 }
 
 .supplier .avatar {
@@ -247,6 +247,18 @@ ul > li {
     overflow-y: scroll;
 }
 
+.messages {
+  background: url(../img/mi_gran_dia_pattern.png);
+border: 1px solid #eee;
+padding: 10px;
+}
+
+.chat-suppliers{
+    height: 418px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .chat-container{
     min-height: 565px;
 }
@@ -296,3 +308,108 @@ text-align: left;
  .dashboard-faq p{
        letter-spacing: 1px;
  }
+
+.confirmation-pending {
+  color:red;
+  letter-spacing: 2px;
+}
+
+.confirmation-sent {
+  color:green;
+  letter-spacing: 2px;
+}
+
+.form-control {
+    color: #818181;
+}
+
+.btn-toolbar>.btn, .btn-toolbar>.btn-group, .btn-toolbar>.input-group {
+    margin-left: 5px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    padding: 0 5px;
+    margin-bottom: 6px;
+}
+
+.ta-scroll-window.form-control {
+    position: relative;
+    padding: 0;
+    margin-top: 6px;
+}
+
+.text-editor {
+  margin-top: 5px;
+}
+
+.btn-default:disabled, .btn-default[disabled] {
+    background-color: inherit !important;
+    background-image: none;
+}
+
+.ta-scroll-window > .ta-bind {
+    border: 1px #cecece solid;
+}
+
+@media only screen and (max-width: 768px) {
+  .supplier-public .title {
+    text-align: center;
+        margin-top: 15px;
+  }
+
+  .supplier-public .info {
+    text-align: center;
+    margin-top:15px;
+  }
+
+  .supplier-public .info p {
+    margin-bottom:5px;
+  }
+
+  .supplier-public .social {
+    text-align: center;
+  }
+
+  .supplier-public .social a {
+    display: inline-block;
+  }
+
+  .supplier .votes {
+    width: auto !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .supplier-public .title {
+
+
+  }
+
+  .supplier-public .info {
+
+  }
+
+  .supplier-public .social {
+
+  }
+
+  .supplier .votes {
+
+  }
+
+.supplier-public .supplier-pic {
+  margin-bottom:35px;
+}
+}
+
+.supplier-upgrade {
+  vertical-align: super;
+    font-size: 9px;
+    margin-left: 8px;
+    padding: 3px 6px;
+    line-height: 8PX;
+    color: #fff;
+    font-weight: bold;
+    background: #ee3470;
+    border-radius: 3px;
+    letter-spacing: 1px;
+}

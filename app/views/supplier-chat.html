@@ -4,7 +4,7 @@
       <a href="#/supplier/account">Mi Cuenta</a>
   </div>
   <div class="col-md-3 col-sm-3 col-xs-12 menu-item">
-      <a href="#/upgrade">Upgrade</a>
+      <a href="#/upgrade">Suscripción</a>
   </div>
   <div class="col-md-3 col-sm-3 col-xs-12 menu-item active">
       <a href="#/supplier/chat">Chat</a>
@@ -18,7 +18,7 @@
             <input type="text" placeholder="Buscar" class="search-chat form-control" ng-model="user.Username">
             <div class="chat-spacer"></div>
             <div class=" chat-conversation">
-                <div ng-repeat="user in objUsers | filter:user.Username | orderBy:'-Date'" ng-class="user.Id == activeRoom.Id?'chat-active':''" class="row chat-user">
+                <div ng-repeat="user in objUsers | filter:user.Username | orderBy:'-Date'" ng-class="user.Id == activeRoom.Id?'chat-active':''" class="row chat-user" ng-click="changeUser(user)">
                     <div class="col-md-2 col-xs-2 col-sm-2 align-center">
                         <img class="chat-avatar" src="https://thesocietypages.org/socimages/files/2009/05/nopic_192.gif">
                     </div>

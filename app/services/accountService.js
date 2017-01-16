@@ -40,6 +40,11 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
         return $http.put(serviceBase + 'api/suppliers/subscriptiontype',{SubscriptionTypeId: subscriptionId});
     };
 
+    var _sendConfirmationCode = function () {
+        return $http.post(serviceBase + 'api/account/SendConfirmationCode');
+    };
+
+
     accountServiceFactory.accountInfo = _accountInfo;
     accountServiceFactory.forgotPassword = _forgotPassword;
     accountServiceFactory.activatePassword = _activatePassword;
@@ -48,6 +53,7 @@ app.factory('accountService', ['$http', 'ngAuthSettings',
     accountServiceFactory.getSubscriptionTypes = _getSubscriptionTypes;
     accountServiceFactory.getCurrentSubscription = _getCurrentSubscription;
     accountServiceFactory.updateSubscription = _updateSubscription;
+    accountServiceFactory.sendConfirmationCode = _sendConfirmationCode;
 
     return accountServiceFactory;
 }]);

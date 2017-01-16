@@ -6,22 +6,26 @@
              ngf-select
              ng-model="supplier.profilePic"
              accept="image/*"
-             ngf-max-size="2MB"/>
+             ngf-max-size="1MB"/>
         <img class="avatar img-circle"
              ng-src="{{supplier.pic}}"
              ngf-select
              accept="image/*"
              ng-if="supplier.pic && !supplier.profilePic"
              ng-model="supplier.profilePic"
-             ngf-max-size="2MB"/>
+             ngf-max-size="1MB"/>
         <img class="avatar img-circle"
              ng-if="supplier.profilePic"
              ngf-thumbnail="supplier.profilePic"
              class="default-image pull-left"
              ngf-select
              ng-model="supplier.profilePic"
+             ngf-model-invalid="supplier.profilePic.invalid"
              accept="image/*"
-             ngf-max-size="2MB"/>
+             ngf-max-size="1MB"/>
+       <div ng-show="supplier.profilePic.invalid" class="pic-error-small" ng-click="supplier.profilePic = null;" >
+					<div class="glyphicon glyphicon-alert warning"></div>
+					El máximo es 1MB</div>
     </div>
     <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="signup-field">

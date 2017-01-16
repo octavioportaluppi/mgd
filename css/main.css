@@ -95,7 +95,7 @@ nav.navbar {
 .navbar-right {
   margin-right: 0; }
 
-.owl-carousel{ padding: 0 50px; }
+.owl-carousel{ ppadding: 0 50px; }
 
 .btn {
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
@@ -407,7 +407,7 @@ label.btn.btn-default {
   border-radius: 4px;
   line-height: 1;
   display: block;
-  margin: 47px 0px;
+  margin: 25px 15px;
   font-size: 12px;
 }
 
@@ -432,6 +432,17 @@ label.btn.btn-default {
 .ideas-item-phone .ideas-item-info-meta{
   margin: 8px 0 8px 0;
 }
+
+@media only screen and (max-width: 768px) {
+  body { padding-top: 102px; }
+  .events {
+    padding: 31px 25px 0px;
+}
+.ideas-item {
+  margin: 15px;
+}
+}
+
 .ideas-item-tablet {
   height: 152px;
   overflow: auto;
@@ -543,10 +554,10 @@ p.ideas-item-info-meta {
   text-align: center;
   font-size: 15px;
   color: #A6A6A6;
-  margin-bottom: 60px;
 }
 .herramientas-item {
   text-align: center;
+  margin-top: 60px;
 }
 
 .herramientas-item > div {  height: 70px; }
@@ -556,7 +567,7 @@ p.ideas-item-info-meta {
   font-weight: bold;
   margin-top: 30px;
   color: #A9A7AC;
-  margin: 33px 0 10px;
+  margin: 15px 0;
 }
 
 .herramientas-item p {
@@ -651,15 +662,10 @@ footer .social i.fa { width: 30px;
   position: relative;
 }
 
-.img-panel-full-register {
-  background-image: url("../img/mi_gran_dia_cumpleanos.jpg");
-  padding: 0 30%;
-}
-
 .img-supplier {
   background-image: url("../img/mi_gran_dia_conferencia.jpg");
   width: 100%;
-  margin-left: -15px; }
+}
 
 .img-planner {
   background-image: url("../img/mi_gran_dia_cumpleanos.jpg");
@@ -710,7 +716,9 @@ label {
 
 .form-group {
   font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
-  font-weight: 400; }
+  font-weight: 400;
+  margin-bottom: 17px;
+}
 
 /******** Register ************/
 option {
@@ -720,7 +728,9 @@ option {
   margin-top: 15px; }
 
 .signup-field {
-  padding: 5px 7px; }
+  padding: 5px 7px;
+    margin-bottom: 20px;
+}
 
 /************ Register Evento ***************/
 h1.promt {
@@ -730,7 +740,14 @@ h1.promt {
   padding: 20px 0; }
 
 .register-panel .btn.btn-default {
-  
+  background: #cecece;
+border-radius: 3px;
+text-align: left;
+color: #818181;
+}
+
+.register-panel .btn.btn-default {
+  background: #e0e0e0;
 }
 
 .register-panel .col-md-6:hover > .btn-group .btn.btn-default, .register-panel .col-md-4:hover > .btn-group .btn.btn-default {
@@ -755,15 +772,57 @@ h1.promt {
   text-align: center;
   border: solid 1px #cecece;
   padding: 20px;
-  width: 300px;
+
   display: inline-block;
   margin: 15px;
+  vertical-align: top;
+    min-height: 500px;
+    position: relative;
+}
+
+@media only screen and (min-width: 768px) {
+  .account {
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .account {
+    width: 29%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .upgrade h1 {
+    margin-top: 215px;
+
+  }
+  .account {
+    width: 80%;
+  }
+}
+
+.account .request-subscription {
+  position: absolute;
+right: 0;
+left: 0;
+width: 90%;
+margin: 12px auto;
+bottom: 0px;
 }
 
 .account.selected {
-  background: #D0B1D5;
+  border: 5px solid #858;
+border-radius: 8px;
 }
 
+.account .request {
+  position:absolute;
+  bottom: 0px;
+}
+.upgrade h1 {
+  margin-top: 30px;
+}
   .account h2 {
     font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
     font-weight: 700;
@@ -776,11 +835,14 @@ h1.promt {
     background-image: none; }
   .account ul {
     margin-top: 10px;
-    padding-left: 20px; }
+    padding-left: 20px;
+    margin-left: 15px;
+        text-align: left;
+  }
     .account ul li {
       color: #818181;
       font-size: 1em;
-      line-height: 40px; }
+      line-height: inherit; }
     .account ul .check {
       list-style-image: url("../img/check.png");
       margin-bottom: 0; }
@@ -1256,6 +1318,12 @@ nav.navbar.navbar-fixed-top {
     margin-top:40px;
 }
 
+@media only screen and (max-width: 1024px) {
+  .margin-40{
+      margin-top:0px;
+  }
+}
+
 .align-center{
      margin: 0 auto;
      text-align: center;
@@ -1279,4 +1347,17 @@ nav.navbar.navbar-fixed-top {
 .chatButton {
    height: 42px;
    margin-right: 10px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .supplier-chat{
+      left: 0px;
+  }
+}
+
+.img-panel-full-register {
+  background-image: url("../img/mi_gran_dia_cumpleanos.jpg");
+  padding: 0 10%;
 }

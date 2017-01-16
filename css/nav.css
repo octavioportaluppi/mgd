@@ -31,6 +31,9 @@ body {
 
 .responsive-menu {
     background: #FFF;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
 }
 
 .main-nav .floating-menu {
@@ -72,8 +75,8 @@ body {
     padding: 6px 16px 6px;
     color: #858;
     line-height: 18px;
-    margin-right: 71px;
-    margin-left: 32px;
+    mmargin-right: 71px;
+    mmargin-left: 32px;
     border-radius: 4px;
     letter-spacing: normal;
     display: block;
@@ -88,7 +91,7 @@ body {
 
 .main-nav .main-menu {
     float: left;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .main-nav .main-menu li {
@@ -156,7 +159,7 @@ body {
     margin: 0 15px;
   }
 }
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 768px) {
   .nav-top{
     height: 102px;
   }
@@ -174,7 +177,7 @@ body {
 
     .main-nav .logo { width: 230px; }
 
-    body { padding-top: 100px; }
+
 
 
 }
@@ -192,9 +195,13 @@ body {
 
     .main-nav .logo { width: 350px; }
 
-    body { padding-top: 141x; }
+    body { padding-top: 141px; }
 
 
+}
+
+@media only screen and (max-width: 768px) {
+  body { padding-top: 102px; }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -221,6 +228,7 @@ body {
       display: none;
       font-size: 12px
     }
+    body { padding-top: 100px; }
 }
 @media only screen and (min-width: 1200px) {
   .main-nav .main-menu .sub-menu {

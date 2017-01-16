@@ -77,7 +77,6 @@ app.controller('chatController',
                             //console.log(m);
                         }
                     });
-                    $scope.getUnreadMessagesCount();
                 };
 
                 $scope.subscribe = function (channel, saveMessages) {
@@ -96,7 +95,9 @@ app.controller('chatController',
                                 var i = 0;
                                 angular.forEach($scope.objUsers, function (value, key) {
                                     if (value.Id == m.sender_uuid) {
+                                      console.log("parseo la fecha")
                                         $scope.objUsers[i].Date = new Date(m.date);
+                                        console.log("pase el parse")
                                         $scope.objUsers[i].Message = m.content;
                                         $scope.objUsers[i].DateFilter = $filter('date')($scope.objUsers[i].Date, "dd/MM/yyyy");
                                     }
@@ -368,35 +369,4 @@ app.controller('chatController',
                     $scope.getChannelName(user);
                     $scope.history(true);
                 };
-
-                $scope.getUnreadMessagesCount = function(){
-                  lastseen = new Date();
-                  var result = 0;
-                  Pubnub.history({
-                      channel: $scope.loggedUser.Id,
-                      callback: function (m) {
-
-                              m[0].reverse();
-                              $.each(m[0], function (i, el) {
-                                      if (el.content !== undefined) {
-                                          if (el.hasOwnProperty('message')) {
-                                              //$scope.objUsers[cont].Date = new Date(el.date);
-                                              //$scope.objUsers[cont].DateFilter = $filter('date')($scope.objUsers[cont].Date, "dd/MM/yyyy");
-                                              if (el.date > lastseen){
-                                                result++;
-
-                                              }
-                                              console.log("paso! "+el.date)
-                                          }
-                                      }
-                              });
-
-                      },
-                      count: 100,
-                      reverse: false
-                  });
-                  return result;
-                };
-
-
             }]);

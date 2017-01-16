@@ -4,11 +4,11 @@ app.controller('activateController',
 
         $scope.activate = {};
 
-        accountService
-            .accountInfo()
-            .then(function (response) {
-                $scope.userType = response.data.Role;
-            });
+        // accountService
+        //     .accountInfo()
+        //     .then(function (response) {
+        //         $scope.userType = response.data.Role;
+        //     });
 
         $scope.activateAccount = function (form) {
             if(!form.$valid) {

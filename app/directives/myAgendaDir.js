@@ -184,6 +184,10 @@ var controllerAgenda = ['$scope', 'supplierService', 'agendaService',
         };
 
         $scope.getItems();
+
+        $scope.showshow = function(){
+          alert("hola");
+        }
     }];
 
 app.directive('myAgenda', function () {

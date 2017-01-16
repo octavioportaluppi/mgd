@@ -64,12 +64,6 @@ app.controller('plannerController',
 			});
 	};
 
-	stateService
-		.getStates()
-		.then(function (response) {
-			$scope.states = response.data;
-		});
-
 	$scope.saveEvent = function(form){
 		if(!form.$valid) {
 			return;
@@ -78,8 +72,12 @@ app.controller('plannerController',
 			.saveEvent($scope.event)
 			.then(function (){
 				$scope.formCollapsed = true;
+				$scope.event = {};
+				form.$setUntouched();
+				form.$setPristine();
 				$scope.getEvents();
 			});
+
 	};
 
 	$scope.delete = function (event){
@@ -103,6 +101,17 @@ app.controller('plannerController',
 			.then(function (response){
 				$scope.eventTypes = response.data;
 			});
+
+			stateService
+				.getStates()
+				.then(function (response) {
+					$scope.states = response.data;
+				}).then(function(){
+			authService
+				.getPlanner()
+				.then(function (response) {
+					$scope.planner = response.data;
+				})});
 	}
 
 	$scope.isActive = function(currentLocation) {

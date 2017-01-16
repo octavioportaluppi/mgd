@@ -1,14 +1,10 @@
-<div class="supplier" ng-cloak="">
-    <div class="col-xs-12 col-sm-3 col-md-3 menu-item odd"><a href="#/planner">Mis eventos</a></div>
-    <div class="col-xs-12 col-sm-3 col-md-3 menu-item">
-        <a href="#/planner/account">Mi Cuenta</a>
-    </div>
-    <div class="col-xs-12 col-sm-3 col-md-3 menu-item odd">
-        <a href="#/planner/data">Mis Datos</a>
-    </div>
-    <div class="col-xs-12 col-sm-3 col-md-3 menu-item active">
-        <a href="#/planner/chat">Chat</a>
-    </div>
+<div class="" ng-cloak="">
+  <ul class="planner-nav col-md-12 col-sm-12 col-xs-12" ng-cloak="">
+      <li class="col-md-3 col-sm-3 col-xs-12 odd menu-item"><a href="#/planner">mis eventos</a></li>
+      <li class="col-md-3 col-sm-3 col-xs-12 menu-item"><a href="#/planner/account">mi cuenta</a></li>
+      <li class="col-md-3 col-sm-3 col-xs-12 odd menu-item"><a href="#/planner/data">mis datos</a></li>
+      <li class="col-md-3 col-sm-3 col-xs-12 active menu-item"><a href="#/planner/chat">chat</a></li>
+  </ul>
     <!--chat container-->
     <div class="white-bg chat-container">
         <div class="col-xs-12 col-sm-12 col-md-4 chat-border center-block">
@@ -29,11 +25,11 @@
                     </div>
                     <div class="col-md-4 col-xs-4 col-sm-4">
                         <span ng-show="today == user.DateFilter">
-                            <small>{{user.Date| date:'HH:mm'}}</small>
+                            <small>{{user.Date| date:'HH:mm a'}}</small>
                         </span>
-{{user.Date > new Date()}}
+
                         <span ng-show="today != user.DateFilter">
-                            <small>{{user.Date| date:'dd/MM/yyyy HH:mm'}}</small>
+                            <small>{{user.Date| date:'dd/MM/yyyy - HH:mm a'}}</small>
                         </span>
                     </div>
                 </div>
@@ -52,7 +48,7 @@
             <form class="form-send" role="form" ng-submit="sendMessage()">
                 <div class="row">
                     <div class="col-xs-11 col-sm-11 col-md-10">
-                        <input ng-model="messageContent" type="text" class="form-control messageContent  chat-message-box" placeholder="Escribe un mensaje">
+                        <input ng-model="messageContent" type="text" class="form-control messageContent chat-message-box" placeholder="Escribe un mensaje">
                     </div>
                     <div class="col-xs-1 col-sm-1 col-md-2">
                         <button type="submit" class="btn btn-send">Send</button>
@@ -65,7 +61,7 @@
             <div class=" chat-title">
                 <input type="text" placeholder="Buscar" class="form-control search-chat" ng-model="supplier.Name">
             </div>
-            <div class="available-suppliers">
+            <div class="chat-suppliers">
             <div class="row chat-supplier" ng-repeat="supplier in premiumSuppliers| filter:supplier.Name" ng-click="changeRoom(supplier)">
                 <div class="col-md-1 col-xs-1 col-sm-1">
                 </div>
@@ -73,11 +69,11 @@
                     <img ng-show="supplier.LogoId != -1" class="chat-avatar" src="http://randallcanezr-001-site2.ftempurl.com/api/Pictures/{{supplier.LogoId}}/image?thumbnail=true">
                     <img ng-show="supplier.LogoId == -1" class="chat-avatar" src="https://thesocietypages.org/socimages/files/2009/05/nopic_192.gif">
                 </div>
-                <div class="col-md-9 col-xs-9 col-sm-9" style="margin-left:15px;">
-                    {{supplier.Name}}
+                <div class="col-md-9 col-xs-9 col-sm-9">
+                    &nbsp;{{supplier.Name}}
                 </div>
-            </div>
-            </div>
+            </div
+          </div>
         </div>
     </div>
 </div>

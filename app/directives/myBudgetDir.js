@@ -5,6 +5,7 @@ var budgetController = ['$scope', 'eventService',
 
         $scope.budgets = [];
         $scope.newPayment = {};
+        $scope.newBudget = {};
 
         $scope.createBudget = function (form) {
             if(!form.$valid) {

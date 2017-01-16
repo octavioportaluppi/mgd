@@ -4,11 +4,12 @@
         <a href="#/supplier/account">Mi Cuenta</a>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12 menu-item">
-        <a href="#/upgrade">Upgrade</a>
+        <a href="#/upgrade">Suscripción</a>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12 menu-item odd">
-        <a href="#/supplier/chat">Chat</a>
-    </div>     
+      <a href="#/supplier/chat" ng-if="supplier.SubscriptionType=='All Star'">Chat</a>
+      <a href="#/upgrade" ng-if="supplier.SubscriptionType!='All Star'" title="¡Conviértete en Proveedor All Star!">Chat<span class="supplier-upgrade">¡Solicitar!</span></a>
+    </div>
     <div class="pattern">
         <div class="container forgot-password" style="background-color: #ECECEC">
             <div class="col-md-8 col-md-offset-2">

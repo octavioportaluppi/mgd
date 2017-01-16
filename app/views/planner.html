@@ -1,3 +1,4 @@
+<div class="" ng-cloak="">
 <ul class="planner-nav col-md-12 col-sm-12 col-xs-12" ng-cloak="">
     <li class="active col-md-3 col-sm-3 col-xs-12 menu-item" ng-class="{'active': isActive('/planner')}"><a>mis eventos</a></li>
     <li class="col-md-3 col-sm-3 col-xs-12 menu-item"><a href="#/planner/account">mi cuenta</a></li>
@@ -141,7 +142,7 @@
         </div>
     </div>
 
-<div ng-if="events.length == 0" class="no-events">No has creado eventos aun. Haz click en "Crear nuevo evento" para comenzar!</div>
+
     <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="list-item clearfix"
             ng-repeat="event in events">
@@ -168,12 +169,12 @@
                     </div>
                 </div>
                 <div class="divider col-md-12 col-sm-12 col-xs-12"></div>
-                <div class="col-md-6 col-sm-6 col-xs-6 row">
-                    <p class="ligth-description"><i class="glyphicon glyphicon-calendar item-icon"></i> Fecha: {{event.Date | date: 'dd MMMM, yyyy hh:mm a'}}</p>
+                <div class="col-md-6 col-sm-6 col-xs-12 row">
+                    <p class="ligth-description"><i class="glyphicon glyphicon-calendar item-icon"></i> Fecha: {{event.Date | date: 'dd MMMM, yyyy'}}</p>
                     <p class="ligth-description"><i class="glyphicon glyphicon-user item-icon"></i> Invitados: {{event.GuestsCount}}</p>
                     <p class="ligth-description"><i class="glyphicon glyphicon-heart item-icon"></i> Proveedores guardados: {{event.SuppliersCount}}</p>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-6 pull-right">
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
                     <p class="ligth-description"><i class="glyphicon glyphicon-usd item-icon"></i> Límite de presupuesto: {{event.Budget}} MXN</p>
                     <p class="ligth-description"><i class="glyphicon glyphicon-shopping-cart item-icon"></i> Presupuesto gastado: {{event.Budget - event.AvailableBudget}} MXN</p>
                     <p class="ligth-description"><i class="glyphicon glyphicon-scale item-icon"></i> Presupuesto disponible: {{event.AvailableBudget}} MXN</p>
@@ -291,7 +292,7 @@
                         </div>
                     </div>
                     <div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0">
-                        <div class="form-group signup-field pull-left">
+                        <div class="signup-field pull-left">
                             <button
                                     class="btn btn-default btn-submit next"
                                     ng-class="[{'invalid':!eventForm.$valid && eventForm.$submitted}]"
@@ -308,17 +309,19 @@
         </div>
 
     </div>
-
+<div ng-class="pastEvents.length > 0 ? 'col-md-8':'col-md-12'" ng-if="events.length == 0" class="no-events">No estás organizando ningún evento. Haz click en "Crear nuevo evento" para comenzar!</div>
     <div class="col-md-4 col-sm-12 col-xs-12" ng-if="pastEvents.length > 0">
         <div class="filter-list clearfix row">
             <span>PASADOS</span>
         </div>
         <div div="filter-content">
-            <uib-accordion close-others="true">
+            <uib-accordion close-others="false">
                 <uib-accordion-group ng-repeat="key in getPastEventKeys()">
                     <uib-accordion-heading>
-                        {{key}}
-                        <i class="pull-right glyphicon glyphicon-chevron-right"></i>
+                      	<div ng-click="toggle()">
+                          {{key}}
+                          <i class="pull-right glyphicon glyphicon-chevron-right"></i>
+                        </div>
                     </uib-accordion-heading>
                     <ul>
                         <li ng-repeat="event in pastEvents[key]">
@@ -329,4 +332,5 @@
             </uib-accordion>
         </div>
     </div>
+</div>
 </div>

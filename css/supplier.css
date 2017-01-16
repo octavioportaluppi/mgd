@@ -8,13 +8,25 @@
 }
 
 .supplier .votes {
-    direction: rtl;
+  margin: 7px 0px;
+  width: 100%;
+  display: inline-block;
 }
 
 .supplier .vote {
-    padding: 0 10px;
+    padding: 0px;
     cursor: pointer;
     font-size: 2rem;
+}
+
+.supplier .display-vote {
+  padding: 0;
+  font-size: 2rem;
+  cursor: default;
+}
+
+.supplier .display-vote.filled {
+  color: #aed136;
 }
 
 .supplier .supplier-pic {
@@ -75,4 +87,28 @@
 
 .chat-send {
   width: 100%;
+}
+
+.send-private-message  {
+  font-size: 1em;
+    margin: 5px 0 15px 26px;
+    background: #858;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.faq-display {
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+
+.faq-display label {
+  letter-spacing: 2px !important;
+}
+
+.suppliers-back {
+  position: absolute;
+  left: 28px;
+  top: -35px;
+  font-size: 25px;
 }

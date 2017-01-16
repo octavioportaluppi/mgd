@@ -59,29 +59,40 @@ app.factory('supplierService',
 
     //britez
     var updateSupplierProfile = function(details, callback){
-        var promise = $http.put(serviceBase + 'api/suppliers', details);
-        promise.then(function (){
-            if(details.profilePic) {
-                if(details.LogoId){
-                    authService.deletePicture(details.LogoId)
-                        .then(function (){
-                            authService
-                                .uploadLogo(details.profilePic, true);
-                        })
-                } else {
-                    authService
-                        .uploadLogo(details.profilePic, true);
-                }
-            }
-            if(details.photos && details.photos.length > 0) {
-                details.photos.forEach(function(photo){
-                    authService.uploadLogo(photo, false);
-                })
-            }
-            if (typeof callback !== 'undefined')
-                callback();
-        });
-        return promise;
+
+      var cur = $q.when();
+      var promises = [$http.put(serviceBase + 'api/suppliers', details)];
+
+          if(details.profilePic) {
+              if(details.LogoId){
+
+                  promises.push(authService.deletePicture(details.LogoId));
+                  promises.push(authService.uploadLogo(details.profilePic, true));
+
+              } else {
+                  promises.push(authService.uploadLogo(details.profilePic, true));
+              }
+          }
+
+          if(details.photos && details.photos.length > 0) {
+              details.photos.forEach(function(photo){
+                  promises.push(authService.uploadLogo(photo, false));
+              })
+          }
+
+
+      promises.forEach(function(promise){
+          cur = cur.then(function(){
+              return promise;
+          });
+      })
+
+      cur.then(function(){
+        if (typeof callback !== 'undefined')
+            callback();
+        })
+
+      return cur;
     };
 
     var updateSuppliersService = function (services) {

@@ -8,6 +8,7 @@ app.controller('supplierAccountController',
 	};
 
 	$scope.account = {};
+	$scope.supplier = {};
 
 	$scope.send = function (form) {
 		if(!form.$valid) {
@@ -28,5 +29,14 @@ app.controller('supplierAccountController',
 			.test($scope.account.NewPassword);
 	};
 
-}]);
+	$scope.load = function(){
+			accountService
+				.getCurrentSubscription()
+				.then(function(res){
+					$scope.supplier.SubscriptionType = res.data.Name;
+				})
+	};
 
+	$scope.load();
+
+}]);

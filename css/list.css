@@ -1,11 +1,12 @@
 .list-header {
-	margin: 20px 0 10px 0;
+	margin: 0px 0 10px 0;
 
 
 }
 
 .suppliers-header{
 	    background-color: #8B4194;
+			    padding: 25px;
 }
 
 .events-header{
@@ -14,8 +15,12 @@
 	background: url(../img/mi_gran_dia_pattern.png) #ddd;
 	border: 1px solid #ddd;
 }
-}
 
+@media only screen and (max-width: 768px) {
+	.events-header{
+		margin-top: 258px;
+	}
+}
 .events-header .first-line	{
 
 }
@@ -74,6 +79,7 @@ color: #858;
 
 .list-item .ligth-description {
 	color: #777777;
+	text-transform: none;
 }
 
 .list-item p {
@@ -202,6 +208,7 @@ color: #858;
 	border: none;
 	background: #fff;
 	color: #818181;
+	cursor: pointer;
 }
 
 .panel-group .panel+.panel {
@@ -281,6 +288,7 @@ color: #858;
     padding: 0px 4px 1px;
     border-radius: 4px;
     font-size: 13px;
+		cursor: pointer;
 }
 
 .remove-filters i {
@@ -291,9 +299,18 @@ color: #858;
 	border-radius: 0px !important;
 }
 
-.search form {
-	width:50%;
+@media only screen and (max-width: 1024px) {
+	.search form {
+		width:100%;
+	}
 }
+
+@media only screen and (min-width: 1024px) {
+	.search form {
+		width:50%;
+	}
+}
+
 
 .list-header .content {
 	text-align: center;
@@ -305,4 +322,39 @@ color: #858;
 a.accordion-toggle:focus{
 	outline: none;
 text-decoration: none;
+}
+
+.no-results {
+	background: #f2f2f2;
+	    padding: 10px;
+	    color: #888;
+	    font-weight: 600;
+	    margin: 20px 16px;
+	    border-radius: 3px;
+}
+
+.filter-item {
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+	.supplier-search {
+		padding:0 5px 0 0;
+		margin:0;
+	}
+
+	.supplier-search-button {
+		padding:0;
+		margin:0;
+	}
+
+	.supplier-search-button span {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.filter-responsive {
+		display:none;
+	}
 }

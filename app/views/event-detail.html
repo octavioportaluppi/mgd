@@ -1,8 +1,8 @@
-<ul class="planner-nav supplier col-md-12 col-sm-12 col-xs-12" ng-cloak="">
-    <li class="active col-md-3 col-sm-3 col-xs-3 menu-item"><a href="#/planner">Mis eventos</a></li>
-    <li class="col-md-3 col-md-3 col-sm-3 col-xs-3 menu-item"><a href="#/planner/account">Mi Cuenta</a></li>
-    <li class="col-md-3 col-md-3 col-sm-3 col-xs-3 menu-item odd"><a href="#/planner/datat">Mis Datos</a></li>
-    <li class="col-md-3 col-md-3 col-sm-3 col-xs-3 menu-item"><a href="#/planner/chat">Chat</a></li>
+<ul class="planner-nav col-md-12 col-sm-12 col-xs-12" ng-cloak="">
+    <li class="active col-md-3 col-sm-3 col-xs-12 menu-item" ng-class="{'active': isActive('/planner')}"><a href="#/planner">mis eventos</a></li>
+    <li class="col-md-3 col-sm-3 col-xs-12 menu-item"><a href="#/planner/account">mi cuenta</a></li>
+    <li class="col-md-3 col-sm-3 col-xs-12 odd menu-item"><a href="#/planner/data">mis datos</a></li>
+    <li class="col-md-3 col-sm-3 col-xs-12 menu-item"><a href="#/planner/chat">chat</a></li>
 </ul>
 <div class="col-md-12 col-sm-12 col-xs-12 event-detail-header">
     <div class="event-detail-icon"><i class="{{event.EventType.Name | icon}}"></i></div>

@@ -33,6 +33,7 @@
 .planner-nav li:hover{
     background: #aed136;
     color: #FFF;
+    cursor: pointer;
 }
 
 .planner-nav .active a{
@@ -92,7 +93,7 @@ border-radius: 20px;
 }
 
 .planner-list .form-horizontal .btn-default {
-    margin: 10px 0 0 0;
+    margin: 0px;
 }
 
 .planner-list .delete-form {
@@ -225,6 +226,13 @@ border-radius: 20px;
     margin: 0 0 10px;
 }
 
+.add-payment, .add-expense
+{
+      background: transparent !important;
+      color: #8c3e96 !important;
+      text-align: right;
+      cursor: default;
+}
 .budget-payment.invalid,
 .budget-total.invalid {
     border: 1px #ee3470 solid;
@@ -347,6 +355,13 @@ border-radius: 20px;
     height: 25px;
     text-align: center;
     padding: 3px 0 0 0;
+}
+
+.task-form {
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 15px 15px 0px 15px;
+  margin-bottom: 15px;
 }
 
 .task-form .input-group {
@@ -565,8 +580,8 @@ border-radius: 20px;
 .no-events {
   font-size: 16px;
 color: #999;
-margin-top: 27px;
-background: #eee;
+margin-top: 19px;
+background: #f5f5f5;
 padding: 5px 10px;
 border-radius: 6px;
 text-align: center;
@@ -576,6 +591,12 @@ text-align: center;
 text-align: center;
 background: url('../img/mi_gran_dia_pattern.png') #ddd;
 min-height: 340px;
+}
+
+@media only screen and (max-width: 768px) {
+  .event-detail-header {
+  min-height: 235px;
+  }
 }
 
 .event-detail-header .text h1 {
@@ -593,7 +614,7 @@ min-height: 340px;
   font-size: 55px;
 background-color: #858;
 border-radius: 80px;
-padding: 17px 10px;
+    padding: 24px 20px;
 color: #fff;
 }
 
@@ -605,4 +626,34 @@ color: #fff;
   margin: 5px 0px 0px;
 font-size: 18px;
 color: #858;
+}
+
+.agenda-cat {
+  min-height: 500px
+}
+
+.agenda-list {
+  background-color: #FAF5FB; min-height: 500px; padding: 20px;
+}
+
+.agenda-detail {
+
+}
+
+@media only screen and (max-width: 768px) {
+  .agenda-cat {
+    min-height: auto
+  }
+
+  .agenda-list {
+    min-height: auto;
+  }
+
+  .agenda-detail {
+    min-height: auto;
+  }
+
+  .planner-data {
+    margin-top: 183px;
+  }
 }

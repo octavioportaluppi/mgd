@@ -8,6 +8,7 @@
         'angular-progress-arc',
         'angular-loading-bar',
         'ngFileUpload',
+        'textAngular',
         'infinite-scroll',
         "pubnub.angular.service",
         "luegg.directives",
@@ -168,7 +169,7 @@ app.config(function($routeProvider) {
 });
 
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.includeBar = false;
+    cfpLoadingBarProvider.includeBar = true;
     cfpLoadingBarProvider.spinnerTemplate =
     '<div id="loading-bar-spinner">' +
         '<div class="spinner-icon">' +
@@ -300,6 +301,25 @@ app.filter('tel', function () {
     };
 })
 
+.filter('profileViews', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        if (typeof source !== "number")
+          return source;
+
+        if (source < 100)
+        {
+          return "< 100";
+        }
+        else {
+          return source;
+        }
+    };
+})
+
 .filter('filterKey', function(){
     return function (source) {
         if(!angular.isDefined(source)){
@@ -307,10 +327,10 @@ app.filter('tel', function () {
         }
 
         var values = [
-            { id: 'EventTypeFilter', key: 'Tipo de Evento' },
-            { id: 'ServiceTypeFilter', key: 'Tipo de Servicio' },
             { id: 'CityFilter', key: 'Ciudad' },
-            { id: 'StateFilter', key: 'Estado' }
+            { id: 'StateFilter', key: 'Estado' },
+            { id: 'ServiceTypeFilter', key: 'Servicio' },
+            { id: 'EventTypeFilter', key: 'Evento' }
         ];
 
         var result = values.find(function (it){return it.id == source});
