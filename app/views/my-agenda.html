@@ -1,4 +1,4 @@
-<div class="row" ng-cloak="">
+<div class="row  my-section" ng-cloak="">
     <div class="col-md-3 col-sm-12 col-xs-12 agenda-cat">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 calendar-title">
@@ -72,7 +72,7 @@
                             ng-model="newTask.ServiceTypeId"
                             required="required"
                             ng-class="{'invalid':data.service.$error.required && (data.$submitted || data.service.$touched)}">
-                        <option value="" disabled>Selecciona un tipo de servicio</option>
+                        <option value="" disabled>Asociado a servicio</option>
                         <option ng-repeat="service in serviceTypes" value="{{service.Id}}">{{service.Name}}</option>
                     </select>
                     <div class="dashboard-error" ng-show="data.$submitted || data.service.$touched">
@@ -92,7 +92,7 @@
                         clear-text="Borrar"
                         current-text="Hoy"
                         alt-input-formats="altInputFormats"
-                        placeholder="DD/MM/YYYY"
+                        placeholder="VENCIMIENTO DD/MM/AAAA"
                         required="required"
                         popup-placement="top-right"
                         ng-class="{'invalid':(data.date.$error.required || data.date.$error.pattern) && (data.$submitted || data.date.$touched)}"/>

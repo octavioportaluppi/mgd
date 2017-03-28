@@ -2,8 +2,8 @@
 	<div class="content">
 		<uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
 			<uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-				<div class="carousel-image" style="background-image:url('{{slide.img}}')">
-					<div class="carousel-caption">{{slide.text}}</div>
+				<div class="carousel-image {{slide.class}}" style="background-image:url('{{slide.img}}')">
+					<div class="carousel-caption"><a href="{{slide.link}}" title="Ver proveedores">{{slide.text}}</a></div>
 				</div>
 			</uib-slide>
 		</uib-carousel>
@@ -30,14 +30,14 @@
 		<div class="content">
 				<div class="clearfix">
 					<h2 class="posts-title pull-left">Nuestros proveedores all star</h2>
-					<a href="http://blog.migrandia.mx" class="proveedores-more-btn pull-right">Ver más</a>
+					<a href="/#/suppliers/browse/all" class="proveedores-more-btn pull-right">Ver más</a>
 				</div>
 				<owl-carousel class="owl-carousel">
 					<div owl-carousel-item class="supplier-item-container" ng-repeat="supplier in suppliers">
 						<div class="supplier-item">
 							<a href="#/suppliers/{{supplier.Id}}" class="supplier-item-img">
-									<img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl" class="img-responsive default-logo"/>
-									<img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl" class="img-responsive"/>
+								<img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl" class="img-responsive default-logo"/>
+								<img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl" class="img-responsive"/>
 									<div class="supplier-item-star-container">
 										<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 									</div>
@@ -49,7 +49,7 @@
 								<div class="supplier-item-info">
 									<h3>{{supplier.Name}}</h3>
 									<p class="supplier-item-info-city">{{supplier.City.Name}}</p>
-									<p class="supplier-item-info-desc">{{supplier.Description | limitTo: 200}}</p>
+									<p class="supplier-item-info-desc">{{supplier.Description.substring(0,250) | removeHtml}}...</p>
 								</div>
 							</div>
 						</div>

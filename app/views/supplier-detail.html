@@ -49,8 +49,11 @@
             </div>
         </div>
         <div class="col-md-4 col-sm-5 info">
-            <p class="address" ng-if="supplier.Email"><i class="glyphicon glyphicon-envelope"></i> {{supplier.Email}}</p>
-            <p class="address" ng-if="supplier.Phone"><i class="glyphicon glyphicon-earphone"></i> {{supplier.Phone}}</p>
+          <p>
+              <span class="open-now" ng-if="isOpen()">¡Abierto ahora!</span>
+          </p>
+            <p class="address" ng-if="supplier.Email"><i class="glyphicon glyphicon-envelope"></i> <a href="mailto:{{supplier.Email}}">{{supplier.Email}}</a></p>
+            <p class="address" ng-if="supplier.Phone"><i class="glyphicon glyphicon-earphone"></i> <a href="tel:{{supplier.Phone}}">{{supplier.Phone}}</a></p>
             <div class="info">
               <i class="glyphicon glyphicon-pushpin" style="vertical-align:top;"></i>
               <div style="display:inline-block;">
@@ -58,9 +61,6 @@
                 <p class="address">{{supplier.City.Name | firstLetter}}, {{supplier.State.Name | firstLetter}}</p>
               </div>
             </div>
-            <p style="cursor: pointer;">
-                <span style="color: #aed136" ng-if="isOpen()">Open now</span>
-            </p>
             <a ng-show="supplier.SubscriptionType.Name=='All Star'" href='/#/planner/chat/{{supplier.Id}}' class="btn btn-default send-private-message">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
                 Enviar Mensaje Privado

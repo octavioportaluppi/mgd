@@ -12,6 +12,7 @@
                 </div>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
+                  <div ng-if="suppliers.length == 0" class="col-md-10 col-md-offset-1 no-suppliers-saved">No has guardado ningún proveedor aun. ¡Haz click en "Agregar Proveedor" para comenzar!</div>
                     <div
                         ng-repeat="supplier in suppliers| filter: suppliersFilter"
                         class="list-item clearfix">
@@ -22,26 +23,38 @@
                             </a>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9 clearfix">
-                          <a href="#/suppliers/{{supplier.Id}}" target="_blank">{{supplier.Name}}</a>
-                                                  <div ng-show="supplier.SubscriptionType.Name=='All Star'" clasS="pull-right">
-                                                      <a href="/#/planner/chat/{{supplier.Id}}" title="Enviar mensaje">
-                                                          <img class='supplier-chat' src='/img/chat-icon.png'>
-                                                      </a>
-                                                  </div>
-                                                  <span class="ligth-description"><i class="glyphicon glyphicon-pushpin"></i> {{supplier.City.Name}}, {{supplier.State.Name}}</span>
-                                                  <p class="description-elipsis">{{supplier.Description.substring(0,250)}}...</p>
-                          <div class="divider"></div>
-                          <div class="col-md-12">
                             <div class="row">
-                              <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
+                                      <span class="ligth-description">{{supplier.City.Name}}, {{supplier.Address}}</span>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button class="btn btn-fav pull-right subscribed"
+                                            ng-click="event.enabled && unsubscribe(supplier.Id)" title="Quitar de favoritos">
+                                        <i class="fa fa-heart"></i>
+                                    </button>
+
+                                    <a ng-show="supplier.SubscriptionType.Name == 'All Star'" class="btn btn-fav pull-right" href="/#/planner/chat/{{supplier.Id}}"
+                                    title="Enviar mensaje privado">
+                                        <img class='chat-icon' src='/img/chat-icon.png'>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-xs-12 col-sm-12">
+                                <div class="row">
+                                    <p class="description-elipsis">{{supplier.Description.substring(0,250) | removeHtml}}...</p>
+                                </div>
+                            </div>
+                            <div class="divider col-md-12 col-sm-12 col-xs-12"></div>
+                            <div class="row">
+                            <div class="col-md-8 col-sm-12 col-xs-12">
                                 <span class="premium-service listing-service" ng-repeat="service in supplier.ServiceTypes">
                                   <a href='/#/suppliers/browse/service/{{service.Id}}' title='{{service.Name}}' target="_blank"><i class="{{service.Name | icon}}"></i>
                                   {{service.Name}}</a>
                                 </span>
-                              </div>
-                              <div class="col-md-4 col-xs-12 col-sm-4">
-                                <a href="#/suppliers/{{supplier.Id}}" class="pull-right more-info">MAS INFORMACIÓN</a>
-                              </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
                             </div>
                           </div>
                         </div>
@@ -50,7 +63,7 @@
 
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12 register-panel" ng-if="addNew && showServices">
-              <div class="suppliers-back" ng-click="getSuppliers()"><i class="glyphicon glyphicon-circle-arrow-left"></i></div>
+              <div class="suppliers-back" ng-click="getSuppliers()" title="Volver"><i class="glyphicon glyphicon-circle-arrow-left"></i></div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <span class="supplier-title">Agregar un nuevo proveedor</span>
                     <p>Elije el tipo de servicio</p>
@@ -60,14 +73,14 @@
                     class="col-md-4 col-sm-6 col-xs-12"
                     ng-repeat="item in services"
                     ng-click="getSuppliersByService(item.Id)">
-                    <div style="background-color: #C0C0C0; border-radius: 3px; padding: 10px 7px; cursor: pointer;">
+                    <div style="background-color: #c0c0c0; border-radius: 3px; padding: 10px 15px; cursor: pointer;color:#fff;">
                         <span class="{{item.Name| icon }}"></span>
                         {{item.Name}}
                     </div>
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12" ng-if="addNew && showSuppliers">
-<div class="suppliers-back" ng-click="addNewSupplier()"><i class="glyphicon glyphicon-circle-arrow-left"></i></div>
+              <div class="suppliers-back" ng-click="addNewSupplier()" title="Vover"><i class="glyphicon glyphicon-circle-arrow-left"></i></div>
                 <div class="col-md-6 col-sm-6 col-xs-6">
                     <span class="supplier-title">Favoritos</span>
                     <p>Asocia un proveedor a tu evento!</p>
@@ -88,6 +101,7 @@
                         infinite-scroll='nextPage()'
                         infinite-scroll-disabled='loading'
                         infinite-scroll-distance='1000'>
+
                         <div class="col-md-3 col-sm-3 col-xs-3">
                             <a href="#/suppliers/{{supplier.Id}}">
                                 <img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
@@ -95,28 +109,35 @@
                             </a>
                         </div>
                         <div class="col-md-9 col-sm-9 col-xs-9 clearfix">
-                          <a href="#/suppliers/{{supplier.Id}}" target="_blank">{{supplier.Name}}</a>
-                                                  <div ng-show="supplier.SubscriptionType.Name=='All Star'" clasS="pull-right">
-                                                      <a href="/#/planner/chat/{{supplier.Id}}" title="Enviar mensaje">
-                                                          <img class='supplier-chat' src='/img/chat-icon.png'>
-                                                      </a>
-                                                  </div>
-                                                  <span class="ligth-description"><i class="glyphicon glyphicon-pushpin"></i> {{supplier.City.Name}}, {{supplier.State.Name}}</span>
-                                                  <p class="description-elipsis">{{supplier.Description.substring(0,250)}}...</p>
-                          <div class="divider"></div>
-                          <div class="col-md-12">
                             <div class="row">
-                              <div class="col-md-8 col-sm-8 col-xs-12">
-                                <span class="premium-service listing-service" ng-repeat="service in supplier.ServiceTypes">
-                                  <a href='/#/suppliers/browse/service/{{service.Id}}' title='{{service.Name}}' target="_blank"><i class="{{service.Name | icon}}"></i>
-                                  {{service.Name}}</a>
-                                </span>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
+                                    <span class="ligth-description">{{supplier.City.Name}}, {{supplier.Address}}</span>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <button class="btn btn-fav pull-right"
+                                            ng-click="subscribe(supplier.Id)" title="Agregar a favoritos">
+                                        <i class="fa fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <p class="description-elipsis">{{supplier.Description.substring(0,250) | removeHtml}}...</p>
+                                </div>
+                            </div>
+                            <div class="divider col-md-12 col-sm-12 col-xs-12"></div>
+                            <div class="row">
+                              <div class="col-md-8 col-sm-12 col-xs-12">
+                                  <span class="premium-service listing-service" ng-repeat="service in supplier.ServiceTypes">
+                                    <a href='/#/suppliers/browse/service/{{service.Id}}' title='{{service.Name}}' target="_blank"><i class="{{service.Name | icon}}"></i>
+                                    {{service.Name}}</a>
+                                  </span>
                               </div>
-                              <div class="col-md-4 col-xs-12 col-sm-4">
-                                <a href="#/suppliers/{{supplier.Id}}" class="pull-right more-info">MAS INFORMACIÓN</a>
+                              <div class="col-md-4 col-sm-12 col-xs-12">
+                                  <a href="#/suppliers/{{supplier.Id}}" class="more-info">MAS INFORMACIÓN</a>
                               </div>
                             </div>
-                          </div>
                         </div>
                     </div>
                 </div>
@@ -144,18 +165,12 @@
                     <span class="ligth-description">{{supplier.City.Name}}</span>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-4">
-                    <button class="btn btn-fav pull-right"
-                            ng-if="!isSubscribed(supplier.Id)"
+                    <button class="btn btn-fav pull-right" title="Agregar a favoritos"
                             ng-click="event.enabled && subscribe(supplier.Id)">
                         <i class="fa fa-heart"></i>
                     </button>
-                    <button class="btn btn-fav pull-right subscribed"
-                            ng-if="isSubscribed(supplier.Id)"
-                            ng-click="event.enabled && unsubscribe(supplier.Id)">
-                        <i class="fa fa-heart"></i>
-                    </button>
 
-                    <a class="btn btn-fav pull-right chatButton" href="/#/planner/chat/{{supplier.Id}}">
+                    <a class="btn btn-fav pull-right chatButton" href="/#/planner/chat/{{supplier.Id}}" title="Enviar mensaje privado">
                         <img class='chat-icon2' src='/img/chat-icon.png'>
                     </a>
                 </div>

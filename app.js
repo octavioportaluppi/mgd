@@ -6,7 +6,7 @@
         'ui.bootstrap',
         'flow',
         'angular-progress-arc',
-        'angular-loading-bar',
+        //'angular-loading-bar',
         'ngFileUpload',
         'textAngular',
         'infinite-scroll',
@@ -164,21 +164,23 @@ app.config(function($routeProvider) {
         templateUrl: "/app/views/contact.html"
     });
 
+    $routeProvider.when("/about-us",{
+        templateUrl: "/app/views/about-us.html"
+    });
+
+    $routeProvider.when("/legal",{
+        templateUrl: "/app/views/legal.html"
+    });
+
+    $routeProvider.when("/faq",{
+        templateUrl: "/app/views/faq.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/" });
 
 });
 
-app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.includeBar = true;
-    cfpLoadingBarProvider.spinnerTemplate =
-    '<div id="loading-bar-spinner">' +
-        '<div class="spinner-icon">' +
-            '<span></span>' +
-            '<span></span>' +
-            '<span></span>' +
-        '</div>' +
-    '</div>';
-}]);
+
 
 app.filter('tel', function () {
     return function (tel) {
@@ -251,6 +253,16 @@ app.filter('tel', function () {
     };
 })
 
+.filter('removeHtml', function(){
+    return function (source) {
+        if(!angular.isDefined(source)){
+            return;
+        }
+
+        return source ? String(source).replace(/<[^>]+>/gm, '') : '';
+    };
+})
+
 .filter('background', function(){
     return function (source) {
         if(!angular.isDefined(source)){
@@ -273,7 +285,7 @@ app.filter('tel', function () {
             source = source.split(value.id).join(value.replace);
         });
 
-        return source;
+        return 'header-' + source;
     };
 })
 
@@ -287,10 +299,10 @@ app.filter('tel', function () {
             { id: 0, name: 'Domingo' },
             { id: 1, name: 'Lunes' },
             { id: 2, name: 'Martes' },
-            { id: 3, name: 'Miercoles' },
+            { id: 3, name: 'Miércoles' },
             { id: 4, name: 'Jueves' },
             { id: 5, name: 'Viernes' },
-            { id: 6, name: 'Sabado' }
+            { id: 6, name: 'Sábado' }
         ];
 
         var result = values.find(function (it){return it.id == source});

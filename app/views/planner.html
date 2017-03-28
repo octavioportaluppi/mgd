@@ -75,7 +75,8 @@
                                     placeholder="DD/MM/AAAA"
                                     required="required"
                                     popup-placement="top-right"
-                                    ng-class="{'invalid':eventForm.date.$error.required && (eventForm.$submitted || eventForm.date.$touched)}"
+                                    aw-datepicker-pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$"
+                                    ng-class="{'invalid':(eventForm.date.$error.required || !eventForm.date.$valid) && (eventForm.$submitted || eventForm.date.$touched)}"
                                     dropdown-append-to-body="dropdown-append-to-body"/>
                             <div class="input-group-btn calendar-btn">
                                 <button class="btn btn-input" type="button" ng-click="datepicker.opened = !datepicker.opened">
@@ -85,6 +86,7 @@
                         </div>
                         <div class="error" ng-show="eventForm.$submitted || eventForm.date.$touched">
                             <div ng-show="eventForm.date.$error.required">Dinos la fecha del evento.</div>
+                            <div ng-show="!eventForm.date.$valid && !eventForm.date.$error.required">Dinos una fecha válida.</div>
                         </div>
                     </div>
                 </div>
@@ -122,11 +124,15 @@
                                 type="text"
                                 ng-model="event.Budget"
                                 name="budget"
-                                placeholder="Presupuesto"
+                                placeholder="$ Presupuesto"
                                 required="required"
-                                ng-class="{'invalid':eventForm.budget.$error.required && (eventForm.$submitted || eventForm.budget.$touched)}"/>
+                                ng-class="{'invalid':(eventForm.budget.$error.required || !eventForm.budget.$valid) && (eventForm.$submitted || eventForm.budget.$touched)}"
+
+                                ng-pattern="/^\d{1,10}$/"
+                                />
                         <div class="error" ng-show="eventForm.$submitted || eventForm.budget.$touched">
-                            <div ng-show="eventForm.budget.$error.required">Dinos la fecha del evento.</div>
+                            <div ng-show="eventForm.budget.$error.required">Dinos el presupuesto del evento.</div>
+                            <div ng-show="!eventForm.budget.$valid && !eventForm.budget.$error.required">El presupuesto debe ser una cifra.</div>
                         </div>
                     </div>
                 </div>
@@ -174,7 +180,7 @@
                     <p class="ligth-description"><i class="glyphicon glyphicon-user item-icon"></i> Invitados: {{event.GuestsCount}}</p>
                     <p class="ligth-description"><i class="glyphicon glyphicon-heart item-icon"></i> Proveedores guardados: {{event.SuppliersCount}}</p>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+                <div class="col-md-6 col-sm-6 col-xs-12 pull-right detail-col">
                     <p class="ligth-description"><i class="glyphicon glyphicon-usd item-icon"></i> Límite de presupuesto: {{event.Budget}} MXN</p>
                     <p class="ligth-description"><i class="glyphicon glyphicon-shopping-cart item-icon"></i> Presupuesto gastado: {{event.Budget - event.AvailableBudget}} MXN</p>
                     <p class="ligth-description"><i class="glyphicon glyphicon-scale item-icon"></i> Presupuesto disponible: {{event.AvailableBudget}} MXN</p>
@@ -283,11 +289,13 @@
                                     type="text"
                                     ng-model="editEvent.Budget"
                                     name="budget"
-                                    placeholder="Presupuesto"
+                                    placeholder="$ Presupuesto"
                                     required="required"
-                                    ng-class="{'invalid':eventForm.budget.$error.required && (eventForm.$submitted || eventForm.budget.$touched)}"/>
+                                    ng-pattern="/^\d{1,10}$/"
+                                    ng-class="{'invalid':(eventForm.budget.$error.required || !eventForm.budget.$valid) && (eventForm.$submitted || eventForm.budget.$touched)}"/>
                             <div class="error" ng-show="eventForm.$submitted || eventForm.budget.$touched">
-                                <div ng-show="eventForm.budget.$error.required">Dinos la fecha del evento.</div>
+                                <div ng-show="eventForm.budget.$error.required">Dinos el presupuesto del evento.</div>
+                                <div ng-show="!eventForm.budget.$valid && !eventForm.budget.$error.required">El presupuesto debe ser una cifra.</div>
                             </div>
                         </div>
                     </div>

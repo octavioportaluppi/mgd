@@ -1,5 +1,7 @@
 <div class="supplier" ng-cloak="">
-  <div class="col-md-3 col-sm-3 col-xs-12 menu-item"><a>Mi Perfil</a></div>
+  <div class="col-md-3 col-sm-3 col-xs-12 menu-item">
+    <a href="#/dashboard">Mi Perfil</a>
+  </div>
   <div class="col-md-3 col-sm-3 col-xs-12 menu-item odd">
       <a href="#/supplier/account">Mi Cuenta</a>
   </div>
@@ -9,8 +11,9 @@
   <div class="col-md-3 col-sm-3 col-xs-12 menu-item active">
       <a href="#/supplier/chat">Chat</a>
   </div>
+    <div class="supplier-chat-upgrade col-md-offset-1 col-md-10 col-sm-12 col-xs-12" ng-if="loggedUser.SubscriptionType.Name != 'All Star'">¡Sube de categoría para comunicarte con tus clientes!</div>
     <!--chat container-->
-    <div class="white-bg chat-container">
+    <div class="white-bg chat-container-supplier">
         <div class="col-xs-12 col-sm-12 col-md-4 chat-border center-block">
             <div class="chat-title">
                 MIS CONVERSACIONES
@@ -18,7 +21,7 @@
             <input type="text" placeholder="Buscar" class="search-chat form-control" ng-model="user.Username">
             <div class="chat-spacer"></div>
             <div class=" chat-conversation">
-                <div ng-repeat="user in objUsers | filter:user.Username | orderBy:'-Date'" ng-class="user.Id == activeRoom.Id?'chat-active':''" class="row chat-user" ng-click="changeUser(user)">
+                <div ng-repeat="user in objUsers | filter:user.Username | orderBy:'-Date'" ng-class="{'chat-active':user.Id == activeRoom.Id, 'unread':user.Unread}" class="row chat-user" ng-click="changeUser(user)">
                     <div class="col-md-2 col-xs-2 col-sm-2 align-center">
                         <img class="chat-avatar" src="https://thesocietypages.org/socimages/files/2009/05/nopic_192.gif">
                     </div>
@@ -52,11 +55,11 @@
 
             <form class="form-send" role="form" ng-submit="sendMessage()">
                 <div class="row">
-                    <div class="col-xs-10 col-sm-10 col-md-10">
-                        <input ng-model="messageContent" type="text" class="form-control messageContent chat-message-box" placeholder="Escribe un mensaje">
+                    <div class="col-xs-8 col-sm-10 col-md-10">
+                        <input ng-model="messageContent" ng-disabled="loggedUser.SubscriptionType.Name != 'All Star'" type="text" class="form-control messageContent chat-message-box" placeholder="Escribe un mensaje">
                     </div>
-                    <div class="col-xs-2 col-sm-2 col-md-2">
-                        <button type="submit" class="btn btn-send chat-send">Send</button>
+                    <div class="col-xs-4 col-sm-2 col-md-2">
+                        <button type="submit" ng-disabled="loggedUser.SubscriptionType.Name != 'All Star'" class="btn btn-send chat-send">Send</button>
                     </div>
                 </div>
             </form>

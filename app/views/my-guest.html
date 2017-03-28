@@ -5,14 +5,14 @@
             <span>Invitados</span>
         </div>
         <div class="col-md-2 col-sm-2 col-xs-2 guests-title middle">
-            <span>RSVP</span>
+            <span>¿Asistirá?</span>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-4 guests-title middle">
             <span>MESA</span>
         </div>
         <div cass="col-md-1 col-sm-1 col-xs-1"></div>
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <p>Agrega invitados y edita su status</p>
+            <p>Agrega invitados y edítalos</p>
         </div>
         <!-- Listado de invitados -->
         <div class="col-md-12 col-sm-12 col-xs-12 guest" ng-repeat="guest in guests">
@@ -109,7 +109,7 @@
                         name="name"
                         required="required"
                         ng-model="newGuest.FirstName"
-                        placeholder="Nombre"
+                        placeholder="Nombre del invitado"
                         ng-class="{'invalid':newGuestForm.name.$error.required && (newGuestForm.$submitted || newGuestForm.name.$touched)}"/>
                     <input
                         type="text"
@@ -247,7 +247,7 @@
                             name="name"
                             ng-model="newGuestGroup.Name"
                             required="required"
-                            placeholder="Nombre de la mesa"
+                            placeholder="Nombre de la nueva mesa"
                             ng-class="{'invalid':newGuestGroupForm.name.$error.required && (newGuestGroupForm.$submitted || newGuestGroupForm.name.$touched)}"/>
                         <div class="dashboard-error" ng-show="newGuestGroupForm.$submitted || newGuestGroupForm.name.$touched">
                             <div ng-show="newGuestGroupForm.name.$error.required">Dinos el nombre de la mesa.</div>
@@ -262,5 +262,8 @@
                 </form>
             </div>
         </div>
+    </div>
+    <div class="available-budget col-xs-12 col-sm-offset-3 col-md-6 pattern">
+      {{(guests|filter:{IsConfirmed:true}).length}} de {{guests.length}}<br /><div style="font-size:18px;">Invitados no confirmados</div>
     </div>
 </div>

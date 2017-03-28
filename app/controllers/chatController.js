@@ -12,6 +12,7 @@ app.controller('chatController',
                 $scope.historyUsers = [];
                 $scope.objUsers = [];
                 $scope.today = new Date();
+                $scope.currentSupplierAllowed = true;
                 var month = '';
                 if ($scope.today.getUTCMonth() >= 10) {
                     month = $scope.today.getUTCMonth() + 1;
@@ -42,6 +43,7 @@ app.controller('chatController',
                                     $scope.loggedUser = res;
                                     $scope.uuid = $scope.loggedUser.Id;
                                     $scope.init();
+                                    $scope.subscribe($scope.loggedUser.Id, false)
                                     $scope.history();
                                 });
                     } else {
@@ -59,7 +61,6 @@ app.controller('chatController',
                     var params = $location.path().split('/');
                     window.location = '/#/login-planner?path=' + $location.path()
                 }
-
 
                 $scope.init = function () {
 
@@ -89,22 +90,41 @@ app.controller('chatController',
 
                     $scope.$on(Pubnub.getMessageEventNameFor(channel), function (ngEvent, m) {
                         $scope.$apply(function () {
+                            var found = false;
                             if (saveMessages) {
-                                $scope.messages.push(m);
+                                if (!m.hasOwnProperty('message')) { //mensaje de una conv ya iniciada
+                                    $scope.messages.push(m);
 
-                                var i = 0;
-                                angular.forEach($scope.objUsers, function (value, key) {
-                                    if (value.Id == m.sender_uuid) {
-                                      console.log("parseo la fecha")
-                                        $scope.objUsers[i].Date = new Date(m.date);
-                                        console.log("pase el parse")
-                                        $scope.objUsers[i].Message = m.content;
-                                        $scope.objUsers[i].DateFilter = $filter('date')($scope.objUsers[i].Date, "dd/MM/yyyy");
-                                    }
-                                    i++;
-                                });
-
+                                    var i = 0;
+                                    angular.forEach($scope.objUsers, function (value, key) {
+                                        if (value.Id == m.sender_uuid) {
+                                           //found = true;
+                                            $scope.objUsers[i].Date = new Date(m.date);
+                                            $scope.objUsers[i].Unread = true;
+                                            $scope.objUsers[i].Message = m.content;
+                                            $scope.objUsers[i].DateFilter = $filter('date')($scope.objUsers[i].Date, "dd/MM/yyyy");
+                                        }
+                                        i++;
+                                    });
+                                }
+                            } else {
+                              if (!$scope.planner){
+                                var found = $filter('filter')($scope.objUsers, {Id: m.sender_uuid}, true);
+                                if (!found.length){
+                                  newConversation = {};
+                                  newConversation.Id = m.sender_uuid;
+                                  newConversation.Username = m.username;
+                                  newConversation.Date = new Date(m.date);
+                                  newConversation.Message = m.message;
+                                  newConversation.DateFilter = $filter('date')(newConversation.Date, "dd/MM/yyyy");
+                                  $scope.objUsers.splice(0,0,newConversation)
+                                  $scope.subscribe(m.content, true);
+                                }
+                              }
                             }
+
+
+
                         });
                     });
                 };
@@ -135,7 +155,6 @@ app.controller('chatController',
                                 if ($scope.rooms.length > 0) {
 
                                     activeRoom = $scope.rooms[0];
-
                                     $scope.getChannelName(activeRoom);
                                     $scope.history();
                                 }
@@ -159,6 +178,11 @@ app.controller('chatController',
                     if (!$scope.messageContent || $scope.messageContent === '') {
                         return;
                     }
+
+                    if ($scope.planner && !$scope.currentSupplierAllowed){
+                        return;
+                    }
+
                     var date = new Date();
                     var message = $scope.messageContent;
 
@@ -269,12 +293,18 @@ app.controller('chatController',
                                         $scope.$apply();
                                     }
                                     $scope.historyActiveChannel();
+                                    if ($scope.planner){
+                                      $scope.checkSupplierAllowed($scope.activeRoom.Id);
+                                    }
                                 },
                                 count: 100,
                                 reverse: false
                             });
                         } else {
                             $scope.historyActiveChannel();
+                            if ($scope.planner){
+                              $scope.checkSupplierAllowed($scope.activeRoom.Id);
+                            }
                         }
                     } else {
                         if (!$scope.planner) {
@@ -287,6 +317,7 @@ app.controller('chatController',
                     Pubnub.history({
                         channel: $scope.channel,
                         callback: function (m) {
+                            //if (m[0].sender_uuid != )
                             $scope.messages = [];
                             angular.forEach(m[0], function (value, key) {
                                 $scope.messages.push(value);
@@ -331,10 +362,11 @@ app.controller('chatController',
                                 $scope.subscribe(value, true);
                                 $scope.channel = value;
                                 if (i == 0) {
-                                    $scope.history();
+                                    //$scope.history();
                                     $scope.activeRoom = {};
                                     $scope.activeRoom.Name = $scope.objUsers[0].Username;
                                     $scope.activeRoom.Id = $scope.objUsers[0].Id;
+                                    $scope.changeUser($scope.objUsers[0])
                                 }
                                 i++;
                             });
@@ -346,9 +378,14 @@ app.controller('chatController',
                 };
 
                 $scope.getChannelName = function (activeRoom) {
-
+                  /*
                     $scope.channel = "";
-
+                    if ($scope.planner){
+                      $scope.channel = $scope.loggedUser.Id + '-' + activeRoom.Id;
+                    } else {
+                      $scope.channel = activeRoom.Id + '-' + $scope.loggedUser.Id;
+                    }
+                    */
                     if (activeRoom.Id > $scope.loggedUser.Id) {
                         $scope.channel = $scope.loggedUser.Id + '-' + activeRoom.Id;
                     } else {
@@ -366,7 +403,21 @@ app.controller('chatController',
                 $scope.changeUser = function (user) {
                     $scope.activeRoom.Id = user.Id;
                     $scope.activeRoom.Name = user.Username;
+                    user.Unread = false;
                     $scope.getChannelName(user);
                     $scope.history(true);
+
+                    if ($scope.planner){
+                      $scope.checkSupplierAllowed(user.Id);
+                    }
                 };
+
+                $scope.checkSupplierAllowed = function(id){
+
+                    supplierService.getSupplier(id)
+                      .then(function(res){
+                          $scope.currentSupplierAllowed = res.data.SubscriptionType.Name == 'All Star';
+                      });
+
+                  };
             }]);

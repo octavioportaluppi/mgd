@@ -17,7 +17,7 @@ app.controller('SupplierCityController', ['$scope', '$routeParams', 'supplierSer
                 });
 
                 $scope.getSuppliers = function (){
-                    $scope.loading = true;
+                    //$scope.loading = true;
                     $scope.filter.push($scope.initialFilter);
                     supplierService
                         .getAllSuppliers(
@@ -38,10 +38,14 @@ app.controller('SupplierCityController', ['$scope', '$routeParams', 'supplierSer
                                     supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image?thumbnail=true';
                             })
                         })
+                        .catch(function(){
+                          window.location = '/#/'
+                          return;
+                        })
                 };
 
                 $scope.getMoreSuppliers = function (){
-                    $scope.loading = true;
+                    //$scope.loading = true;
                     //max, page, filter, query, orderSeed
                     supplierService
                         .getAllSuppliers(

@@ -7,18 +7,19 @@ app.controller('contactController', ['$scope', '$location', 'authService', 'cont
   $scope.message = '';
   $scope.loading = false;
   $scope.response = false;
+$scope.contact = {};
+        $scope.contactSubmit = function (contactForm) {
 
-        $scope.contactSubmit = function (form) {       
-            console.log(form);
-            if (form.$valid) {
-                $scope.loading = true;
-                var props = {
-                    name: $scope.name,
-                    email: $scope.email,
-                    phone: $scope.phone,
-                    message: $scope.message
-                };
-                contactService.sendContactInfo(props).then(
+            if (contactForm.$valid) {
+                //$scope.loading = true;
+                /*var props = {
+                    Name: $scope.name,
+                    Email: $scope.email,
+                    Phone: $scope.phone,
+                    Message: $scope.message
+                };*/
+                //console.log(props);
+                contactService.sendContactInfo($scope.contact).then(
                         function (response) {
                             $scope.loading = false;
                             $scope.response = true;
@@ -32,4 +33,5 @@ app.controller('contactController', ['$scope', '$location', 'authService', 'cont
   $scope.init = function() {}
 
   $scope.init();
+
 }]);

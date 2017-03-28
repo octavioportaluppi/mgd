@@ -3,9 +3,9 @@ app.controller('dashboardSupplierController',
 	['$scope', 'supplierService', 'ngAuthSettings', 'stateService', 'authService', '$location', 'accountService', 'textAngularManager',
 		function ($scope, supplierService, ngAuthSettings, stateService, authService, $location, accountService, textAngularManager) {
 
-
 	$scope.supplier = {};
 	$scope.dashboard = '';
+	$scope.supplier.IsConfirmed = false;
 
 	$scope.days = [
 		{ id: 0, name: 'Domingo'},
@@ -31,43 +31,70 @@ app.controller('dashboardSupplierController',
 			.getDashboard()
 			.then(function(res) {
 				$scope.dashboard = res;
-				$scope.supplier.City = res.City;
-				$scope.supplier.Name = res.Name;
-				$scope.supplier.Address = res.Address;
-				$scope.supplier.Phone = res.Phone;
-				$scope.supplier.Description = res.Description;
-				$scope.supplier.FacebookUrl = res.FacebookUrl;
-				$scope.supplier.InstagramUrl = res.InstagramUrl;
-				$scope.supplier.TwitterUrl = res.TwitterUrl;
-				$scope.supplier.State = res.State;
-				$scope.supplier.IsActive = res.IsActive;
-				$scope.supplier.OpeningHours = res.OpeningHours;
-				$scope.supplier.OpeningHours.DayFromValue = {id: $scope.supplier.OpeningHours.DayFrom};
-				$scope.supplier.OpeningHours.DayToValue = {id: $scope.supplier.OpeningHours.DayTo};
-				$scope.supplier.LogoId = res.LogoId;
-				$scope.supplier.MaxPics = res.SubscriptionType.MaxPicturesAllowed;
-				$scope.supplier.SubscriptionType = res.SubscriptionType;
-				$scope.supplier.Pictures = res.Pictures
-					.filter(function (pic) {
-						return !pic.IsLogo;
-					})
-					.map(function (pic) {
-						var result = {};
-						result.src = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image?thumbnail=true';
-						result.id = pic.Id;
-						return result;
-				});
-				$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image?thumbnail=true';
-				supplierService
-					.getAnswers()
-					.then(function (response){
-						$scope.answers = response.data;
-						$scope.questions = [];
-						$scope.answers.forEach(function (answer){
-							$scope.questions[answer.Id] = answer;
-						});
+				$scope.supplier.IsConfirmed = res.IsConfirmed;
+				$scope.supplier.Status = res.Status;
+
+				if ($scope.supplier.Status == 2){ //Failed
+					$scope.showNotification = true;
+					$scope.editServices = true;
+					$scope.editAboutMe = true;
+					$scope.editProfile = true;
+					$scope.editAnswers = true;
+					$scope.questions = [];
+					$scope.supplier.State = res.State;
+					$scope.supplier.City = res.City;
+					$scope.supplier.Status = res.Status;
+					$scope.supplier.OpeningHours = res.OpeningHours;
+					$scope.supplier.OpeningHours.DayFromValue = {id: $scope.supplier.OpeningHours.DayFrom};
+					$scope.supplier.OpeningHours.DayToValue = {id: $scope.supplier.OpeningHours.DayTo};
+					$scope.supplier.MaxPics = res.SubscriptionType.MaxPicturesAllowed;
+					$scope.supplier.SubscriptionType = res.SubscriptionType;
+				}
+				else {
+					if ($scope.supplier.Status == 0) { //Initial
+						$scope.showNotification = true;
+					}
+					$scope.supplier.City = res.City;
+					$scope.supplier.Name = res.Name;
+					$scope.supplier.Address = res.Address;
+					$scope.supplier.Phone = res.Phone;
+					$scope.supplier.Description = res.Description;
+					$scope.supplier.FacebookUrl = res.FacebookUrl;
+					$scope.supplier.InstagramUrl = res.InstagramUrl;
+					$scope.supplier.TwitterUrl = res.TwitterUrl;
+					$scope.supplier.State = res.State;
+					$scope.supplier.Status = res.Status;
+					$scope.supplier.OpeningHours = res.OpeningHours;
+					$scope.supplier.OpeningHours.DayFromValue = {id: $scope.supplier.OpeningHours.DayFrom};
+					$scope.supplier.OpeningHours.DayToValue = {id: $scope.supplier.OpeningHours.DayTo};
+					$scope.supplier.LogoId = res.LogoId;
+					$scope.supplier.MaxPics = res.SubscriptionType.MaxPicturesAllowed;
+					$scope.supplier.SubscriptionType = res.SubscriptionType;
+					$scope.supplier.Pictures = res.Pictures
+						.filter(function (pic) {
+							return !pic.IsLogo;
+						})
+						.map(function (pic) {
+							var result = {};
+							result.src = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + pic.Id + '/Image?thumbnail=true';
+							result.id = pic.Id;
+							return result;
 					});
-		});
+					$scope.supplier.pic = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + res.LogoId + '/Image?thumbnail=true';
+					supplierService
+						.getAnswers()
+						.then(function (response){
+							$scope.answers = response.data;
+							$scope.questions = [];
+							$scope.answers.forEach(function (answer){
+								$scope.questions[answer.Id] = answer;
+							});
+						});
+				}
+		})
+		.catch(function(res){
+			$location.path('/');
+		});;
 	};
 
 	function getProgress() {
@@ -107,6 +134,7 @@ app.controller('dashboardSupplierController',
 	$scope.updateProfile = function(){
 		var cityId = $scope.supplier.City.Id;
 		$scope.supplier.CityId = cityId;
+
         supplierService
 			.updateSupplierProfile($scope.supplier,
 				function () {
@@ -153,11 +181,11 @@ app.controller('dashboardSupplierController',
 	};
 
 	$scope.getCities = function() {
-		stateService
-			.getCities($scope.supplier.State.Id)
-			.then(function (response){
-				$scope.cities = response.data;
-			});
+			stateService
+				.getCities($scope.supplier.State.Id)
+				.then(function (response){
+					$scope.cities = response.data;
+				});
 	};
 
 	$scope.updateQuestions = function(form){
@@ -176,9 +204,11 @@ app.controller('dashboardSupplierController',
 	};
 
 	$scope.haveItem = function(itemId){
+
 		return $scope.dashboard.ServiceTypes.find(function(it){
 			return it.Id === itemId;
 		})
+
 	};
 
 	//check logged
@@ -248,6 +278,20 @@ $scope.isAllPicsValid = function(){
 $scope.sendConfirmationCode = function(){
 	accountService.sendConfirmationCode();
 	$scope.confirmationSent = true;
+}
+
+$scope.activateSupplier = function(){
+	supplierService.activateSupplier()
+		.then(function(){
+			$scope.getDashboard();
+		})
+}
+
+$scope.deactivateSupplier = function(){
+	supplierService.deactivateSupplier()
+		.then(function(){
+			$scope.getDashboard();
+		})
 }
 
 $scope.showNotification = true;

@@ -18,6 +18,10 @@ ul > li {
     border-radius: 5px;
 }
 
+.supplier .frame.header.notif {
+    padding: 15px 20px;
+}
+
 .supplier .avatar {
     width: 100%;
     max-width: 250px;
@@ -96,8 +100,6 @@ ul > li {
     display: inline-block;
     text-align: center;
     background: #cecece;
-    padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .supplier .menu-item.active,
@@ -116,6 +118,8 @@ ul > li {
     color: #fff;
     text-transform: uppercase;
     text-decoration: none;
+    line-height: 60px;
+    display: block;
 }
 
 .supplier .info-group {
@@ -160,7 +164,7 @@ ul > li {
 .chat-border{
     padding: 30px 15px 0px 15px !important;
     border: 1px solid #ececec;
-    min-height: 505px;
+    min-height: 557px;
     background: #fff;
 }
 
@@ -242,7 +246,7 @@ ul > li {
     margin-left: -15px;
 }
 .messages, .chat-conversation{
-    height: 364px;
+    height: 416px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -254,13 +258,19 @@ padding: 10px;
 }
 
 .chat-suppliers{
-    height: 418px;
+    height: 470px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
-.chat-container{
+.chat-container-planner {
     min-height: 565px;
+    margin-bottom: 52px;
+}
+
+.chat-container-supplier{
+    min-height: 617px;
+    margin-bottom: 52px;
 }
 
 .chat-username{
@@ -312,6 +322,15 @@ text-align: left;
 .confirmation-pending {
   color:red;
   letter-spacing: 2px;
+}
+
+.profile-active {
+  letter-spacing: 2px;
+  color:inherit;
+}
+
+.confirmation-pending .btn-default {
+    margin: 0px 5px;
 }
 
 .confirmation-sent {
@@ -402,14 +421,31 @@ text-align: left;
 }
 
 .supplier-upgrade {
-  vertical-align: super;
-    font-size: 9px;
-    margin-left: 8px;
-    padding: 3px 6px;
-    line-height: 8PX;
-    color: #fff;
-    font-weight: bold;
-    background: #ee3470;
-    border-radius: 3px;
-    letter-spacing: 1px;
+  padding: 4px 7px;
+  line-height: 8PX;
+  color: #fff;
+  font-weight: bold;
+  background: #ee3470;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.supplier-chat-upgrade {
+  padding: 12px;
+  line-height: 8PX;
+  color: #fff;
+  font-weight: bold;
+  background: #ee3470;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.info-not-set {
+  color:#ccc;
 }

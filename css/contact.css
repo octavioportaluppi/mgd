@@ -9,7 +9,7 @@
   background-image: url('../img/contacto.png');
   background-position: center;
   text-align: center;
-  padding-top: 134px;
+  padding-top: 80px;
   background-size: 100%;
 }
 
@@ -41,7 +41,6 @@
 
 }
 .contact-info .phone {
-  float: left;
   width: 63%;
 }
 .contact-info span {
@@ -107,4 +106,13 @@
 .social i{
   font-style: normal;
   font-size: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+  .contact-container-left{
+    padding:0 30px;
+  }
+  .contact-container-right{
+    padding:0 15px;
+  }
 }

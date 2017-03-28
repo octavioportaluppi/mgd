@@ -38,54 +38,56 @@
                     <form novalidate ng-cloak="" name='data' ng-if="!response">
                         <p>
                             <label for="contact-name" class="sr-only">Nombre</label>
-                            <input class="form-control" type="text" id="contact-name" name="contactName" placeholder="Nombre" ng-model="name"
+                            <input class="form-control" type="text" id="contact-name" name="contactName" placeholder="Nombre" ng-model="contact.Name"
                                    ng-class="{'invalid':data.contactName.$error.required && (data.$submitted || data.contactName.$touched)}"
-                                   required  ng-disabled="loading">                                        
+                                   required  ng-disabled="loading">
                             <span class="error_contact" ng-show="data.$submitted || data.contactName.$touched">
-                                <span ng-show="data.contactName.$error.required">Dinos tu nombre.</span>                                    
-                            </span>                            
+                                <span ng-show="data.contactName.$error.required">Dinos tu nombre.</span>
+                            </span>
                         </p>
 
                         <p>
                             <label for="contact-phone" class="sr-only">Teléfono</label>
-                            <input class="form-control" type="tel" required id="contact-phone" name="contactPhone" 
-                                   ng-class="{'invalid':data.contactPhone.$error.required && (data.$submitted || data.contactPhone.$touched)}"
-                                   placeholder="Teléfono" ng-model="phone" 
+                            <input class="form-control" type="tel" required id="contact-phone" name="contactPhone"
+                                   ng-class="{'invalid':(data.contactPhone.$error.required || !data.contactPhone.$valid) && (data.$submitted || data.contactPhone.$touched)}"
+                                   placeholder="Teléfono" ng-model="contact.Phone"
+                                   ng-pattern="/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/"
                                    ng-disabled="loading">
-                            
+
                             <span class="error" ng-show="data.$submitted || data.contactPhone.$touched">
                                 <span ng-show="data.contactPhone.$error.required">Dinos tu teléfono.</span>
-                            </span>               
+                                <span ng-show="!data.contactPhone.$valid && !data.contactPhone.$error.required">Ingresa un teléfono válido. Ejemplo: 123-456-7890 / (123) 456-7890</span>
+                            </span>
                         </p>
                         <p>
                             <label for="contact-email" class="sr-only">Email</label>
-                            <input class="form-control" type="email" id="contact-email" name="contactEmail" 
-                                   placeholder="E-mail" ng-model="email" required 
+                            <input class="form-control" type="email" id="contact-email" name="contactEmail"
+                                   placeholder="E-mail" ng-model="contact.Email" required
                                    ng-class="{'invalid':(data.contactEmail.$error.required || data.contactEmail.$error.email) && (data.$submitted || data.contactEmail.$touched)}"
-                                   ng-disabled="loading">                            
+                                   ng-disabled="loading">
                             <span class="error" ng-show="data.$submitted || data.contactEmail.$touched">
                                 <span ng-show="data.contactEmail.$error.required">Dinos tu email.</span>
                                 <span ng-show="data.contactEmail.$error.email">El correo es incorrecto.</span>
-                            </span>                
+                            </span>
                         </p>
                         <p>
                             <label for="contact-message" class="sr-only">Mensaje</label>
-                            <textarea class="form-control" id="contact-message" name="contactMessage" rows="2" cols="40" 
+                            <textarea class="form-control" id="contact-message" name="contactMessage" rows="2" cols="40"
                                       ng-class="{'invalid':data.contactMessage.$error.required && (data.$submitted || data.contactMessage.$touched)}"
-                                      placeholder="Mensaje" ng-model="message" required ng-disabled="loading"></textarea>
-                            
+                                      placeholder="Mensaje" ng-model="contact.Message" required ng-disabled="loading"></textarea>
+
                             <span class="error" ng-show="data.$submitted || data.contactMessage.$touched">
                                 <span ng-show="data.contactMessage.$error.required">Dinos tu mensaje.</span>
-                            </span>                
+                            </span>
                         </p>
                         <p class="submit-container">
-                            <img src="img/spin.svg" alt="loading" width="30" ng-if="loading"> 
+                            <img src="img/spin.svg" alt="loading" width="30" ng-if="loading">
                             <button ng-click='contactSubmit(data)' type="submit" name="button" ng-disabled="loading">Enviar</button>
                         </p>
                     </form>
                     <div class="contact-ok" ng-if="response">
                         <p>
-                            Gracias por su mensaje!
+                            ¡Gracias por tu mensaje!
                         </p>
                     </div>
                 </div>

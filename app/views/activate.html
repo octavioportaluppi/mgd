@@ -1,4 +1,4 @@
-<div class="pattern" ng-cloak="">
+  <div class="pattern" ng-cloak="">
     <div class="container forgot-password" style="background-color: #ECECEC">
         <div class="col-md-8 col-md-offset-2">
             <h1>Ingresa tu nueva contraseña</h1>
@@ -23,7 +23,7 @@
                                 ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/>
                             <div class="error" ng-show="data.$submitted || data.password.$touched">
                                 <div ng-show="data.password.$error.required">Elije una contraseña.</div>
-                                <div ng-show="!checkPassword()">
+                                <div ng-show="!checkPassword() && !data.password.$error.required">
                                     Debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.
                                 </div>
                             </div>

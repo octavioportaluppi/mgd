@@ -1,12 +1,83 @@
 .list-header {
 	margin: 0px 0 10px 0;
+}
 
-
+.list-header h5 {
+	color: #fff;
+    font-size: 20px;
+		text-shadow: 0 1px 2px rgba(0,0,0,.6);
 }
 
 .suppliers-header{
 	    background-color: #8B4194;
-			    padding: 25px;
+			    padding: 70px;
+					background-size: cover !important;
+    min-height: 350px;
+
+}
+
+@media only screen and (max-width: 768px) {
+	.suppliers-header{
+		    background-color: #8B4194;
+				    padding: 30px 15px;
+						background-size: cover !important;
+	    min-height: 180px;
+	background-position-y: -40px !important;
+	}
+
+	.list-header h4 {
+	font-size: 2.5rem !important;
+
+	}
+
+	.service-list {
+		    margin-left: -30px;
+	}
+}
+
+.header-city {
+	    background: url(../img/headers/city.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+
+.header-bodas {
+	    background: url(../img/headers/bodas.jpg) no-repeat;
+			background-position-y: -125px !important;
+}
+
+.header-quinceaneras {
+	    background: url(../img/headers/quinceaneras.jpg) no-repeat;
+			background-position-y: -180px !important;
+}
+
+.header-otros {
+	    background: url(../img/headers/otros.jpg) no-repeat;
+			background-position-y: -470px !important;
+}
+
+.header-cumpleanos {
+	    background: url(../img/headers/cumpleanos.jpg) no-repeat;
+			background-position-y: -358px !important;
+}
+
+.header-conferencias {
+	    background: url(../img/headers/conferencias.jpg) no-repeat;
+			background-position-y: -150px !important;
+}
+
+.header-graduaciones {
+	    background: url(../img/headers/graduaciones.jpg) no-repeat;
+			background-position-y: -125px !important;
+}
+
+.header-bautizos {
+	    background: url(../img/headers/bautizos.jpg) no-repeat;
+			background-position-y: -300px !important;
+}
+
+.header-showers {
+	    background: url(../img/headers/showers.jpg) no-repeat;
+			background-position-y: -315px !important;
 }
 
 .events-header{
@@ -16,9 +87,146 @@
 	border: 1px solid #ddd;
 }
 
+/* Services */
+
+.header-catering {
+	    background: url(../img/headers/services/catering.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+
+.header-fotografia {
+	    background: url(../img/headers/services/fotografia.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+
+.header-trajes {
+	    background: url(../img/headers/services/trajes.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+
+.header-locaciones {
+	    background: url(../img/headers/services/locaciones.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+
+.header-renta-de-mobiliario {
+	    background: url(../img/headers/services/renta-de-mobiliario.jpg) no-repeat;
+			background-position-y: -15px !important;
+}
+.header-decoracion {
+	    background: url(../img/headers/services/decoracion.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-vestidos-de-fiesta {
+	    background: url(../img/headers/services/vestidos-de-fiesta.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+
+.header-ropa-casual {
+	    background: url(../img/headers/services/ropa-casual.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-musica-y-sonido {
+	    background: url(../img/headers/services/musica-y-sonido.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-video {
+	    background: url(../img/headers/services/video.jpg) no-repeat;
+			background-position-y: -181px !important;
+}
+.header-dulcerias,.header-pastelerias {
+	    background: url(../img/headers/services/dulcerias.jpg) no-repeat;
+			background-position-y: -65px !important;
+}
+.header-salones-de-belleza {
+	    background: url(../img/headers/services/salones-de-belleza.jpg) no-repeat;
+			background-position-y: -60px !important;
+}
+.header-recuerdos {
+	    background: url(../img/headers/services/recuerdos.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-florerias {
+	    background: url(../img/headers/services/florerias.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-renta-de-autos {
+	    background: url(../img/headers/services/renta-de-autos.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-animacion {
+	    background: url(../img/headers/services/animacion.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-agencias-de-viaje {
+	    background: url(../img/headers/services/agencias-de-viaje.jpg) no-repeat;
+			background-position-y: -280px !important;
+}
+.header-organizadores {
+	    background: url(../img/headers/services/organizadores.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-joyeria {
+	    background: url(../img/headers/services/joyeria.jpg) no-repeat;
+			background-position-y: -350px !important;
+}
+.header-invitaciones {
+	    background: url(../img/headers/services/invitaciones.jpg) no-repeat;
+			background-position-y: -200px !important;
+}
+.header-vestidos-de-fiesta {
+	    background: url(../img/headers/services/vestidos-de-fiesta.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-zapatos {
+	    background: url(../img/headers/services/zapatos.jpg) no-repeat;
+			background-position-y: -190px !important;
+}
+.header-vivienda {
+	    background: url(../img/headers/services/vivienda.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-mesa-de-regalos {
+	    background: url(../img/headers/services/mesa-de-regalos.jpg) no-repeat;
+			background-position-y: 0px !important;
+}
+.header-ropa-para-bebe {
+	    background: url(../img/headers/services/ropa-para-bebe.jpg) no-repeat;
+			background-position-y: -30px !important;
+}
+/* End services */
+
 @media only screen and (max-width: 768px) {
 	.events-header{
 		margin-top: 258px;
+
+	}
+
+	.header-bodas,
+	.header-quinceaneras,
+	.header-otros,
+	.header-cumpleanos,
+	.header-conferencias,
+	.header-graduaciones,
+	.header-bautizos,
+	.header-showers,
+	.header-video,
+	.header-invitaciones,
+	.header-joyeria,
+	.header-agencias-de-viaje,
+	.header-zapatos,
+	.header-salones-de-belleza,
+	.header-dulcerias,
+	.header-pastelerias,
+	.header-ropa-para-bebe {
+		    background-position-y: 0px !important;
+	}
+	.header-mesa-de-regalos {
+		background-position-x:-400px;
+	}
+
+	.header-salones-de-belleza {
+		background-position-x: -345px;
 	}
 }
 .events-header .first-line	{
@@ -39,10 +247,18 @@
 
 .list-header h4 {
 color: #fff;
+font-size: 4rem;
+	text-shadow: 0 1px 2px rgba(0,0,0,.6);
 }
 
 .events-header h4 {
-color: #858;
+	color: #858;
+	    text-shadow: none;
+	    font-size: 3.5rem;
+}
+
+.events-header .btn-submit {
+	margin:20px;
 }
 
 .list-header .span-header {
@@ -59,6 +275,7 @@ color: #858;
 	font-size: 50px;
   color: #fff;
 	line-height: 70px;
+		text-shadow: 0 1px 2px rgba(0,0,0,.6);
 }
 
 .list-item {

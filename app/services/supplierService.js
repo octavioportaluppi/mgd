@@ -188,6 +188,14 @@ app.factory('supplierService',
         return $http.put(serviceBase + 'api/suppliers/lastseen');
     }
 
+    var _activateSupplier = function(){
+        return $http.put(serviceBase + 'api/suppliers/activate')
+    }
+
+    var _deactivateSupplier = function(){
+        return $http.put(serviceBase + 'api/suppliers/deactivate')
+    }
+
     supplierServiceFactory.getDashboard = _getDashboard;
     supplierServiceFactory.getEvents = _getEvents;
     supplierServiceFactory.getServices = _getServices;
@@ -209,6 +217,8 @@ app.factory('supplierService',
 
     supplierServiceFactory.getPremiumSuppliers = _getPremiumSuppliers;
     supplierServiceFactory.getSupplier = _getSupplier;
+    supplierServiceFactory.activateSupplier = _activateSupplier;
+    supplierServiceFactory.deactivateSupplier = _deactivateSupplier;
 
     return supplierServiceFactory;
 }]);

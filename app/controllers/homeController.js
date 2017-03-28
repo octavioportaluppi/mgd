@@ -4,7 +4,7 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 	$scope.isSupplier = false;
 
 	// Suppliers
-	$scope.size = 5;
+	$scope.size = 4;
 	$scope.page = 1;
 	$scope.filter = $scope.filter || undefined;
 	$scope.query = $scope.query || undefined;
@@ -20,43 +20,52 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 	$scope.slides = [
 		{
 			id: 0, //Bautizo
-			img: 'img/mi_gran_dia_conferencia.jpg',
-			text: 'Sabemos la importancia de compartir valiosos momentos'
+			img: 'img/headers/bautizos.jpg',
+			text: 'Sabemos la importancia de compartir valiosos momentos',
+			link: '/#/suppliers/browse/event/7',
+			class: 'header-bautizos'
 		},
 		{
 			id: 1,
-			img: 'img/mi_gran_dia_cumpleanos.jpg',
-			text: '¿Estás listo para planear la mejor fiesta de cumpleaños?'
+			img: 'img/headers/cumpleanos.jpg',
+			text: '¿Estás listo para planear la mejor fiesta de cumpleaños?',
+			link: '/#/suppliers/browse/event/2',
+			class: 'header-cumpleanos'
 		},
 		{
 			id: 2, //Bodas
-			img: 'img/mi_gran_dia_boda.jpg',
-			text: 'Te ayudamos a que tu gran día sea inolvidable'
+			img: 'img/headers/bodas.jpg',
+			text: 'Te ayudamos a que tu gran día sea inolvidable',
+			link: '/#/suppliers/browse/event/1',
+			class: 'header-bodas'
 		},
 		{
 			id: 3, //Quinceañeras
-			img: 'img/mi_gran_dia_boda.jpg',
-			text: 'Aquí tu fiesta de ensueño se hará realidad'
+			img: 'img/headers/quinceaneras.jpg',
+			text: 'Aquí tu fiesta de ensueño se hará realidad',
+			link: '/#/suppliers/browse/event/3',
+			class: 'header-quinceaneras'
 		},
 		{
 			id: 4, //Graduaciones
-			img: 'img/mi_gran_dia_boda.jpg',
-			text: 'Te acompañamos en tu camino al éxito'
+			img: 'img/headers/graduaciones.jpg',
+			text: 'Te acompañamos en tu camino al éxito',
+			link: '/#/suppliers/browse/event/4',
+			class: ''
 		},
 		{
-			id: 5,
-			img: 'img/mi_gran_dia_boda.jpg',
-			text: 'Somos tu mano derecha en la organización de tus conferencias'
+			id: 5, //Conferencias
+			img: 'img/headers/conferencias.jpg',
+			text: 'Somos tu mano derecha en la organización de tus conferencias',
+			link: '/#/suppliers/browse/event/8',
+			class: 'header-conferencias'
 		},
 		{
-			id: 6,
-			img: 'img/mi_gran_dia_boda.jpg',
-			text: 'Despide tu soltería de la mejor manera ¡nosotros te ayudamos!'
-		},
-		{
-			id: 7, //Despedidas
-			img: 'img/mi_gran_dia_boda.jpg',
-			text: 'Estamos contigo en la organización de todos tus eventos'
+			id: 6, //Otros
+			img: 'img/headers/otros.jpg',
+			text: 'Estamos contigo en la organización de todos tus eventos',
+			link: '/#/suppliers/browse/event/10',
+			class: 'header-otros'
 		}
 
 	];
@@ -72,7 +81,7 @@ app.controller('homeController', ['$scope', 'supplierService', 'ngAuthSettings',
 	}
 
 	$scope.getSuppliers = function (){
-			$scope.loading = true;
+			//$scope.loading = true;
 			supplierService
 					.getPremiumSuppliers(
 					$scope.size,

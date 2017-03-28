@@ -16,7 +16,7 @@ app.controller(
           $scope.initialFilter = {};
 
                 $scope.getSuppliers = function (){
-                    $scope.loading = true;
+                    //$scope.loading = true;
                     $scope.filter.push($scope.initialFilter);
                     supplierService
                         .getAllSuppliers(
@@ -40,7 +40,7 @@ app.controller(
                 };
 
                 $scope.getMoreSuppliers = function (){
-                    $scope.loading = true;
+                    //$scope.loading = true;
                     //max, page, filter, query, orderSeed
                     supplierService
                         .getAllSuppliers(

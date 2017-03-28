@@ -1,0 +1,53 @@
+.faq {
+  background-color: #fff;
+  padding-top: 15px;
+  padding-bottom: 72px;
+}
+
+.faq-header i {
+  font-size: 55px;
+    color: #fff;
+}
+
+.faq-header {
+  height: 395px;
+  background-image: url('../img/contacto.png');
+  background-position: center;
+  text-align: center;
+  padding-top: 134px;
+  background-size: 100%;
+}
+
+.faq-header h2 {
+  color: #fff;
+  font-size: 40px;
+  margin-top: 26px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.faq h2 {
+  color: #aed136;
+  font-size: 37px;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+  font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
+  letter-spacing: 5px;
+}
+
+.faq p {
+  font-size: 17px;
+  font-family: "Hurme Geometric Sans 4", Helvetica, sans-serif;
+  color: #818181;
+}
+
+.faq p.question {
+  font-weight: bold;
+  padding: 8px 15px;
+  margin-bottom: 5px;
+}
+
+.faq p.answer {
+  margin-bottom: 30px;
+  padding: 0 15px;
+}

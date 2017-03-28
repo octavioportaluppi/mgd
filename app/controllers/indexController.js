@@ -20,4 +20,14 @@ app.controller('indexController', ['$scope', '$location', 'authService', functio
 	$scope.isActive = function(currentLocation) {
 		return $location.path() == currentLocation;
 	};
+
+	//whenever user changes view
+	$scope.$on('$routeChangeStart', function(next, current) {
+		$scope.isNavCollapsed = true;
+		
+		//send info to analytics
+		ga('set', 'page', current.$$route.originalPath + "[" + jQuery.param(current.params)) + "]";
+		ga('send', 'pageview');
+ });
+
 }]);

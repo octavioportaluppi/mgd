@@ -9,7 +9,7 @@ var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'st
     $scope.query = $scope.query || undefined;
 
     $scope.getSuppliers = function (){
-        $scope.loading = true;
+        //$scope.loading = true;
         supplierService
             .getAllSuppliers(
             $scope.size,
@@ -31,7 +31,7 @@ var supplierListController = ['$scope', 'supplierService', 'ngAuthSettings', 'st
     };
 
     $scope.getMoreSuppliers = function (){
-        $scope.loading = true;
+        //$scope.loading = true;
         supplierService
             .getAllSuppliers(
             $scope.size,

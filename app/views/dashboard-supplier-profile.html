@@ -2,7 +2,7 @@
     <div class="col-md-3 col-sm-4 col-xs-12">
         <img class="avatar img-circle"
              src="img/photo-placeholder.jpg"
-             ng-if="!supplier.pic"
+             ng-if="!supplier.pic && !supplier.profilePic"
              ngf-select
              ng-model="supplier.profilePic"
              accept="image/*"
@@ -26,10 +26,13 @@
        <div ng-show="supplier.profilePic.invalid" class="pic-error-small" ng-click="supplier.profilePic = null;" >
 					<div class="glyphicon glyphicon-alert warning"></div>
 					El máximo es 1MB</div>
+          <div class="dashboard-error">
+              <div>*Requerido. Procura que sea una imagen cuadrada para que se vea mejor.</div>
+          </div>
     </div>
     <div class="col-md-9 col-sm-8 col-xs-12">
         <div class="signup-field">
-            <label>Nombre:</label>
+            <label>Nombre</label>
             <input
                 type="text"
                 required=""
@@ -39,11 +42,11 @@
                 placeholder="Nombre"
                 ng-class="{'invalid':data.inputName.$error.required && (data.$submitted || data.inputName.$touched)}"/>
             <div class="dashboard-error" ng-show="data.$submitted || data.inputName.$touched">
-                <div ng-show="data.inputName.$error.required">Agregue un Nombre.</div>
+                <div ng-show="data.inputName.$error.required">Dinos un Nombre.</div>
             </div>
         </div>
         <div class="signup-field">
-            <label>Facebook:</label>
+            <label>Facebook</label>
             <input
                 type="text"
                 ng-model="supplier.FacebookUrl"
@@ -52,7 +55,7 @@
                 placeholder="Facebook"/>
         </div>
         <div class="signup-field">
-            <label>Twitter:</label>
+            <label>Twitter</label>
             <input
                 type="text"
                 ng-model="supplier.TwitterUrl"
@@ -61,7 +64,7 @@
                 placeholder="Twitter"/>
         </div>
         <div class="signup-field">
-            <label>Instagram:</label>
+            <label>Instagram</label>
             <input
                 type="text"
                 ng-model="supplier.InstagramUrl"
@@ -71,7 +74,7 @@
         </div>
         <div class="signup-field">
             <button ng-click="saveSupplierProfile(data)" class="btn btn-default btn-submit pull-left"
-                    ng-class="[{'invalid':!data.$valid && data.$submitted}]"
+                    ng-class="[{'invalid':!data.$valid && data.$submitted}]" ng-disabled="supplier.profilePic.invalid || !supplier.profilePic"
             >Guardar</button>
             <button ng-click="getDashboard();" class="btn btn-default pull-right">Cancelar</button>
         </div>

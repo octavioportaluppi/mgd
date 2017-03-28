@@ -190,14 +190,14 @@ label.btn.btn-default {
 .events .event-icon .graduaciones{ background: url('../img/icons/iconos-07.png'); }
 .events .event-icon .graduaciones:hover{ background: url('../img/icons/iconos-08.png'); }
 
-.events .event-icon .bautizos{ background: url('../img/icons/iconos-10.png'); }
-.events .event-icon .bautizos:hover{ background: url('../img/icons/iconos-09.png'); }
+.events .event-icon .bautizos{ background: url('../img/icons/iconos-14.png'); }
+.events .event-icon .bautizos:hover{ background: url('../img/icons/iconos-13.png'); }
 
 .events .event-icon .conferencias{ background: url('../img/icons/iconos-12.png'); }
 .events .event-icon .conferencias:hover{ background: url('../img/icons/iconos-11.png'); }
 
-.events .event-icon .showers{ background: url('../img/icons/iconos-14.png'); }
-.events .event-icon .showers:hover{background: url('../img/icons/iconos-13.png'); }
+.events .event-icon .showers{ background: url('../img/icons/iconos-10.png'); }
+.events .event-icon .showers:hover{background: url('../img/icons/iconos-09.png'); }
 
 .events .event-icon .otros{ background: url('../img/icons/iconos-16.png'); }
 .events .event-icon .otros:hover{background: url('../img/icons/iconos-15.png'); }
@@ -278,7 +278,7 @@ label.btn.btn-default {
 }
 .owl-next {
   float: right;
-  margin-right: 50px;
+  margin-right: -50px;
 
 }
 .posts {
@@ -303,7 +303,7 @@ label.btn.btn-default {
 }
 .posts .supplier-item .supplier-item-img {
   display: block;
-  height: 165px;
+  height: 250px;
   overflow: hidden;
 }
 .posts .supplier-item .supplier-item-img img{
@@ -333,7 +333,7 @@ label.btn.btn-default {
   opacity: .6;
   color: #fff;
   position: absolute;
-  top: -33px;
+  top: -31px;
   padding: 9px;
   font-size: 14px;
   width: 100%;
@@ -663,14 +663,35 @@ footer .social i.fa { width: 30px;
 }
 
 .img-supplier {
-  background-image: url("../img/mi_gran_dia_conferencia.jpg");
+  background-image: url("../img/headers/otros.jpg");
   width: 100%;
+  background-position-y: -140px;
 }
 
 .img-planner {
-  background-image: url("../img/mi_gran_dia_cumpleanos.jpg");
+  background-image: url("../img/headers/showers.jpg");
   width: 100%;
-  /*margin-left: -15px;*/
+  background-position-y: -305px;
+}
+
+@media only screen and (max-width: 768px) {
+  .img-supplier {
+    background-position-y: 0;
+  }
+
+  .img-planner {
+    background-position-y: 0;
+  }
+
+  .carousel-caption {
+    padding: 0 !important;
+  }
+
+  .carousel-caption .reg-sub-title {
+    width: 65%;
+    text-align: center;
+    margin: 0 auto;
+  }
 }
 
 .login-caption {
@@ -732,6 +753,36 @@ option {
     margin-bottom: 20px;
 }
 
+.register-panel {
+  display: table;
+    background-position-x: center;
+    background-size: cover !important;
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+}
+
+.register-panel-init {
+  display: table;
+    background-position-x: center;
+    background-size: cover !important;
+    width: 100%;
+    height: 100%;
+    min-height: 370px;
+}
+
+.register-panel-init .carousel-caption {
+  padding: 0 10%;
+}
+
+.register-panel-init .carousel-info{
+  margin-top: 15px;
+}
+
+.register-panel-init .btn {
+  background: #aed136 !important;
+    color: #fff !important;
+}
 /************ Register Evento ***************/
 h1.promt {
   text-transform: uppercase;
@@ -768,21 +819,26 @@ color: #818181;
 
 .account {
   background: #fff;
-  border-radius: 5px;
+
   text-align: center;
   border: solid 1px #cecece;
-  padding: 20px;
+
 
   display: inline-block;
   margin: 15px;
   vertical-align: top;
-    min-height: 500px;
+    min-height: 675px;
     position: relative;
+}
+
+.upgrade {
+  background: url(../img/mi_gran_dia_pattern.png) #efefef !important;
+      padding: 0 !important;
 }
 
 @media only screen and (min-width: 768px) {
   .account {
-    width: 300px;
+    width: 340px;
   }
 }
 
@@ -807,15 +863,20 @@ color: #818181;
 right: 0;
 left: 0;
 width: 90%;
-margin: 12px auto;
+margin: 12px auto !important;
 bottom: 0px;
 }
 
 .account.selected {
   border: 5px solid #858;
-border-radius: 8px;
-}
 
+}
+.account .title {
+padding:20px;
+}
+.account .body {
+  padding: 20px;
+}
 .account .request {
   position:absolute;
   bottom: 0px;
@@ -832,17 +893,44 @@ border-radius: 8px;
     text-transform: uppercase;
     color: #ee3470;
     background: none;
-    background-image: none; }
+    background-image: none;
+    margin:0;
+  }
   .account ul {
     margin-top: 10px;
     padding-left: 20px;
     margin-left: 15px;
         text-align: left;
+
   }
     .account ul li {
       color: #818181;
-      font-size: 1em;
-      line-height: inherit; }
+          font-size: 1em;
+          line-height: inherit;
+          margin-top: 10px;
+          list-style-type: none;
+          letter-spacing: 1px;
+    }
+
+.account ul li.yes:before {
+  content: "\e013";
+  font-family: 'Glyphicons Halflings';
+  font-size: 18px;
+  float: left;
+  margin-bottom: 10px;
+  margin-left: -30px;
+  color: #aed136;
+}
+
+.account ul li.no:before {
+  content: "\e014";
+  font-family: 'Glyphicons Halflings';
+  font-size: 18px;
+  float: left;
+  margin-bottom: 10px;
+  margin-left: -30px;
+  color: #ee3470;
+}
     .account ul .check {
       list-style-image: url("../img/check.png");
       margin-bottom: 0; }
@@ -886,7 +974,9 @@ border-radius: 8px;
 /******* Supplier Profile ******/
 .supplier {
   color: #818181;
-  letter-spacing: 3px; }
+  letter-spacing: 3px;
+background: url(../img/mi_gran_dia_pattern.png) #ececec !important;
+}
   .supplier .gallery {
     top: 20px; }
   .supplier .swiper-container {
@@ -1360,4 +1450,39 @@ nav.navbar.navbar-fixed-top {
 .img-panel-full-register {
   background-image: url("../img/mi_gran_dia_cumpleanos.jpg");
   padding: 0 10%;
+}
+
+.disclaimer {
+  font-size: 11px;
+  color: #888;
+  text-transform: initial;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.open-now {
+  cursor: pointer;
+  background: #aed136;
+  border-radius: 3px;
+  padding: 5px 8px;
+  display: inline-block;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #fff;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.unread {
+
+}
+
+.supplier-no-chat {
+  background: #ee3470;
+margin-left: 15px;
+margin-right: 15px;
+padding: 6px;
+color: #fff;
+text-align: center;
+border-radius: 4px;
 }

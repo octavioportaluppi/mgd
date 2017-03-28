@@ -2,6 +2,7 @@
 app.controller('suppliersController',
     ['$scope', 'supplierService', '$routeParams', 'ngAuthSettings', 'dateService', 'authService', 'textAngularManager',
         function ($scope, supplierService, $routeParams, ngAuthSettings, dateService, authService, textAngularManager) {
+
             $scope.supplier = {};
             $scope.isSupplier = false;
             $scope.myInterval = 1000;

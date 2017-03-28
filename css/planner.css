@@ -11,7 +11,7 @@
     text-align: center;
     text-transform: uppercase;
     font-size: 1.5rem;
-    padding: 20px 0;
+    ppadding: 20px 0;
     background: #cecece;
 }
 
@@ -23,6 +23,8 @@
 
 .planner-nav a {
     color: #818181;
+    display: block;
+line-height: 60px;
 }
 
 .planner-nav .active,
@@ -452,7 +454,7 @@ border-radius: 20px;
 .task-info {
     background: #ececec;
     padding: 20px 35px;
-    min-height: 500px
+    min-height: 526px
 }
 
 .task-info .task-info-header,
@@ -567,6 +569,25 @@ border-radius: 20px;
     display: inline-block;
 }
 
+@media only screen and (max-width: 768px) {
+  .list-item .premium-service {
+    background-color: #8c3e96;
+    padding: 2px 3px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin: 2px;
+    display: inline-block;
+  }
+
+  .list-item  .supplier-body {
+    margin-top: 10px;
+  }
+
+  .list-item div:last-child {
+      padding-left: 15px;
+  }
+}
+
 .list-item .premium-service i {
     font-size: 1.5rem;
 }
@@ -633,7 +654,7 @@ color: #858;
 }
 
 .agenda-list {
-  background-color: #FAF5FB; min-height: 500px; padding: 20px;
+  background-color: #FAF5FB; min-height: 619px; padding: 20px;
 }
 
 .agenda-detail {
@@ -656,4 +677,43 @@ color: #858;
   .planner-data {
     margin-top: 183px;
   }
+
+  .planner-list .list-item .detail-col:last-child {
+    padding-left: 0px;
+    margin-top: -5px;
+  }
+
+  .planner-list .event-buttons .btn-more-info {
+    display: none;
+  }
+}
+
+.available-budget {
+  text-align: center;
+  font-size: 22px;
+  color: #858;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  background-color: #ececec;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.planner-data label {
+  font-size: 1.4rem;
+  color: #888;
+}
+
+.no-suppliers-saved{
+  text-align: center;
+margin-top: 15px;
+background: #e9e9e9;
+border-radius: 5px;
+padding: 8px;
+color: #999;
+}
+
+.my-section {
+  background: #fff;
 }

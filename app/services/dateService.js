@@ -36,10 +36,9 @@ app.factory('dateService', [function () {
     };
 
     var _isBetweenHours = function(currentHours, currentMinutes, fromHours, fromMinutes, toHours, toMinutes) {
-        var greaterThanFrom = currentHours >= fromHours && currentMinutes >= fromMinutes;
-        var lowerThanTo = currentHours <= toHours && currentMinutes <= toMinutes;
-
-        return greaterThanFrom && lowerThanTo;
+      return ((fromHours < currentHours) && (currentHours < toHours))
+                || ((fromHours == currentHours) && (fromMinutes <= currentMinutes))
+                || ((currentHours == toHours) && (currentMinutes <= toMinutes))
     };
 
 

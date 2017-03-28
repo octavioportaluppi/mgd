@@ -1,6 +1,6 @@
 <div class="container-fluid" ng-cloak="">
 	<div class="row">
-		<div class="carousel-image img-panel-full img-panel-full-register">
+		<div class="carousel-image img-panel-full header-cumpleanos">
 			<div class="carousel-caption">
 				¡Regístrate para comenzar a organizar tus eventos!
 				<h2>Registrarte es completamente gratis, en unos minutos podrás acceder a nuestras herramientas.</h2>
@@ -10,14 +10,8 @@
 </div>
 <form class="form-horizontal main" name="data" form-step-validity="form-step-validity" novalidate ng-cloak="">
 	<div class="container">
-		<div class="col-xs-10 col-xs-offset-1 col-md-12 col-md-offset-0" ng-if="errorMessage && !data.$valid">
-			<div class="form-group signup-error">
-				<div class="error">
-					<div ng-show="errorMessage">{{errorMessage.data.ModelState[''][1]}}</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 			<div class="form-group signup-field">
 				<input
 						class="form-control"
@@ -32,7 +26,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 			<div class="form-group signup-field">
 				<input
 						class="form-control"
@@ -47,7 +41,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+			<div class="form-group signup-field">
+				<input
+						class="form-control"
+						name="email"
+						required="required"
+						type="email"
+						placeholder="Email"
+						ng-model="registration.Email"
+						ng-disabled="authentication.isAuth"
+						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
+				<div class="error" ng-show="data.$submitted || data.email.$touched">
+					<div ng-show="data.email.$error.required">Danos un mail de contacto. Lo usarás para iniciar sesión.</div>
+					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 			<div class="form-group signup-field">
 				<input
 						class="form-control"
@@ -60,13 +71,13 @@
 						ng-class="{'invalid':(data.password.$error.required || data.passwordConfirm.$error.compareTo) && (data.$submitted || data.password.$touched)}"/>
 				<div class="error" ng-show="data.$submitted || data.password.$touched">
 					<div ng-show="data.password.$error.required">Elije una contraseña.</div>
-					<div ng-show="!checkPassword()">
+					<div ng-show="!checkPassword() && !data.password.$error.required">
 						Debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 			<div class="form-group signup-field">
 				<input
 						class="form-control"
@@ -84,24 +95,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
-			<div class="form-group signup-field">
-				<input
-						class="form-control"
-						name="email"
-						required="required"
-						type="email"
-						placeholder="Email"
-						ng-model="registration.Email"
-						ng-disabled="authentication.isAuth"
-						ng-class="{'invalid':(data.email.$error.required || data.email.$error.email) && (data.$submitted || data.email.$touched)}"/>
-				<div class="error" ng-show="data.$submitted || data.email.$touched">
-					<div ng-show="data.email.$error.required">Danos un mail de contacto.</div>
-					<div ng-show="data.email.$error.email">El email ingresado es inválido.</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 			<div class="form-group signup-field">
 				<div class="input-group">
 					<input
@@ -121,7 +116,8 @@
 							placeholder="Fecha de nacimiento"
 							required="required"
 							popup-placement="top-right"
-							ng-class="{'invalid':(data.birthdate.$error.required || data.birthdate.$error.compareTo) && (data.$submitted || data.birthdate.$touched)}"
+							ng-class="{'invalid':(data.birthdate.$error.required || data.birthdate.$error.compareTo || !data.birthdate.$valid) && (data.$submitted || data.birthdate.$touched)}"
+							aw-datepicker-pattern="^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$"
 							dropdown-append-to-body="dropdown-append-to-body"/>
 					<div class="input-group-btn">
 						<button class="btn btn-default btn-input" type="button" ng-click="openDatePicker()">
@@ -131,10 +127,11 @@
 				</div>
 				<div class="error" ng-show="data.$submitted || data.birthdate.$touched">
 					<div ng-show="data.birthdate.$error.required">Dinos tu fecha de nacimiento.</div>
+					<div ng-show="!data.birthdate.$valid && !data.birthdate.$error.required">Dinos una fecha válida.</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 			<div class="form-group signup-field">
 				<select class="form-control" name="state"
 						ng-class="{'invalid':data.state.$error.required && (data.$submitted || data.state.$touched)}"
@@ -149,7 +146,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-0">
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
 			<div class="form-group signup-field">
 				<select class="form-control" required="" ng-model="planner.CityId" name="city"
 						ng-class="{'invalid':data.city.$error.required && (data.$submitted || data.city.$touched)}">
@@ -163,10 +160,17 @@
 		</div>
 	</div>
 	<div class="container text-center">
-		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-3">
+		<div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3" ng-if="errorMessage && !data.$valid">
+			<div class="form-group signup-error">
+				<div class="error">
+					<div ng-show="errorMessage">{{errorMessage}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-5 col-xs-offset-1 col-md-3 col-md-offset-3">
 			<button class="btn btn-defasult btn-submit prev" ng-disabled="true">Regresar</button>
 		</div>
-		<div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+		<div class="col-xs-5 col-md-3 col-md-offset-0">
 			<button
 					class="btn btn-default btn-submit next"
 					ng-class="[{'invalid':!data.$valid && data.$submitted}]"

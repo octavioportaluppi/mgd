@@ -10,7 +10,7 @@
             ng-model="supplier.Address"
             ng-class="{'invalid':data.inputAddress.$error.required && (data.$submitted || data.inputAddress.$touched)}"/>
         <div class="dashboard-error" ng-show="data.$submitted || data.inputAddress.$touched">
-            <div ng-show="data.inputAddress.$error.required">Agregue una direccion.</div>
+            <div ng-show="data.inputAddress.$error.required">Dinos una dirección.</div>
         </div>
     </div>
     <div class="signup-field">
@@ -24,7 +24,7 @@
                         ng-options="state as state.Name for state in states track by state.Id">
                 </select>
                 <div class="error" ng-show="data.$submitted || data.state.$touched">
-                    <div ng-show="data.state.$error.required">Dinos la población a la que perteneces.</div>
+                    <div ng-show="data.state.$error.required">Dinos la población.</div>
                 </div>
 
     </div>
@@ -41,12 +41,12 @@
                     ng-options="city as city.Name for city in cities track by city.Id">
                 </select>
                 <div class="error" ng-show="data.$submitted || data.city.$touched">
-                    <div ng-show="data.city.$error.required">Dinos la ciudad a la que perteneces.</div>
+                    <div ng-show="data.city.$error.required">Dinos la ciudad.</div>
                 </div>
 
     </div>
     <div class="signup-field">
-        <label>Telefono</label>
+        <label>Teléfono</label>
         <input
             class="form-control"
             name="inputPhone"
@@ -54,9 +54,11 @@
             type="text"
             placeholder="Telefono"
             ng-model="supplier.Phone"
-            ng-class="{'invalid':data.inputPhone.$error.required && (data.$submitted || data.inputPhone.$touched)}"/>
+            ng-pattern="/^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/"
+            ng-class="{'invalid':(data.inputPhone.$error.required || !data.inputPhone.$valid) && (data.$submitted || data.inputPhone.$touched)}"/>
         <div class="dashboard-error" ng-show="data.$submitted || data.inputPhone.$touched">
-            <div ng-show="data.inputPhone.$error.required">Agregar un telefono.</div>
+            <div ng-show="data.inputPhone.$error.required">Dinos un telefono.</div>
+            <span ng-show="!data.inputPhone.$valid && !data.inputPhone.$error.required">Ingresa un teléfono válido. Ejemplo: 123-456-7890 / (123) 456-7890</span>
         </div>
     </div>
     <div class="signup-field row">
@@ -91,11 +93,12 @@
                     required="required"
                     type="text"
                     placeholder="HH:MM"
-                    ng-model="supplier.OpeningHours.HoursTo"
+                    ng-model="supplier.OpeningHours.HoursFrom"
                     ng-class="{'invalid':(data.hoursFrom.$error.required || data.hoursFrom.$error.pattern) && (data.$submitted || data.hoursFrom.$touched)}"
-                    ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
+                    ng-pattern="'([01][0-9]|2[0-3]):[0-5][0-9]'"/>
             <div class="dashboard-error" ng-show="data.$submitted || data.hoursFrom.$touched">
-                <div ng-show="data.hoursFrom.$error.required">Agregar un Horario.</div>
+                <span ng-show="data.hoursFrom.$error.required">Dinos un horario de apertura.</span>
+                <span ng-show="data.hoursFrom.$error.pattern">El horario de apertura es incorrecto.</span>
             </div>
         </div>
         <div class="col-md-6">
@@ -105,11 +108,12 @@
                 required="required"
                 type="text"
                 placeholder="HH:MM"
-                ng-model="supplier.OpeningHours.HoursFrom"
+                ng-model="supplier.OpeningHours.HoursTo"
                 ng-class="{'invalid':(data.hoursTo.$error.required || data.hoursTo.$error.pattern) && (data.$submitted || data.hoursTo.$touched)}"
-                ng-pattern="'([01]?[0-9]|2[0-3]):[0-5][0-9]'"/>
+                ng-pattern="'([01][0-9]|2[0-3]):[0-5][0-9]'"/>
             <div class="dashboard-error" ng-show="data.$submitted || data.hoursTo.$touched">
-                <div ng-show="data.hoursTo.$error.required">Agregar un Horario.</div>
+                <span ng-show="data.hoursTo.$error.required">Dinos un horario de cierre.</span>
+                <span ng-show="data.hoursTo.$error.pattern">El horario de cierre es incorrecto.</span>
             </div>
         </div>
     </div>

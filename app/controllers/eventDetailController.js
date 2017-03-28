@@ -3,6 +3,7 @@ app.controller('eventDetailController',
 	['$scope', 'plannerService','$routeParams', '$location',
 		function ($scope, plannerService, $routeParams, $location) {
 
+
 		$scope.eventId = $routeParams.eventId;
 
 		plannerService

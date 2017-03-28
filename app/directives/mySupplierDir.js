@@ -8,6 +8,11 @@ var mySupplierController = ['$scope', 'eventService', 'supplierService', 'ngAuth
                 .getSuppliers($scope.id)
                 .then(function (response){
                     $scope.suppliers = response.data;
+                    $scope.suppliers.forEach(function(supplier){
+                        if (supplier.LogoId > 0)
+                            supplier.LogoUrl = ngAuthSettings.apiServiceBaseUri + '/api/Pictures/' + supplier.LogoId + '/Image?thumbnail=true';
+                    })
+
                     $scope.addNew = false;
                     $scope.showServices = true;
                     $scope.showSuppliers = false;
@@ -44,7 +49,7 @@ var mySupplierController = ['$scope', 'eventService', 'supplierService', 'ngAuth
         $scope.getSuppliersByService = function (serviceId) {
             $scope.currentServiceId = serviceId;
             supplierService
-                .getAllSuppliers(10, $scope.page, {name: 'ServiceTypeId', value: serviceId})
+                .getAllSuppliers(10, $scope.page, [{name: 'ServiceTypeId', value: serviceId}])
                 .then(function(response) {
                     $scope.availableSuppliers = $scope.availableSuppliers.concat(response.data.Content);
                     $scope.availableSuppliers .forEach(function(supplier) {

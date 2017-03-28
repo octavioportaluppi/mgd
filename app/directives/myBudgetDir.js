@@ -36,7 +36,7 @@ var budgetController = ['$scope', 'eventService',
                             totalInitial += parseInt(budget.Initial);
                             totalFinal += parseInt(budget.PayedSoFar);
                         });
-                    $scope.total = {Title: 'Total', Initial: totalInitial, Final: totalFinal}
+                    $scope.total = {Title: 'Total', Initial: totalInitial, Final: totalFinal, Available: $scope.event.Budget - totalInitial, AvailableReal: $scope.event.Budget - totalFinal}
                 })
         };
 

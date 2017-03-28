@@ -1,7 +1,8 @@
-	<div class="list-header suppliers-header clearfix">
+	<div class="list-header suppliers-header clearfix {{service.Name | background }}">
 		<div class="content">
       <i class="{{service.Name | icon}}"></i>
 			<h4 class="">Proveedores de {{service.Name}}</h4>
+			<h5 class="">{{service.Description}}</h5>
 			<div class="span-header" ng-if="totalSuppliers > 0">{{totalSuppliers}} proveedor{{totalSuppliers > 1 ? "es":""}}</div>
 		</div>
 	</div>
@@ -27,7 +28,7 @@
 	<div class="no-results clearfix row" ng-if="totalSuppliers == 0"><i class="glyphicon glyphicon-flag"></i> No se encontraron proveedores.</div>
 	<div class="col-md-12 filter-responsive" ng-if="totalSuppliers > 0">
 		<div class="filter-list clearfix row" ng-click="isCollapsed = !isCollapsed">
-			<span>Filtrar por:</span>
+			<span>Filtrar</span>
 		</div>
 		<div div="filter-content" uib-collapse="isCollapsed">
 			<uib-accordion close-others="false">
@@ -57,13 +58,13 @@
 			infinite-scroll='nextPage()'
 			infinite-scroll-disabled='loading'
 			infinite-scroll-distance='1'>
-			<div class="col-md-3 col-xs-4">
+			<div class="col-md-3 col-xs-12">
 				<a href="#/suppliers/{{supplier.Id}}">
 					<img src="img/photo-placeholder.jpg" ng-if="!supplier.LogoUrl"/>
 					<img src="{{supplier.LogoUrl}}" ng-if="supplier.LogoUrl"/>
 				</a>
 			</div>
-			<div class="col-md-9 col-xs-8">
+			<div class="col-md-9 col-xs-12 supplier-body">
 				<a href="#/suppliers/{{supplier.Id}}">{{supplier.Name}}</a>
                                 <div ng-show="supplier.SubscriptionType.Name=='All Star'" clasS="pull-right">
                                     <a href="/#/planner/chat/{{supplier.Id}}" title="Enviar mensaje">
@@ -71,11 +72,11 @@
                                     </a>
                                 </div>
 																<span class="ligth-description"><i class="glyphicon glyphicon-pushpin"></i> {{supplier.City.Name}}, {{supplier.State.Name}}</span>
-																<p class="description-elipsis">{{supplier.Description.substring(0,250)}}...</p>
+																<p class="description-elipsis">{{supplier.Description.substring(0,250) | removeHtml}}...</p>
 				<div class="divider"></div>
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-8 col-sm-8 col-xs-12">
+						<div class="col-md-8 col-sm-8 col-xs-12 service-list">
                             <span class="premium-service listing-service" ng-repeat="service in supplier.ServiceTypes">
                                 <a href='/#/suppliers/browse/service/{{service.Id}}' title='{{service.Name}}'><i class="{{service.Name | icon}}"></i>
                                 {{service.Name}}</a>

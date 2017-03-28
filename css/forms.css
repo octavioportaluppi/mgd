@@ -51,7 +51,9 @@ form .error_contact {
 }
 
 .signup-error {
-    padding: 15px 0;
+  padding: 0px 18px;
+  color: #ee3470;
+  text-align: center;
 }
 
 .signup-field input[disabled] {

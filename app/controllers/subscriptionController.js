@@ -1,6 +1,7 @@
 ﻿'use strict';
 app.controller('subscriptionController', ['$scope', 'accountService', 'authService', '$location', function ($scope, accountService, authService, $location) {
 
+
     $scope.load = function () {
       if(!authService
     			.authentication.isAuth || authService

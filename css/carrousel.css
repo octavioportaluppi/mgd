@@ -20,6 +20,10 @@
     bottom: 0;
 }
 
+.carousel-caption a {
+  color: #fff;
+}
+
 .item {
     height: 350px;
     width: 100%;
@@ -39,6 +43,7 @@
     margin: 0 0 30px 0;
     font-weight: 900;
     text-transform: uppercase;
+    padding: 0 18%;
 }
 
 .carousel-info {

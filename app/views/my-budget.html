@@ -1,4 +1,4 @@
-<div class="row" style="padding:60px 0; background-color: rgba(192, 192, 192, 0.4)" ng-cloak="">
+<div class="row" style="padding:60px 0; background-color: #f4f4f4" ng-cloak="">
     <div class="container clearfix">
         <div class="col-md-6 col-sm-6 col-xs-6 budget-title">
             <span>GASTOS</span>
@@ -81,9 +81,11 @@
                            ng-model="newPayment.Value"
                            name="value"
                            class="budget-input budget-total budget-payment"
-                           ng-class="{'invalid':newPaymentForm.value.$error.required && (newPaymentForm.$submitted || newPaymentForm.value.$touched)}"/>
+                           ng-pattern="/^\d{1,10}$/"
+                           ng-class="{'invalid':(newPaymentForm.value.$error.required || !newPaymentForm.value.$valid) && (newPaymentForm.$submitted || newPaymentForm.value.$touched)}"/>
                     <div class="dashboard-error" ng-show="newPaymentForm.$submitted || newPaymentForm.value.$touched">
                         <div ng-show="newPaymentForm.value.$error.required">Agregue un monto.</div>
+                        <div ng-show="!newPaymentForm.value.$valid">El monto debe ser una cifra positiva.</div>
                     </div>
                     <button
                         class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit">
@@ -124,9 +126,11 @@
                            ng-model="newBudget.Initial"
                            name="initial"
                            class="budget-input budget-total budget-add"
-                           ng-class="{'invalid':budgetForm.initial.$error.required && (budgetForm.$submitted || budgetForm.initial.$touched)}"/>
+                           ng-pattern="/^\d{1,10}$/"
+                           ng-class="{'invalid':(budgetForm.initial.$error.required || !budgetForm.initial.$valid) && (budgetForm.$submitted || budgetForm.initial.$touched)}"/>
                     <div class="dashboard-error" ng-show="budgetForm.$submitted || budgetForm.initial.$touched">
-                        <div ng-show="budgetForm.initial.$error.required">Agregue un monto inicial.</div>
+                        <div ng-show="budgetForm.initial.$error.required">Agregue un monto.</div>
+                        <div ng-show="!budgetForm.initial.$valid">El monto debe ser una cifra positiva.</div>
                     </div>
                     <button
                         class="btn btn-defasult btn-submit btn-budget-add btn-budget-submit budget-add">
@@ -136,5 +140,8 @@
                 <div class="col-md-3 col-sm-3 col-xs-3"></div>
             </form>
         </div>
+    </div>
+    <div class="available-budget col-xs-12 col-sm-offset-3 col-md-6 pattern">
+      $ {{total.Available}}<br /><div style="font-size:18px;">Presupuesto Disponible</div>
     </div>
 </div>

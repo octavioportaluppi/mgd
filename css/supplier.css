@@ -111,4 +111,9 @@
   left: 28px;
   top: -35px;
   font-size: 25px;
+  cursor: pointer;
+}
+
+.supplier-public {
+  background:none !important;
 }

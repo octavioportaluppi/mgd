@@ -47,7 +47,7 @@
                                     <div ng-show="data.password.$error.required">
                                         Elije una contraseña.
                                     </div>
-                                    <div ng-show="!checkPassword()">
+                                    <div ng-show="!checkPassword() && !data.password.$error.required">
                                         Debe tener 8 dígitos, una mayúscula, un número, y un caracter especial.
                                     </div>
                                 </div>

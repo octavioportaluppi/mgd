@@ -34,7 +34,7 @@
 .icon-showers:before {
     content: ""; }
 
-.icon-catering:before {
+.icon-catering:before, .icon-banquete:before {
     content: ""; }
 
 .icon-decoracion:before {
@@ -43,7 +43,7 @@
 .icon-dulcerias:before {
     content: ""; }
 
-.icon-entretenimiento:before {
+.icon-entretenimiento:before, .icon-animacion:before {
     content: ""; }
 
 .icon-florerias:before {
@@ -58,7 +58,7 @@
 .icon-joyeria:before {
     content: ""; }
 
-.icon-lugares:before {
+.icon-lugares:before, .icon-locaciones:before, .icon-vivienda::before {
     content: ""; }
 
 .icon-mobiliario:before, .icon-renta-de-mobiliario:before {
@@ -88,19 +88,19 @@
 .icon-regalos:before, .icon-mesa-de-regalos:before {
     content: ""; }
 
-.icon-salon:before {
+.icon-salon:before, .icon-salones-de-belleza:before {
     content: ""; }
 
-.icon-trajes:before, .icon-smokings-y-trajes:before {
+.icon-trajes:before, .icon-smokings-y-trajes:before, .icon-trajes-renta-y-venta:before {
     content: ""; }
 
-.icon-trajes_bebe:before, .icon-trajes-para-bebe:before{
+.icon-trajes_bebe:before, .icon-trajes-para-bebe:before {
     content: ""; }
 
-.icon-transporte:before {
+.icon-transporte:before, .icon-autos-renta:before, .icon-renta-de-autos:before {
     content: ""; }
 
-.icon-vestidos:before {
+.icon-vestidos:before, .icon-ropa-casual:before, .icon-vestidos-de-fiesta:before, .icon-ropa-para-bebe:before {
     content: ""; }
 
 .icon-viajes:before, .icon-agencias-de-viaje:before{

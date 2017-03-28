@@ -15,7 +15,12 @@ app.controller('signupController', [
         { templateUrl: '/app/views/signup-supplier-questions.html', hasForm: true },
         { templateUrl: '/app/views/signup-welcome.html', hasForm: true }
     ];
-    
+
+    //check if user is already logged in
+    if (authService.authentication.isAuth){
+        $location.path('/');
+    }
+
     //Britez
     $scope.saveSupplierData = function (form, callback){
         if(form.$valid && $scope.checkPassword()) {
@@ -52,8 +57,14 @@ app.controller('signupController', [
                     })
             },
             function(error) {
-                $scope.errorMessage = error;
-                form.$valid = false;
+              if (error.data.ModelState[""][0].match("already"))
+              {
+                $scope.errorMessage = "El email ingresado ya esta en uso. Por favor, escoge otro.";
+              }
+              else {
+                  $scope.errorMessage = "Oops. Hubo un error al intentar registrarte. Por favor, ponte en contacto con nosotros para solucionarlo.";
+              }
+              form.$valid = false;
             }
         );
     };

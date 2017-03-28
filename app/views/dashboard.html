@@ -7,12 +7,11 @@
         <a href="#/upgrade">Suscripción</a>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12 menu-item odd">
-        <a href="#/supplier/chat" ng-if="supplier.SubscriptionType.Name=='All Star'">Chat</a>
-        <a href="#/upgrade" ng-if="supplier.SubscriptionType.Name!='All Star'" title="¡Conviértete en Proveedor All Star!">Chat<span class="supplier-upgrade">¡Solicitar!</span></a>
-    </div>
+        <a href="#/supplier/chat">Chat</a>
+      </div>
     <div class="container gray-bg">
         <div class="col-md-12 col-sm-12 col-xs-12">
-          <div ng-if="!supplier.IsActive && showNotification" class="frame header clearfix">
+          <div ng-if="!supplier.IsConfirmed" class="frame header clearfix notif">
             <span ng-if="!confirmationSent" class="confirmation-pending">
             <i class="glyphicon glyphicon-warning-sign"></i> Tu cuenta de email no ha sido confirmada.
             <button ng-click="sendConfirmationCode()" class="btn btn-default btn-submit" ng-if="!confirmationSent">
@@ -23,9 +22,40 @@
             <i class="glyphicon glyphicon-remove pull-right" title="Cerrar" ng-click="hideNotification()"></i>
           </span>
           </div>
+          <div ng-if="supplier.Status == 2 && supplier.IsConfirmed " class="frame header clearfix">
+          <span class="confirmation-pending">
+            <i class="glyphicon glyphicon-warning-sign"></i> Oops! Hemos detectado que tu perfil no se ha creado correctamente. Por favor, ingresa tus datos en esta pantalla.
+            <i class="glyphicon glyphicon-remove pull-right" title="Cerrar" ng-click="hideNotification()"></i>
+          </span>
+          </div>
+          <div ng-if="supplier.Status == 0 && supplier.IsConfirmed && !activationSent" class="frame header clearfix">
+          <span class="confirmation-pending">
+            <i class="glyphicon glyphicon-warning-sign"></i> Tu perfil permanece invisible a los visitantes del sitio. Antes de activar tu perfil asegúrate de haber completado toda la información.
+            <button ng-click="activateSupplier()" class="btn btn-default btn-submit">
+              Activar
+            </button>
+          </span>
+          </div>
+          <div ng-if="supplier.Status == 1 && supplier.IsConfirmed" class="frame header clearfix">
+          <span class="profile-active">
+            <i class="glyphicon glyphicon-ok"></i> Tu perfil visible a los visitantes del sitio.
+            <button ng-click="deactivateSupplier()" class="btn btn-default btn-submit">
+              Desactivar
+            </button>
+          </span>
+          </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="frame header clearfix">
+          <div class="clearfix">
+              <div class="col-md-10 col-sm-10 col-xs-12">
+                  <h2 class="sub-title">SOBRE MI</h2>
+              </div>
+          <button  ng-show="!editProfile" ng-click="editProfile = !editProfile" class="btn btn-default btn-submit col-md-2 col-sm-2 col-xs-12" >
+              <i class="fa fa-pencil" aria-hidden="true"></i>
+              Editar
+          </button>
+        </div>
+            <div class="frame clearfix">
                 <div ng-show="!editProfile">
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <img class="avatar img-circle" src="img/photo-placeholder.jpg" ng-if="!supplier.pic"/>
@@ -36,13 +66,10 @@
                             <h1 class="index-title">{{supplier.Name}}</h1>
                             <p class="since">Miembro desde {{dashboard.Created | date: 'MMMM yyyy'}}</p>
                             <p class="since">{{dashboard.ProfileViews | profileViews }} visitas</p>
-                            <button  ng-show="!editProfile" ng-click="editProfile = !editProfile" class="btn btn-default btn-submit" >
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                Editar
-                            </button>
+                            <p class="since">Proveedor {{dashboard.SubscriptionType.Name}}<a class="supplier-upgrade" ng-if="dashboard.SubscriptionType.Name != 'All Star'" href="#/upgrade">¡Mejorar!</a></p>
                         </div>
                         <div class="col-md-1 col-sm-1 col-xs-2 social pull-right">
-                            <a ng-href="/#/suppliers/{{dashboard.Id}}" target="_blank" title="Visitar mi perfil">
+                            <a ng-href="/#/suppliers/{{dashboard.Id}}" ng-if="!$scope.supplierError" target="_blank" title="Visitar mi perfil">
                               <i class="glyphicon glyphicon-new-window"></i>
                             </a>
                             <a ng-href="{{supplier.FacebookUrl}}"
@@ -79,15 +106,16 @@
                 <div ng-if="!editAboutMe">
                     <div class="col-md-5 col-sm-5 col-xs-12">
                         <div class="info-group">
-                            <p class="phone"><i class="glyphicon glyphicon-phone"></i> {{supplier.Phone | tel}}</p>
-                            <p class="address"><i class="glyphicon glyphicon-pushpin"></i> {{supplier.Address | firstLetter }}</p>
+                            <p class="phone"><i class="glyphicon glyphicon-phone"></i> <span ng-if="supplier.Phone">{{supplier.Phone | tel}}</span><span class="info-not-set" ng-if="!supplier.Phone">Teléfono no establecido</span></p>
+                            <p class="address"><i class="glyphicon glyphicon-pushpin"></i> <span ng-if="supplier.Address">{{supplier.Address | firstLetter }}</span><span class="info-not-set" ng-if="!supplier.Address">Dirección no establecida</span></p>
                             <p class="address"><i class="glyphicon glyphicon-globe"></i> {{supplier.City.Name | firstLetter}}, {{supplier.State.Name | firstLetter}}</p>
                             <p>
-                              <i class="glyphicon glyphicon-time"></i>
+                              <i class="glyphicon glyphicon-time"></i><span ng-if="supplier.OpeningHours.DayFrom">
                                 {{supplier.OpeningHours.DayFrom | day}} a
                                 {{supplier.OpeningHours.DayTo | day}} de
-                                {{supplier.OpeningHours.HoursTo}}hs a
-                                {{supplier.OpeningHours.HoursFrom}}hs
+                                {{supplier.OpeningHours.HoursFrom}}hs a
+                                {{supplier.OpeningHours.HoursTo}}hs</span>
+                                <span class="info-not-set" ng-if="!supplier.OpeningHours.DayFrom">Horario no establecido</span>
                             </p>
                         </div>
                     </div>
@@ -112,7 +140,7 @@
             <div class="register-panel frame clearfix">
                 <div class="col-md-12 col-sm-12 col-xs-12 text-center"
                      ng-if="dashboard.ServiceTypes.length === 0 && !editServices">
-                    <h1>No has seleccionado algún servicio</h1>
+                    <h3>No has seleccionado ningún servicio.</h3>
                 </div>
                 <div ng-if="editServices">
                     <div class="col-md-6 col-sm-6 col-xs-12"
@@ -153,6 +181,10 @@
                     Editar</button>
             </div>
             <div class="register-panel frame clearfix">
+              <div class="col-md-12 col-sm-12 col-xs-12 text-center"
+                   ng-if="answers.length === 0 && !editServices">
+                  <h3>Selecciona servicios para completar las Preguntas Frecuentes.</h3>
+              </div>
                 <div
                     class="col-md-12 col-sm-12 col-xs-12 dashboard-faq"
                     ng-repeat="answer in answers"
@@ -196,6 +228,10 @@
                     Editar</button>
             </div>
             <div class="register-panel frame clearfix">
+              <div class="col-md-12 col-sm-12 col-xs-12 text-center"
+                   ng-if="supplier.Pictures.length === 0 && !editServices">
+                  <h3>No has cargado ninguna foto.</h3>
+              </div>
                 <div style="text-align: center;" class="pull-left" ng-if="!editPics" ng-cloak="">
                     <img
                         ng-repeat="pic in supplier.Pictures"

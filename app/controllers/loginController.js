@@ -18,39 +18,49 @@ app.controller('loginController',
                 $scope.checkAccount('Supplier', '/dashboard');
             },
             function (err) {
-                $scope.message = err.error_description;
+              if (err.error == "invalid_grant"){
+                $scope.message = "Nombre de usuario o contraseña incorrecto.";
+              }
+              else {
+                $scope.message = "Oops. Hubo un error al intentar ingresar. Por favor, ponte en contacto con nosotros para solucionarlo."
+              }
             });
     };
 
-    $scope.checkAccount = function(accountType, state) {      
+    $scope.checkAccount = function(accountType, state) {
         console.log(state);
         accountService
             .accountInfo()
-            .then(function (response) {                
-                if(response.data.Role === accountType) {                    
+            .then(function (response) {
+                if(response.data.Role === accountType) {
                     $location.path(state);
                 } else {
                     authService.logOut();
-                    $scope.message = 'La cuenta ingresada no corresponde al tipo de servicio.'
+                    $scope.message = 'Las datos ingresados no son válidos.'
                 }
             });
     };
 
-    $scope.loginPlanner = function () {        
+    $scope.loginPlanner = function () {
         authService
             .login($scope.loginData, 'planner')
             .then(
-            function () {                    
-                if($location.$$search.path!==undefined && $location.$$search.path!=''){                              
+            function () {
+                if($location.$$search.path!==undefined && $location.$$search.path!=''){
                     $scope.checkAccount('Planner', $location.$$search.path);
-                }else{                   
+                }else{
                     $scope.checkAccount('Planner', '/planner');
                 }
             },
             function (err) {
-                $scope.message = err.error_description;
+                if (err.error == "invalid_grant"){
+                  $scope.message = "Nombre de usuario o contraseña incorrecto.";
+                }
+                else {
+                  $scope.message = "Oops. Hubo un error al intentar ingresar. Ponte en contacto con nosotros para solucionarlo."
+                }
             });
-            
+
     };
 
     $scope.authExternalProvider = function (provider) {

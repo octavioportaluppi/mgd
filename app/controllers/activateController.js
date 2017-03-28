@@ -35,4 +35,6 @@ app.controller('activateController',
                 .test($scope.activate.Password);
         };
 
+        
+
 }]);

@@ -30,4 +30,6 @@ function ($scope, $location, authService, supplierService, stateService) {
   }
 
   $scope.init();
+
+
 }]);

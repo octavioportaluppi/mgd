@@ -3,6 +3,7 @@ app.controller('signupPlannerController', [
     '$scope', 'authService', 'stateService', 'dateService',
     function ($scope, authService, stateService, dateService) {
 
+
     $scope.registration = {};
     $scope.planner = {};
 
@@ -27,7 +28,12 @@ app.controller('signupPlannerController', [
         { templateUrl: '/app/views/signup-planner-data.html', hasForm: true },
         { templateUrl: '/app/views/signup-planner-welcome.html', hasForm: true }
     ];
-    
+
+    //check if user is already logged in
+    if (authService.authentication.isAuth){
+        $location.path('/');
+    }
+
     //Britez
     $scope.savePlannerData = function (form, callback){
         if(form.$valid && $scope.checkPassword()) {
@@ -64,11 +70,27 @@ app.controller('signupPlannerController', [
                     })
             },
             function(error) {
-                $scope.errorMessage = error;
+                if (error.data.ModelState[""][0].match("already"))
+                {
+                  $scope.errorMessage = "El email ingresado ya esta en uso. Por favor, escoge otro.";
+                }
+                else {
+                    $scope.errorMessage = "Oops. Hubo un error al intentar registrarte. Por favor, ponte en contacto con nosotros para solucionarlo.";
+                }
                 form.$valid = false;
             }
         );
     };
+
+    $scope.findString = function(obj, s){
+      var found = false;
+      for(var i = 0; i < obj.length; i++) {
+          if (obj[i] == s) {
+              found = true;
+              break;
+          }
+      }
+    }
 
     $scope.checkPassword = function(){
         if($scope.registration.Password === ''){
